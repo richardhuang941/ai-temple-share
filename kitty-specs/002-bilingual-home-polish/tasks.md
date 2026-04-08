@@ -170,9 +170,9 @@ Risks:
 - Dependencies: Depends on WP02, Depends on WP03, Depends on WP04
 
 Included subtasks:
-- [ ] T016 串联三条 CTA 动线并补整页锚点逻辑 (WP05)
-- [ ] T017 新增集成测试覆盖双语、CTA、分享模式和 Journey 启动逻辑 (WP05)
-- [ ] T018 运行构建、测试和本地预览回归 (WP05)
+- [x] T016 串联三条 CTA 动线并补整页锚点逻辑 (WP05)
+- [x] T017 新增集成测试覆盖双语、CTA、分享模式和 Journey 启动逻辑 (WP05)
+- [x] T018 运行构建、测试和本地预览回归 (WP05)
 
 Implementation sketch:
 1. 用最终 App 结构串联各区块。
