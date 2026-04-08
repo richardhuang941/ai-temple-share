@@ -1,16 +1,16 @@
 {
-  "event_count": 29,
-  "last_event_id": "01KNP6C0PNFHBXVQP8HTJV1GS6",
-  "materialized_at": "2026-04-08T09:21:57.973874+00:00",
+  "event_count": 31,
+  "last_event_id": "01KNP6D7P9E1H60G5HFFPY1QGH",
+  "materialized_at": "2026-04-08T09:22:37.897993+00:00",
   "mission_slug": "001-bounty-journey-longpage",
   "summary": {
-    "approved": 4,
+    "approved": 5,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 1,
+    "in_progress": 0,
     "planned": 0
   },
   "work_packages": {
@@ -43,11 +43,11 @@
       "last_transition_at": "2026-04-08T09:18:01.178311+00:00"
     },
     "WP05": {
-      "actor": "codex",
+      "actor": "user",
       "force_count": 2,
-      "lane": "in_progress",
-      "last_event_id": "01KNP6C0PNFHBXVQP8HTJV1GS6",
-      "last_transition_at": "2026-04-08T09:21:57.973874+00:00"
+      "lane": "approved",
+      "last_event_id": "01KNP6D7P9E1H60G5HFFPY1QGH",
+      "last_transition_at": "2026-04-08T09:22:37.897993+00:00"
     }
   }
 }
