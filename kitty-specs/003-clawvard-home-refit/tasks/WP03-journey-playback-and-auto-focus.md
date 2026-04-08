@@ -180,3 +180,7 @@ Protect the new flow rules so future UI tweaks do not silently reintroduce autop
 - Confirm that the simulation does not start itself on page load.
 - Confirm that the active task reliably moves into view during playback.
 - Confirm that Task 4 still reads as a native handoff and Task 5 still reads as optional.
+
+## Activity Log
+
+- 2026-04-08T11:56:39Z – codex – shell_pid=16680 – Ready for review: slower playback, focus helpers, and light journey cards validated with unit tests + build
