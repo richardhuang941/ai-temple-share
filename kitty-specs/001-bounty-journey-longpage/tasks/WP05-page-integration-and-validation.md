@@ -169,3 +169,4 @@ Use the actual verification commands to surface and close the final gaps before 
 ## Activity Log
 
 - 2026-04-08T09:18:16Z – codex – shell_pid=16680 – Started implementation via action command
+- 2026-04-08T09:21:40Z – codex – shell_pid=16680 – Ready for review: app entry, anchors, integration tests, and build validation are complete
