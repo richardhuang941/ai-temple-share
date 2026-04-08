@@ -18,8 +18,8 @@ subtasks:
 - T009
 phase: Phase 2 - Primary Conversion Path
 assignee: ''
-agent: ''
-shell_pid: '16680'
+agent: "codex"
+shell_pid: "16680"
 history:
 - timestamp: '2026-04-08T10:00:00Z'
   agent: codex
@@ -78,3 +78,4 @@ Do not modify files outside this list.
 ## Activity Log
 
 - 2026-04-08T10:20:14Z – unknown – shell_pid=16680 – Ready for review
+- 2026-04-08T10:20:20Z – codex – shell_pid=16680 – Started review via action command

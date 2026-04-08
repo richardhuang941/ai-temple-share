@@ -1,7 +1,7 @@
 {
-  "event_count": 14,
-  "last_event_id": "01KNP9PQPS4Y9DR00TXB4FMBHB",
-  "materialized_at": "2026-04-08T10:20:14.937884+00:00",
+  "event_count": 15,
+  "last_event_id": "01KNP9PXDBTZA7HRWT02R1C43X",
+  "materialized_at": "2026-04-08T10:20:20.780056+00:00",
   "mission_slug": "002-bilingual-home-polish",
   "summary": {
     "approved": 1,
@@ -9,8 +9,8 @@
     "canceled": 0,
     "claimed": 0,
     "done": 0,
-    "for_review": 1,
-    "in_progress": 0,
+    "for_review": 0,
+    "in_progress": 1,
     "planned": 3
   },
   "work_packages": {
@@ -22,11 +22,11 @@
       "last_transition_at": "2026-04-08T10:16:17.277895+00:00"
     },
     "WP02": {
-      "actor": "user",
-      "force_count": 1,
-      "lane": "for_review",
-      "last_event_id": "01KNP9PQPS4Y9DR00TXB4FMBHB",
-      "last_transition_at": "2026-04-08T10:20:14.937884+00:00"
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "in_progress",
+      "last_event_id": "01KNP9PXDBTZA7HRWT02R1C43X",
+      "last_transition_at": "2026-04-08T10:20:20.780056+00:00"
     },
     "WP03": {
       "actor": "finalize-tasks",
