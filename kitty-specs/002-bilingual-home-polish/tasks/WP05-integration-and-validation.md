@@ -79,3 +79,4 @@ Do not modify files outside this list.
 
 - 2026-04-08T10:35:21Z – codex – shell_pid=16680 – Implementation completed in lane worktree and ready for workflow tracking.
 - 2026-04-08T10:35:41Z – codex – shell_pid=16680 – Integration verified with npm run test and npm run build; localized CTA/share/journey flows are ready for review.
+- 2026-04-08T10:36:29Z – codex – shell_pid=16680 – Review passed: bilingual hero flow, share modes, and intent-gated journey playback are covered by integration and build validation.
