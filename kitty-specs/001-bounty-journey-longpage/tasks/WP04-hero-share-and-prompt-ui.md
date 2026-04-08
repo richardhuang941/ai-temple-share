@@ -19,6 +19,7 @@ subtasks:
 - T018
 - T019
 - T020
+shell_pid: '24171'
 history:
 - at: '2026-04-08T08:44:14Z'
   action: created
