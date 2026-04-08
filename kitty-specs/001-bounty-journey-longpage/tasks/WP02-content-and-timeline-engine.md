@@ -18,6 +18,8 @@ subtasks:
 - T008
 - T009
 - T010
+agent: "codex"
+shell_pid: "16680"
 history:
 - at: '2026-04-08T08:44:14Z'
   action: created
@@ -230,3 +232,7 @@ Lock the data and state behavior so later UI WPs do not silently regress core jo
 - Verify Task 4 remains external/native in the data layer
 - Verify `Agent` is the public subject in share-related content
 - Verify unit tests assert semantics, not incidental implementation details
+
+## Activity Log
+
+- 2026-04-08T09:04:40Z – codex – shell_pid=16680 – Started implementation via action command
