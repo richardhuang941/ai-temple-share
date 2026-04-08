@@ -142,9 +142,9 @@ Risks:
 - Dependencies: Depends on WP01
 
 Included subtasks:
-- [ ] T013 将 Journey 改为默认静止、点击后启动 (WP04)
-- [ ] T014 放慢 Journey 自动播放节奏并补充开始/暂停/重播控件语义 (WP04)
-- [ ] T015 让 Journey 在 reduced-motion 下优雅降级 (WP04)
+- [x] T013 将 Journey 改为默认静止、点击后启动 (WP04)
+- [x] T014 放慢 Journey 自动播放节奏并补充开始/暂停/重播控件语义 (WP04)
+- [x] T015 让 Journey 在 reduced-motion 下优雅降级 (WP04)
 
 Implementation sketch:
 1. 先扩展 timeline state 支持 `hasStarted`。
