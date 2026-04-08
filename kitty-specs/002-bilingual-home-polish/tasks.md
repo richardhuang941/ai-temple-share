@@ -23,7 +23,7 @@
 
 | ID | Description | WP | Parallel |
 |---|---|---|---|
-| T001 | 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 | WP01 |  | [D] |
+| T001 | 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 | WP01 |  | [D] | [D] |
 | T002 | 实现系统语言检测、手动覆盖与本地记忆逻辑 | WP01 |  | [D] |
 | T003 | 新建中英文内容字典并迁移现有关键文案 | WP01 |  | [D] |
 | T004 | 重构全局 token 为 coral 主题并建立 typography scale | WP01 |  | [D] |
