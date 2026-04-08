@@ -236,3 +236,4 @@ Lock the data and state behavior so later UI WPs do not silently regress core jo
 ## Activity Log
 
 - 2026-04-08T09:04:40Z – codex – shell_pid=16680 – Started implementation via action command
+- 2026-04-08T09:10:36Z – codex – shell_pid=16680 – Ready for review: content source, timeline engine, and unit coverage are in place
