@@ -188,3 +188,7 @@ Finish the mission with evidence, not with “looks okay on my machine”.
 - Review the app flow from top to bottom, not just individual sections.
 - Verify CTA routing and locale switching from the user's perspective.
 - Verify the seeded result contract survives the final composition layer.
+
+## Activity Log
+
+- 2026-04-08T12:05:57Z – codex – shell_pid=16680 – Ready for review: app flow, locale routing, integration coverage, and preview validation completed
