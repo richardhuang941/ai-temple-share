@@ -5,5 +5,7 @@
   "mission_slug": "004-header-density-interaction-share-polish",
   "mission_type": "software-dev",
   "slug": "004-header-density-interaction-share-polish",
-  "target_branch": "main"
+  "target_branch": "main",
+  "vcs": "git",
+  "vcs_locked_at": "2026-04-08T15:16:45.797315+00:00"
 }

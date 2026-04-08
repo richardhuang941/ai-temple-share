@@ -15,12 +15,16 @@ requirement_refs:
 planning_base_branch: main
 merge_target_branch: main
 branch_strategy: Planning artifacts for this feature were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+base_branch: kitty/mission-004-header-density-interaction-share-polish
+base_commit: 3a35875791a6ba9739478a1cdcd34c51de14bf00
+created_at: '2026-04-08T15:16:45.934421+00:00'
 subtasks:
 - T001
 - T002
 - T003
 assignee: codex
 agent: codex
+shell_pid: '16680'
 authoritative_surface: src/components/
 execution_mode: code_change
 owned_files:
