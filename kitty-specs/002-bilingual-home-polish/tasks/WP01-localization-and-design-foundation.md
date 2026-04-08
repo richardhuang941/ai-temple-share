@@ -22,8 +22,8 @@ subtasks:
 - T005
 phase: Phase 1 - Foundation
 assignee: ''
-agent: ''
-shell_pid: '16680'
+agent: "codex"
+shell_pid: "16680"
 history:
 - timestamp: '2026-04-08T10:00:00Z'
   agent: codex
@@ -82,3 +82,7 @@ Do not modify files outside this list.
 - 中英文内容已结构化
 - global token 已切换到 coral 方向
 - unit tests 能覆盖 locale 与内容派生
+
+## Activity Log
+
+- 2026-04-08T10:06:57Z – codex – shell_pid=16680 – Started implementation via action command
