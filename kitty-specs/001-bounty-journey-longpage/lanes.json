@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "mission_slug": "001-bounty-journey-longpage",
+  "mission_id": "001-bounty-journey-longpage",
+  "mission_branch": "kitty/mission-001-bounty-journey-longpage",
+  "target_branch": "main",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03",
+        "WP04",
+        "WP05"
+      ],
+      "write_scope": [
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "src/App.tsx",
+        "src/components/common/**",
+        "src/components/journey/**",
+        "src/components/sections/AgentPromptSection.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/JourneySection.tsx",
+        "src/components/sections/ShareSection.tsx",
+        "src/components/share/**",
+        "src/content/**",
+        "src/hooks/**",
+        "src/lib/**",
+        "src/main.tsx",
+        "src/styles/**",
+        "tests/integration/**",
+        "tests/setup.ts",
+        "tests/unit/contentMappers.test.ts",
+        "tests/unit/timeline.test.ts",
+        "tsconfig.app.json",
+        "tsconfig.json",
+        "tsconfig.node.json",
+        "vite.config.ts"
+      ],
+      "predicted_surfaces": [
+        "api",
+        "app-shell",
+        "artifact-rendering",
+        "legacy-cleanup",
+        "tests",
+        "tracker-integration"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-08T08:50:08.662843+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP01"
+      },
+      {
+        "wp_a": "WP04",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP04 depends on WP01"
+      },
+      {
+        "wp_a": "WP05",
+        "wp_b": "WP03",
+        "rule": "dependency",
+        "evidence": "WP05 depends on WP03"
+      }
+    ],
+    "total_merges": 4,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 4
+    }
+  }
+}
