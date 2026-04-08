@@ -23,7 +23,7 @@
 
 | ID | Description | WP | Parallel |
 |---|---|---|---|
-| T001 | 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 | WP01 |  | [D] | [D] |
+| T001 | 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 | WP01 |  | [D] |
 | T002 | 实现系统语言检测、手动覆盖与本地记忆逻辑 | WP01 |  | [D] |
 | T003 | 新建中英文内容字典并迁移现有关键文案 | WP01 |  | [D] |
 | T004 | 重构全局 token 为 coral 主题并建立 typography scale | WP01 |  | [D] |
@@ -54,11 +54,11 @@
 - Dependencies: None
 
 Included subtasks:
-- [ ] T001 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 (WP01)
-- [ ] T002 实现系统语言检测、手动覆盖与本地记忆逻辑 (WP01)
-- [ ] T003 新建中英文内容字典并迁移现有关键文案 (WP01)
-- [ ] T004 重构全局 token 为 coral 主题并建立 typography scale (WP01)
-- [ ] T005 为 locale 与内容映射补齐单元测试 (WP01)
+- [x] T001 扩展内容模型以支持 locale bundle、share mode 和 Journey 启动态 (WP01)
+- [x] T002 实现系统语言检测、手动覆盖与本地记忆逻辑 (WP01)
+- [x] T003 新建中英文内容字典并迁移现有关键文案 (WP01)
+- [x] T004 重构全局 token 为 coral 主题并建立 typography scale (WP01)
+- [x] T005 为 locale 与内容映射补齐单元测试 (WP01)
 
 Implementation sketch:
 1. 先整理内容模型和 locale hook。
@@ -189,4 +189,3 @@ Dependencies:
 
 Risks:
 - 如果等到这一阶段才发现 CTA 锚点和区块顺序冲突，会拖慢验收。
-
