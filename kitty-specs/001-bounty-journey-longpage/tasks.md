@@ -27,12 +27,12 @@
 | T002 | 配置 `Vitest + React Testing Library + jsdom` 测试工具链 | WP01 |  | [D] |
 | T003 | 建立全局设计 token 与长单页基础样式 | WP01 |  | [D] |
 | T004 | 准备 HTML shell 与目录骨架以承接后续页面实现 | WP01 |  | [D] |
-| T005 | 定义与 `data-model.md` 对齐的 TypeScript 内容模型与辅助类型 | WP02 |  |
-| T006 | 编写 Hero、分享态、阵营与 Agent Prompt 的本地内容模块 | WP02 | `[P]` |
-| T007 | 编写 Task 1-5 任务里程碑与阶段数据集 | WP02 | `[P]` |
-| T008 | 实现内容派生与显示态映射工具 | WP02 |  |
-| T009 | 实现 reduced-motion 与自动播放时间轴 hooks | WP02 |  |
-| T010 | 为内容映射和时间轴转换补齐单元测试 | WP02 |  |
+| T005 | 定义与 `data-model.md` 对齐的 TypeScript 内容模型与辅助类型 | WP02 |  | [D] |
+| T006 | 编写 Hero、分享态、阵营与 Agent Prompt 的本地内容模块 | WP02 | `[P]` | [D] |
+| T007 | 编写 Task 1-5 任务里程碑与阶段数据集 | WP02 | `[P]` | [D] |
+| T008 | 实现内容派生与显示态映射工具 | WP02 |  | [D] |
+| T009 | 实现 reduced-motion 与自动播放时间轴 hooks | WP02 |  | [D] |
+| T010 | 为内容映射和时间轴转换补齐单元测试 | WP02 |  | [D] |
 | T011 | 构建 Journey 区的阶段脉冲与状态可视化基础组件 | WP03 |  |
 | T012 | 构建单任务的里程碑卡片组件 | WP03 |  |
 | T013 | 构建多任务时间轴容器并绑定时间轴输出 | WP03 |  |
