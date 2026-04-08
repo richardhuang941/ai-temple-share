@@ -185,3 +185,4 @@ Protect the new flow rules so future UI tweaks do not silently reintroduce autop
 
 - 2026-04-08T11:56:39Z – codex – shell_pid=16680 – Ready for review: slower playback, focus helpers, and light journey cards validated with unit tests + build
 - 2026-04-08T11:56:58Z – codex – shell_pid=16680 – Started review via action command
+- 2026-04-08T11:59:07Z – codex – shell_pid=16680 – Review passed: slower playback, CTA-scoped start intent, and task auto-focus validated with unit tests + build
