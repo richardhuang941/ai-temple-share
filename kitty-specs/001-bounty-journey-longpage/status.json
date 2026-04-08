@@ -1,53 +1,53 @@
 {
-  "event_count": 31,
-  "last_event_id": "01KNP6D7P9E1H60G5HFFPY1QGH",
-  "materialized_at": "2026-04-08T09:22:37.897993+00:00",
+  "event_count": 36,
+  "last_event_id": "01KNP6MJT8JFK1XW98E2GY5GY6",
+  "materialized_at": "2026-04-08T09:26:38.664394+00:00",
   "mission_slug": "001-bounty-journey-longpage",
   "summary": {
-    "approved": 5,
+    "approved": 0,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
-    "done": 0,
+    "done": 5,
     "for_review": 0,
     "in_progress": 0,
     "planned": 0
   },
   "work_packages": {
     "WP01": {
-      "actor": "user",
+      "actor": "merge",
       "force_count": 2,
-      "lane": "approved",
-      "last_event_id": "01KNP5BEMZB9XBDNGKQSV3YQMH",
-      "last_transition_at": "2026-04-08T09:04:10.911747+00:00"
+      "lane": "done",
+      "last_event_id": "01KNP6MJRC2ZWWXGCEP8CGMQS2",
+      "last_transition_at": "2026-04-08T09:26:38.604130+00:00"
     },
     "WP02": {
-      "actor": "user",
+      "actor": "merge",
       "force_count": 2,
-      "lane": "approved",
-      "last_event_id": "01KNP5QTJX22TR367AH4WCMH14",
-      "last_transition_at": "2026-04-08T09:10:56.349940+00:00"
+      "lane": "done",
+      "last_event_id": "01KNP6MJSS155MRE65GGNE9W3M",
+      "last_transition_at": "2026-04-08T09:26:38.649985+00:00"
     },
     "WP03": {
-      "actor": "user",
+      "actor": "merge",
       "force_count": 1,
-      "lane": "approved",
-      "last_event_id": "01KNP5X811CSE1XK16PPN51B5Q",
-      "last_transition_at": "2026-04-08T09:13:53.953995+00:00"
+      "lane": "done",
+      "last_event_id": "01KNP6MJSYER69787GEHNN072G",
+      "last_transition_at": "2026-04-08T09:26:38.655007+00:00"
     },
     "WP04": {
-      "actor": "user",
+      "actor": "merge",
       "force_count": 1,
-      "lane": "approved",
-      "last_event_id": "01KNP64SETDAW0BGCPPMQZF2ZQ",
-      "last_transition_at": "2026-04-08T09:18:01.178311+00:00"
+      "lane": "done",
+      "last_event_id": "01KNP6MJT3BTNNBG2JFNJNMQBH",
+      "last_transition_at": "2026-04-08T09:26:38.659914+00:00"
     },
     "WP05": {
-      "actor": "user",
+      "actor": "merge",
       "force_count": 2,
-      "lane": "approved",
-      "last_event_id": "01KNP6D7P9E1H60G5HFFPY1QGH",
-      "last_transition_at": "2026-04-08T09:22:37.897993+00:00"
+      "lane": "done",
+      "last_event_id": "01KNP6MJT8JFK1XW98E2GY5GY6",
+      "last_transition_at": "2026-04-08T09:26:38.664394+00:00"
     }
   }
 }
