@@ -23,10 +23,10 @@
 
 | ID | Description | WP | Parallel |
 |---|---|---|---|
-| T001 | 初始化 `React + Vite + TypeScript` 运行时与基础项目文件 | WP01 |  |
-| T002 | 配置 `Vitest + React Testing Library + jsdom` 测试工具链 | WP01 |  |
-| T003 | 建立全局设计 token 与长单页基础样式 | WP01 |  |
-| T004 | 准备 HTML shell 与目录骨架以承接后续页面实现 | WP01 |  |
+| T001 | 初始化 `React + Vite + TypeScript` 运行时与基础项目文件 | WP01 |  | [D] |
+| T002 | 配置 `Vitest + React Testing Library + jsdom` 测试工具链 | WP01 |  | [D] |
+| T003 | 建立全局设计 token 与长单页基础样式 | WP01 |  | [D] |
+| T004 | 准备 HTML shell 与目录骨架以承接后续页面实现 | WP01 |  | [D] |
 | T005 | 定义与 `data-model.md` 对齐的 TypeScript 内容模型与辅助类型 | WP02 |  |
 | T006 | 编写 Hero、分享态、阵营与 Agent Prompt 的本地内容模块 | WP02 | `[P]` |
 | T007 | 编写 Task 1-5 任务里程碑与阶段数据集 | WP02 | `[P]` |
