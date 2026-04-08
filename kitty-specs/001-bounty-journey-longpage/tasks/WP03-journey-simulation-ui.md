@@ -198,3 +198,4 @@ Ensure the simulation remains understandable on mobile and accessible when motio
 ## Activity Log
 
 - 2026-04-08T09:11:14Z – codex – shell_pid=16680 – Started implementation via action command
+- 2026-04-08T09:13:34Z – codex – shell_pid=16680 – Ready for review: journey cards, stage pulses, and responsive controls are in place
