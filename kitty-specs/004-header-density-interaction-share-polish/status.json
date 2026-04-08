@@ -1,14 +1,14 @@
 {
-  "event_count": 19,
-  "last_event_id": "01KNPVPJXW3XA52TCZNWKZDPWZ",
-  "materialized_at": "2026-04-08T15:34:44.412202+00:00",
+  "event_count": 20,
+  "last_event_id": "01KNPVPKP9V4MMG9J5EJZW8WTK",
+  "materialized_at": "2026-04-08T15:34:45.193804+00:00",
   "mission_slug": "004-header-density-interaction-share-polish",
   "summary": {
-    "approved": 2,
+    "approved": 1,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
-    "done": 2,
+    "done": 3,
     "for_review": 0,
     "in_progress": 0,
     "planned": 0
@@ -30,10 +30,10 @@
     },
     "WP03": {
       "actor": "codex",
-      "force_count": 4,
-      "lane": "approved",
-      "last_event_id": "01KNPVF9NPHDTP1S1EBCF0RVWP",
-      "last_transition_at": "2026-04-08T15:30:45.558523+00:00"
+      "force_count": 5,
+      "lane": "done",
+      "last_event_id": "01KNPVPKP9V4MMG9J5EJZW8WTK",
+      "last_transition_at": "2026-04-08T15:34:45.193804+00:00"
     },
     "WP04": {
       "actor": "codex",
