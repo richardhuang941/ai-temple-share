@@ -197,3 +197,4 @@ Protect the user-confirmed language contract and the Claws Temple public vocabul
 ## Activity Log
 
 - 2026-04-08T09:14:20Z – codex – shell_pid=24171 – Started implementation via action command
+- 2026-04-08T09:17:53Z – codex – shell_pid=24171 – Ready for review: hero, share, and Agent prompt sections are implemented
