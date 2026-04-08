@@ -1,0 +1,46 @@
+{
+  "mission_slug": "001-bounty-journey-longpage",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The longpage renders the Hero, Journey, Share, and Agent Prompt sections as one continuous page.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T17:20:30+08:00",
+      "notes": "Integration coverage verifies the four core sections and task order."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The rendered page keeps Agent-first share wording and preserves Task 4 as a native external flow.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T17:20:30+08:00",
+      "notes": "Integration assertions cover Agent wording, the Task 4 native-flow boundary, and simulation wording."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The production bundle builds successfully from the lane workspace.",
+      "proof_type": "automated_test",
+      "evidence": "npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T17:20:30+08:00",
+      "notes": "Vite build completed successfully after the final WP05 integration fixes."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "All work packages completed implement and review with approved status.",
+      "proof_type": "code_review",
+      "evidence": "status.json shows WP01-WP05 in approved lane",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T17:22:30+08:00",
+      "notes": "WP01 through WP05 were each implemented, reviewed, and moved to approved."
+    }
+  ],
+  "negative_invariants": []
+}
