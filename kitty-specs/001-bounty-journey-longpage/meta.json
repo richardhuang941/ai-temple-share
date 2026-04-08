@@ -1,9 +1,11 @@
 {
   "created_at": "2026-04-08T08:31:18.688501+00:00",
-  "friendly_name": "bounty journey longpage",
+  "friendly_name": "Claws Temple Bounty 长单页",
   "mission_number": "001",
   "mission_slug": "001-bounty-journey-longpage",
   "mission_type": "software-dev",
   "slug": "001-bounty-journey-longpage",
-  "target_branch": "main"
+  "source_description": "Single long-form public page that simulates the full Claws Temple Bounty 2.0 Task 1-5 journey, includes a share-ready Agent result state, and provides project-adapted AI Agent execution prompts.",
+  "target_branch": "main",
+  "vcs": "git"
 }

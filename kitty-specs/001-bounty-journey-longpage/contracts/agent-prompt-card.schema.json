@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claws-temple.local/contracts/agent-prompt-card.schema.json",
+  "title": "AgentPromptCard",
+  "type": "object",
+  "required": [
+    "title",
+    "goal",
+    "context",
+    "referenceRepo",
+    "promptBody",
+    "expectedOutput"
+  ],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "goal": { "type": "string", "minLength": 1 },
+    "context": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    },
+    "referenceRepo": { "type": "string", "minLength": 1 },
+    "promptBody": { "type": "string", "minLength": 1 },
+    "expectedOutput": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}
