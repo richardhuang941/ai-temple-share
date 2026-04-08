@@ -1,30 +1,65 @@
+import { useEffect, useState, type CSSProperties } from "react";
 import { type LocalizedContentBundle } from "../../content";
 import CopyButton from "../common/CopyButton";
-import SectionHeading from "../common/SectionHeading";
 
 interface AgentPromptSectionProps {
   bundle: LocalizedContentBundle;
+  attentionSignal: number;
 }
 
 export function AgentPromptSection({
-  bundle
+  bundle,
+  attentionSignal
 }: AgentPromptSectionProps) {
   const featuredCard = bundle.agentPromptCards[0];
-  const secondaryCard = bundle.agentPromptCards[1];
+  const [isEmphasized, setIsEmphasized] = useState(false);
+
+  useEffect(() => {
+    if (attentionSignal === 0) {
+      return;
+    }
+
+    setIsEmphasized(true);
+    const timeoutId = window.setTimeout(() => {
+      setIsEmphasized(false);
+    }, 900);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [attentionSignal]);
+
+  const displayCommand = featuredCard.promptBody.split("\n")[0] ?? featuredCard.promptBody;
+  const promptComment =
+    bundle.locale === "zh"
+      ? "继续按真实 Bounty 2.0 路径完成 Task 1-5，并返回分数、共振、阵营和社区结果"
+      : "Continue the real Bounty 2.0 route and bring back the score, resonance, faction, and community result";
+  const listStyle: CSSProperties = {
+    margin: 0,
+    paddingLeft: "1.15rem",
+    display: "grid",
+    gap: "0.42rem",
+    color: "var(--color-muted)",
+    lineHeight: 1.55,
+    fontSize: "0.88rem"
+  };
 
   return (
-    <section id="agent-prompt" aria-labelledby="agent-prompt-heading">
-      <div className="challenge-shell">
-        <SectionHeading
-          eyebrow={bundle.agentPromptSection.eyebrow}
-          title={bundle.agentPromptSection.title}
-          summary={bundle.agentPromptSection.summary}
-          id="agent-prompt-heading"
-        />
-
-        <article className="challenge-section-card" style={{ width: "min(100%, 38rem)" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "0.9rem", alignItems: "center" }}>
-            <span className="eyebrow">{featuredCard.title}</span>
+    <section id="agent-prompt" aria-labelledby="agent-prompt-heading" className="challenge-stage challenge-stage--prompt">
+      <div className="challenge-shell challenge-shell--compact">
+        <article
+          className="challenge-section-card prompt-card"
+          style={{ width: "min(100%, 38rem)" }}
+          data-emphasized={isEmphasized ? "true" : undefined}
+        >
+          <div className="prompt-card-header">
+            <div style={{ display: "grid", gap: "0.35rem" }}>
+              <p className="prompt-card-kicker">{bundle.agentPromptSection.title}</p>
+              <h2 id="agent-prompt-heading" className="prompt-card-title">
+                {bundle.agentPromptSection.title}
+              </h2>
+              <p className="prompt-card-subtitle">{featuredCard.title}</p>
+            </div>
             <CopyButton
               value={featuredCard.promptBody}
               label={bundle.chrome.copyLabel}
@@ -38,50 +73,26 @@ export function AgentPromptSection({
                 <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#fb7185" }} />
                 <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#fbbf24" }} />
                 <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#34d399" }} />
-                <span style={{ marginLeft: "0.4rem", opacity: 0.72 }}>terminal</span>
+                <span className="prompt-terminal-label">terminal</span>
               </div>
-
-              <span style={{ fontSize: "0.82rem", opacity: 0.75 }}>{featuredCard.referenceRepo}</span>
             </div>
 
-            <pre className="prompt-terminal-body">{featuredCard.promptBody}</pre>
+            <p className="prompt-terminal-command">
+              <span className="prompt-terminal-prefix">$</span>
+              <span className="prompt-terminal-read">Read</span>
+              <span className="prompt-terminal-link">{displayCommand.replace(/^Read\s+/i, "")}</span>
+            </p>
+            <p className="prompt-terminal-comment">
+              <span className="prompt-terminal-prefix">#</span>
+              {promptComment}
+            </p>
           </div>
 
-          <ol
-            style={{
-              margin: 0,
-              paddingLeft: "1.2rem",
-              display: "grid",
-              gap: "0.5rem",
-              color: "var(--color-muted)",
-              lineHeight: "var(--line-body)"
-            }}
-          >
+          <ol style={listStyle}>
             {featuredCard.expectedOutput.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ol>
-
-          <div
-            style={{
-              display: "grid",
-              gap: "0.65rem",
-              padding: "1rem 1.05rem",
-              borderRadius: "1.2rem",
-              background: "#f6f8fb",
-              border: "1px solid rgba(24, 34, 54, 0.06)"
-            }}
-          >
-            <strong>{secondaryCard.title}</strong>
-            <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
-              {secondaryCard.goal}
-            </p>
-            <CopyButton
-              value={secondaryCard.promptBody}
-              label={bundle.chrome.copyLabel}
-              copiedLabel={bundle.chrome.copiedLabel}
-            />
-          </div>
         </article>
       </div>
     </section>

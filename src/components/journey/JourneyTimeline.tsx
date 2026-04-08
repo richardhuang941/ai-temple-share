@@ -42,7 +42,7 @@ export function JourneyTimeline({
   };
 
   return (
-    <div style={{ display: "grid", gap: "1.5rem" }}>
+    <div className="journey-flow-column">
       <div className="journey-summary-card">
         <div className="journey-summary-row">
           <div className="journey-summary-copy">

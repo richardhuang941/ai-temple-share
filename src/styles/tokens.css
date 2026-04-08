@@ -42,7 +42,7 @@
   --shadow-glow: 0 0 0 1px rgba(255, 77, 77, 0.08), 0 18px 40px rgba(255, 77, 77, 0.12);
 
   --max-page-width: 1200px;
-  --section-padding-y: clamp(4rem, 8vw, 8rem);
+  --section-padding-y: clamp(1.3rem, 4vw, 2.4rem);
   --section-padding-x: clamp(1.25rem, 4vw, 3rem);
 
   --step-fast: 160ms;
@@ -50,12 +50,12 @@
   --step-slow: 520ms;
   --ease-emphatic: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --type-display: clamp(2.1rem, 4vw, 3rem);
-  --type-heading-lg: clamp(1.9rem, 3.2vw, 2.75rem);
-  --type-heading-md: clamp(1.15rem, 2vw, 1.45rem);
-  --type-body: 1rem;
-  --type-small: 0.95rem;
-  --type-eyebrow: 0.76rem;
+  --type-display: clamp(1.85rem, 3.4vw, 2.6rem);
+  --type-heading-lg: clamp(1.55rem, 2.6vw, 2.1rem);
+  --type-heading-md: clamp(1rem, 1.5vw, 1.2rem);
+  --type-body: 0.96rem;
+  --type-small: 0.88rem;
+  --type-eyebrow: 0.72rem;
 
   --line-display: 1.02;
   --line-heading: 1.12;

@@ -5,6 +5,7 @@ export type FocusTarget = "journey" | "share";
 export type LocaleCode = "zh" | "en";
 export type LocaleSource = "system" | "stored" | "manual";
 export type ShareMode = "image" | "text";
+export type SharePlatformKey = "x" | "wechat" | "xiaohongshu" | "douyin";
 export type FactionBrandKey = "imprints" | "crucibles" | "metamorphs" | "sentinels";
 
 export interface HeroContent {

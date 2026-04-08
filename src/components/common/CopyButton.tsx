@@ -4,6 +4,7 @@ interface CopyButtonProps {
   value: string;
   label?: string;
   copiedLabel?: string;
+  className?: string;
 }
 
 function fallbackCopy(value: string): void {
@@ -21,7 +22,8 @@ function fallbackCopy(value: string): void {
 export function CopyButton({
   value,
   label = "复制 Prompt",
-  copiedLabel = "已复制"
+  copiedLabel = "已复制",
+  className
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<number | null>(null);
@@ -61,20 +63,8 @@ export function CopyButton({
     <button
       type="button"
       onClick={handleClick}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "1px solid rgba(24, 34, 54, 0.08)",
-        background: copied ? "rgba(16, 185, 129, 0.14)" : "rgba(255, 255, 255, 0.94)",
-        color: copied ? "#047857" : "var(--color-ink)",
-        padding: "0.8rem 1rem",
-        borderRadius: "1rem",
-        cursor: "pointer",
-        minWidth: "8.5rem",
-        fontWeight: 700,
-        boxShadow: "0 10px 24px rgba(17, 24, 39, 0.08)"
-      }}
+      className={className ? `copy-button ${className}` : "copy-button"}
+      data-copied={copied ? "true" : undefined}
       aria-live="polite"
     >
       {copied ? copiedLabel : label}

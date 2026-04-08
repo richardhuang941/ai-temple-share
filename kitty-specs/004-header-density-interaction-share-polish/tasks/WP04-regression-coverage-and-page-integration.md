@@ -23,8 +23,8 @@ subtasks:
 - T011
 - T012
 - T013
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -33,6 +33,7 @@ owned_files:
 - tests/integration/longpage.spec.tsx
 - tests/unit/locale.test.ts
 - tests/unit/contentMappers.test.ts
+shell_pid: "23434"
 ---
 
 # WP04 - Regression Coverage and Page Integration
@@ -40,3 +41,9 @@ owned_files:
 ## Objective
 
 把前面几步的布局和交互整合回主页面，并补齐这轮 refit 的回归测试。
+
+## Activity Log
+
+- 2026-04-08T15:30:46Z – codex – shell_pid=23434 – Implementation completed in lane workspace
+- 2026-04-08T15:30:47Z – codex – shell_pid=23434 – Ready for review after local test/build validation
+- 2026-04-08T15:30:47Z – codex – shell_pid=23434 – Review passed after npm run test and npm run build

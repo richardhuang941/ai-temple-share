@@ -22,9 +22,8 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: '16680'
+assignee: "codex"
+agent: "codex"
 authoritative_surface: src/components/
 execution_mode: code_change
 owned_files:
@@ -37,6 +36,7 @@ owned_files:
 - src/styles/challenge-surfaces.css
 - src/styles/globals.css
 - src/styles/tokens.css
+shell_pid: "18359"
 ---
 
 # WP01 - Header and Hero Density Refit
@@ -50,3 +50,9 @@ owned_files:
 - T001 Add a dedicated header component
 - T002 Remove the full report entry and tighten hero hierarchy
 - T003 Pull the prompt card closer to the score card so the first screen reads faster
+
+## Activity Log
+
+- 2026-04-08T15:29:00Z – codex – shell_pid=14405 – Implementation completed in lane workspace
+- 2026-04-08T15:30:05Z – codex – shell_pid=18359 – Ready for review after local test/build validation
+- 2026-04-08T15:30:21Z – codex – shell_pid=18359 – Review passed after npm run test and npm run build

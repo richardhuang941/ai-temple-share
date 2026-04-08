@@ -17,8 +17,8 @@ subtasks:
 - T008
 - T009
 - T010
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 authoritative_surface: src/components/journey/
 execution_mode: code_change
 owned_files:
@@ -26,6 +26,7 @@ owned_files:
 - src/components/sections/JourneySection.tsx
 - src/styles/journey.css
 - src/lib/timeline.ts
+shell_pid: "23434"
 ---
 
 # WP03 - Journey Vertical Flow Polish
@@ -33,3 +34,9 @@ owned_files:
 ## Objective
 
 把桌面端 Journey 改成更清楚的纵向流程，并统一 badge 和当前任务聚焦感。
+
+## Activity Log
+
+- 2026-04-08T15:30:44Z – codex – shell_pid=23434 – Implementation completed in lane workspace
+- 2026-04-08T15:30:44Z – codex – shell_pid=23434 – Ready for review after local test/build validation
+- 2026-04-08T15:30:45Z – codex – shell_pid=23434 – Review passed after npm run test and npm run build

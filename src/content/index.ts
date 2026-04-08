@@ -78,6 +78,7 @@ export type {
   LocaleState,
   LongpageContent,
   ShareMode,
+  SharePlatformKey,
   ShareSectionCopy,
   ShareSummary,
   ShareSummaryView,

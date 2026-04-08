@@ -116,6 +116,7 @@ describe("Claws Temple Bounty longpage", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
+    expect(screen.queryByRole("link", { name: "查看完整成绩单" })).toBeNull();
     expect(screen.getByRole("link", { name: bundle.chrome.acceptChallengeLabel }).getAttribute("href")).toBe("#agent-prompt");
     expect(screen.getByRole("link", { name: bundle.chrome.shareChallengeLabel }).getAttribute("href")).toBe("#share");
     expect(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }).getAttribute("href")).toBe("#journey");
@@ -134,7 +135,7 @@ describe("Claws Temple Bounty longpage", () => {
     expect(within(shareSection as HTMLElement).getAllByRole("button", { name: bundle.chrome.copyLabel }).length).toBeGreaterThan(0);
   });
 
-  it("only starts the journey from the watch-simulation CTA, not from the score-report jump link", async () => {
+  it("only starts the journey from the watch-simulation CTA and emphasizes the prompt on accept", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();
 
@@ -145,10 +146,10 @@ describe("Claws Temple Bounty longpage", () => {
 
     render(<App />);
 
-    fireEvent.click(screen.getByRole("link", { name: "查看完整成绩单" }));
-    await triggerHashNavigation("#journey");
+    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.acceptChallengeLabel }));
+    const promptCard = document.querySelector(".prompt-card");
 
-    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
+    expect(promptCard?.getAttribute("data-emphasized")).toBe("true");
     expect(scrollIntoViewMock).not.toHaveBeenCalled();
 
     window.location.hash = "";

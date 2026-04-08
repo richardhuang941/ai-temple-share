@@ -113,7 +113,7 @@ export function JourneySection({
   ]);
 
   return (
-    <section id="journey" aria-labelledby="journey-heading">
+    <section id="journey" aria-labelledby="journey-heading" className="challenge-stage challenge-stage--journey">
       <div className="journey-shell">
         <div className="journey-intro">
           <span className="eyebrow">{bundle.journey.eyebrow}</span>

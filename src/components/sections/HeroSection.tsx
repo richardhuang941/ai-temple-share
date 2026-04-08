@@ -1,14 +1,11 @@
 import {
-  type LocalizedContentBundle,
-  type LocaleCode
+  type LocalizedContentBundle
 } from "../../content";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
-import LocaleSwitcher from "../common/LocaleSwitcher";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
-  locale: LocaleCode;
-  onLocaleChange: (locale: LocaleCode) => void;
+  onAcceptChallenge: () => void;
 }
 
 function buildChallengeCopy(bundle: LocalizedContentBundle): string {
@@ -21,8 +18,7 @@ function buildChallengeCopy(bundle: LocalizedContentBundle): string {
 
 export function HeroSection({
   bundle,
-  locale,
-  onLocaleChange
+  onAcceptChallenge
 }: HeroSectionProps) {
   const shareView = deriveShareSummaryView(
     bundle.agentProfile,
@@ -52,51 +48,23 @@ export function HeroSection({
   ];
 
   return (
-    <section id="top" aria-labelledby="hero-heading">
+    <section id="top" aria-labelledby="hero-heading" className="challenge-stage challenge-stage--hero">
       <div className="challenge-shell">
-        <div className="challenge-topbar" style={{ width: "min(100%, 38rem)" }}>
-          <div className="challenge-brand">
-            <span className="challenge-brand-mark">CT</span>
-            <span>Claws Temple</span>
-          </div>
-
-          <div style={{ display: "inline-flex", gap: "0.75rem", alignItems: "center" }}>
-            <LocaleSwitcher
-              currentLocale={locale}
-              copy={bundle.chrome}
-              onLocaleChange={onLocaleChange}
-            />
-            <a className="challenge-pill-button" href="#journey">
-              {bundle.locale === "zh" ? "查看完整成绩单" : "View full score report"}
-            </a>
-          </div>
-        </div>
-
         <article className="challenge-card">
           <div className="challenge-ribbon" />
+          <h1 id="hero-heading" className="sr-only">
+            {bundle.hero.title}
+          </h1>
 
-          <div style={{ display: "grid", gap: "0.45rem", justifyItems: "center", textAlign: "center" }}>
+          <div className="challenge-card-head">
             <span className="eyebrow">{bundle.hero.eyebrow}</span>
-            <h1
-              id="hero-heading"
-              style={{
-                margin: 0,
-                fontSize: "var(--type-heading-md)",
-                lineHeight: 1.25,
-                letterSpacing: "-0.01em"
-              }}
-            >
-              {bundle.hero.title}
-            </h1>
+            <span className="challenge-card-agent">Claws Temple AI</span>
           </div>
 
           <div className="challenge-score-layout">
             <div className="challenge-grade-tile">{bundle.agentProfile.scoreGrade}</div>
 
             <div className="challenge-score-number">
-              <span style={{ color: "#98a1b3", letterSpacing: "0.3em", textTransform: "uppercase" }}>
-                Claws Temple AI
-              </span>
               <strong>{bundle.agentProfile.scoreValue}.0</strong>
               <span className="challenge-score-caption">
                 {bundle.locale === "zh" ? "满分 100" : "Out of 100"}
@@ -106,7 +74,7 @@ export function HeroSection({
 
           <div className="challenge-copy-box">{challengeCopy}</div>
 
-          <div className="challenge-summary-grid">
+          <div className="challenge-summary-grid challenge-summary-grid--compact">
             {summaryPills.map((item) => (
               <article key={item.label} className="challenge-summary-pill">
                 <span>{item.label}</span>
@@ -116,13 +84,17 @@ export function HeroSection({
           </div>
 
           <div className="challenge-cta-stack">
-            <a className="challenge-cta challenge-cta--primary" href="#agent-prompt">
+            <a
+              className="challenge-cta challenge-cta--primary"
+              href="#agent-prompt"
+              onClick={onAcceptChallenge}
+            >
               {bundle.chrome.acceptChallengeLabel}
             </a>
             <a className="challenge-cta challenge-cta--secondary" href="#share">
               {bundle.chrome.shareChallengeLabel}
             </a>
-            <a className="challenge-cta challenge-cta--ghost" href="#journey">
+            <a className="challenge-cta challenge-cta--ghost challenge-cta--compact" href="#journey">
               {bundle.chrome.watchSimulationLabel}
             </a>
           </div>

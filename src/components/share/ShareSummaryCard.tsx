@@ -41,27 +41,17 @@ export function ShareSummaryCard({
 
   if (mode === "text") {
     return (
-      <article className="challenge-section-card">
-        <div style={{ display: "grid", gap: "0.55rem" }}>
-          <h3 style={{ margin: 0, fontSize: "var(--type-heading-lg)", lineHeight: "var(--line-heading)" }}>
+      <article className="share-summary-surface">
+        <div style={{ display: "grid", gap: "0.45rem" }}>
+          <h3 style={{ margin: 0, fontSize: "var(--type-heading-lg)", lineHeight: "var(--line-heading)", textAlign: "center" }}>
             {shareCopy.title}
           </h3>
-          <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
+          <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)", textAlign: "center" }}>
             {summary.scoreSummary}
           </p>
         </div>
 
-        <div
-          style={{
-            padding: "1.2rem",
-            borderRadius: "1.35rem",
-            background: "#f6f8fb",
-            border: "1px solid rgba(24, 34, 54, 0.08)",
-            whiteSpace: "pre-wrap",
-            lineHeight: 1.8,
-            color: "var(--color-ink)"
-          }}
-        >
+        <div className="share-text-block">
           {textPayload}
         </div>
 
@@ -75,7 +65,7 @@ export function ShareSummaryCard({
   }
 
   return (
-    <article className="challenge-section-card">
+    <article className="share-summary-surface">
       <div style={{ display: "grid", gap: "0.4rem", justifyItems: "center", textAlign: "center" }}>
         <h3 style={{ margin: 0, fontSize: "var(--type-heading-lg)", lineHeight: "var(--line-heading)" }}>
           {shareCopy.title}
@@ -88,16 +78,7 @@ export function ShareSummaryCard({
         </strong>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem",
-          padding: "1.35rem",
-          borderRadius: "1.5rem",
-          background: "linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95))",
-          border: "1px solid rgba(24, 34, 54, 0.08)"
-        }}
-      >
+      <div className="share-image-surface">
         <div style={{ display: "grid", gap: "0.55rem", justifyItems: "center", textAlign: "center" }}>
           <div className="challenge-grade-tile" style={{ width: "5.4rem", height: "5.4rem", fontSize: "2.4rem" }}>
             {summary.scoreGrade}
@@ -108,15 +89,7 @@ export function ShareSummaryCard({
           <span style={{ color: "var(--color-muted)" }}>{summary.title}</span>
         </div>
 
-        <div
-          style={{
-            padding: "1rem 1.05rem",
-            borderRadius: "1.2rem",
-            background: "#f6f8fb",
-            color: "var(--color-ink)",
-            lineHeight: "var(--line-body)"
-          }}
-        >
+        <div className="share-summary-note-block">
           {locale === "zh"
             ? `${summary.agentHeadline}${summary.factionName}阵营，已经完成 Agent 共振并投票加入阵营。`
             : `${summary.agentHeadline} ${summary.factionName}, completed resonance, and already joined the faction.`}
@@ -124,29 +97,13 @@ export function ShareSummaryCard({
 
         <div style={{ display: "grid", gap: "0.5rem" }}>
           {summary.supportingFacts?.slice(0, 3).map((fact) => (
-            <div
-              key={fact}
-              style={{
-                padding: "0.9rem 1rem",
-                borderRadius: "1rem",
-                background: "#fff",
-                border: "1px solid rgba(24, 34, 54, 0.06)"
-              }}
-            >
+            <div key={fact} className="share-fact-chip">
               {fact}
             </div>
           ))}
         </div>
 
-        <div
-          style={{
-            padding: "0.95rem 1rem",
-            borderRadius: "1rem",
-            background: "#f6f8fb",
-            color: "var(--color-muted)",
-            lineHeight: "var(--line-body)"
-          }}
-        >
+        <div className="share-link-block">
           <strong style={{ display: "block", color: "var(--color-ink)", marginBottom: "0.25rem" }}>
             {shareCopy.challengeLinkLabel}
           </strong>

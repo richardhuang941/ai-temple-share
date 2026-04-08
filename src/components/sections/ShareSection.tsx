@@ -6,7 +6,9 @@ import {
 import { useState } from "react";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
 import SectionHeading from "../common/SectionHeading";
+import SocialShareActions from "../share/SocialShareActions";
 import ShareSummaryCard from "../share/ShareSummaryCard";
+import "../../styles/share-actions.css";
 
 const challengeLink = "https://clawvard.school/share?id=eval-a2af68e5";
 
@@ -64,6 +66,11 @@ export function ShareSection({
             chromeCopy={bundle.chrome}
             challengeLink={challengeLink}
             locale={bundle.locale}
+          />
+          <SocialShareActions
+            locale={bundle.locale}
+            summary={shareView}
+            challengeLink={challengeLink}
           />
         </div>
       </div>

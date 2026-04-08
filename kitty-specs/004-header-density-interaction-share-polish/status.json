@@ -1,46 +1,46 @@
 {
-  "event_count": 4,
-  "last_event_id": "01KNPTN6FQS33A2FJ3PTCZ1GSR",
-  "materialized_at": "2026-04-08T15:16:30.327295+00:00",
+  "event_count": 17,
+  "last_event_id": "01KNPVFBQTTS72WPANP2QM03DE",
+  "materialized_at": "2026-04-08T15:30:47.674101+00:00",
   "mission_slug": "004-header-density-interaction-share-polish",
   "summary": {
-    "approved": 0,
+    "approved": 4,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 0,
     "for_review": 0,
     "in_progress": 0,
-    "planned": 4
+    "planned": 0
   },
   "work_packages": {
     "WP01": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNPTN6E46HDY3V7XFRC3QHQT",
-      "last_transition_at": "2026-04-08T15:16:30.276263+00:00"
+      "actor": "codex",
+      "force_count": 3,
+      "lane": "approved",
+      "last_event_id": "01KNPVEHQRVMTK320PADNGXTPC",
+      "last_transition_at": "2026-04-08T15:30:21.048193+00:00"
     },
     "WP02": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNPTN6FKPY72W0JKPAMWMXN7",
-      "last_transition_at": "2026-04-08T15:16:30.323871+00:00"
+      "actor": "codex",
+      "force_count": 4,
+      "lane": "approved",
+      "last_event_id": "01KNPVF7M4P41H4E4RY7GCY8K0",
+      "last_transition_at": "2026-04-08T15:30:43.460136+00:00"
     },
     "WP03": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNPTN6FNQ2YW6HC3TDX9DHRR",
-      "last_transition_at": "2026-04-08T15:16:30.325568+00:00"
+      "actor": "codex",
+      "force_count": 4,
+      "lane": "approved",
+      "last_event_id": "01KNPVF9NPHDTP1S1EBCF0RVWP",
+      "last_transition_at": "2026-04-08T15:30:45.558523+00:00"
     },
     "WP04": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNPTN6FQS33A2FJ3PTCZ1GSR",
-      "last_transition_at": "2026-04-08T15:16:30.327295+00:00"
+      "actor": "codex",
+      "force_count": 4,
+      "lane": "approved",
+      "last_event_id": "01KNPVFBQTTS72WPANP2QM03DE",
+      "last_transition_at": "2026-04-08T15:30:47.674101+00:00"
     }
   }
 }
