@@ -1,7 +1,7 @@
 {
-  "event_count": 25,
-  "last_event_id": "01KNPA72KJ9AD14ZFNDQZTZMX4",
-  "materialized_at": "2026-04-08T10:29:10.386698+00:00",
+  "event_count": 27,
+  "last_event_id": "01KNPAJCJ9JN978JZ5PT1862MZ",
+  "materialized_at": "2026-04-08T10:35:21.033594+00:00",
   "mission_slug": "002-bilingual-home-polish",
   "summary": {
     "approved": 4,
@@ -10,8 +10,8 @@
     "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 0,
-    "planned": 1
+    "in_progress": 1,
+    "planned": 0
   },
   "work_packages": {
     "WP01": {
@@ -43,11 +43,11 @@
       "last_transition_at": "2026-04-08T10:29:10.386698+00:00"
     },
     "WP05": {
-      "actor": "finalize-tasks",
+      "actor": "codex",
       "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNP8T0CDWA93BMPEG6VV1RMT",
-      "last_transition_at": "2026-04-08T10:04:33.549784+00:00"
+      "lane": "in_progress",
+      "last_event_id": "01KNPAJCJ9JN978JZ5PT1862MZ",
+      "last_transition_at": "2026-04-08T10:35:21.033594+00:00"
     }
   }
 }
