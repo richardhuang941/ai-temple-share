@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocalizedContentBundle",
+  "type": "object",
+  "required": ["locale", "hero", "share", "journey", "agentPrompt", "chrome"],
+  "properties": {
+    "locale": {
+      "type": "string",
+      "enum": ["zh", "en"]
+    },
+    "hero": {
+      "type": "object"
+    },
+    "share": {
+      "type": "object"
+    },
+    "journey": {
+      "type": "object"
+    },
+    "agentPrompt": {
+      "type": "object"
+    },
+    "chrome": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}
+
