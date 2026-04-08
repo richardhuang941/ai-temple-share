@@ -114,9 +114,9 @@ Risks:
 - Dependencies: Depends on WP01
 
 Included subtasks:
-- [ ] T010 构建 Share 区的 `分享图片 / 分享文字` 模式切换 (WP03)
-- [ ] T011 设计接近参考截图的战书分享卡和文字复制区 (WP03)
-- [ ] T012 保持分享文案的 Agent-first 主语和 challenge link 展示 (WP03)
+- [x] T010 构建 Share 区的 `分享图片 / 分享文字` 模式切换 (WP03)
+- [x] T011 设计接近参考截图的战书分享卡和文字复制区 (WP03)
+- [x] T012 保持分享文案的 Agent-first 主语和 challenge link 展示 (WP03)
 
 Implementation sketch:
 1. 先建立 share mode 状态。
