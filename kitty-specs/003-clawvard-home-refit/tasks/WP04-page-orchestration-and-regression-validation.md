@@ -26,7 +26,7 @@ subtasks:
 - T015
 - T016
 agent: codex
-shell_pid: ''
+shell_pid: '16680'
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created
