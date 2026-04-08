@@ -38,11 +38,11 @@
 | T013 | 构建多任务时间轴容器并绑定时间轴输出 | WP03 |  | [D] |
 | T014 | 实现 JourneySection 的整体叙事与任务顺序呈现 | WP03 |  | [D] |
 | T015 | 让 Journey 区在移动端和 reduced-motion 模式下保持可读 | WP03 |  | [D] |
-| T016 | 构建 HeroSection 的主叙事与滚动 CTA | WP04 | `[P]` |
-| T017 | 构建分享结果区与分享统计组件 | WP04 | `[P]` |
-| T018 | 构建 Agent Prompt 区与复制交互 | WP04 | `[P]` |
-| T019 | 实现 Hero/Share/Prompt 所需的共享 UI 原子组件 | WP04 |  |
-| T020 | 校验非 Journey 区的 Agent-first 文案与禁用词约束 | WP04 |  |
+| T016 | 构建 HeroSection 的主叙事与滚动 CTA | WP04 | `[P]` | [D] |
+| T017 | 构建分享结果区与分享统计组件 | WP04 | `[P]` | [D] |
+| T018 | 构建 Agent Prompt 区与复制交互 | WP04 | `[P]` | [D] |
+| T019 | 实现 Hero/Share/Prompt 所需的共享 UI 原子组件 | WP04 |  | [D] |
+| T020 | 校验非 Journey 区的 Agent-first 文案与禁用词约束 | WP04 |  | [D] |
 | T021 | 组合 `App` 与入口文件，串联四个主区块 | WP05 |  |
 | T022 | 打通整页时间轴、锚点导航与分享态强调逻辑 | WP05 |  |
 | T023 | 添加整页集成测试，覆盖主区块、任务顺序与关键文案 | WP05 |  |
