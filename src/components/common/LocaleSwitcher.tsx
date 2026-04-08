@@ -17,10 +17,11 @@ export function LocaleSwitcher({
         display: "inline-flex",
         alignItems: "center",
         gap: "0.5rem",
-        padding: "0.35rem",
+        padding: "0.3rem 0.35rem",
         borderRadius: "var(--radius-pill)",
-        background: "rgba(31, 10, 12, 0.7)",
-        border: "1px solid rgba(255, 120, 120, 0.18)"
+        background: "rgba(255, 255, 255, 0.88)",
+        border: "1px solid rgba(24, 34, 54, 0.08)",
+        boxShadow: "0 10px 28px rgba(17, 24, 39, 0.08)"
       }}
     >
       <span style={{ color: "var(--color-muted)", fontSize: "var(--type-small)" }}>
@@ -38,10 +39,10 @@ export function LocaleSwitcher({
             style={{
               border: "none",
               background: isActive
-                ? "linear-gradient(135deg, var(--coral-bright), var(--color-highlight))"
+                ? "linear-gradient(135deg, var(--coral-bright), #ff8f6b)"
                 : "transparent",
-              color: isActive ? "#22080b" : "var(--color-ink)",
-              padding: "0.45rem 0.9rem",
+              color: isActive ? "#fff" : "var(--color-ink)",
+              padding: "0.45rem 0.85rem",
               borderRadius: "var(--radius-pill)",
               cursor: "pointer",
               fontWeight: 700

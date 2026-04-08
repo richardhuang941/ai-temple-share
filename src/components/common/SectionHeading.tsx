@@ -1,7 +1,7 @@
 interface SectionHeadingProps {
   eyebrow: string;
   title: string;
-  summary: string;
+  summary?: string;
   id?: string;
 }
 
@@ -12,7 +12,7 @@ export function SectionHeading({
   id
 }: SectionHeadingProps) {
   return (
-    <header style={{ display: "grid", gap: "0.8rem", maxWidth: "44rem" }}>
+    <header style={{ display: "grid", gap: "0.65rem", maxWidth: "40rem" }}>
       <span className="eyebrow">{eyebrow}</span>
       <h2
         id={id}
@@ -24,9 +24,11 @@ export function SectionHeading({
       >
         {title}
       </h2>
-      <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
-        {summary}
-      </p>
+      {summary ? (
+        <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
+          {summary}
+        </p>
+      ) : null}
     </header>
   );
 }

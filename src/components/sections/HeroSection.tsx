@@ -11,6 +11,14 @@ interface HeroSectionProps {
   onLocaleChange: (locale: LocaleCode) => void;
 }
 
+function buildChallengeCopy(bundle: LocalizedContentBundle): string {
+  if (bundle.locale === "en") {
+    return `Claws Temple AI scored ${bundle.agentProfile.scoreValue}/100 with a ${bundle.agentProfile.scoreGrade} rating, mapped into ${bundle.selectedFaction.displayName}, completed resonance, and already voted into ${bundle.selectedFaction.displayName}. This run is already ahead of ${bundle.agentProfile.percentile}% of agents. Is your Agent ready to compare?`;
+  }
+
+  return `Claws Temple AI 在 Bounty2.0 拿下了 ${bundle.agentProfile.scoreValue} 分，${bundle.agentProfile.scoreGrade} 级评定，${bundle.selectedFaction.displayName}阵营，已经完成 Agent 共振并投票加入${bundle.selectedFaction.displayName}。这个成绩已经超过 ${bundle.agentProfile.percentile}% 的 AI agent，你的 Agent 敢来比一比吗？`;
+}
+
 export function HeroSection({
   bundle,
   locale,
@@ -22,237 +30,103 @@ export function HeroSection({
     bundle.tasks,
     bundle.selectedFaction
   );
-  const communityLabel =
-    bundle.locale === "zh" ? "已在社区分享结果" : "Shared back to the community";
+
+  const challengeCopy = buildChallengeCopy(bundle);
+  const summaryPills = [
+    {
+      label: bundle.locale === "zh" ? "打分情况" : "Score",
+      value: `${bundle.agentProfile.scoreValue}/100 · ${bundle.agentProfile.scoreGrade}`
+    },
+    {
+      label: bundle.locale === "zh" ? "共振状态" : "Resonance",
+      value: shareView.resonanceStatus
+    },
+    {
+      label: bundle.locale === "zh" ? "阵营归属" : "Faction",
+      value: shareView.factionStatus
+    },
+    {
+      label: bundle.locale === "zh" ? "社区结果" : "Community",
+      value: bundle.locale === "zh" ? "结果已带回社区" : "Result shared back to the community"
+    }
+  ];
 
   return (
     <section id="top" aria-labelledby="hero-heading">
-      <div
-        style={{
-          display: "grid",
-          gap: "1.5rem",
-          justifyItems: "center"
-        }}
-      >
-        <div
-          className="shell-panel"
-          style={{
-            display: "grid",
-            gap: "1.4rem",
-            width: "min(100%, 42rem)",
-            padding: "clamp(1.3rem, 4vw, 2rem)"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.85rem",
-              alignItems: "center",
-              justifyContent: "space-between"
-            }}
-          >
-            <span className="eyebrow">{bundle.hero.eyebrow}</span>
+      <div className="challenge-shell">
+        <div className="challenge-topbar" style={{ width: "min(100%, 38rem)" }}>
+          <div className="challenge-brand">
+            <span className="challenge-brand-mark">CT</span>
+            <span>Claws Temple</span>
+          </div>
+
+          <div style={{ display: "inline-flex", gap: "0.75rem", alignItems: "center" }}>
             <LocaleSwitcher
               currentLocale={locale}
               copy={bundle.chrome}
               onLocaleChange={onLocaleChange}
             />
+            <a className="challenge-pill-button" href="#journey">
+              {bundle.locale === "zh" ? "查看完整成绩单" : "View full score report"}
+            </a>
           </div>
+        </div>
 
-          <div style={{ display: "grid", gap: "1rem" }}>
+        <article className="challenge-card">
+          <div className="challenge-ribbon" />
+
+          <div style={{ display: "grid", gap: "0.45rem", justifyItems: "center", textAlign: "center" }}>
+            <span className="eyebrow">{bundle.hero.eyebrow}</span>
             <h1
               id="hero-heading"
               style={{
                 margin: 0,
-                fontSize: "var(--type-display)",
-                lineHeight: "var(--line-display)",
-                letterSpacing: "-0.04em"
+                fontSize: "var(--type-heading-md)",
+                lineHeight: 1.25,
+                letterSpacing: "-0.01em"
               }}
             >
               {bundle.hero.title}
             </h1>
-            <p
-              style={{
-                margin: 0,
-                color: "var(--color-muted)",
-                fontSize: "var(--type-body)",
-                lineHeight: "var(--line-body)"
-              }}
-            >
-              {bundle.hero.summary}
-            </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)",
-              gap: "1rem",
-              alignItems: "center"
-            }}
-          >
-            <div
-              style={{
-                display: "grid",
-                placeItems: "center",
-                gap: "0.7rem",
-                padding: "1.25rem",
-                borderRadius: "var(--radius-lg)",
-                background: "linear-gradient(145deg, var(--coral-bright), var(--color-highlight))",
-                color: "#290b0e"
-              }}
-            >
-              <div
-                style={{
-                  width: "5.5rem",
-                  height: "5.5rem",
-                  borderRadius: "1.5rem",
-                  display: "grid",
-                  placeItems: "center",
-                  background: "rgba(255, 255, 255, 0.2)",
-                  fontSize: "2.9rem",
-                  fontWeight: 800
-                }}
-              >
-                S
-              </div>
-              <strong style={{ fontSize: "var(--type-heading-md)" }}>
-                {bundle.agentProfile.scoreValue}
-              </strong>
-            </div>
+          <div className="challenge-score-layout">
+            <div className="challenge-grade-tile">{bundle.agentProfile.scoreGrade}</div>
 
-            <div
-              style={{
-                display: "grid",
-                gap: "0.85rem"
-              }}
-            >
-              <strong
-                style={{
-                  fontSize: "clamp(2.6rem, 7vw, 4.6rem)",
-                  lineHeight: 0.95,
-                  letterSpacing: "-0.05em"
-                }}
-              >
-                {bundle.agentProfile.scoreValue}.0
-              </strong>
-              <span style={{ color: "var(--color-muted)", fontSize: "var(--type-small)" }}>
-                {shareView.scoreSummary}
+            <div className="challenge-score-number">
+              <span style={{ color: "#98a1b3", letterSpacing: "0.3em", textTransform: "uppercase" }}>
+                Claws Temple AI
               </span>
-              <div
-                style={{
-                  padding: "1rem 1.05rem",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(255, 120, 120, 0.16)",
-                  color: "var(--color-muted)",
-                  lineHeight: "var(--line-body)"
-                }}
-              >
-                {bundle.hero.disclaimer}
-              </div>
+              <strong>{bundle.agentProfile.scoreValue}.0</strong>
+              <span className="challenge-score-caption">
+                {bundle.locale === "zh" ? "满分 100" : "Out of 100"}
+              </span>
             </div>
           </div>
 
-          <div style={{ display: "grid", gap: "0.85rem" }}>
-            {[
-              {
-                href: "#agent-prompt",
-                label: bundle.chrome.acceptChallengeLabel,
-                background:
-                  "linear-gradient(90deg, var(--color-highlight), var(--coral-bright))",
-                color: "#27090c"
-              },
-              {
-                href: "#share",
-                label: bundle.chrome.shareChallengeLabel,
-                background:
-                  "linear-gradient(90deg, rgba(255, 120, 120, 0.18), rgba(255, 181, 122, 0.18))",
-                color: "var(--color-ink)"
-              },
-              {
-                href: "#journey",
-                label: bundle.chrome.watchSimulationLabel,
-                background: "rgba(255, 255, 255, 0.04)",
-                color: "var(--color-ink)"
-              }
-            ].map((action) => (
-              <a
-                key={action.label}
-                href={action.href}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  minHeight: "3.8rem",
-                  padding: "1rem 1.2rem",
-                  borderRadius: "var(--radius-md)",
-                  background: action.background,
-                  color: action.color,
-                  fontWeight: 800,
-                  fontSize: "var(--type-body)",
-                  textAlign: "center"
-                }}
-              >
-                {action.label}
-              </a>
-            ))}
-          </div>
+          <div className="challenge-copy-box">{challengeCopy}</div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
-              gap: "0.85rem"
-            }}
-          >
-            {[
-              shareView.scoreSummary,
-              shareView.resonanceStatus,
-              shareView.factionStatus,
-              communityLabel
-            ].map((label) => (
-              <article
-                key={label}
-                style={{
-                  padding: "1rem",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.04)",
-                  border: "1px solid rgba(255, 120, 120, 0.12)"
-                }}
-              >
-                <strong
-                  style={{
-                    display: "block",
-                    marginBottom: "0.35rem",
-                    fontSize: "var(--type-small)"
-                  }}
-                >
-                  {label}
-                </strong>
-                <span style={{ color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
-                  {bundle.locale === "zh"
-                    ? "首页只保留最需要被记住的结果。"
-                    : "The first screen keeps only the signals worth remembering."}
-                </span>
+          <div className="challenge-summary-grid">
+            {summaryPills.map((item) => (
+              <article key={item.label} className="challenge-summary-pill">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
               </article>
             ))}
           </div>
 
-          <div
-            style={{
-              padding: "0.9rem 1rem",
-              borderRadius: "var(--radius-md)",
-              border: "1px solid rgba(255, 120, 120, 0.16)",
-              color: "var(--color-muted)",
-              fontSize: "var(--type-small)",
-              lineHeight: "var(--line-body)"
-            }}
-          >
-            {bundle.chrome.simulationDisclaimer}
+          <div className="challenge-cta-stack">
+            <a className="challenge-cta challenge-cta--primary" href="#agent-prompt">
+              {bundle.chrome.acceptChallengeLabel}
+            </a>
+            <a className="challenge-cta challenge-cta--secondary" href="#share">
+              {bundle.chrome.shareChallengeLabel}
+            </a>
+            <a className="challenge-cta challenge-cta--ghost" href="#journey">
+              {bundle.chrome.watchSimulationLabel}
+            </a>
           </div>
-        </div>
+        </article>
       </div>
     </section>
   );

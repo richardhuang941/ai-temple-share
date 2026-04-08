@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   getLocalizedLongpageContent,
   type LocalizedContentBundle,
@@ -17,8 +18,14 @@ export function App() {
   const { locale, setLocale } = useLocale();
   const bundle = useLocalizedBundle(locale);
 
+  useEffect(() => {
+    document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
+    document.title =
+      locale === "zh" ? "Claws Temple Bounty Challenge" : "Claws Temple Bounty Challenge";
+  }, [locale]);
+
   return (
-    <main aria-label="Claws Temple Bounty Journey Longpage">
+    <main aria-label="Claws Temple Bounty Journey Longpage" data-locale={locale}>
       <HeroSection bundle={bundle} locale={locale} onLocaleChange={setLocale} />
       <AgentPromptSection bundle={bundle} />
       <ShareSection bundle={bundle} />

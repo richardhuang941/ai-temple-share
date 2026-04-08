@@ -1,25 +1,28 @@
+@import "./challenge-surfaces.css";
+
 :root {
-  color-scheme: dark;
-  --font-display: "Azeret Mono", "IBM Plex Mono", "SFMono-Regular", monospace;
-  --font-body: "Manrope", "SF Pro Display", "Segoe UI", sans-serif;
+  color-scheme: light;
+  --font-display: "Space Grotesk", "Inter", "PingFang SC", sans-serif;
+  --font-body: "Inter", "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
 
   --coral-bright: #ff4d4d;
   --coral-mid: #e63946;
   --coral-dark: #991b1b;
 
-  --color-ink: #fff6f3;
-  --color-muted: rgba(255, 229, 225, 0.74);
-  --color-surface: rgba(32, 10, 12, 0.82);
-  --color-surface-strong: rgba(44, 13, 17, 0.96);
-  --color-border: rgba(255, 108, 108, 0.22);
-  --color-accent: #ff8a72;
-  --color-accent-strong: var(--coral-bright);
-  --color-success: #f6b56c;
-  --color-warning: #ffd37a;
-  --color-danger: #ff9ea1;
-  --color-highlight: #ff9e7a;
-  --color-bg-top: #13080a;
-  --color-bg-bottom: #2b1015;
+  --color-ink: #182236;
+  --color-muted: #69758c;
+  --color-surface: rgba(255, 255, 255, 0.92);
+  --color-surface-strong: #fffdf9;
+  --color-border: rgba(24, 34, 54, 0.08);
+  --color-accent: #ef7e31;
+  --color-accent-strong: var(--coral-mid);
+  --color-success: #f59e0b;
+  --color-warning: #f97316;
+  --color-danger: #ef4444;
+  --color-highlight: #ffb200;
+  --color-bg-top: #f8f3e7;
+  --color-bg-bottom: #eef3f7;
 
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
@@ -35,8 +38,8 @@
   --radius-lg: 1.85rem;
   --radius-pill: 999px;
 
-  --shadow-soft: 0 28px 90px rgba(2, 7, 19, 0.35);
-  --shadow-glow: 0 0 0 1px rgba(142, 228, 255, 0.14), 0 0 48px rgba(47, 157, 255, 0.18);
+  --shadow-soft: 0 24px 70px rgba(17, 24, 39, 0.12);
+  --shadow-glow: 0 0 0 1px rgba(255, 77, 77, 0.08), 0 18px 40px rgba(255, 77, 77, 0.12);
 
   --max-page-width: 1200px;
   --section-padding-y: clamp(4rem, 8vw, 8rem);
@@ -47,14 +50,14 @@
   --step-slow: 520ms;
   --ease-emphatic: cubic-bezier(0.22, 1, 0.36, 1);
 
-  --type-display: clamp(3rem, 7vw, 5.25rem);
-  --type-heading-lg: clamp(2rem, 4vw, 3.25rem);
-  --type-heading-md: clamp(1.25rem, 2.4vw, 1.75rem);
+  --type-display: clamp(2.1rem, 4vw, 3rem);
+  --type-heading-lg: clamp(1.9rem, 3.2vw, 2.75rem);
+  --type-heading-md: clamp(1.15rem, 2vw, 1.45rem);
   --type-body: 1rem;
-  --type-small: 0.9375rem;
+  --type-small: 0.95rem;
   --type-eyebrow: 0.76rem;
 
-  --line-display: 0.95;
-  --line-heading: 1.08;
-  --line-body: 1.7;
+  --line-display: 1.02;
+  --line-heading: 1.12;
+  --line-body: 1.65;
 }

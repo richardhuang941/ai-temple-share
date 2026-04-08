@@ -27,7 +27,7 @@ export function ShareSection({
 
   return (
     <section id="share" aria-labelledby="share-heading">
-      <div style={{ display: "grid", gap: "1.5rem" }}>
+      <div className="challenge-shell">
         <SectionHeading
           eyebrow={bundle.shareSection.eyebrow}
           title={bundle.shareSection.title}
@@ -35,24 +35,8 @@ export function ShareSection({
           id="share-heading"
         />
 
-        <div
-          className="shell-panel"
-          style={{
-            display: "grid",
-            gap: "1.25rem",
-            padding: "clamp(1.25rem, 3vw, 2rem)"
-          }}
-        >
-          <div
-            style={{
-              display: "inline-grid",
-              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-              gap: "0.45rem",
-              padding: "0.4rem",
-              borderRadius: "var(--radius-pill)",
-              background: "rgba(255, 255, 255, 0.04)"
-            }}
-          >
+        <div className="challenge-section-card" style={{ width: "min(100%, 38rem)" }}>
+          <div className="share-mode-switch">
             {([
               { mode: "image", label: bundle.chrome.shareImageLabel },
               { mode: "text", label: bundle.chrome.shareTextLabel }
@@ -64,15 +48,8 @@ export function ShareSection({
                   key={item.mode}
                   type="button"
                   onClick={() => setShareMode(item.mode)}
-                  style={{
-                    border: "none",
-                    minHeight: "3.35rem",
-                    borderRadius: "var(--radius-pill)",
-                    background: isActive ? "rgba(255,255,255,0.12)" : "transparent",
-                    color: "var(--color-ink)",
-                    cursor: "pointer",
-                    fontWeight: 700
-                  }}
+                  className="share-mode-button"
+                  data-active={isActive}
                 >
                   {item.label}
                 </button>

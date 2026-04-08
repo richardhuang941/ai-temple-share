@@ -1,6 +1,6 @@
 import type { SimulationTimelineState, TaskMilestone } from "../content";
 
-export const DEFAULT_CYCLE_DURATION_MS = 2400;
+export const DEFAULT_CYCLE_DURATION_MS = 4200;
 
 function resolveAutoplay(isReducedMotion: boolean, requestedAutoplay?: boolean): boolean {
   if (isReducedMotion) {
@@ -153,4 +153,64 @@ export function getTimelineProgress(
   const completedInCurrentTask = Math.max(state.currentStageIndex, 0);
 
   return (completedFromPriorTasks + completedInCurrentTask) / totalStages;
+}
+
+function isMeaningfulStageFocus(task: TaskMilestone | undefined, stageIndex: number): boolean {
+  if (!task || stageIndex < 0 || stageIndex >= task.stages.length) {
+    return false;
+  }
+
+  const stage = task.stages[stageIndex];
+
+  return (
+    stageIndex === 0 ||
+    stageIndex === task.stages.length - 1 ||
+    Boolean(stage.externalTarget)
+  );
+}
+
+export function shouldAutoFocusTask(
+  previousState: SimulationTimelineState | null,
+  nextState: SimulationTimelineState,
+  tasks: TaskMilestone[]
+): boolean {
+  if (!nextState.hasStarted || nextState.currentTaskIndex < 0 || tasks.length === 0) {
+    return false;
+  }
+
+  if (!previousState || !previousState.hasStarted) {
+    return true;
+  }
+
+  if (previousState.currentTaskIndex !== nextState.currentTaskIndex) {
+    return true;
+  }
+
+  if (!previousState.isComplete && nextState.isComplete) {
+    return true;
+  }
+
+  if (previousState.currentStageIndex !== nextState.currentStageIndex) {
+    return isMeaningfulStageFocus(tasks[nextState.currentTaskIndex], nextState.currentStageIndex);
+  }
+
+  return false;
+}
+
+export function getFocusScrollBehavior(isReducedMotion: boolean): ScrollBehavior {
+  return isReducedMotion ? "auto" : "smooth";
+}
+
+export function shouldRecenterTask(
+  rect: Pick<DOMRect, "top" | "bottom">,
+  viewportHeight: number
+): boolean {
+  if (viewportHeight <= 0) {
+    return true;
+  }
+
+  const upperBoundary = viewportHeight * 0.18;
+  const lowerBoundary = viewportHeight * 0.82;
+
+  return rect.top < upperBoundary || rect.bottom > lowerBoundary;
 }

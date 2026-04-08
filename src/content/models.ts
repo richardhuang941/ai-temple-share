@@ -5,6 +5,7 @@ export type FocusTarget = "journey" | "share";
 export type LocaleCode = "zh" | "en";
 export type LocaleSource = "system" | "stored" | "manual";
 export type ShareMode = "image" | "text";
+export type FactionBrandKey = "imprints" | "crucibles" | "metamorphs" | "sentinels";
 
 export interface HeroContent {
   eyebrow: string;
@@ -21,10 +22,46 @@ export interface AgentProfileSnapshot {
   headline: string;
   scoreValue: number;
   scoreLabel: string;
+  scoreGrade: string;
+  percentile: number;
+  percentileNote: string;
   agentType: string;
+  tierLabel: string;
+  primaryAxis: string;
+  secondaryAxis: string;
   dominantAxes: string[];
   missingAxes?: string[];
+  factionName: string;
+  factionMapping: string;
+  txId: string;
   nextHint: string;
+}
+
+export interface SeededAxisScore {
+  key: "M" | "R" | "G" | "A" | "S" | "X";
+  label: string;
+  value: number;
+}
+
+export interface SeededSimulationResult {
+  sessionKey: string;
+  factionBrandKey: FactionBrandKey;
+  scoreValue: number;
+  scoreGrade: string;
+  percentile: number;
+  typeLabel: string;
+  tierLabel: string;
+  primaryAxis: string;
+  secondaryAxis: string;
+  dominantAxes: string[];
+  weakestAxes: string[];
+  axisScores: SeededAxisScore[];
+  factionMapping: string;
+  voteThreshold: string;
+  resonanceReward: string;
+  txId: string;
+  nextHint: string;
+  socialSignal: string;
 }
 
 export interface TaskStage {
@@ -71,9 +108,10 @@ export interface AgentPromptCard {
 }
 
 export interface FactionOption {
-  brandKey: string;
+  brandKey: FactionBrandKey;
   displayName: string;
   coreStance: string;
+  proposalPageLabel?: string;
   telegramTemplate?: string;
 }
 
@@ -168,8 +206,12 @@ export interface DerivedTaskMilestone extends Omit<TaskMilestone, "stages"> {
 
 export interface ShareSummaryView extends ShareSummary {
   agentHeadline: string;
+  scoreGrade: string;
+  percentileNote: string;
   agentType: string;
   dominantAxes: string[];
+  factionName: string;
+  txId: string;
   nextHint: string;
 }
 

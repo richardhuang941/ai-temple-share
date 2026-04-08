@@ -105,8 +105,10 @@ export function deriveShareSummaryView(
   const task3 = tasks.find((task) => task.taskId === "task-3");
 
   const supportingFacts = [
+    pickProof(tasks[0], "task-1-faction"),
     pickProof(task2 ?? tasks[1], "task-2-user-id"),
     pickProof(task2 ?? tasks[1], "task-2-token"),
+    pickProof(task3 ?? tasks[2], "task-3-threshold"),
     pickProof(task3 ?? tasks[2], "task-3-telegram"),
     ...(baseShareSummary.supportingFacts ?? [])
   ].filter((fact): fact is string => Boolean(fact));
@@ -130,8 +132,12 @@ export function deriveShareSummaryView(
       }) ?? baseShareSummary.factionStatus,
     supportingFacts: Array.from(new Set(supportingFacts)),
     agentHeadline: agentProfile.headline,
+    scoreGrade: agentProfile.scoreGrade,
+    percentileNote: agentProfile.percentileNote,
     agentType: agentProfile.agentType,
     dominantAxes: agentProfile.dominantAxes,
+    factionName: faction.displayName,
+    txId: agentProfile.txId,
     nextHint: agentProfile.nextHint
   };
 }

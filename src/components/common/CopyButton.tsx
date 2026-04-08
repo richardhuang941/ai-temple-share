@@ -62,13 +62,18 @@ export function CopyButton({
       type="button"
       onClick={handleClick}
       style={{
-        border: "1px solid rgba(255, 120, 120, 0.28)",
-        background: copied ? "rgba(255, 156, 126, 0.18)" : "rgba(28, 11, 14, 0.94)",
-        color: "var(--color-ink)",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: "1px solid rgba(24, 34, 54, 0.08)",
+        background: copied ? "rgba(16, 185, 129, 0.14)" : "rgba(255, 255, 255, 0.94)",
+        color: copied ? "#047857" : "var(--color-ink)",
         padding: "0.8rem 1rem",
-        borderRadius: "var(--radius-md)",
+        borderRadius: "1rem",
         cursor: "pointer",
-        minWidth: "8.5rem"
+        minWidth: "8.5rem",
+        fontWeight: 700,
+        boxShadow: "0 10px 24px rgba(17, 24, 39, 0.08)"
       }}
       aria-live="polite"
     >

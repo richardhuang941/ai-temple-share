@@ -7,19 +7,19 @@ interface CompletionBadgeProps {
 
 const toneStyles: Record<NonNullable<CompletionBadgeProps["tone"]>, CSSProperties> = {
   default: {
-    background: "rgba(255, 255, 255, 0.08)",
+    background: "rgba(248, 243, 231, 0.84)",
     color: "var(--color-ink)",
-    borderColor: "rgba(255, 255, 255, 0.08)"
+    borderColor: "rgba(24, 34, 54, 0.08)"
   },
   success: {
-    background: "rgba(139, 246, 198, 0.12)",
+    background: "rgba(245, 158, 11, 0.12)",
     color: "var(--color-success)",
-    borderColor: "rgba(139, 246, 198, 0.24)"
+    borderColor: "rgba(245, 158, 11, 0.22)"
   },
   warning: {
-    background: "rgba(255, 211, 107, 0.12)",
-    color: "var(--color-warning)",
-    borderColor: "rgba(255, 211, 107, 0.24)"
+    background: "rgba(230, 57, 70, 0.1)",
+    color: "var(--coral-dark)",
+    borderColor: "rgba(230, 57, 70, 0.18)"
   }
 };
 

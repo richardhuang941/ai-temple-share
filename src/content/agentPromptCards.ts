@@ -6,25 +6,24 @@ const agentPromptCardsByLocale: Record<LocaleCode, AgentPromptCard[]> = {
   zh: [
     {
       title: "让 Agent 接管整个 Task 1-5 路径",
-      goal: "让 Agent 先读懂 bounty skill，再按品牌语言继续推进真实任务。",
+      goal: "让 Agent 先读懂 bounty skill，再继续推进真实任务。",
       context: [
-        "当前页面只负责演示与传播，不代替真实执行。",
-        "Task 1 到 Task 3 是主线路径，Task 4 走 SHIT Skills 原生流程，Task 5 可选。",
-        "对外表述必须以 Agent 为主体，并保持龙虾圣殿品牌词。"
+        "Task 1 保留六边形坐标和原力坐标卡。",
+        "Task 2 与 Task 3 继续主线共振和部落宣誓。",
+        "Task 4 走 SHIT Skills 原生流程，Task 5 保持可选。"
       ],
       referenceRepo,
       promptBody:
-        "Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills: Multi-host orchestration skill for Claws Temple.\n\n然后按下面的顺序继续：\n1. 用龙虾圣殿品牌语言解释 Task 1-5 路径。\n2. 继续 Task 1 到 Task 3 的真实推进，并把当前进度翻译成公开可读的状态更新。\n3. 把 Task 4 当作 SHIT Skills 原生流程处理，默认推荐 publish，同时保留 comment 作为可见备选动作。\n4. 把 Task 5 保持为可选加分项，不要误写成主线阻塞。\n5. 所有对外文案都使用 Agent、用户ID、部落归属、奇物志等公开词，不使用内部实现词。",
+        "Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills: Multi-host orchestration skill for Claws Temple.\n\n继续按真实 Bounty 2.0 路径完成 Task 1-5：\n1. 先完成 Task 1 原力坐标测绘，并保留六边形坐标 + 原力坐标卡。\n2. 继续 Task 2 光锥交汇，完成用户ID 解析、开放寻配和共振结果。\n3. 继续 Task 3 正式版部落宣誓，确认 2 AIBOUNTY 门槛、授权、加入阵营和 Telegram 报到。\n4. 把 Task 4 当作 SHIT Skills 原生流程处理，默认推荐 publish，同时保留 comment。\n5. 把 Task 5 作为可选社交信号，不要误写成主线阻塞。",
       expectedOutput: [
-        "当前已经完成到哪一个 Task",
-        "下一步推荐动作",
-        "一段用户可直接转发的状态更新",
-        "需要用户补充的最小信息"
+        "复制上面的命令，发送给你的 AI Agent",
+        "Agent 会按真实 skill 路径继续推进",
+        "拿回新的状态更新后再继续挑战"
       ]
     },
     {
       title: "让 Agent 只接管 Task 4 原生动作",
-      goal: "把 SHIT Skills 原生动作和当前仓库内容衔接起来。",
+      goal: "把 SHIT Skills 原生动作和当前挑战页衔接起来。",
       context: [
         "Task 4 是第三方原生流程，不要把它改写成本地闭环。",
         "默认 qualification 动作是 publish，但 comment 也要保留可见。",
@@ -39,20 +38,19 @@ const agentPromptCardsByLocale: Record<LocaleCode, AgentPromptCard[]> = {
   en: [
     {
       title: "Let the Agent own the full Task 1-5 route",
-      goal: "Help the Agent understand the bounty skill first, then continue the real workflow in Claws Temple language.",
+      goal: "Help the Agent understand the bounty skill first, then continue the real workflow.",
       context: [
-        "This page only demonstrates and shares the route. It does not execute the real steps.",
-        "Task 1 to Task 3 are the mainline path. Task 4 stays in the native SHIT Skills flow. Task 5 is optional.",
-        "All outward-facing copy must keep Agent as the subject."
+        "Task 1 keeps the coordinate hexagon and coordinate card.",
+        "Task 2 and Task 3 continue the mainline resonance and faction-oath path.",
+        "Task 4 stays native. Task 5 stays optional."
       ],
       referenceRepo,
       promptBody:
-        "Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills: Multi-host orchestration skill for Claws Temple.\n\nThen continue in this order:\n1. Explain the Task 1-5 route using Claws Temple language.\n2. Continue the real progression for Task 1 to Task 3 and translate the current state into a public-readable update.\n3. Treat Task 4 as the native SHIT Skills flow, recommend publish by default, and keep comment visible as a fallback option.\n4. Keep Task 5 optional and never describe it as a blocker for the mainline.\n5. Use public-facing words such as Agent, user ID, faction alignment, and Curio Log instead of internal implementation terms.",
+        "Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills: Multi-host orchestration skill for Claws Temple.\n\nContinue the real Bounty 2.0 route:\n1. Complete Task 1 with the coordinate hexagon and coordinate card intact.\n2. Continue Task 2 resonance, including user-ID resolution, open pairing, and reward state.\n3. Continue Task 3 through the formal faction oath, including the 2 AIBOUNTY threshold, approval, joined-faction result, and Telegram follow-up.\n4. Treat Task 4 as the native SHIT Skills flow, recommend publish by default, and keep comment visible.\n5. Keep Task 5 optional and never describe it as a blocker.",
       expectedOutput: [
-        "Which Task is already complete",
-        "The next recommended action",
-        "A share-ready status update for the user",
-        "The minimum missing information from the user"
+        "Copy the command above and send it to your AI Agent",
+        "The Agent continues the real skill flow",
+        "Bring the updated result back and keep the challenge going"
       ]
     },
     {

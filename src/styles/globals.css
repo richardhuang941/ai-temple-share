@@ -66,14 +66,15 @@ main {
 section {
   position: relative;
   padding: var(--section-padding-y) var(--section-padding-x);
+  scroll-margin-top: clamp(1rem, 4vw, 2rem);
 }
 
 .shell-panel {
-  background: linear-gradient(180deg, rgba(34, 10, 14, 0.84), rgba(20, 7, 10, 0.96));
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(24, 34, 54, 0.08);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
 }
 
 .eyebrow {
@@ -81,14 +82,14 @@ section {
   align-items: center;
   gap: var(--space-xs);
   padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(255, 123, 123, 0.24);
+  border: 1px solid rgba(230, 57, 70, 0.12);
   border-radius: var(--radius-pill);
   font-family: var(--font-display);
   font-size: var(--type-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--color-accent);
-  background: rgba(26, 10, 13, 0.82);
+  color: var(--coral-mid);
+  background: rgba(255, 244, 241, 0.92);
 }
 
 @media (prefers-reduced-motion: reduce) {

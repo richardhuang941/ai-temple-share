@@ -14,7 +14,7 @@ export function AgentPromptSection({
 
   return (
     <section id="agent-prompt" aria-labelledby="agent-prompt-heading">
-      <div style={{ display: "grid", gap: "1.5rem" }}>
+      <div className="challenge-shell">
         <SectionHeading
           eyebrow={bundle.agentPromptSection.eyebrow}
           title={bundle.agentPromptSection.title}
@@ -22,23 +22,8 @@ export function AgentPromptSection({
           id="agent-prompt-heading"
         />
 
-        <article
-          className="shell-panel"
-          style={{
-            display: "grid",
-            gap: "1rem",
-            padding: "1.3rem"
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              gap: "0.9rem",
-              alignItems: "center"
-            }}
-          >
+        <article className="challenge-section-card" style={{ width: "min(100%, 38rem)" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "0.9rem", alignItems: "center" }}>
             <span className="eyebrow">{featuredCard.title}</span>
             <CopyButton
               value={featuredCard.promptBody}
@@ -47,82 +32,44 @@ export function AgentPromptSection({
             />
           </div>
 
-          <div
+          <div className="prompt-terminal">
+            <div className="prompt-terminal-bar">
+              <div style={{ display: "inline-flex", gap: "0.45rem", alignItems: "center" }}>
+                <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#fb7185" }} />
+                <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#fbbf24" }} />
+                <span style={{ width: "0.8rem", height: "0.8rem", borderRadius: "999px", background: "#34d399" }} />
+                <span style={{ marginLeft: "0.4rem", opacity: 0.72 }}>terminal</span>
+              </div>
+
+              <span style={{ fontSize: "0.82rem", opacity: 0.75 }}>{featuredCard.referenceRepo}</span>
+            </div>
+
+            <pre className="prompt-terminal-body">{featuredCard.promptBody}</pre>
+          </div>
+
+          <ol
             style={{
-              borderRadius: "var(--radius-lg)",
-              overflow: "hidden",
-              border: "1px solid rgba(255, 120, 120, 0.14)"
+              margin: 0,
+              paddingLeft: "1.2rem",
+              display: "grid",
+              gap: "0.5rem",
+              color: "var(--color-muted)",
+              lineHeight: "var(--line-body)"
             }}
           >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "0.9rem 1rem",
-                background: "rgba(25, 10, 13, 0.92)"
-              }}
-            >
-              <strong>terminal</strong>
-              <span style={{ color: "var(--color-muted)", fontSize: "var(--type-small)" }}>
-                {featuredCard.referenceRepo}
-              </span>
-            </div>
-            <pre
-              style={{
-                margin: 0,
-                padding: "1.15rem",
-                background: "rgba(13, 7, 10, 0.96)",
-                whiteSpace: "pre-wrap",
-                wordBreak: "break-word",
-                lineHeight: 1.7,
-                fontFamily: "var(--font-display)",
-                fontSize: "0.88rem"
-              }}
-            >
-              {featuredCard.promptBody}
-            </pre>
-          </div>
+            {featuredCard.expectedOutput.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ol>
 
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: "1rem"
-            }}
-          >
-            <div style={{ display: "grid", gap: "0.55rem" }}>
-              <strong>{bundle.locale === "zh" ? "目标" : "Goal"}</strong>
-              <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
-                {featuredCard.goal}
-              </p>
-            </div>
-
-            <div style={{ display: "grid", gap: "0.55rem" }}>
-              <strong>{bundle.locale === "zh" ? "怎么用" : "How to use it"}</strong>
-              <ol
-                style={{
-                  margin: 0,
-                  paddingLeft: "1.1rem",
-                  display: "grid",
-                  gap: "0.45rem",
-                  color: "var(--color-muted)"
-                }}
-              >
-                {featuredCard.expectedOutput.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gap: "0.7rem",
-              padding: "1rem",
-              borderRadius: "var(--radius-md)",
-              background: "rgba(255, 255, 255, 0.03)"
+              gap: "0.65rem",
+              padding: "1rem 1.05rem",
+              borderRadius: "1.2rem",
+              background: "#f6f8fb",
+              border: "1px solid rgba(24, 34, 54, 0.06)"
             }}
           >
             <strong>{secondaryCard.title}</strong>

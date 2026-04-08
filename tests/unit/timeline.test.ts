@@ -2,10 +2,14 @@ import { renderHook } from "@testing-library/react";
 import { taskMilestones } from "../../src/content";
 import { useJourneyTimeline } from "../../src/hooks/useJourneyTimeline";
 import {
+  DEFAULT_CYCLE_DURATION_MS,
   advanceTimeline,
   createInitialTimelineState,
   getTimelineProgress,
   jumpToTask,
+  restartTimeline,
+  shouldAutoFocusTask,
+  shouldRecenterTask,
   startTimeline
 } from "../../src/lib/timeline";
 
@@ -67,6 +71,70 @@ describe("timeline engine", () => {
 
     expect(state.hasStarted).toBe(false);
     expect(state.isAutoplay).toBe(false);
+    expect(state.cycleDurationMs).toBe(DEFAULT_CYCLE_DURATION_MS);
     expect(getTimelineProgress(state, taskMilestones)).toBe(0);
+  });
+
+  it("keeps the slower cadence when a custom cycle duration is provided", () => {
+    const state = createInitialTimelineState(taskMilestones, {
+      cycleDurationMs: 4600
+    });
+
+    expect(state.cycleDurationMs).toBe(4600);
+  });
+
+  it("restarts from the first task while preserving the configured cadence", () => {
+    const started = startTimeline(
+      createInitialTimelineState(taskMilestones, {
+        cycleDurationMs: 4600
+      }),
+      taskMilestones
+    );
+    const advanced = advanceTimeline(started, taskMilestones);
+    const restarted = restartTimeline(advanced, taskMilestones);
+
+    expect(restarted.hasStarted).toBe(false);
+    expect(restarted.currentTaskIndex).toBe(0);
+    expect(restarted.currentStageIndex).toBe(0);
+    expect(restarted.cycleDurationMs).toBe(4600);
+  });
+
+  it("only requests task refocus on important timeline transitions", () => {
+    const initial = createInitialTimelineState(taskMilestones);
+    const started = startTimeline(initial, taskMilestones);
+    const minorStage = {
+      ...started,
+      currentStageIndex: 1
+    };
+    const lastStage = {
+      ...started,
+      currentStageIndex: taskMilestones[0].stages.length - 1
+    };
+
+    expect(shouldAutoFocusTask(null, started, taskMilestones)).toBe(true);
+    expect(shouldAutoFocusTask(started, minorStage, taskMilestones)).toBe(false);
+    expect(shouldAutoFocusTask(started, lastStage, taskMilestones)).toBe(true);
+  });
+
+  it("only recenters when the active task drifts outside the comfortable viewport band", () => {
+    expect(
+      shouldRecenterTask(
+        {
+          top: 220,
+          bottom: 720
+        },
+        1000
+      )
+    ).toBe(false);
+
+    expect(
+      shouldRecenterTask(
+        {
+          top: 40,
+          bottom: 600
+        },
+        1000
+      )
+    ).toBe(true);
   });
 });

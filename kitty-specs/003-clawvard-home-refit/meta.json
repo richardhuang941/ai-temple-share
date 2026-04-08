@@ -1,4 +1,18 @@
 {
+  "accept_commit": "afaed86e61b2dd7e6a5a1b0af6b6e41c3975bf9d",
+  "acceptance_history": [
+    {
+      "accept_commit": "afaed86e61b2dd7e6a5a1b0af6b6e41c3975bf9d",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-08T12:10:40.871890+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "1db14a0d7b531359071bfdc0fd04ff0e555e4fed"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-08T12:10:40.871890+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "1db14a0d7b531359071bfdc0fd04ff0e555e4fed",
   "created_at": "2026-04-08T11:08:30.448652+00:00",
   "friendly_name": "Clawvard 风格首页重构与任务语义校正",
   "mission_number": "003",

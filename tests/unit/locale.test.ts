@@ -1,4 +1,5 @@
 import {
+  LOCALE_STORAGE_KEY,
   normalizeLocale,
   persistLocale,
   readStoredLocale,
@@ -49,5 +50,20 @@ describe("locale helpers", () => {
     persistLocale(mockStorage, "en");
 
     expect(readStoredLocale(mockStorage)).toBe("en");
+    expect(storage.get(LOCALE_STORAGE_KEY)).toBe("en");
+  });
+
+  it("falls back to the configured default locale when nothing supported is present", () => {
+    const state = resolvePreferredLocale({
+      storedLocale: "fr",
+      navigatorLanguages: ["fr-FR"],
+      navigatorLanguage: "de-DE",
+      defaultLocale: "en"
+    });
+
+    expect(state).toEqual({
+      locale: "en",
+      source: "system"
+    });
   });
 });
