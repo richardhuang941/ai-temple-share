@@ -1,0 +1,9 @@
+vcs:
+  type: git
+agents:
+  available:
+  - codex
+  selection:
+    preferred_implementer:
+    preferred_reviewer:
+  auto_commit: true
