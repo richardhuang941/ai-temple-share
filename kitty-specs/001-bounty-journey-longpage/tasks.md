@@ -90,12 +90,12 @@ Risks:
 - Dependencies: Depends on WP01
 
 Included subtasks:
-- [ ] T005 定义与 `data-model.md` 对齐的 TypeScript 内容模型与辅助类型 (WP02)
-- [ ] T006 编写 Hero、分享态、阵营与 Agent Prompt 的本地内容模块 (WP02)
-- [ ] T007 编写 Task 1-5 任务里程碑与阶段数据集 (WP02)
-- [ ] T008 实现内容派生与显示态映射工具 (WP02)
-- [ ] T009 实现 reduced-motion 与自动播放时间轴 hooks (WP02)
-- [ ] T010 为内容映射和时间轴转换补齐单元测试 (WP02)
+- [x] T005 定义与 `data-model.md` 对齐的 TypeScript 内容模型与辅助类型 (WP02)
+- [x] T006 编写 Hero、分享态、阵营与 Agent Prompt 的本地内容模块 (WP02)
+- [x] T007 编写 Task 1-5 任务里程碑与阶段数据集 (WP02)
+- [x] T008 实现内容派生与显示态映射工具 (WP02)
+- [x] T009 实现 reduced-motion 与自动播放时间轴 hooks (WP02)
+- [x] T010 为内容映射和时间轴转换补齐单元测试 (WP02)
 
 Implementation sketch:
 1. 先把计划中的数据模型转成 TS 类型。
