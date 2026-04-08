@@ -27,7 +27,7 @@ subtasks:
 - T003
 - T004
 agent: "codex"
-shell_pid: "20656"
+shell_pid: "21942"
 assignee: "codex"
 history:
 - at: '2026-04-08T11:18:51Z'
@@ -204,3 +204,4 @@ Lock the new result model so later UI refits cannot reintroduce inconsistent or 
 ## Activity Log
 
 - 2026-04-08T11:34:52Z – codex – shell_pid=20656 – Started WP01 implementation in lane-a
+- 2026-04-08T11:35:19Z – codex – shell_pid=21942 – Ready for review: seeded result model and task semantics aligned
