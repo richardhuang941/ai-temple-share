@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-08T08:31:18.688501+00:00",
+  "friendly_name": "bounty journey longpage",
+  "mission_number": "001",
+  "mission_slug": "001-bounty-journey-longpage",
+  "mission_type": "software-dev",
+  "slug": "001-bounty-journey-longpage",
+  "target_branch": "main"
+}
