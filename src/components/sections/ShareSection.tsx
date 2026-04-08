@@ -1,62 +1,93 @@
 import {
-  agentProfileSnapshot,
-  selectedFaction,
-  shareSummary,
-  taskMilestones
+  getLocalizedLongpageContent,
+  type LocalizedContentBundle,
+  type ShareMode
 } from "../../content";
+import { useState } from "react";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
 import SectionHeading from "../common/SectionHeading";
 import ShareSummaryCard from "../share/ShareSummaryCard";
 
-const shareView = deriveShareSummaryView(
-  agentProfileSnapshot,
-  shareSummary,
-  taskMilestones,
-  selectedFaction
-);
+const challengeLink = "https://clawvard.school/share?id=eval-a2af68e5";
 
-export function ShareSection() {
+interface ShareSectionProps {
+  bundle?: LocalizedContentBundle;
+}
+
+export function ShareSection({
+  bundle = getLocalizedLongpageContent("zh")
+}: ShareSectionProps) {
+  const [shareMode, setShareMode] = useState<ShareMode>("image");
+  const shareView = deriveShareSummaryView(
+    bundle.agentProfile,
+    bundle.shareSummary,
+    bundle.tasks,
+    bundle.selectedFaction
+  );
+
   return (
     <section id="share" aria-labelledby="share-heading">
       <div style={{ display: "grid", gap: "1.5rem" }}>
         <SectionHeading
-          eyebrow="Share Result"
-          title="把这张 Agent 战报截出去，别人不用看完整页也知道你已经走到哪。"
-          summary="分享区只保留最需要被记住的结果：Agent 打分、共振状态、阵营归属，以及一条不误导用户的资格说明。"
+          eyebrow={bundle.shareSection.eyebrow}
+          title={bundle.shareSection.title}
+          summary={bundle.shareSection.summary}
           id="share-heading"
         />
 
         <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
-          gap: "1rem",
-          alignItems: "start"
-        }}
+          className="shell-panel"
+          style={{
+            display: "grid",
+            gap: "1.25rem",
+            padding: "clamp(1.25rem, 3vw, 2rem)"
+          }}
         >
-          <ShareSummaryCard summary={shareView} />
-
-          <aside
-            className="shell-panel"
+          <div
             style={{
-              display: "grid",
-              gap: "0.95rem",
-              padding: "1.1rem 1.2rem"
+              display: "inline-grid",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: "0.45rem",
+              padding: "0.4rem",
+              borderRadius: "var(--radius-pill)",
+              background: "rgba(255, 255, 255, 0.04)"
             }}
           >
-            <span className="eyebrow">传播提醒</span>
-            <div style={{ color: "var(--color-muted)", lineHeight: 1.7 }}>
-              <p style={{ margin: 0 }}>
-                这块区域默认就是截图友好的结果态，所以它必须独立成立，不能靠 Journey 区补语境。
-              </p>
-              <p style={{ margin: 0 }}>
-                这里的表达固定使用 Agent 作为主体，不回退成旧的非 Agent 主语写法。
-              </p>
-              <p style={{ margin: 0 }}>
-                同时也会明确：Task 4 还要去 SHIT Skills 原生动作里继续，页面不会假装已经替你完成。
-              </p>
-            </div>
-          </aside>
+            {([
+              { mode: "image", label: bundle.chrome.shareImageLabel },
+              { mode: "text", label: bundle.chrome.shareTextLabel }
+            ] as const).map((item) => {
+              const isActive = shareMode === item.mode;
+
+              return (
+                <button
+                  key={item.mode}
+                  type="button"
+                  onClick={() => setShareMode(item.mode)}
+                  style={{
+                    border: "none",
+                    minHeight: "3.35rem",
+                    borderRadius: "var(--radius-pill)",
+                    background: isActive ? "rgba(255,255,255,0.12)" : "transparent",
+                    color: "var(--color-ink)",
+                    cursor: "pointer",
+                    fontWeight: 700
+                  }}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+
+          <ShareSummaryCard
+            summary={shareView}
+            mode={shareMode}
+            shareCopy={bundle.shareSection}
+            chromeCopy={bundle.chrome}
+            challengeLink={challengeLink}
+            locale={bundle.locale}
+          />
         </div>
       </div>
     </section>

@@ -2,12 +2,19 @@ export type TaskId = "task-1" | "task-2" | "task-3" | "task-4" | "task-5";
 export type TaskStageStatus = "pending" | "active" | "done";
 export type JourneyCardState = "upcoming" | "active" | "completed";
 export type FocusTarget = "journey" | "share";
+export type LocaleCode = "zh" | "en";
+export type LocaleSource = "system" | "stored" | "manual";
+export type ShareMode = "image" | "text";
 
 export interface HeroContent {
   eyebrow: string;
   title: string;
   summary: string;
   ctaLabel: string;
+  primaryCtaLabel?: string;
+  secondaryCtaLabel?: string;
+  tertiaryCtaLabel?: string;
+  disclaimer?: string;
 }
 
 export interface AgentProfileSnapshot {
@@ -49,6 +56,9 @@ export interface ShareSummary {
   factionStatus: string;
   supportingFacts?: string[];
   qualificationNote: string;
+  titleTemplate?: string;
+  scoreSummaryTemplate?: string;
+  factionStatusTemplate?: string;
 }
 
 export interface AgentPromptCard {
@@ -75,7 +85,67 @@ export interface LongpageContent {
   agentPromptCards: AgentPromptCard[];
 }
 
+export interface ChromeCopy {
+  languageLabel: string;
+  languageNames: Record<LocaleCode, string>;
+  acceptChallengeLabel: string;
+  shareChallengeLabel: string;
+  watchSimulationLabel: string;
+  shareImageLabel: string;
+  shareTextLabel: string;
+  copyLabel: string;
+  copiedLabel: string;
+  simulationIdleLabel: string;
+  simulationDisclaimer: string;
+}
+
+export interface JourneySectionCopy {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  helperCards: Array<{
+    title: string;
+    body: string;
+  }>;
+  startLabel: string;
+  restartLabel: string;
+  advanceLabel: string;
+  pauseLabel: string;
+  resumeLabel: string;
+}
+
+export interface ShareSectionCopy {
+  eyebrow: string;
+  title: string;
+  summary: string;
+  imageCaption: string;
+  textBody: string;
+  challengeLinkLabel: string;
+}
+
+export interface AgentPromptSectionCopy {
+  eyebrow: string;
+  title: string;
+  summary: string;
+}
+
+export interface LocaleState {
+  locale: LocaleCode;
+  source: LocaleSource;
+}
+
+export interface LocalizedContentBundle extends LongpageContent {
+  locale: LocaleCode;
+  chrome: ChromeCopy;
+  journey: JourneySectionCopy;
+  shareSection: ShareSectionCopy;
+  agentPromptSection: AgentPromptSectionCopy;
+  factionOptions: FactionOption[];
+  selectedFaction: FactionOption;
+}
+
 export interface SimulationTimelineState {
+  hasStarted?: boolean;
   currentTaskIndex: number;
   currentStageIndex: number;
   isAutoplay: boolean;

@@ -3,19 +3,23 @@
   --font-display: "Azeret Mono", "IBM Plex Mono", "SFMono-Regular", monospace;
   --font-body: "Manrope", "SF Pro Display", "Segoe UI", sans-serif;
 
-  --color-ink: #f4f7fb;
-  --color-muted: rgba(221, 230, 242, 0.72);
-  --color-surface: rgba(9, 14, 23, 0.84);
-  --color-surface-strong: rgba(14, 21, 33, 0.96);
-  --color-border: rgba(142, 184, 255, 0.18);
-  --color-accent: #8ee4ff;
-  --color-accent-strong: #2f9dff;
-  --color-success: #8bf6c6;
-  --color-warning: #ffd36b;
-  --color-danger: #ff8f8f;
-  --color-highlight: #f8a96b;
-  --color-bg-top: #061018;
-  --color-bg-bottom: #121b31;
+  --coral-bright: #ff4d4d;
+  --coral-mid: #e63946;
+  --coral-dark: #991b1b;
+
+  --color-ink: #fff6f3;
+  --color-muted: rgba(255, 229, 225, 0.74);
+  --color-surface: rgba(32, 10, 12, 0.82);
+  --color-surface-strong: rgba(44, 13, 17, 0.96);
+  --color-border: rgba(255, 108, 108, 0.22);
+  --color-accent: #ff8a72;
+  --color-accent-strong: var(--coral-bright);
+  --color-success: #f6b56c;
+  --color-warning: #ffd37a;
+  --color-danger: #ff9ea1;
+  --color-highlight: #ff9e7a;
+  --color-bg-top: #13080a;
+  --color-bg-bottom: #2b1015;
 
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
@@ -42,4 +46,15 @@
   --step-base: 280ms;
   --step-slow: 520ms;
   --ease-emphatic: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --type-display: clamp(3rem, 7vw, 5.25rem);
+  --type-heading-lg: clamp(2rem, 4vw, 3.25rem);
+  --type-heading-md: clamp(1.25rem, 2.4vw, 1.75rem);
+  --type-body: 1rem;
+  --type-small: 0.9375rem;
+  --type-eyebrow: 0.76rem;
+
+  --line-display: 0.95;
+  --line-heading: 1.08;
+  --line-body: 1.7;
 }

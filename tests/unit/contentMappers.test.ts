@@ -1,6 +1,7 @@
 import {
   agentProfileSnapshot,
   agentPromptCards,
+  getLocalizedLongpageContent,
   selectedFaction,
   shareSummary,
   taskMilestones
@@ -62,5 +63,20 @@ describe("content mappers", () => {
     expect(agentPromptCards).toHaveLength(2);
     expect(agentPromptCards[0].referenceRepo).toContain("Claws-Temple/claws-temple-bounty2.0-skills");
     expect(agentPromptCards[0].promptBody).toContain("Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills");
+  });
+
+  it("can derive an English share summary from the localized content bundle", () => {
+    const localized = getLocalizedLongpageContent("en");
+    const view = deriveShareSummaryView(
+      localized.agentProfile,
+      localized.shareSummary,
+      localized.tasks,
+      localized.selectedFaction
+    );
+
+    expect(localized.hero.title).toContain("Agent");
+    expect(view.scoreSummary).toContain("Agent score 92 / 100");
+    expect(view.resonanceStatus).toBe("Resonance completed");
+    expect(view.factionStatus).toContain("Metamorphs");
   });
 });

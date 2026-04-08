@@ -1,97 +1,141 @@
-import { agentPromptCards } from "../../content";
+import { type LocalizedContentBundle } from "../../content";
 import CopyButton from "../common/CopyButton";
 import SectionHeading from "../common/SectionHeading";
 
-export function AgentPromptSection() {
+interface AgentPromptSectionProps {
+  bundle: LocalizedContentBundle;
+}
+
+export function AgentPromptSection({
+  bundle
+}: AgentPromptSectionProps) {
+  const featuredCard = bundle.agentPromptCards[0];
+  const secondaryCard = bundle.agentPromptCards[1];
+
   return (
     <section id="agent-prompt" aria-labelledby="agent-prompt-heading">
       <div style={{ display: "grid", gap: "1.5rem" }}>
         <SectionHeading
-          eyebrow="Agent Handoff"
-          title="把真实流程交回给 Agent，而不是把这张演示页当作终点。"
-          summary="下面的 Prompt 不是泛化命令，而是专门为 Claws Temple 和 `claws-temple-bounty2.0-skills` 准备的 handoff 卡。复制出去之后，Agent 就该继续真实路径，而不是停在战报层。"
+          eyebrow={bundle.agentPromptSection.eyebrow}
+          title={bundle.agentPromptSection.title}
+          summary={bundle.agentPromptSection.summary}
           id="agent-prompt-heading"
         />
 
-        <div
+        <article
+          className="shell-panel"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1rem"
+            gap: "1rem",
+            padding: "1.3rem"
           }}
         >
-          {agentPromptCards.map((card) => (
-            <article
-              key={card.title}
-              className="shell-panel"
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "space-between",
+              gap: "0.9rem",
+              alignItems: "center"
+            }}
+          >
+            <span className="eyebrow">{featuredCard.title}</span>
+            <CopyButton
+              value={featuredCard.promptBody}
+              label={bundle.chrome.copyLabel}
+              copiedLabel={bundle.chrome.copiedLabel}
+            />
+          </div>
+
+          <div
+            style={{
+              borderRadius: "var(--radius-lg)",
+              overflow: "hidden",
+              border: "1px solid rgba(255, 120, 120, 0.14)"
+            }}
+          >
+            <div
               style={{
-                display: "grid",
-                gap: "1rem",
-                padding: "1.2rem 1.25rem"
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                padding: "0.9rem 1rem",
+                background: "rgba(25, 10, 13, 0.92)"
               }}
             >
-              <div style={{ display: "grid", gap: "0.45rem" }}>
-                <span className="eyebrow">Prompt Card</span>
-                <h3 style={{ margin: 0, fontSize: "1.3rem", lineHeight: 1.15 }}>{card.title}</h3>
-                <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: 1.6 }}>{card.goal}</p>
-              </div>
+              <strong>terminal</strong>
+              <span style={{ color: "var(--color-muted)", fontSize: "var(--type-small)" }}>
+                {featuredCard.referenceRepo}
+              </span>
+            </div>
+            <pre
+              style={{
+                margin: 0,
+                padding: "1.15rem",
+                background: "rgba(13, 7, 10, 0.96)",
+                whiteSpace: "pre-wrap",
+                wordBreak: "break-word",
+                lineHeight: 1.7,
+                fontFamily: "var(--font-display)",
+                fontSize: "0.88rem"
+              }}
+            >
+              {featuredCard.promptBody}
+            </pre>
+          </div>
 
-              <div style={{ display: "grid", gap: "0.55rem" }}>
-                <strong>上下文</strong>
-                <ul style={{ margin: 0, paddingLeft: "1.15rem", color: "var(--color-muted)", display: "grid", gap: "0.45rem" }}>
-                  {card.context.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </div>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: "1rem"
+            }}
+          >
+            <div style={{ display: "grid", gap: "0.55rem" }}>
+              <strong>{bundle.locale === "zh" ? "目标" : "Goal"}</strong>
+              <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
+                {featuredCard.goal}
+              </p>
+            </div>
 
-              <div
+            <div style={{ display: "grid", gap: "0.55rem" }}>
+              <strong>{bundle.locale === "zh" ? "怎么用" : "How to use it"}</strong>
+              <ol
                 style={{
-                  padding: "0.95rem 1rem",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.04)"
+                  margin: 0,
+                  paddingLeft: "1.1rem",
+                  display: "grid",
+                  gap: "0.45rem",
+                  color: "var(--color-muted)"
                 }}
               >
-                <strong style={{ display: "block", marginBottom: "0.35rem" }}>目标仓库</strong>
-                <a href={card.referenceRepo} style={{ color: "var(--color-accent)", wordBreak: "break-word" }}>
-                  {card.referenceRepo}
-                </a>
-              </div>
+                {featuredCard.expectedOutput.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
 
-              <div style={{ display: "grid", gap: "0.55rem" }}>
-                <strong>Prompt 正文</strong>
-                <pre
-                  style={{
-                    margin: 0,
-                    padding: "1rem",
-                    borderRadius: "var(--radius-md)",
-                    background: "rgba(8, 15, 25, 0.94)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                    whiteSpace: "pre-wrap",
-                    wordBreak: "break-word",
-                    lineHeight: 1.65,
-                    fontFamily: "var(--font-display)",
-                    fontSize: "0.86rem"
-                  }}
-                >
-                  {card.promptBody}
-                </pre>
-              </div>
-
-              <div style={{ display: "grid", gap: "0.55rem" }}>
-                <strong>预期输出</strong>
-                <ul style={{ margin: 0, paddingLeft: "1.15rem", color: "var(--color-muted)", display: "grid", gap: "0.45rem" }}>
-                  {card.expectedOutput.map((item) => <li key={item}>{item}</li>)}
-                </ul>
-              </div>
-
-              <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem", alignItems: "center" }}>
-                <span style={{ color: "var(--color-muted)", lineHeight: 1.5 }}>
-                  复制后就可以把这张演示页交回给 Agent，让它继续真实执行。
-                </span>
-                <CopyButton value={card.promptBody} />
-              </div>
-            </article>
-          ))}
-        </div>
+          <div
+            style={{
+              display: "grid",
+              gap: "0.7rem",
+              padding: "1rem",
+              borderRadius: "var(--radius-md)",
+              background: "rgba(255, 255, 255, 0.03)"
+            }}
+          >
+            <strong>{secondaryCard.title}</strong>
+            <p style={{ margin: 0, color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
+              {secondaryCard.goal}
+            </p>
+            <CopyButton
+              value={secondaryCard.promptBody}
+              label={bundle.chrome.copyLabel}
+              copiedLabel={bundle.chrome.copiedLabel}
+            />
+          </div>
+        </article>
       </div>
     </section>
   );

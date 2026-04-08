@@ -21,12 +21,32 @@ export function createInitialTimelineState(
   const isReducedMotion = options?.isReducedMotion ?? false;
 
   return {
+    hasStarted: false,
     currentTaskIndex: tasks.length > 0 ? 0 : -1,
     currentStageIndex: tasks.length > 0 ? 0 : -1,
-    isAutoplay: resolveAutoplay(isReducedMotion, options?.isAutoplay),
+    isAutoplay: false,
     isReducedMotion,
     cycleDurationMs: options?.cycleDurationMs ?? DEFAULT_CYCLE_DURATION_MS,
     isComplete: false,
+    focusTarget: "journey"
+  };
+}
+
+export function startTimeline(
+  state: SimulationTimelineState,
+  tasks: TaskMilestone[]
+): SimulationTimelineState {
+  if (tasks.length === 0) {
+    return state;
+  }
+
+  return {
+    ...state,
+    hasStarted: true,
+    isAutoplay: resolveAutoplay(state.isReducedMotion, true),
+    isComplete: false,
+    currentTaskIndex: state.currentTaskIndex < 0 ? 0 : state.currentTaskIndex,
+    currentStageIndex: state.currentStageIndex < 0 ? 0 : state.currentStageIndex,
     focusTarget: "journey"
   };
 }
@@ -52,6 +72,7 @@ export function advanceTimeline(
   if (state.currentStageIndex < currentTask.stages.length - 1) {
     return {
       ...state,
+      hasStarted: true,
       currentStageIndex: state.currentStageIndex + 1,
       focusTarget: "journey"
     };
@@ -60,6 +81,7 @@ export function advanceTimeline(
   if (state.currentTaskIndex < tasks.length - 1) {
     return {
       ...state,
+      hasStarted: true,
       currentTaskIndex: state.currentTaskIndex + 1,
       currentStageIndex: 0,
       focusTarget: "journey"
@@ -68,6 +90,7 @@ export function advanceTimeline(
 
   return {
     ...state,
+    hasStarted: true,
     isAutoplay: false,
     isComplete: true,
     focusTarget: "share"
@@ -87,6 +110,7 @@ export function jumpToTask(
 
   return {
     ...state,
+    hasStarted: true,
     currentTaskIndex: clampedTaskIndex,
     currentStageIndex: 0,
     isComplete: false,
@@ -100,7 +124,6 @@ export function restartTimeline(
 ): SimulationTimelineState {
   return createInitialTimelineState(tasks, {
     cycleDurationMs: state.cycleDurationMs,
-    isAutoplay: state.isAutoplay,
     isReducedMotion: state.isReducedMotion
   });
 }
@@ -112,6 +135,10 @@ export function getTimelineProgress(
   const totalStages = tasks.reduce((sum, task) => sum + task.stages.length, 0);
 
   if (totalStages === 0) {
+    return 0;
+  }
+
+  if (!state.hasStarted) {
     return 0;
   }
 

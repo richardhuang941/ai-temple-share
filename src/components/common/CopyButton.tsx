@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 interface CopyButtonProps {
   value: string;
   label?: string;
+  copiedLabel?: string;
 }
 
 function fallbackCopy(value: string): void {
@@ -19,7 +20,8 @@ function fallbackCopy(value: string): void {
 
 export function CopyButton({
   value,
-  label = "复制 Prompt"
+  label = "复制 Prompt",
+  copiedLabel = "已复制"
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<number | null>(null);
@@ -60,8 +62,8 @@ export function CopyButton({
       type="button"
       onClick={handleClick}
       style={{
-        border: "1px solid rgba(142, 228, 255, 0.26)",
-        background: copied ? "rgba(139, 246, 198, 0.16)" : "rgba(12, 20, 31, 0.92)",
+        border: "1px solid rgba(255, 120, 120, 0.28)",
+        background: copied ? "rgba(255, 156, 126, 0.18)" : "rgba(28, 11, 14, 0.94)",
         color: "var(--color-ink)",
         padding: "0.8rem 1rem",
         borderRadius: "var(--radius-md)",
@@ -70,7 +72,7 @@ export function CopyButton({
       }}
       aria-live="polite"
     >
-      {copied ? "已复制" : label}
+      {copied ? copiedLabel : label}
     </button>
   );
 }

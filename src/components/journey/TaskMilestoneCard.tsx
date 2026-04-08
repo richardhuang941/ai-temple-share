@@ -1,10 +1,12 @@
 import type { CSSProperties } from "react";
-import type { DerivedTaskMilestone } from "../../content";
+import type { DerivedTaskMilestone, LocaleCode } from "../../content";
 import CompletionBadge from "./CompletionBadge";
 import StagePulse from "./StagePulse";
 
 interface TaskMilestoneCardProps {
   task: DerivedTaskMilestone;
+  locale: LocaleCode;
+  hasStarted: boolean;
   isReducedMotion: boolean;
   onSelect: () => void;
 }
@@ -21,10 +23,13 @@ function getFeaturedProof(task: DerivedTaskMilestone): string | undefined {
 
 export function TaskMilestoneCard({
   task,
+  locale,
+  hasStarted,
   isReducedMotion,
   onSelect
 }: TaskMilestoneCardProps) {
   const featuredProof = getFeaturedProof(task);
+  const isActive = hasStarted && task.state === "active";
   const cardStyle: CSSProperties = {
     display: "grid",
     gap: "1rem",
@@ -32,18 +37,18 @@ export function TaskMilestoneCard({
     minHeight: "100%",
     borderRadius: "var(--radius-lg)",
     border:
-      task.state === "active"
-        ? "1px solid rgba(142, 228, 255, 0.28)"
+      isActive
+        ? "1px solid rgba(255, 120, 120, 0.3)"
         : "1px solid rgba(255, 255, 255, 0.08)",
     background:
-      task.state === "active"
-        ? "linear-gradient(180deg, rgba(16, 26, 39, 0.98), rgba(8, 15, 25, 0.94))"
-        : "linear-gradient(180deg, rgba(10, 16, 26, 0.8), rgba(7, 12, 21, 0.92))",
+      isActive
+        ? "linear-gradient(180deg, rgba(39, 13, 17, 0.98), rgba(24, 8, 11, 0.94))"
+        : "linear-gradient(180deg, rgba(31, 11, 14, 0.8), rgba(21, 8, 11, 0.92))",
     boxShadow:
-      task.state === "active" && !isReducedMotion
-        ? "0 0 0 1px rgba(142, 228, 255, 0.12), 0 24px 65px rgba(5, 11, 20, 0.4)"
+      isActive && !isReducedMotion
+        ? "0 0 0 1px rgba(255, 120, 120, 0.12), 0 24px 65px rgba(17, 6, 8, 0.42)"
         : "0 18px 42px rgba(2, 7, 19, 0.28)",
-    transform: task.state === "active" && !isReducedMotion ? "translateY(-4px)" : "none",
+    transform: isActive && !isReducedMotion ? "translateY(-4px)" : "none",
     transition:
       "transform var(--step-base) var(--ease-emphatic), box-shadow var(--step-base) var(--ease-emphatic), border-color var(--step-base) var(--ease-emphatic)"
   };
@@ -58,7 +63,7 @@ export function TaskMilestoneCard({
               fontSize: "0.78rem",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: task.state === "active" ? "var(--color-accent)" : "var(--color-muted)"
+              color: isActive ? "var(--color-accent)" : "var(--color-muted)"
             }}
           >
             Task {task.order.toString().padStart(2, "0")}
@@ -66,10 +71,18 @@ export function TaskMilestoneCard({
           <h3 style={{ margin: 0, fontSize: "1.4rem", lineHeight: 1.2 }}>{task.brandedName}</h3>
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "flex-end", gap: "0.5rem" }}>
-          {task.isExternalFlow ? <CompletionBadge tone="warning">原生流</CompletionBadge> : null}
-          {task.isOptional ? <CompletionBadge tone="default">可选项</CompletionBadge> : null}
-          {task.state === "completed" ? <CompletionBadge tone="success">已走完</CompletionBadge> : null}
-          {task.state === "active" ? <CompletionBadge tone="warning">当前主舞台</CompletionBadge> : null}
+          {task.isExternalFlow ? (
+            <CompletionBadge tone="warning">{locale === "zh" ? "原生流" : "Native flow"}</CompletionBadge>
+          ) : null}
+          {task.isOptional ? (
+            <CompletionBadge tone="default">{locale === "zh" ? "可选项" : "Optional"}</CompletionBadge>
+          ) : null}
+          {task.state === "completed" ? (
+            <CompletionBadge tone="success">{locale === "zh" ? "已走完" : "Completed"}</CompletionBadge>
+          ) : null}
+          {isActive ? (
+            <CompletionBadge tone="warning">{locale === "zh" ? "当前主舞台" : "Current stage"}</CompletionBadge>
+          ) : null}
         </div>
       </div>
 
@@ -92,7 +105,9 @@ export function TaskMilestoneCard({
             background: "rgba(255, 255, 255, 0.04)"
           }}
         >
-          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>完成徽记</span>
+          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>
+            {locale === "zh" ? "完成徽记" : "Completion badge"}
+          </span>
           <strong>{task.completionBadge}</strong>
         </div>
         <div
@@ -102,7 +117,9 @@ export function TaskMilestoneCard({
             background: "rgba(255, 255, 255, 0.04)"
           }}
         >
-          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>推进进度</span>
+          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>
+            {locale === "zh" ? "推进进度" : "Progress"}
+          </span>
           <strong>{Math.round(task.progressRatio * 100)}%</strong>
         </div>
         <div
@@ -112,8 +129,10 @@ export function TaskMilestoneCard({
             background: "rgba(255, 255, 255, 0.04)"
           }}
         >
-          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>高亮证据</span>
-          <strong>{featuredProof ?? "等待当前阶段点亮"}</strong>
+          <span style={{ display: "block", color: "var(--color-muted)", fontSize: "0.82rem" }}>
+            {locale === "zh" ? "高亮证据" : "Featured proof"}
+          </span>
+          <strong>{featuredProof ?? (locale === "zh" ? "等待当前阶段点亮" : "Waiting for the next lit stage")}</strong>
         </div>
       </div>
 
@@ -127,8 +146,8 @@ export function TaskMilestoneCard({
         type="button"
         onClick={onSelect}
         style={{
-          border: "1px solid rgba(142, 228, 255, 0.22)",
-          background: "rgba(12, 20, 31, 0.88)",
+          border: "1px solid rgba(255, 120, 120, 0.2)",
+          background: "rgba(28, 11, 14, 0.88)",
           color: "var(--color-ink)",
           padding: "0.85rem 1rem",
           borderRadius: "var(--radius-md)",
@@ -136,9 +155,13 @@ export function TaskMilestoneCard({
           cursor: "pointer"
         }}
       >
-        <strong style={{ display: "block", marginBottom: "0.2rem" }}>{task.cta ?? "继续查看下一步"}</strong>
+        <strong style={{ display: "block", marginBottom: "0.2rem" }}>
+          {task.cta ?? (locale === "zh" ? "继续查看下一步" : "Continue to the next step")}
+        </strong>
         <span style={{ color: "var(--color-muted)", fontSize: "0.9rem" }}>
-          点击可把聚焦切到这个任务，从头看它的阶段推进。
+          {locale === "zh"
+            ? "点击可把聚焦切到这个任务，从头看它的阶段推进。"
+            : "Click to move focus to this task and replay its stage progression."}
         </span>
       </button>
     </article>

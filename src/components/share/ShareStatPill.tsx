@@ -8,18 +8,18 @@ interface ShareStatPillProps {
 
 const tonePalette: Record<NonNullable<ShareStatPillProps["tone"]>, CSSProperties> = {
   accent: {
-    borderColor: "rgba(142, 228, 255, 0.28)",
-    background: "rgba(142, 228, 255, 0.1)",
-    color: "var(--color-accent)"
+    borderColor: "rgba(255, 120, 120, 0.24)",
+    background: "rgba(255, 120, 120, 0.1)",
+    color: "var(--coral-bright)"
   },
   success: {
-    borderColor: "rgba(139, 246, 198, 0.24)",
-    background: "rgba(139, 246, 198, 0.1)",
-    color: "var(--color-success)"
+    borderColor: "rgba(255, 168, 122, 0.24)",
+    background: "rgba(255, 168, 122, 0.1)",
+    color: "var(--color-highlight)"
   },
   warning: {
-    borderColor: "rgba(255, 211, 107, 0.24)",
-    background: "rgba(255, 211, 107, 0.1)",
+    borderColor: "rgba(255, 214, 126, 0.24)",
+    background: "rgba(255, 214, 126, 0.1)",
     color: "var(--color-warning)"
   }
 };

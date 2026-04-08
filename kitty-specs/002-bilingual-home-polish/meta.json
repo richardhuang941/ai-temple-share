@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "pr",
+      "accepted_at": "2026-04-08T10:40:47.047603+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "2adfd8bb518459a52ecf6b0f43cb28cb2609a024"
+    }
+  ],
+  "acceptance_mode": "pr",
+  "accepted_at": "2026-04-08T10:40:47.047603+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "2adfd8bb518459a52ecf6b0f43cb28cb2609a024",
   "created_at": "2026-04-08T09:56:42.195597+00:00",
   "friendly_name": "Claws Temple 首页双语与转化收口",
   "mission_number": "002",

@@ -16,8 +16,8 @@ subtasks:
 - T011
 - T012
 phase: Phase 3 - Sharing Surface
-assignee: ''
-agent: ''
+assignee: "codex"
+agent: "codex"
 shell_pid: '16680'
 history:
 - timestamp: '2026-04-08T10:00:00Z'

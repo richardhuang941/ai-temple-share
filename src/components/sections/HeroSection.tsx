@@ -1,151 +1,258 @@
 import {
-  agentProfileSnapshot,
-  heroContent,
-  selectedFaction,
-  shareSummary,
-  taskMilestones
+  type LocalizedContentBundle,
+  type LocaleCode
 } from "../../content";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
-import SectionHeading from "../common/SectionHeading";
+import LocaleSwitcher from "../common/LocaleSwitcher";
 
-const shareView = deriveShareSummaryView(
-  agentProfileSnapshot,
-  shareSummary,
-  taskMilestones,
-  selectedFaction
-);
+interface HeroSectionProps {
+  bundle: LocalizedContentBundle;
+  locale: LocaleCode;
+  onLocaleChange: (locale: LocaleCode) => void;
+}
 
-export function HeroSection() {
+export function HeroSection({
+  bundle,
+  locale,
+  onLocaleChange
+}: HeroSectionProps) {
+  const shareView = deriveShareSummaryView(
+    bundle.agentProfile,
+    bundle.shareSummary,
+    bundle.tasks,
+    bundle.selectedFaction
+  );
+  const communityLabel =
+    bundle.locale === "zh" ? "已在社区分享结果" : "Shared back to the community";
+
   return (
     <section id="top" aria-labelledby="hero-heading">
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-          gap: "clamp(1.4rem, 4vw, 2.6rem)",
-          alignItems: "stretch"
+          gap: "1.5rem",
+          justifyItems: "center"
         }}
       >
         <div
           className="shell-panel"
           style={{
             display: "grid",
-            gap: "1.3rem",
-            padding: "clamp(1.25rem, 3vw, 2rem)"
+            gap: "1.4rem",
+            width: "min(100%, 42rem)",
+            padding: "clamp(1.3rem, 4vw, 2rem)"
           }}
         >
-          <SectionHeading
-            eyebrow={heroContent.eyebrow}
-            title={heroContent.title}
-            summary={heroContent.summary}
-            id="hero-heading"
-          />
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "0.85rem",
+              alignItems: "center",
+              justifyContent: "space-between"
+            }}
+          >
+            <span className="eyebrow">{bundle.hero.eyebrow}</span>
+            <LocaleSwitcher
+              currentLocale={locale}
+              copy={bundle.chrome}
+              onLocaleChange={onLocaleChange}
+            />
+          </div>
 
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.85rem" }}>
-            <a
-              href="#journey"
+          <div style={{ display: "grid", gap: "1rem" }}>
+            <h1
+              id="hero-heading"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0.95rem 1.2rem",
-                borderRadius: "var(--radius-md)",
-                background: "linear-gradient(90deg, var(--color-accent-strong), var(--color-highlight))",
-                color: "#081018",
-                fontWeight: 700
+                margin: 0,
+                fontSize: "var(--type-display)",
+                lineHeight: "var(--line-display)",
+                letterSpacing: "-0.04em"
               }}
             >
-              {heroContent.ctaLabel}
-            </a>
-            <span
+              {bundle.hero.title}
+            </h1>
+            <p
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                padding: "0.95rem 1.1rem",
-                borderRadius: "var(--radius-md)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                color: "var(--color-muted)"
+                margin: 0,
+                color: "var(--color-muted)",
+                fontSize: "var(--type-body)",
+                lineHeight: "var(--line-body)"
               }}
             >
-              演示页，不代替真实注册、共振、宣誓或发布动作
-            </span>
+              {bundle.hero.summary}
+            </p>
           </div>
 
           <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 180px), 1fr))",
-          gap: "0.85rem"
-        }}
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1.1fr)",
+              gap: "1rem",
+              alignItems: "center"
+            }}
           >
-            <article
+            <div
               style={{
-                padding: "1rem",
-                borderRadius: "var(--radius-md)",
-                background: "rgba(255, 255, 255, 0.04)"
+                display: "grid",
+                placeItems: "center",
+                gap: "0.7rem",
+                padding: "1.25rem",
+                borderRadius: "var(--radius-lg)",
+                background: "linear-gradient(145deg, var(--coral-bright), var(--color-highlight))",
+                color: "#290b0e"
               }}
             >
-              <strong style={{ display: "block", marginBottom: "0.35rem" }}>{shareView.scoreSummary}</strong>
-              <span style={{ color: "var(--color-muted)" }}>先看清 Agent 的形状，再继续后面的旅程。</span>
-            </article>
-            <article
-              style={{
-                padding: "1rem",
-                borderRadius: "var(--radius-md)",
-                background: "rgba(255, 255, 255, 0.04)"
-              }}
-            >
-              <strong style={{ display: "block", marginBottom: "0.35rem" }}>{shareView.resonanceStatus}</strong>
-              <span style={{ color: "var(--color-muted)" }}>Task 2 把用户ID、开放寻配和 Token 节奏一起带起来。</span>
-            </article>
-            <article
-              style={{
-                padding: "1rem",
-                borderRadius: "var(--radius-md)",
-                background: "rgba(255, 255, 255, 0.04)"
-              }}
-            >
-              <strong style={{ display: "block", marginBottom: "0.35rem" }}>{shareView.factionStatus}</strong>
-              <span style={{ color: "var(--color-muted)" }}>Task 3 归属稳定后，再切到 Task 4 的原生动作。</span>
-            </article>
-          </div>
-        </div>
-
-        <aside
-          className="shell-panel"
-          style={{
-            display: "grid",
-            gap: "1rem",
-            padding: "clamp(1.1rem, 2.6vw, 1.6rem)"
-          }}
-        >
-          <span className="eyebrow">Roadmap Snapshot</span>
-          <h3 style={{ margin: 0, fontSize: "1.35rem", lineHeight: 1.15 }}>
-            Task 1-3 在主线路径里推进，Task 4 切进 SHIT Skills，Task 5 保持可选。
-          </h3>
-          <div style={{ display: "grid", gap: "0.8rem" }}>
-            {[
-              "Task 1：先把 Agent 的坐标和类型结果亮起来。",
-              "Task 2：完成身份入口、用户ID 解析、共振和 Token 节奏。",
-              "Task 3：选择部落方向并把归属推进到 Telegram 后续动作。",
-              "Task 4：默认推荐 publish，但 comment 也要保留可见。",
-              "Task 5：只负责让更多伙伴看到你，不反向阻塞主线。"
-            ].map((line) => (
               <div
-                key={line}
                 style={{
-                  padding: "0.85rem 0.95rem",
-                  borderRadius: "var(--radius-md)",
-                  background: "rgba(255, 255, 255, 0.04)",
-                  color: "var(--color-muted)",
-                  lineHeight: 1.6
+                  width: "5.5rem",
+                  height: "5.5rem",
+                  borderRadius: "1.5rem",
+                  display: "grid",
+                  placeItems: "center",
+                  background: "rgba(255, 255, 255, 0.2)",
+                  fontSize: "2.9rem",
+                  fontWeight: 800
                 }}
               >
-                {line}
+                S
               </div>
+              <strong style={{ fontSize: "var(--type-heading-md)" }}>
+                {bundle.agentProfile.scoreValue}
+              </strong>
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gap: "0.85rem"
+              }}
+            >
+              <strong
+                style={{
+                  fontSize: "clamp(2.6rem, 7vw, 4.6rem)",
+                  lineHeight: 0.95,
+                  letterSpacing: "-0.05em"
+                }}
+              >
+                {bundle.agentProfile.scoreValue}.0
+              </strong>
+              <span style={{ color: "var(--color-muted)", fontSize: "var(--type-small)" }}>
+                {shareView.scoreSummary}
+              </span>
+              <div
+                style={{
+                  padding: "1rem 1.05rem",
+                  borderRadius: "var(--radius-md)",
+                  background: "rgba(255, 255, 255, 0.05)",
+                  border: "1px solid rgba(255, 120, 120, 0.16)",
+                  color: "var(--color-muted)",
+                  lineHeight: "var(--line-body)"
+                }}
+              >
+                {bundle.hero.disclaimer}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: "grid", gap: "0.85rem" }}>
+            {[
+              {
+                href: "#agent-prompt",
+                label: bundle.chrome.acceptChallengeLabel,
+                background:
+                  "linear-gradient(90deg, var(--color-highlight), var(--coral-bright))",
+                color: "#27090c"
+              },
+              {
+                href: "#share",
+                label: bundle.chrome.shareChallengeLabel,
+                background:
+                  "linear-gradient(90deg, rgba(255, 120, 120, 0.18), rgba(255, 181, 122, 0.18))",
+                color: "var(--color-ink)"
+              },
+              {
+                href: "#journey",
+                label: bundle.chrome.watchSimulationLabel,
+                background: "rgba(255, 255, 255, 0.04)",
+                color: "var(--color-ink)"
+              }
+            ].map((action) => (
+              <a
+                key={action.label}
+                href={action.href}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "3.8rem",
+                  padding: "1rem 1.2rem",
+                  borderRadius: "var(--radius-md)",
+                  background: action.background,
+                  color: action.color,
+                  fontWeight: 800,
+                  fontSize: "var(--type-body)",
+                  textAlign: "center"
+                }}
+              >
+                {action.label}
+              </a>
             ))}
           </div>
-        </aside>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 160px), 1fr))",
+              gap: "0.85rem"
+            }}
+          >
+            {[
+              shareView.scoreSummary,
+              shareView.resonanceStatus,
+              shareView.factionStatus,
+              communityLabel
+            ].map((label) => (
+              <article
+                key={label}
+                style={{
+                  padding: "1rem",
+                  borderRadius: "var(--radius-md)",
+                  background: "rgba(255, 255, 255, 0.04)",
+                  border: "1px solid rgba(255, 120, 120, 0.12)"
+                }}
+              >
+                <strong
+                  style={{
+                    display: "block",
+                    marginBottom: "0.35rem",
+                    fontSize: "var(--type-small)"
+                  }}
+                >
+                  {label}
+                </strong>
+                <span style={{ color: "var(--color-muted)", lineHeight: "var(--line-body)" }}>
+                  {bundle.locale === "zh"
+                    ? "首页只保留最需要被记住的结果。"
+                    : "The first screen keeps only the signals worth remembering."}
+                </span>
+              </article>
+            ))}
+          </div>
+
+          <div
+            style={{
+              padding: "0.9rem 1rem",
+              borderRadius: "var(--radius-md)",
+              border: "1px solid rgba(255, 120, 120, 0.16)",
+              color: "var(--color-muted)",
+              fontSize: "var(--type-small)",
+              lineHeight: "var(--line-body)"
+            }}
+          >
+            {bundle.chrome.simulationDisclaimer}
+          </div>
+        </div>
       </div>
     </section>
   );

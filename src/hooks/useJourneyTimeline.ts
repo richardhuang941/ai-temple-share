@@ -6,7 +6,8 @@ import {
   createInitialTimelineState,
   getTimelineProgress,
   jumpToTask,
-  restartTimeline
+  restartTimeline,
+  startTimeline
 } from "../lib/timeline";
 import { useReducedMotion } from "./useReducedMotion";
 
@@ -21,6 +22,7 @@ interface UseJourneyTimelineResult {
   derivedTasks: ReturnType<typeof deriveJourneyMilestones>;
   currentHint: ReturnType<typeof deriveCurrentTaskHint>;
   advance: () => void;
+  start: () => void;
   restart: () => void;
   goToTask: (taskIndex: number) => void;
   setAutoplay: (isAutoplay: boolean) => void;
@@ -78,13 +80,33 @@ export function useJourneyTimeline(
 
   const advance = (): void => {
     startTransition(() => {
-      setTimeline((previousTimeline) => advanceTimeline(previousTimeline, tasks));
+      setTimeline((previousTimeline) =>
+        advanceTimeline(previousTimeline.hasStarted ? previousTimeline : startTimeline(previousTimeline, tasks), tasks)
+      );
+    });
+  };
+
+  const start = (): void => {
+    startTransition(() => {
+      setTimeline((previousTimeline) => startTimeline(previousTimeline, tasks));
     });
   };
 
   const restart = (): void => {
     startTransition(() => {
-      setTimeline((previousTimeline) => restartTimeline(previousTimeline, tasks));
+      setTimeline((previousTimeline) => {
+        const restartedTimeline = restartTimeline(previousTimeline, tasks);
+
+        return previousTimeline.hasStarted
+          ? startTimeline(
+              {
+                ...restartedTimeline,
+                isReducedMotion: previousTimeline.isReducedMotion
+              },
+              tasks
+            )
+          : restartedTimeline;
+      });
     });
   };
 
@@ -98,6 +120,7 @@ export function useJourneyTimeline(
     startTransition(() => {
       setTimeline((previousTimeline) => ({
         ...previousTimeline,
+        hasStarted: isAutoplay ? true : previousTimeline.hasStarted,
         isAutoplay: previousTimeline.isReducedMotion ? false : isAutoplay
       }));
     });
@@ -113,6 +136,7 @@ export function useJourneyTimeline(
     derivedTasks,
     currentHint,
     advance,
+    start,
     restart,
     goToTask,
     setAutoplay

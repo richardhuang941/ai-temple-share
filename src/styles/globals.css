@@ -17,8 +17,9 @@ body {
   font-family: var(--font-body);
   color: var(--color-ink);
   background:
-    radial-gradient(circle at top, rgba(47, 157, 255, 0.16), transparent 34%),
-    radial-gradient(circle at 18% 12%, rgba(248, 169, 107, 0.14), transparent 22%),
+    radial-gradient(circle at top, rgba(255, 77, 77, 0.22), transparent 34%),
+    radial-gradient(circle at 18% 12%, rgba(230, 57, 70, 0.2), transparent 22%),
+    radial-gradient(circle at 82% 18%, rgba(255, 173, 120, 0.12), transparent 18%),
     linear-gradient(180deg, var(--color-bg-top), var(--color-bg-bottom));
   text-rendering: optimizeLegibility;
 }
@@ -68,7 +69,7 @@ section {
 }
 
 .shell-panel {
-  background: linear-gradient(180deg, rgba(13, 20, 32, 0.8), rgba(7, 12, 21, 0.94));
+  background: linear-gradient(180deg, rgba(34, 10, 14, 0.84), rgba(20, 7, 10, 0.96));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
@@ -80,14 +81,14 @@ section {
   align-items: center;
   gap: var(--space-xs);
   padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(142, 228, 255, 0.22);
+  border: 1px solid rgba(255, 123, 123, 0.24);
   border-radius: var(--radius-pill);
   font-family: var(--font-display);
-  font-size: 0.76rem;
+  font-size: var(--type-eyebrow);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-accent);
-  background: rgba(10, 18, 28, 0.78);
+  background: rgba(26, 10, 13, 0.82);
 }
 
 @media (prefers-reduced-motion: reduce) {

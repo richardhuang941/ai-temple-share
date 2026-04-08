@@ -1,12 +1,15 @@
 import type { CSSProperties } from "react";
-import type { DerivedTaskMilestone, TimelineHint } from "../../content";
+import type { DerivedTaskMilestone, LocaleCode, TimelineHint } from "../../content";
 import TaskMilestoneCard from "./TaskMilestoneCard";
 
 interface JourneyTimelineProps {
   tasks: DerivedTaskMilestone[];
   progress: number;
   currentHint: TimelineHint;
+  hasStarted: boolean;
+  idleLabel: string;
   isReducedMotion: boolean;
+  locale: LocaleCode;
   onTaskSelect: (taskIndex: number) => void;
 }
 
@@ -14,11 +17,14 @@ export function JourneyTimeline({
   tasks,
   progress,
   currentHint,
+  hasStarted,
+  idleLabel,
   isReducedMotion,
+  locale,
   onTaskSelect
 }: JourneyTimelineProps) {
   const progressBarStyle: CSSProperties = {
-    width: `${Math.max(progress * 100, 8)}%`,
+    width: hasStarted ? `${Math.max(progress * 100, 8)}%` : "0%",
     height: "100%",
     borderRadius: "999px",
     background: "linear-gradient(90deg, var(--color-accent), var(--color-highlight))",
@@ -45,11 +51,27 @@ export function JourneyTimeline({
           }}
         >
           <div style={{ display: "grid", gap: "0.3rem" }}>
-            <strong style={{ fontSize: "1rem" }}>当前聚焦：{currentHint.currentTaskLabel}</strong>
-            <span style={{ color: "var(--color-muted)" }}>阶段：{currentHint.currentStageLabel}</span>
+            <strong style={{ fontSize: "1rem" }}>
+              {hasStarted
+                ? `${locale === "zh" ? "当前聚焦" : "Current focus"}：${currentHint.currentTaskLabel}`
+                : locale === "zh"
+                  ? "等待你来启动模拟"
+                  : "Waiting for you to start the simulation"}
+            </strong>
+            <span style={{ color: "var(--color-muted)" }}>
+              {hasStarted
+                ? `${locale === "zh" ? "阶段" : "Stage"}：${currentHint.currentStageLabel}`
+                : idleLabel}
+            </span>
           </div>
           <span style={{ color: "var(--color-muted)" }}>
-            {isReducedMotion ? "已切换到低动态模式" : "自动推进会把五个 Task 串成一段完整旅程"}
+            {isReducedMotion
+              ? locale === "zh"
+                ? "已切换到低动态模式"
+                : "Reduced-motion mode is active"
+              : locale === "zh"
+                ? "自动推进会把五个 Task 串成一段完整旅程"
+                : "Autoplay will connect all five tasks into one readable journey"}
           </span>
         </div>
 
@@ -66,7 +88,9 @@ export function JourneyTimeline({
             <div style={progressBarStyle} />
           </div>
           <span style={{ color: "var(--color-muted)", fontSize: "0.9rem" }}>
-            下一步提示：{currentHint.nextCta}
+            {hasStarted
+              ? `${locale === "zh" ? "下一步提示" : "Next hint"}：${currentHint.nextCta}`
+              : idleLabel}
           </span>
         </div>
       </div>
@@ -82,6 +106,8 @@ export function JourneyTimeline({
           <TaskMilestoneCard
             key={task.taskId}
             task={task}
+            locale={locale}
+            hasStarted={hasStarted}
             isReducedMotion={isReducedMotion}
             onSelect={() => onTaskSelect(taskIndex)}
           />

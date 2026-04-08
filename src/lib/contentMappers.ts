@@ -11,6 +11,19 @@ import type {
   TimelineHint
 } from "../content";
 
+function applyTemplate(
+  template: string | undefined,
+  replacements: Record<string, string>
+): string | undefined {
+  if (!template) {
+    return undefined;
+  }
+
+  return Object.entries(replacements).reduce((output, [key, value]) => {
+    return output.replaceAll(`{${key}}`, value);
+  }, template);
+}
+
 function getDerivedStageStatus(
   taskIndex: number,
   stageIndex: number,
@@ -100,10 +113,21 @@ export function deriveShareSummaryView(
 
   return {
     ...baseShareSummary,
-    title: `${agentProfile.headline} 已共振，并且加入了${faction.displayName}。`,
-    scoreSummary: `Agent 打分 ${agentProfile.scoreValue} / 100 · ${agentProfile.scoreLabel}`,
-    resonanceStatus: "已共振",
-    factionStatus: `已加入${faction.displayName}`,
+    title:
+      applyTemplate(baseShareSummary.titleTemplate, {
+        headline: agentProfile.headline,
+        faction: faction.displayName
+      }) ?? baseShareSummary.title,
+    scoreSummary:
+      applyTemplate(baseShareSummary.scoreSummaryTemplate, {
+        score: String(agentProfile.scoreValue),
+        label: agentProfile.scoreLabel
+      }) ?? baseShareSummary.scoreSummary,
+    resonanceStatus: baseShareSummary.resonanceStatus,
+    factionStatus:
+      applyTemplate(baseShareSummary.factionStatusTemplate, {
+        faction: faction.displayName
+      }) ?? baseShareSummary.factionStatus,
     supportingFacts: Array.from(new Set(supportingFacts)),
     agentHeadline: agentProfile.headline,
     agentType: agentProfile.agentType,
@@ -119,8 +143,8 @@ export function deriveCurrentTaskHint(
   if (timeline.isComplete) {
     return {
       currentTaskLabel: tasks[tasks.length - 1].brandedName,
-      currentStageLabel: "主线模拟已走完",
-      nextCta: "现在去分享战报，或者把 skill 仓库交给 Agent"
+      currentStageLabel: tasks[tasks.length - 1].completionBadge,
+      nextCta: tasks[tasks.length - 1].cta ?? "Continue with the next public-facing action"
     };
   }
 

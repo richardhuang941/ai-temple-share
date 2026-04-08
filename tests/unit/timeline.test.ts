@@ -5,7 +5,8 @@ import {
   advanceTimeline,
   createInitialTimelineState,
   getTimelineProgress,
-  jumpToTask
+  jumpToTask,
+  startTimeline
 } from "../../src/lib/timeline";
 
 function installMatchMediaMock(matches: boolean): void {
@@ -26,7 +27,7 @@ function installMatchMediaMock(matches: boolean): void {
 
 describe("timeline engine", () => {
   it("advances in order until the share focus is reached", () => {
-    let state = createInitialTimelineState(taskMilestones, { isAutoplay: true });
+    let state = startTimeline(createInitialTimelineState(taskMilestones, { isAutoplay: false }), taskMilestones);
     const totalStages = taskMilestones.reduce((sum, task) => sum + task.stages.length, 0);
 
     for (let index = 0; index < totalStages; index += 1) {
@@ -39,7 +40,7 @@ describe("timeline engine", () => {
   });
 
   it("resets the stage index when manually jumping to another task", () => {
-    const advanced = advanceTimeline(createInitialTimelineState(taskMilestones), taskMilestones);
+    const advanced = advanceTimeline(startTimeline(createInitialTimelineState(taskMilestones), taskMilestones), taskMilestones);
     const jumped = jumpToTask(advanced, taskMilestones, 3);
 
     expect(jumped.currentTaskIndex).toBe(3);
@@ -59,5 +60,13 @@ describe("timeline engine", () => {
 
     expect(result.current.timeline.isReducedMotion).toBe(true);
     expect(result.current.timeline.isAutoplay).toBe(false);
+  });
+
+  it("starts in an idle state before the user triggers the simulation", () => {
+    const state = createInitialTimelineState(taskMilestones);
+
+    expect(state.hasStarted).toBe(false);
+    expect(state.isAutoplay).toBe(false);
+    expect(getTimelineProgress(state, taskMilestones)).toBe(0);
   });
 });
