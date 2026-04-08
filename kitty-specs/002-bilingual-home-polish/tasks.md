@@ -85,10 +85,10 @@ Risks:
 - Dependencies: Depends on WP01
 
 Included subtasks:
-- [ ] T006 重构首屏 Hero 为 challenge card 信息架构 (WP02)
-- [ ] T007 增加语言切换控件和首屏 CTA 行为 (WP02)
-- [ ] T008 调整 App 区块顺序为 Hero -> Agent Prompt -> Share -> Journey (WP02)
-- [ ] T009 精简 Agent Prompt 区文案与首屏跳转承接 (WP02)
+- [x] T006 重构首屏 Hero 为 challenge card 信息架构 (WP02)
+- [x] T007 增加语言切换控件和首屏 CTA 行为 (WP02)
+- [x] T008 调整 App 区块顺序为 Hero -> Agent Prompt -> Share -> Journey (WP02)
+- [x] T009 精简 Agent Prompt 区文案与首屏跳转承接 (WP02)
 
 Implementation sketch:
 1. 先确定新 Hero 的结构和状态卡布局。
