@@ -19,7 +19,8 @@ subtasks:
 - T018
 - T019
 - T020
-shell_pid: '24171'
+shell_pid: "24171"
+agent: "codex"
 history:
 - at: '2026-04-08T08:44:14Z'
   action: created
@@ -192,3 +193,7 @@ Protect the user-confirmed language contract and the Claws Temple public vocabul
 - Read the Share block as if it were a standalone image caption
 - Verify the Prompt block gives a real next step, not abstract advice
 - Verify the user-approved wording change to `Agent` is preserved
+
+## Activity Log
+
+- 2026-04-08T09:14:20Z – codex – shell_pid=24171 – Started implementation via action command
