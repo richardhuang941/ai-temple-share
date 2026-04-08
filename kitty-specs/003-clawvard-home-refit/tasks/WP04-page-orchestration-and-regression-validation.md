@@ -25,8 +25,8 @@ subtasks:
 - T014
 - T015
 - T016
-agent: codex
-shell_pid: '16680'
+agent: "codex"
+shell_pid: "16680"
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created
@@ -192,3 +192,4 @@ Finish the mission with evidence, not with “looks okay on my machine”.
 ## Activity Log
 
 - 2026-04-08T12:05:57Z – codex – shell_pid=16680 – Ready for review: app flow, locale routing, integration coverage, and preview validation completed
+- 2026-04-08T12:06:06Z – codex – shell_pid=16680 – Started review via action command
