@@ -123,11 +123,11 @@ Risks:
 - Dependencies: Depends on WP01, WP02
 
 Included subtasks:
-- [ ] T011 构建 Journey 区的阶段脉冲与状态可视化基础组件 (WP03)
-- [ ] T012 构建单任务的里程碑卡片组件 (WP03)
-- [ ] T013 构建多任务时间轴容器并绑定时间轴输出 (WP03)
-- [ ] T014 实现 JourneySection 的整体叙事与任务顺序呈现 (WP03)
-- [ ] T015 让 Journey 区在移动端和 reduced-motion 模式下保持可读 (WP03)
+- [x] T011 构建 Journey 区的阶段脉冲与状态可视化基础组件 (WP03)
+- [x] T012 构建单任务的里程碑卡片组件 (WP03)
+- [x] T013 构建多任务时间轴容器并绑定时间轴输出 (WP03)
+- [x] T014 实现 JourneySection 的整体叙事与任务顺序呈现 (WP03)
+- [x] T015 让 Journey 区在移动端和 reduced-motion 模式下保持可读 (WP03)
 
 Implementation sketch:
 1. 从最小可复用的视觉 primitive 开始。
