@@ -210,3 +210,4 @@ Give the public surfaces a cleaner editorial rhythm so the page feels deliberate
 ## Activity Log
 
 - 2026-04-08T11:43:52Z – codex – shell_pid=40372 – Started WP02 challenge surface refit
+- 2026-04-08T11:43:53Z – codex – shell_pid=40372 – Ready for review: hero, share, and prompt refit built cleanly
