@@ -25,8 +25,9 @@ subtasks:
 - T006
 - T007
 - T008
-agent: codex
-shell_pid: ''
+agent: "codex"
+shell_pid: "40372"
+assignee: "codex"
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created
@@ -205,3 +206,7 @@ Give the public surfaces a cleaner editorial rhythm so the page feels deliberate
 - Compare the first-screen structure against the local Clawvard download, not against the previous site version.
 - Check that the score card is the first focal point.
 - Check that no internal QA-style copy leaks into the public surface.
+
+## Activity Log
+
+- 2026-04-08T11:43:52Z – codex – shell_pid=40372 – Started WP02 challenge surface refit
