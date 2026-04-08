@@ -155,11 +155,11 @@ Risks:
 - Dependencies: Depends on WP01, WP02
 
 Included subtasks:
-- [ ] T016 构建 HeroSection 的主叙事与滚动 CTA (WP04)
-- [ ] T017 构建分享结果区与分享统计组件 (WP04)
-- [ ] T018 构建 Agent Prompt 区与复制交互 (WP04)
-- [ ] T019 实现 Hero/Share/Prompt 所需的共享 UI 原子组件 (WP04)
-- [ ] T020 校验非 Journey 区的 Agent-first 文案与禁用词约束 (WP04)
+- [x] T016 构建 HeroSection 的主叙事与滚动 CTA (WP04)
+- [x] T017 构建分享结果区与分享统计组件 (WP04)
+- [x] T018 构建 Agent Prompt 区与复制交互 (WP04)
+- [x] T019 实现 Hero/Share/Prompt 所需的共享 UI 原子组件 (WP04)
+- [x] T020 校验非 Journey 区的 Agent-first 文案与禁用词约束 (WP04)
 
 Implementation sketch:
 1. 先做 Hero 的主叙事与入口引导。
