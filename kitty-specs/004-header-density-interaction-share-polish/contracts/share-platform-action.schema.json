@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SharePlatformAction",
+  "type": "object",
+  "required": ["platform", "label", "behavior", "payload"],
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": ["x", "wechat", "xiaohongshu", "douyin"]
+    },
+    "label": {
+      "type": "string"
+    },
+    "behavior": {
+      "type": "string",
+      "enum": ["intent", "web-share", "copy"]
+    },
+    "payload": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

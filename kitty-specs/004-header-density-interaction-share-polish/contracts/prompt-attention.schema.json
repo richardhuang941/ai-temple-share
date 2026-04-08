@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PromptAttentionState",
+  "type": "object",
+  "required": ["state"],
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": ["idle", "emphasized"]
+    }
+  },
+  "additionalProperties": false
+}

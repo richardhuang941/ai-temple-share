@@ -1,0 +1,46 @@
+{
+  "event_count": 4,
+  "last_event_id": "01KNPTN6FQS33A2FJ3PTCZ1GSR",
+  "materialized_at": "2026-04-08T15:16:30.327295+00:00",
+  "mission_slug": "004-header-density-interaction-share-polish",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 0,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 4
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNPTN6E46HDY3V7XFRC3QHQT",
+      "last_transition_at": "2026-04-08T15:16:30.276263+00:00"
+    },
+    "WP02": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNPTN6FKPY72W0JKPAMWMXN7",
+      "last_transition_at": "2026-04-08T15:16:30.323871+00:00"
+    },
+    "WP03": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNPTN6FNQ2YW6HC3TDX9DHRR",
+      "last_transition_at": "2026-04-08T15:16:30.325568+00:00"
+    },
+    "WP04": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNPTN6FQS33A2FJ3PTCZ1GSR",
+      "last_transition_at": "2026-04-08T15:16:30.327295+00:00"
+    }
+  }
+}

@@ -1,108 +1,98 @@
-# Implementation Plan: [FEATURE]
-*Path: [templates/plan-template.md](templates/plan-template.md)*
+# Implementation Plan: Header / Density / Interaction / Share Polish
+*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/004-header-density-interaction-share-polish/plan.md`*
 
-
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/kitty-specs/[###-feature-name]/spec.md`
-
-**Note**: This template is filled in by the `/spec-kitty.plan` command. See `src/specify_cli/missions/software-dev/command-templates/plan.md` for the execution workflow.
-
-The planner will not begin until all planning questions have been answered—capture those answers in this document before progressing to later phases.
+**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/004-header-density-interaction-share-polish/spec.md`
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+本轮是一次前端表层微重构：
+
+1. 把顶部 chrome 重构为正式 `header`。
+2. 压缩 Hero / Prompt 的总高度，让首屏更接近 Clawvard 分享页。
+3. 为 CTA 增加 hover / tap / shake 微交互。
+4. 扩展分享区，加入社媒按钮与 fallback 行为。
+5. 把桌面端 Journey 重新排成纵向单列流程。
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+**Language/Version**: `TypeScript 5.9`, `React 19`, `Vite 7`  
+**Dependencies**: 继续使用现有 `react`, `react-dom`；不新增动画库  
+**Testing**: `Vitest`, `React Testing Library`, `npm run build`  
+**Platform**: 现代桌面浏览器与移动浏览器  
+**Constraints**: 静态页、无真实 SDK、reduced-motion 兼容、继续保留现有 locale 逻辑
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+## Architecture Overview
 
-## Charter Check
+- **Header Surface**: 新增专门的顶部模块，承接品牌与语言切换。
+- **Hero Density Layer**: 缩小 type scale、压缩 spacing，并把 Prompt 卡抬到首屏附近。
+- **Attention Feedback Layer**: 通过 CSS transitions + keyframes 处理 hover / tap / shake。
+- **Share Action Layer**: 用统一的分享 action config 驱动四个社媒按钮和 fallback。
+- **Journey Layout Layer**: 用 CSS 重排为单列流程，并统一状态 badge 样式。
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+## Key Decisions
 
-[Gates determined based on charter file]
+### 1. 不新增动画库
 
-## Project Structure
+- hover 放大、tap 压缩、目标模块 shake 都可以用 CSS / DOM class 轻量实现。
+- 这样能保持依赖稳定，也避免为了几个 micro interactions 引入新的 runtime。
 
-### Documentation (this feature)
+### 2. Header 独立成组件
 
-```
-kitty-specs/[###-feature]/
-├── plan.md              # This file (/spec-kitty.plan command output)
-├── research.md          # Phase 0 output (/spec-kitty.plan command)
-├── data-model.md        # Phase 1 output (/spec-kitty.plan command)
-├── quickstart.md        # Phase 1 output (/spec-kitty.plan command)
-├── contracts/           # Phase 1 output (/spec-kitty.plan command)
-└── tasks.md             # Phase 2 output (/spec-kitty.tasks command - NOT created by /spec-kitty.plan)
-```
+- 不再把品牌和语言切换塞进 HeroSection 内部的散装 topbar。
+- 让 header 能独立控制间距、sticky 语义和后续扩展空间。
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### 3. Prompt 保持独立模块，但缩短与 Hero 的物理距离
 
-```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+- 仍然保留 `Hero -> Agent Prompt -> Share -> Journey` 的主叙事顺序。
+- 通过 section padding 和卡片高度优化，让 Hero 与 Prompt 在视觉上更像同一屏里的上下两个模块。
 
-tests/
-├── contract/
-├── integration/
-└── unit/
+### 4. 分享平台用 action config + fallback
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
+- `X`: 直接用分享 intent。
+- `微信 / 小红书 / 抖音`: 优先 `navigator.share`，否则复制平台文案到剪贴板并给出反馈。
 
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
+### 5. Journey 桌面端强制单列
 
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
+- 这一轮优先强调流程感而不是看板感。
+- 纵向单列也更有利于自动滚动时保持当前位置可感知。
 
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
+## Verification Strategy
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+### Automated
 
-## Complexity Tracking
+- integration:
+  - header 与 `查看完整成绩单` 移除断言
+  - `接受挑战` 触发 Prompt emphasis
+  - share 社媒按钮渲染
+  - Journey 桌面结构回归
+- build:
+  - `npm run build`
 
-*Fill ONLY if Charter Check has violations that must be justified*
+### Manual
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+1. 桌面端检查首屏是否能更快同时看到成绩卡和 Prompt 卡。
+2. 鼠标 hover CTA，确认 scale / shadow 生效。
+3. 移动端点击 CTA，确认 press 感存在。
+4. 点击 `接受挑战`，确认 Prompt 卡有一次 shake/highlight。
+5. 检查分享区按钮与文案 fallback。
+6. 桌面端启动 Journey，确认为纵向 `Task 1-5`。
+
+## Phases
+
+### Phase 1: Header + Hero + Prompt Density
+
+- 新增 header 组件
+- 移除完整成绩单入口
+- 调整 hero / prompt 样式与布局密度
+
+### Phase 2: Micro Interactions + Share Actions
+
+- CTA hover / tap / shake
+- 社媒 action row
+- 复制 / web share / X intent fallback
+
+### Phase 3: Journey Vertical Flow + Regression
+
+- Journey 桌面单列
+- 统一 badge 样式
+- 补测试与 build 验证
