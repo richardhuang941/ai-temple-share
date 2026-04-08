@@ -1,25 +1,25 @@
 {
-  "event_count": 9,
-  "last_event_id": "01KNP5B83RTHF3CDRHKNDTZ9CV",
-  "materialized_at": "2026-04-08T09:04:04.216497+00:00",
+  "event_count": 11,
+  "last_event_id": "01KNP5BEMZB9XBDNGKQSV3YQMH",
+  "materialized_at": "2026-04-08T09:04:10.911747+00:00",
   "mission_slug": "001-bounty-journey-longpage",
   "summary": {
-    "approved": 0,
+    "approved": 1,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 1,
+    "in_progress": 0,
     "planned": 4
   },
   "work_packages": {
     "WP01": {
-      "actor": "codex",
+      "actor": "user",
       "force_count": 2,
-      "lane": "in_progress",
-      "last_event_id": "01KNP5B83RTHF3CDRHKNDTZ9CV",
-      "last_transition_at": "2026-04-08T09:04:04.216497+00:00"
+      "lane": "approved",
+      "last_event_id": "01KNP5BEMZB9XBDNGKQSV3YQMH",
+      "last_transition_at": "2026-04-08T09:04:10.911747+00:00"
     },
     "WP02": {
       "actor": "finalize-tasks",
