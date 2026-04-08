@@ -22,8 +22,8 @@ subtasks:
 - T010
 - T011
 - T012
-agent: codex
-shell_pid: '16680'
+agent: "codex"
+shell_pid: "16680"
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created
@@ -184,3 +184,4 @@ Protect the new flow rules so future UI tweaks do not silently reintroduce autop
 ## Activity Log
 
 - 2026-04-08T11:56:39Z – codex – shell_pid=16680 – Ready for review: slower playback, focus helpers, and light journey cards validated with unit tests + build
+- 2026-04-08T11:56:58Z – codex – shell_pid=16680 – Started review via action command
