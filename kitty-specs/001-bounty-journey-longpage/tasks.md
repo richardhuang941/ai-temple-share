@@ -60,10 +60,10 @@
 - Dependencies: None
 
 Included subtasks:
-- [ ] T001 初始化 `React + Vite + TypeScript` 运行时与基础项目文件 (WP01)
-- [ ] T002 配置 `Vitest + React Testing Library + jsdom` 测试工具链 (WP01)
-- [ ] T003 建立全局设计 token 与长单页基础样式 (WP01)
-- [ ] T004 准备 HTML shell 与目录骨架以承接后续页面实现 (WP01)
+- [x] T001 初始化 `React + Vite + TypeScript` 运行时与基础项目文件 (WP01)
+- [x] T002 配置 `Vitest + React Testing Library + jsdom` 测试工具链 (WP01)
+- [x] T003 建立全局设计 token 与长单页基础样式 (WP01)
+- [x] T004 准备 HTML shell 与目录骨架以承接后续页面实现 (WP01)
 
 Implementation sketch:
 1. 搭起 `package.json`、Vite 与 TypeScript 基础配置。
