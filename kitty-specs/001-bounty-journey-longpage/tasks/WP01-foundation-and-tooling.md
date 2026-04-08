@@ -17,7 +17,8 @@ subtasks:
 - T002
 - T003
 - T004
-shell_pid: '16680'
+shell_pid: "16680"
+agent: "codex"
 history:
 - at: '2026-04-08T08:44:14Z'
   action: created
@@ -179,3 +180,7 @@ Make the repository ready for later section work without forcing later WPs to in
 - Verify no business UI files were added outside the declared ownership
 - Verify the dependency set stays lean
 - Verify styles establish a usable visual baseline without hardcoding section content
+
+## Activity Log
+
+- 2026-04-08T08:56:21Z – codex – shell_pid=16680 – Started implementation via action command
