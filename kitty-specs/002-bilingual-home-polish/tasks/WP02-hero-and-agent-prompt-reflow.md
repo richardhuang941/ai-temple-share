@@ -74,3 +74,7 @@ Do not modify files outside this list.
 - 语言切换入口在首屏可见
 - App 主区块顺序已调整
 
+
+## Activity Log
+
+- 2026-04-08T10:20:14Z – unknown – shell_pid=16680 – Ready for review
