@@ -18,13 +18,16 @@ requirement_refs:
 planning_base_branch: main
 merge_target_branch: main
 branch_strategy: Planning artifacts for this feature were generated on main. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into main unless the human explicitly redirects the landing branch.
+base_branch: kitty/mission-003-clawvard-home-refit
+base_commit: c4729be26fe0f386e5f3112864d5adfc99f42e47
+created_at: '2026-04-08T11:26:51.812878+00:00'
 subtasks:
 - T001
 - T002
 - T003
 - T004
 agent: codex
-shell_pid: ''
+shell_pid: '16680'
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created

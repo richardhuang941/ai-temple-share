@@ -5,5 +5,7 @@
   "mission_slug": "003-clawvard-home-refit",
   "mission_type": "software-dev",
   "slug": "003-clawvard-home-refit",
-  "target_branch": "main"
+  "target_branch": "main",
+  "vcs": "git",
+  "vcs_locked_at": "2026-04-08T11:26:51.701905+00:00"
 }
