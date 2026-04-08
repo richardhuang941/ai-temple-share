@@ -32,7 +32,6 @@ history:
 authoritative_surface: tests/integration/
 execution_mode: code_change
 owned_files:
-- src/App.tsx
 - src/main.tsx
 - tests/integration/**
 ---

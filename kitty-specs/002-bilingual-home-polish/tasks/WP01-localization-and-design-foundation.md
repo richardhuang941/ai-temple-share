@@ -29,10 +29,12 @@ authoritative_surface: src/content/
 execution_mode: code_change
 owned_files:
 - src/content/**
-- src/hooks/**
+- src/hooks/useLocale.ts
 - src/lib/contentMappers.ts
+- src/lib/locale.ts
 - src/styles/**
-- tests/unit/**
+- tests/unit/contentMappers.test.ts
+- tests/unit/locale.test.ts
 ---
 
 # WP01 - Localization and Design Foundation
@@ -77,4 +79,3 @@ Do not modify files outside this list.
 - 中英文内容已结构化
 - global token 已切换到 coral 方向
 - unit tests 能覆盖 locale 与内容派生
-
