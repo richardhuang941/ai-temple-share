@@ -199,3 +199,4 @@ Ensure the simulation remains understandable on mobile and accessible when motio
 
 - 2026-04-08T09:11:14Z – codex – shell_pid=16680 – Started implementation via action command
 - 2026-04-08T09:13:34Z – codex – shell_pid=16680 – Ready for review: journey cards, stage pulses, and responsive controls are in place
+- 2026-04-08T09:13:54Z – codex – shell_pid=16680 – Review passed: journey UI keeps Task 4 external, Task 5 optional, and all active states readable in text
