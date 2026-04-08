@@ -1,0 +1,45 @@
+:root {
+  color-scheme: dark;
+  --font-display: "Azeret Mono", "IBM Plex Mono", "SFMono-Regular", monospace;
+  --font-body: "Manrope", "SF Pro Display", "Segoe UI", sans-serif;
+
+  --color-ink: #f4f7fb;
+  --color-muted: rgba(221, 230, 242, 0.72);
+  --color-surface: rgba(9, 14, 23, 0.84);
+  --color-surface-strong: rgba(14, 21, 33, 0.96);
+  --color-border: rgba(142, 184, 255, 0.18);
+  --color-accent: #8ee4ff;
+  --color-accent-strong: #2f9dff;
+  --color-success: #8bf6c6;
+  --color-warning: #ffd36b;
+  --color-danger: #ff8f8f;
+  --color-highlight: #f8a96b;
+  --color-bg-top: #061018;
+  --color-bg-bottom: #121b31;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+
+  --radius-sm: 0.85rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.85rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 28px 90px rgba(2, 7, 19, 0.35);
+  --shadow-glow: 0 0 0 1px rgba(142, 228, 255, 0.14), 0 0 48px rgba(47, 157, 255, 0.18);
+
+  --max-page-width: 1200px;
+  --section-padding-y: clamp(4rem, 8vw, 8rem);
+  --section-padding-x: clamp(1.25rem, 4vw, 3rem);
+
+  --step-fast: 160ms;
+  --step-base: 280ms;
+  --step-slow: 520ms;
+  --ease-emphatic: cubic-bezier(0.22, 1, 0.36, 1);
+}
