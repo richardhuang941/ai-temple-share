@@ -26,8 +26,9 @@ subtasks:
 - T002
 - T003
 - T004
-agent: codex
-shell_pid: '16680'
+agent: "codex"
+shell_pid: "20656"
+assignee: "codex"
 history:
 - at: '2026-04-08T11:18:51Z'
   action: created
@@ -199,3 +200,7 @@ Lock the new result model so later UI refits cannot reintroduce inconsistent or 
 - Verify the same result fields power Hero, Share, and Journey.
 - Verify Task 3 includes the token threshold language.
 - Verify Task 4 still points outward and never claims local completion.
+
+## Activity Log
+
+- 2026-04-08T11:34:52Z – codex – shell_pid=20656 – Started WP01 implementation in lane-a

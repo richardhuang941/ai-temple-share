@@ -1,7 +1,7 @@
 {
-  "event_count": 4,
-  "last_event_id": "01KNPDD80AZH0CS340A6VM0P65",
-  "materialized_at": "2026-04-08T11:24:58.250659+00:00",
+  "event_count": 6,
+  "last_event_id": "01KNPDZC3DTNADRSPCS1XBZ8NF",
+  "materialized_at": "2026-04-08T11:34:52.269167+00:00",
   "mission_slug": "003-clawvard-home-refit",
   "summary": {
     "approved": 0,
@@ -10,16 +10,16 @@
     "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 0,
-    "planned": 4
+    "in_progress": 1,
+    "planned": 3
   },
   "work_packages": {
     "WP01": {
-      "actor": "finalize-tasks",
+      "actor": "codex",
       "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNPDD7YXHXKFWVK904RF2ARS",
-      "last_transition_at": "2026-04-08T11:24:58.205927+00:00"
+      "lane": "in_progress",
+      "last_event_id": "01KNPDZC3DTNADRSPCS1XBZ8NF",
+      "last_transition_at": "2026-04-08T11:34:52.269167+00:00"
     },
     "WP02": {
       "actor": "finalize-tasks",
