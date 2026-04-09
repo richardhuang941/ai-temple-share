@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-09T10:58:16.647361+00:00",
+  "friendly_name": "mobile share and task flow polish",
+  "mission_number": "005",
+  "mission_slug": "005-mobile-share-and-task-flow-polish",
+  "mission_type": "software-dev",
+  "slug": "005-mobile-share-and-task-flow-polish",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}
