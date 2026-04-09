@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claws-temple.local/contracts/longpage-content.schema.json",
+  "title": "LongpageContent",
+  "type": "object",
+  "required": [
+    "hero",
+    "agentProfile",
+    "tasks",
+    "shareSummary",
+    "agentPromptCards"
+  ],
+  "properties": {
+    "hero": {
+      "type": "object",
+      "required": ["eyebrow", "title", "summary", "ctaLabel"],
+      "properties": {
+        "eyebrow": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "summary": { "type": "string", "minLength": 1 },
+        "ctaLabel": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "agentProfile": {
+      "type": "object",
+      "required": ["headline", "scoreValue", "scoreLabel", "agentType", "nextHint"],
+      "properties": {
+        "headline": { "type": "string", "minLength": 1 },
+        "scoreValue": { "type": "number", "minimum": 0, "maximum": 100 },
+        "scoreLabel": { "type": "string", "minLength": 1 },
+        "agentType": { "type": "string", "minLength": 1 },
+        "dominantAxes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "minItems": 1
+        },
+        "missingAxes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "nextHint": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "taskId",
+          "order",
+          "brandedName",
+          "purpose",
+          "summary",
+          "isOptional",
+          "isExternalFlow",
+          "stages",
+          "completionBadge"
+        ],
+        "properties": {
+          "taskId": { "type": "string", "pattern": "^task-[1-5]$" },
+          "order": { "type": "integer", "minimum": 1, "maximum": 5 },
+          "brandedName": { "type": "string", "minLength": 1 },
+          "purpose": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "isOptional": { "type": "boolean" },
+          "isExternalFlow": { "type": "boolean" },
+          "completionBadge": { "type": "string", "minLength": 1 },
+          "cta": { "type": "string" },
+          "stages": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["stageId", "label", "description", "status"],
+              "properties": {
+                "stageId": { "type": "string", "minLength": 1 },
+                "label": { "type": "string", "minLength": 1 },
+                "description": { "type": "string", "minLength": 1 },
+                "status": {
+                  "type": "string",
+                  "enum": ["pending", "active", "done"]
+                },
+                "proof": { "type": "string" },
+                "externalTarget": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "shareSummary": {
+      "type": "object",
+      "required": [
+        "title",
+        "scoreSummary",
+        "resonanceStatus",
+        "factionStatus",
+        "qualificationNote"
+      ],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "scoreSummary": { "type": "string", "minLength": 1 },
+        "resonanceStatus": { "type": "string", "minLength": 1 },
+        "factionStatus": { "type": "string", "minLength": 1 },
+        "supportingFacts": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "qualificationNote": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "agentPromptCards": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "./agent-prompt-card.schema.json" }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "accept_commit": "dcd8febdc6272a56b02f2564a83764f794fde421",
+  "acceptance_history": [
+    {
+      "accept_commit": "dcd8febdc6272a56b02f2564a83764f794fde421",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-08T15:32:00.692483+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "7f48e6fdc01d5ecb8ce5fca6901d5335742d3e70"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-08T15:32:00.692483+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "7f48e6fdc01d5ecb8ce5fca6901d5335742d3e70",
+  "created_at": "2026-04-08T15:07:32.546805+00:00",
+  "friendly_name": "header density interaction share polish",
+  "mission_number": "004",
+  "mission_slug": "004-header-density-interaction-share-polish",
+  "mission_type": "software-dev",
+  "slug": "004-header-density-interaction-share-polish",
+  "target_branch": "main",
+  "vcs": "git",
+  "vcs_locked_at": "2026-04-08T15:16:45.797315+00:00"
+}

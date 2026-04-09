@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ShareChallengePayload",
+  "type": "object",
+  "required": ["headline", "scoreLine", "callout", "challengeLink", "imageCaption", "textBody"],
+  "properties": {
+    "headline": {
+      "type": "string"
+    },
+    "scoreLine": {
+      "type": "string"
+    },
+    "callout": {
+      "type": "string"
+    },
+    "challengeLink": {
+      "type": "string"
+    },
+    "imageCaption": {
+      "type": "string"
+    },
+    "textBody": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -7,3 +7,8 @@ agents:
     preferred_implementer:
     preferred_reviewer:
   auto_commit: true
+project:
+  uuid: f71e339b-fe73-4d98-b8ac-f06a122c0c42
+  slug: claws-temple-home
+  node_id: 9b872522bdd9
+  build_id: 287057b6-c34c-4107-a8a5-2f5689cd850b

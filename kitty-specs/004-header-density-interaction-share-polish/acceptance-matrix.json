@@ -1,0 +1,57 @@
+{
+  "mission_slug": "004-header-density-interaction-share-polish",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The public longpage renders a proper header, removes the full-report entry, and keeps Hero, Agent Prompt, Share, and Journey in the intended order.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T23:31:24+08:00",
+      "notes": "Integration coverage now asserts the dedicated header surface, the removed full-report link, and the page section order."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The accept CTA emphasizes the Agent Prompt target, share actions render the four social platforms, and locale behavior remains intact.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx + tests/unit/locale.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T23:31:24+08:00",
+      "notes": "The regression suite covers prompt emphasis, locale persistence, and the new social action row."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The journey remains playable and the production bundle builds successfully after the density and interaction refit.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T23:31:24+08:00",
+      "notes": "All 25 tests passed and the Vite production build completed successfully."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "The local preview is reachable for manual review.",
+      "proof_type": "manual_check",
+      "evidence": "npm run dev -- --host 127.0.0.1 --port 4177 + curl -I http://127.0.0.1:4177/",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T23:31:24+08:00",
+      "notes": "The preview server returned HTTP 200 on the final page."
+    },
+    {
+      "criterion_id": "ACC-005",
+      "description": "All four work packages completed implement and review, and each reached approved status in the Spec Kitty workflow.",
+      "proof_type": "code_review",
+      "evidence": "spec-kitty agent tasks status --mission 004-header-density-interaction-share-polish --json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T23:31:24+08:00",
+      "notes": "WP01 through WP04 are all in the approved lane on the mission branch."
+    }
+  ],
+  "negative_invariants": []
+}

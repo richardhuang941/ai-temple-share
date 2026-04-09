@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "mission_slug": "002-bilingual-home-polish",
+  "mission_id": "002-bilingual-home-polish",
+  "mission_branch": "kitty/mission-002-bilingual-home-polish",
+  "target_branch": "main",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03",
+        "WP04",
+        "WP05"
+      ],
+      "write_scope": [
+        "src/App.tsx",
+        "src/components/common/**",
+        "src/components/journey/**",
+        "src/components/sections/AgentPromptSection.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/JourneySection.tsx",
+        "src/components/sections/ShareSection.tsx",
+        "src/components/share/**",
+        "src/content/**",
+        "src/hooks/useJourneyTimeline.ts",
+        "src/hooks/useLocale.ts",
+        "src/lib/contentMappers.ts",
+        "src/lib/locale.ts",
+        "src/lib/timeline.ts",
+        "src/main.tsx",
+        "src/styles/**",
+        "tests/integration/**",
+        "tests/unit/contentMappers.test.ts",
+        "tests/unit/locale.test.ts",
+        "tests/unit/timeline.test.ts"
+      ],
+      "predicted_surfaces": [
+        "api",
+        "tests"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-08T10:06:29.062434+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP01"
+      },
+      {
+        "wp_a": "WP04",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP04 depends on WP01"
+      },
+      {
+        "wp_a": "WP05",
+        "wp_b": "WP02",
+        "rule": "dependency",
+        "evidence": "WP05 depends on WP02"
+      }
+    ],
+    "total_merges": 4,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 4
+    }
+  }
+}

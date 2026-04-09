@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "mission_slug": "003-clawvard-home-refit",
+  "mission_id": "003-clawvard-home-refit",
+  "mission_branch": "kitty/mission-003-clawvard-home-refit",
+  "target_branch": "main",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03",
+        "WP04"
+      ],
+      "write_scope": [
+        "src/App.tsx",
+        "src/components/common/CopyButton.tsx",
+        "src/components/common/LocaleSwitcher.tsx",
+        "src/components/common/SectionHeading.tsx",
+        "src/components/journey/**",
+        "src/components/sections/AgentPromptSection.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/JourneySection.tsx",
+        "src/components/sections/ShareSection.tsx",
+        "src/components/share/**",
+        "src/content/agentProfile.ts",
+        "src/content/agentPromptCards.ts",
+        "src/content/factionContent.ts",
+        "src/content/heroContent.ts",
+        "src/content/index.ts",
+        "src/content/models.ts",
+        "src/content/shareSummary.ts",
+        "src/content/taskMilestones.ts",
+        "src/content/uiCopy.ts",
+        "src/hooks/useJourneyTimeline.ts",
+        "src/hooks/useLocale.ts",
+        "src/hooks/useReducedMotion.ts",
+        "src/lib/contentMappers.ts",
+        "src/lib/locale.ts",
+        "src/lib/simulationSeed.ts",
+        "src/lib/timeline.ts",
+        "src/main.tsx",
+        "src/styles/challenge-surfaces.css",
+        "src/styles/globals.css",
+        "src/styles/journey.css",
+        "src/styles/tokens.css",
+        "tests/integration/longpage.spec.tsx",
+        "tests/unit/contentMappers.test.ts",
+        "tests/unit/locale.test.ts",
+        "tests/unit/timeline.test.ts"
+      ],
+      "predicted_surfaces": [
+        "api",
+        "app-shell",
+        "artifact-rendering",
+        "dashboard",
+        "legacy-cleanup",
+        "tests",
+        "workspace"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-08T11:24:58.254680+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP01"
+      },
+      {
+        "wp_a": "WP04",
+        "wp_b": "WP02",
+        "rule": "dependency",
+        "evidence": "WP04 depends on WP02"
+      }
+    ],
+    "total_merges": 3,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 3
+    }
+  }
+}

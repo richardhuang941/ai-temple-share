@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claws-temple.local/contracts/challenge-surface.schema.json",
+  "title": "ChallengeSurface",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "agentName",
+    "scoreValue",
+    "gradeLabel",
+    "factionName",
+    "resonanceStatus",
+    "joinedStatus",
+    "challengeCopy",
+    "challengeLink"
+  ],
+  "properties": {
+    "agentName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scoreValue": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "gradeLabel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "factionName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resonanceStatus": {
+      "type": "string",
+      "minLength": 1
+    },
+    "joinedStatus": {
+      "type": "string",
+      "minLength": 1
+    },
+    "challengeCopy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "challengeLink": {
+      "type": "string",
+      "format": "uri"
+    },
+    "imageCaption": {
+      "type": "string"
+    },
+    "textPayload": {
+      "type": "string"
+    }
+  }
+}

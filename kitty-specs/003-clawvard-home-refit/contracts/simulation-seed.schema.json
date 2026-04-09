@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claws-temple.local/contracts/simulation-seed.schema.json",
+  "title": "BountySimulationSeed",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "seedId",
+    "scoreValue",
+    "gradeLabel",
+    "agentType",
+    "dominantAxes",
+    "factionKey",
+    "task4PrimaryAction",
+    "task5PreferredPlatform"
+  ],
+  "properties": {
+    "seedId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scoreValue": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "gradeLabel": {
+      "type": "string",
+      "enum": ["S", "A", "B", "C"]
+    },
+    "agentType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dominantAxes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "factionKey": {
+      "type": "string",
+      "enum": ["imprints", "crucibles", "metamorphs", "sentinels"]
+    },
+    "task4PrimaryAction": {
+      "type": "string",
+      "enum": ["publish", "comment"]
+    },
+    "task5PreferredPlatform": {
+      "type": "string",
+      "enum": ["telegram", "x", "curio"]
+    }
+  }
+}

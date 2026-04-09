@@ -1,0 +1,57 @@
+{
+  "mission_slug": "003-clawvard-home-refit",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The public longpage renders the Clawvard-style Hero, Agent Prompt, Share, and Journey sections in the intended product order.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T20:06:17+08:00",
+      "notes": "Integration coverage verifies section order, seeded result visibility, and the hero-to-section CTA anchors."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Locale resolution follows system or stored preference, manual switching persists, and seeded score or faction copy stays aligned across Hero and Share.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx + tests/unit/locale.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T20:06:17+08:00",
+      "notes": "The final regression suite covers English default, stored override, manual switch persistence, and share-summary consistency."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The Journey simulation only starts from the dedicated watch CTA, keeps current-task focus behavior, and the production bundle builds successfully.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T20:06:17+08:00",
+      "notes": "Journey focus and CTA gating are covered by integration and timeline tests, and the Vite production build completed successfully."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "The local preview is usable for manual review, returning HTTP 200 on the final page.",
+      "proof_type": "manual_check",
+      "evidence": "npm run dev -- --host 127.0.0.1 --port 4176 + curl -I http://127.0.0.1:4176/",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T20:05:29+08:00",
+      "notes": "The preview server responded with HTTP 200 and served the longpage entry HTML for manual review."
+    },
+    {
+      "criterion_id": "ACC-005",
+      "description": "All four work packages completed implement and review, and each reached approved status in the Spec Kitty workflow.",
+      "proof_type": "code_review",
+      "evidence": "status.json shows WP01-WP04 in approved lane",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T20:08:19+08:00",
+      "notes": "WP01 through WP04 were implemented, reviewed, and approved before mission acceptance."
+    }
+  ],
+  "negative_invariants": []
+}

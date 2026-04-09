@@ -1,0 +1,63 @@
+@import "./challenge-surfaces.css";
+
+:root {
+  color-scheme: light;
+  --font-display: "Space Grotesk", "Inter", "PingFang SC", sans-serif;
+  --font-body: "Inter", "PingFang SC", "Helvetica Neue", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+
+  --coral-bright: #ff4d4d;
+  --coral-mid: #e63946;
+  --coral-dark: #991b1b;
+
+  --color-ink: #182236;
+  --color-muted: #69758c;
+  --color-surface: rgba(255, 255, 255, 0.92);
+  --color-surface-strong: #fffdf9;
+  --color-border: rgba(24, 34, 54, 0.08);
+  --color-accent: #ef7e31;
+  --color-accent-strong: var(--coral-mid);
+  --color-success: #f59e0b;
+  --color-warning: #f97316;
+  --color-danger: #ef4444;
+  --color-highlight: #ffb200;
+  --color-bg-top: #f8f3e7;
+  --color-bg-bottom: #eef3f7;
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 5rem;
+
+  --radius-sm: 0.85rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 1.85rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 24px 70px rgba(17, 24, 39, 0.12);
+  --shadow-glow: 0 0 0 1px rgba(255, 77, 77, 0.08), 0 18px 40px rgba(255, 77, 77, 0.12);
+
+  --max-page-width: 1200px;
+  --section-padding-y: clamp(1.3rem, 4vw, 2.4rem);
+  --section-padding-x: clamp(1.25rem, 4vw, 3rem);
+
+  --step-fast: 160ms;
+  --step-base: 280ms;
+  --step-slow: 520ms;
+  --ease-emphatic: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --type-display: clamp(1.85rem, 3.4vw, 2.6rem);
+  --type-heading-lg: clamp(1.55rem, 2.6vw, 2.1rem);
+  --type-heading-md: clamp(1rem, 1.5vw, 1.2rem);
+  --type-body: 0.96rem;
+  --type-small: 0.88rem;
+  --type-eyebrow: 0.72rem;
+
+  --line-display: 1.02;
+  --line-heading: 1.12;
+  --line-body: 1.65;
+}

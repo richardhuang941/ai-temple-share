@@ -1,0 +1,25 @@
+{
+  "accept_commit": "7e7004dcdd29e523911a077e4fe6110fe9fe15ad",
+  "acceptance_history": [
+    {
+      "accept_commit": "7e7004dcdd29e523911a077e4fe6110fe9fe15ad",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-08T09:25:43.790692+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "90a89c5483e8ae10f1134c80b074ca04ce3cbc4c"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-08T09:25:43.790692+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "90a89c5483e8ae10f1134c80b074ca04ce3cbc4c",
+  "created_at": "2026-04-08T08:31:18.688501+00:00",
+  "friendly_name": "Claws Temple Bounty 长单页",
+  "mission_number": "001",
+  "mission_slug": "001-bounty-journey-longpage",
+  "mission_type": "software-dev",
+  "slug": "001-bounty-journey-longpage",
+  "source_description": "Single long-form public page that simulates the full Claws Temple Bounty 2.0 Task 1-5 journey, includes a share-ready Agent result state, and provides project-adapted AI Agent execution prompts.",
+  "target_branch": "main",
+  "vcs": "git"
+}

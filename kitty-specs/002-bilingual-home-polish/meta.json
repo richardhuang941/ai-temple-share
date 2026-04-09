@@ -1,0 +1,23 @@
+{
+  "acceptance_history": [
+    {
+      "acceptance_mode": "pr",
+      "accepted_at": "2026-04-08T10:40:47.047603+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "2adfd8bb518459a52ecf6b0f43cb28cb2609a024"
+    }
+  ],
+  "acceptance_mode": "pr",
+  "accepted_at": "2026-04-08T10:40:47.047603+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "2adfd8bb518459a52ecf6b0f43cb28cb2609a024",
+  "created_at": "2026-04-08T09:56:42.195597+00:00",
+  "friendly_name": "Claws Temple 首页双语与转化收口",
+  "mission_number": "002",
+  "mission_slug": "002-bilingual-home-polish",
+  "mission_type": "software-dev",
+  "slug": "002-bilingual-home-polish",
+  "source_description": "Polish the existing Claws Temple Bounty 2.0 landing page with bilingual support, simplified hero challenge card, CTA reflow, delayed journey simulation, coral visual tokens, and refined typography.",
+  "target_branch": "main",
+  "vcs": "git"
+}

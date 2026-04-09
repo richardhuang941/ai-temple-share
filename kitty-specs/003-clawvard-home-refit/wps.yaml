@@ -1,0 +1,134 @@
+work_packages:
+  - id: WP01
+    title: "Seeded Result Model and Task Content Alignment"
+    dependencies: []
+    owned_files:
+      - "src/content/models.ts"
+      - "src/content/agentProfile.ts"
+      - "src/content/factionContent.ts"
+      - "src/content/taskMilestones.ts"
+      - "src/lib/contentMappers.ts"
+      - "src/lib/simulationSeed.ts"
+      - "tests/unit/contentMappers.test.ts"
+    requirement_refs:
+      - FR-001
+      - FR-007
+      - FR-008
+      - FR-009
+      - FR-010
+      - FR-011
+      - FR-012
+      - FR-013
+      - FR-014
+      - C-003
+      - C-004
+      - C-005
+    subtasks:
+      - T001
+      - T002
+      - T003
+      - T004
+    prompt_file: "tasks/WP01-seeded-result-model-and-task-content-alignment.md"
+
+  - id: WP02
+    title: "Clawvard Challenge Surface Refit"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/components/common/CopyButton.tsx"
+      - "src/components/common/LocaleSwitcher.tsx"
+      - "src/components/common/SectionHeading.tsx"
+      - "src/components/sections/HeroSection.tsx"
+      - "src/components/sections/ShareSection.tsx"
+      - "src/components/sections/AgentPromptSection.tsx"
+      - "src/components/share/**"
+      - "src/content/agentPromptCards.ts"
+      - "src/content/heroContent.ts"
+      - "src/content/shareSummary.ts"
+      - "src/content/uiCopy.ts"
+      - "src/styles/challenge-surfaces.css"
+      - "src/styles/tokens.css"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - FR-005
+      - FR-006
+      - FR-015
+      - FR-016
+      - FR-019
+      - FR-020
+      - NFR-001
+      - NFR-004
+      - C-002
+    subtasks:
+      - T005
+      - T006
+      - T007
+      - T008
+    prompt_file: "tasks/WP02-clawvard-challenge-surface-refit.md"
+
+  - id: WP03
+    title: "Journey Playback and Auto Focus"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/components/journey/**"
+      - "src/components/sections/JourneySection.tsx"
+      - "src/hooks/useJourneyTimeline.ts"
+      - "src/hooks/useReducedMotion.ts"
+      - "src/lib/timeline.ts"
+      - "src/styles/journey.css"
+      - "tests/unit/timeline.test.ts"
+    requirement_refs:
+      - FR-009
+      - FR-010
+      - FR-011
+      - FR-012
+      - FR-013
+      - FR-014
+      - FR-017
+      - FR-018
+      - NFR-002
+      - NFR-003
+    subtasks:
+      - T009
+      - T010
+      - T011
+      - T012
+    prompt_file: "tasks/WP03-journey-playback-and-auto-focus.md"
+
+  - id: WP04
+    title: "Page Orchestration and Regression Validation"
+    dependencies:
+      - WP02
+      - WP03
+    owned_files:
+      - "src/App.tsx"
+      - "src/content/index.ts"
+      - "src/hooks/useLocale.ts"
+      - "src/lib/locale.ts"
+      - "src/main.tsx"
+      - "src/styles/globals.css"
+      - "tests/integration/longpage.spec.tsx"
+      - "tests/unit/locale.test.ts"
+    requirement_refs:
+      - FR-001
+      - FR-015
+      - FR-016
+      - FR-017
+      - FR-018
+      - FR-019
+      - FR-020
+      - NFR-001
+      - NFR-002
+      - NFR-003
+      - NFR-004
+      - C-001
+    subtasks:
+      - T013
+      - T014
+      - T015
+      - T016
+    prompt_file: "tasks/WP04-page-orchestration-and-regression-validation.md"

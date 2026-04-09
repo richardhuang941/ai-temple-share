@@ -1,0 +1,47 @@
+{
+  "mission_slug": "002-bilingual-home-polish",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The polished longpage renders the simplified Hero, Agent Prompt, Share, and Journey sections in the new information architecture order.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T18:39:36+08:00",
+      "notes": "Integration coverage verifies the four core sections, CTA anchors, and the reordered longpage structure."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The page defaults by system language, supports manual locale switching, preserves Agent-first share wording, and keeps Task 4 as a native external boundary.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T18:39:36+08:00",
+      "notes": "Integration assertions cover English-first detection, manual switch back to Chinese, Agent wording, and the SHIT Skills native-flow guardrail."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The journey simulation stays idle until user intent, the share surface switches between image and text modes, and the production bundle builds successfully.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T18:39:36+08:00",
+      "notes": "Build passed and automated tests verify intent-gated journey playback plus the share mode toggle."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "All work packages completed implement and review, and each work package reached approved status before merge.",
+      "proof_type": "code_review",
+      "evidence": "status.json shows WP01-WP05 in approved lane",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-08T18:39:36+08:00",
+      "notes": "WP01 through WP05 were implemented, reviewed, and approved in the Spec Kitty workflow."
+    }
+  ],
+  "negative_invariants": []
+}
