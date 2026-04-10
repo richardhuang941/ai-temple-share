@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "mission_slug": "010-journey-sbti-scrollback-focus",
+  "mission_id": "010-journey-sbti-scrollback-focus",
+  "mission_branch": "kitty/mission-010-journey-sbti-scrollback-focus",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02"
+      ],
+      "write_scope": [
+        "kitty-specs/010-journey-sbti-scrollback-focus/**",
+        "src/App.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/JourneySection.tsx",
+        "tests/integration/longpage.spec.tsx"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T08:31:37.633681+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      }
+    ],
+    "total_merges": 1,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 1
+    }
+  }
+}

@@ -15,61 +15,26 @@ import "../../styles/journey.css";
 
 interface JourneySectionProps {
   bundle?: LocalizedContentBundle;
+  sbtiValue: string;
+  startSignal: number;
+  onRequestSbtiInput: () => void;
 }
 
 export function JourneySection({
-  bundle = getLocalizedLongpageContent("zh")
+  bundle = getLocalizedLongpageContent("zh"),
+  sbtiValue,
+  startSignal,
+  onRequestSbtiInput
 }: JourneySectionProps) {
-  const journeyIntentRef = useRef<"start" | "view" | null>(null);
   const taskElementsRef = useRef<Record<string, HTMLElement | null>>({});
   const previousTimelineRef = useRef<SimulationTimelineState | null>(null);
   const lastFocusSignatureRef = useRef<string | null>(null);
+  const lastStartSignalRef = useRef<number>(startSignal);
   const { advance, currentHint, derivedTasks, goToTask, progress, restart, setAutoplay, start, timeline } =
     useJourneyTimeline(bundle.tasks, {
       cycleDurationMs: 4300,
       isAutoplay: false
     });
-
-  useEffect(() => {
-    const handleJourneyIntent = (event: MouseEvent): void => {
-      const target = event.target;
-
-      if (!(target instanceof Element)) {
-        return;
-      }
-
-      const journeyLink = target.closest('a[href="#journey"]');
-
-      if (!(journeyLink instanceof HTMLAnchorElement)) {
-        return;
-      }
-
-      const shouldStartSimulation = journeyLink.classList.contains("challenge-cta--ghost");
-      journeyIntentRef.current = shouldStartSimulation ? "start" : "view";
-
-      if (shouldStartSimulation && window.location.hash === "#journey" && !timeline.hasStarted) {
-        window.requestAnimationFrame(() => {
-          start();
-        });
-      }
-    };
-
-    const handleHashStart = (): void => {
-      if (window.location.hash === "#journey" && !timeline.hasStarted && journeyIntentRef.current === "start") {
-        start();
-      }
-
-      journeyIntentRef.current = null;
-    };
-
-    document.addEventListener("click", handleJourneyIntent, true);
-    window.addEventListener("hashchange", handleHashStart);
-
-    return () => {
-      document.removeEventListener("click", handleJourneyIntent, true);
-      window.removeEventListener("hashchange", handleHashStart);
-    };
-  }, [start, timeline.hasStarted]);
 
   useEffect(() => {
     const previousTimeline = previousTimelineRef.current;
@@ -112,6 +77,32 @@ export function JourneySection({
     timeline.isReducedMotion
   ]);
 
+  useEffect(() => {
+    if (startSignal === lastStartSignalRef.current) {
+      return;
+    }
+
+    lastStartSignalRef.current = startSignal;
+
+    if (sbtiValue.trim()) {
+      start();
+    }
+  }, [sbtiValue, start, startSignal]);
+
+  const handlePrimaryAction = (): void => {
+    if (timeline.hasStarted) {
+      advance();
+      return;
+    }
+
+    if (!sbtiValue.trim()) {
+      onRequestSbtiInput();
+      return;
+    }
+
+    start();
+  };
+
   return (
     <section id="journey" aria-labelledby="journey-heading" className="challenge-stage challenge-stage--journey">
       <div className="journey-shell">
@@ -140,7 +131,7 @@ export function JourneySection({
         <div className="journey-action-row">
           <button
             type="button"
-            onClick={timeline.hasStarted ? advance : start}
+            onClick={handlePrimaryAction}
             className="journey-button journey-button--primary"
           >
             {timeline.hasStarted ? bundle.journey.advanceLabel : bundle.journey.startLabel}
@@ -154,14 +145,6 @@ export function JourneySection({
               >
                 {bundle.journey.restartLabel}
               </button>
-              <button
-                type="button"
-                onClick={() => setAutoplay(!timeline.isAutoplay)}
-                className="journey-button journey-button--ghost"
-                disabled={timeline.isReducedMotion}
-              >
-                {timeline.isAutoplay ? bundle.journey.pauseLabel : bundle.journey.resumeLabel}
-              </button>
             </>
           ) : null}
         </div>
@@ -172,8 +155,13 @@ export function JourneySection({
           currentHint={currentHint}
           hasStarted={Boolean(timeline.hasStarted)}
           idleLabel={bundle.chrome.simulationIdleLabel}
+          isAutoplay={timeline.isAutoplay}
+          isComplete={timeline.isComplete}
           isReducedMotion={timeline.isReducedMotion}
           locale={bundle.locale}
+          pauseLabel={bundle.journey.pauseLabel}
+          resumeLabel={bundle.journey.resumeLabel}
+          onToggleAutoplay={() => setAutoplay(!timeline.isAutoplay)}
           onTaskSelect={goToTask}
           onTaskMount={(taskId, element) => {
             taskElementsRef.current[taskId] = element;

@@ -1,0 +1,47 @@
+{
+  "mission_slug": "007-share-copy-header-sbti-relayout",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The share surface is simplified to a single visible card, uses the production challenge link, and avoids repeating the score block across the visible battle text.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:57:20+08:00",
+      "notes": "Integration coverage verifies the share entry point, the updated production URL payload, and the simplified share surface behavior."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The header no longer displays the borrowed logo, and the SBTI gate now lives in Hero as the prerequisite for starting the Task 1-6 simulation.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:57:20+08:00",
+      "notes": "The regression suite verifies that the Hero watch action is a gated button, the Journey start remains disabled until SBTI is provided, and the watch flow scrolls into the Journey section."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The 007 implementation remains buildable and all automated validation stays green after the share/header/SBTI relayout changes.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:57:20+08:00",
+      "notes": "The final validation run passed 28 tests across 4 files, and the Vite production build completed successfully."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "All three work packages are recorded in the done lane for the 007 mission before acceptance.",
+      "proof_type": "code_review",
+      "evidence": "kitty-specs/007-share-copy-header-sbti-relayout/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:57:20+08:00",
+      "notes": "WP01 through WP03 are all materialized in the done lane after the direct-repo override flow."
+    }
+  ],
+  "negative_invariants": []
+}

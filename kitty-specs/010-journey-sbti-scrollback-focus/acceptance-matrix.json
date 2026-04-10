@@ -1,0 +1,37 @@
+{
+  "mission_slug": "010-journey-sbti-scrollback-focus",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "When SBTI is empty, both the Hero watch CTA and the Journey start CTA route the user back to the Hero SBTI input, focus the field, and trigger the same inline error affordance.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:37:42+08:00",
+      "notes": "Integration coverage now asserts the Journey CTA remains clickable while empty, then scrolls back, focuses the Hero input, and reuses the existing shake + alert feedback."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The Journey CTA change preserves the existing started-state behavior and does not regress the happy path once SBTI has been filled.",
+      "proof_type": "code_review",
+      "evidence": "src/App.tsx + src/components/sections/JourneySection.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:37:42+08:00",
+      "notes": "Only the empty-state branch was rerouted; started timelines still advance in place and valid SBTI submissions still scroll into the Journey section and begin playback."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Mission 010 remains buildable and its work packages are recorded as done after the direct-repo review/accept flow.",
+      "proof_type": "automated_test",
+      "evidence": "npx tsc -b --clean && npm run build + kitty-specs/010-journey-sbti-scrollback-focus/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:37:42+08:00",
+      "notes": "The production build passed after the scrollback change, and WP01/WP02 are materialized in the done lane with a direct-repo done override reason."
+    }
+  ],
+  "negative_invariants": []
+}

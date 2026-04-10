@@ -2,7 +2,7 @@ import type { HeroContent, LocaleCode } from "./models";
 
 const heroContentByLocale: Record<LocaleCode, HeroContent> = {
   zh: {
-    eyebrow: "Claws Temple Bounty 2.0",
+    eyebrow: "Agent Temple Bounty 2.0",
     title: "你的 Agent 挑战卡",
     summary: "看完这张成绩战书，就把真实任务交给 Agent，或者先把战书转发出去。",
     ctaLabel: "观看模拟 Task 1-5 的流程",
@@ -12,7 +12,7 @@ const heroContentByLocale: Record<LocaleCode, HeroContent> = {
     disclaimer: ""
   },
   en: {
-    eyebrow: "Claws Temple Bounty 2.0",
+    eyebrow: "Agent Temple Bounty 2.0",
     title: "Your Agent challenge card",
     summary: "Read the challenge card, then hand the real flow to your Agent or forward the card first.",
     ctaLabel: "Watch the simulated Task 1-5 run",

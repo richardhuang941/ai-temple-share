@@ -70,9 +70,9 @@ section {
 }
 
 .site-header {
-  width: min(100%, 38rem);
+  width: min(100%, var(--max-panel-width));
   margin: 0 auto;
-  padding: clamp(1.15rem, 3vw, 1.75rem) var(--section-padding-x) 0;
+  padding: clamp(0.95rem, 2.6vw, 1.35rem) var(--section-padding-x) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,13 +82,7 @@ section {
 .site-header__brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-}
-
-.site-header__brand-icon {
-  width: 1.7rem;
-  height: 1.7rem;
-  flex-shrink: 0;
+  gap: 0.25rem;
 }
 
 .site-header__brand-copy {
@@ -98,24 +92,24 @@ section {
 
 .site-header__brand-name {
   font-family: var(--font-display);
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   font-weight: 700;
   letter-spacing: -0.03em;
 }
 
 .site-header__brand-subtitle {
   color: var(--color-muted);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
 }
 
 .challenge-stage--hero {
-  padding-top: 1rem;
-  padding-bottom: 0.7rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.55rem;
 }
 
 .challenge-stage--prompt {
-  padding-top: 0.3rem;
-  padding-bottom: 1rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.8rem;
 }
 
 .sr-only {
@@ -169,10 +163,40 @@ section {
 
 @media (max-width: 640px) {
   .site-header {
-    padding-top: 1rem;
+    padding-top: 0.82rem;
   }
 
   .site-header__brand-subtitle {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 1rem 1rem;
+  }
+
+  .site-header {
+    gap: 0.7rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .site-header__brand {
+    gap: 0.2rem;
+  }
+
+  .site-header__brand-name {
+    font-size: 0.88rem;
+  }
+
+  .challenge-stage--hero {
+    padding-top: 0.45rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .challenge-stage--prompt {
+    padding-top: 0.15rem;
+    padding-bottom: 0.7rem;
   }
 }

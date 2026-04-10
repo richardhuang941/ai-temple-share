@@ -1,0 +1,23 @@
+{
+  "accept_commit": "672150cbedbf9be6a469e7ef90b326099e40cd08",
+  "acceptance_history": [
+    {
+      "accept_commit": "672150cbedbf9be6a469e7ef90b326099e40cd08",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:26:20.352707+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "781b4bfcc17100dcf0e1b6550c57d8188b1bc9bc"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:26:20.352707+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "781b4bfcc17100dcf0e1b6550c57d8188b1bc9bc",
+  "created_at": "2026-04-10T08:21:48.866217+00:00",
+  "friendly_name": "agent temple brand neutralization",
+  "mission_number": "009",
+  "mission_slug": "009-agent-temple-brand-neutralization",
+  "mission_type": "software-dev",
+  "slug": "009-agent-temple-brand-neutralization",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}

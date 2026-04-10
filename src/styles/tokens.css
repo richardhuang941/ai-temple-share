@@ -42,6 +42,7 @@
   --shadow-glow: 0 0 0 1px rgba(255, 77, 77, 0.08), 0 18px 40px rgba(255, 77, 77, 0.12);
 
   --max-page-width: 1200px;
+  --max-panel-width: 38rem;
   --section-padding-y: clamp(1.3rem, 4vw, 2.4rem);
   --section-padding-x: clamp(1.25rem, 4vw, 3rem);
 
@@ -60,4 +61,18 @@
   --line-display: 1.02;
   --line-heading: 1.12;
   --line-body: 1.65;
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding-y: 1rem;
+    --section-padding-x: 1rem;
+    --type-display: 1.62rem;
+    --type-heading-lg: 1.34rem;
+    --type-heading-md: 0.96rem;
+    --type-body: 0.9rem;
+    --type-small: 0.82rem;
+    --type-eyebrow: 0.68rem;
+    --line-body: 1.55;
+  }
 }

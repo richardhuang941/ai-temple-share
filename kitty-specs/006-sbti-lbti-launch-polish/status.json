@@ -1,0 +1,46 @@
+{
+  "event_count": 8,
+  "last_event_id": "01KNV3F2TCDY0CZFPQV8N3YVYE",
+  "materialized_at": "2026-04-10T07:07:24.876993+00:00",
+  "mission_slug": "006-sbti-lbti-launch-polish",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 4,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 0
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV3F0PKV4FQA600JCR2FH6S",
+      "last_transition_at": "2026-04-10T07:07:22.707883+00:00"
+    },
+    "WP02": {
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV3F1D4P2C81EC6XHBA3JSD",
+      "last_transition_at": "2026-04-10T07:07:23.428402+00:00"
+    },
+    "WP03": {
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV3F23GTP84DCX0FXFZZPZ3",
+      "last_transition_at": "2026-04-10T07:07:24.144142+00:00"
+    },
+    "WP04": {
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV3F2TCDY0CZFPQV8N3YVYE",
+      "last_transition_at": "2026-04-10T07:07:24.876993+00:00"
+    }
+  }
+}

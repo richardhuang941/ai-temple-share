@@ -1,0 +1,47 @@
+{
+  "mission_slug": "006-sbti-lbti-launch-polish",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The launch surface shows the April 13, 8:00 PM notice, hides the Agent handoff section, and keeps the remaining visible sections in a valid order.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:15:00+08:00",
+      "notes": "Integration coverage verifies the updated hero actions, the hidden agent prompt section, and the visible section ordering."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Journey start is gated by SBTI input and the simulation extends through Task 6 with a stable LBTI finale.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx + tests/unit/contentMappers.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:15:00+08:00",
+      "notes": "Integration checks validate the SBTI gate before start, and unit coverage validates the six-task order plus the stable Task 6 completion badge."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The implementation remains buildable and all automated validation stays green after the 006 polish set.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:15:00+08:00",
+      "notes": "The final validation run passed 28 tests across 4 files, and the Vite production bundle built successfully."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "All four work packages are recorded in the done lane for the 006 mission before acceptance.",
+      "proof_type": "code_review",
+      "evidence": "kitty-specs/006-sbti-lbti-launch-polish/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T15:15:00+08:00",
+      "notes": "WP01 through WP04 are all materialized in the done lane after the direct-repo override flow."
+    }
+  ],
+  "negative_invariants": []
+}

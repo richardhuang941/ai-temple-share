@@ -1,4 +1,4 @@
-export type TaskId = "task-1" | "task-2" | "task-3" | "task-4" | "task-5";
+export type TaskId = "task-1" | "task-2" | "task-3" | "task-4" | "task-5" | "task-6";
 export type TaskStageStatus = "pending" | "active" | "done";
 export type JourneyCardState = "upcoming" | "active" | "completed";
 export type FocusTarget = "journey" | "share";
@@ -7,6 +7,7 @@ export type LocaleSource = "system" | "stored" | "manual";
 export type ShareMode = "image" | "text";
 export type SharePlatformKey = "x" | "wechat" | "xiaohongshu" | "douyin";
 export type FactionBrandKey = "imprints" | "crucibles" | "metamorphs" | "sentinels";
+export type AgentScoreGrade = "S" | "A";
 
 export interface HeroContent {
   eyebrow: string;
@@ -23,7 +24,7 @@ export interface AgentProfileSnapshot {
   headline: string;
   scoreValue: number;
   scoreLabel: string;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentile: number;
   percentileNote: string;
   agentType: string;
@@ -44,11 +45,19 @@ export interface SeededAxisScore {
   value: number;
 }
 
+export interface AgentSbtiProfile {
+  code: string;
+  displayName: string;
+  intro: string;
+  summary: string;
+  isKnown: boolean;
+}
+
 export interface SeededSimulationResult {
   sessionKey: string;
   factionBrandKey: FactionBrandKey;
   scoreValue: number;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentile: number;
   typeLabel: string;
   tierLabel: string;
@@ -151,6 +160,11 @@ export interface JourneySectionCopy {
   advanceLabel: string;
   pauseLabel: string;
   resumeLabel: string;
+  sbtiLabel: string;
+  sbtiPlaceholder: string;
+  sbtiHelper: string;
+  sbtiGuideLabel: string;
+  sbtiError: string;
 }
 
 export interface ShareSectionCopy {
@@ -207,7 +221,7 @@ export interface DerivedTaskMilestone extends Omit<TaskMilestone, "stages"> {
 
 export interface ShareSummaryView extends ShareSummary {
   agentHeadline: string;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentileNote: string;
   agentType: string;
   dominantAxes: string[];

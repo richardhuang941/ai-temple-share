@@ -1,0 +1,23 @@
+{
+  "accept_commit": "7cbc1a0885480e2f6e5cf5bf2d524cc08d46370e",
+  "acceptance_history": [
+    {
+      "accept_commit": "7cbc1a0885480e2f6e5cf5bf2d524cc08d46370e",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:14:46.003192+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "a9385953fe0626d10a2b1c7221e01defd230ab96"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:14:46.003192+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "a9385953fe0626d10a2b1c7221e01defd230ab96",
+  "created_at": "2026-04-10T08:06:20.478205+00:00",
+  "friendly_name": "008 share playback sbti feedback polish",
+  "mission_number": "008",
+  "mission_slug": "008-008-share-playback-sbti-feedback-polish",
+  "mission_type": "software-dev",
+  "slug": "008-008-share-playback-sbti-feedback-polish",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}

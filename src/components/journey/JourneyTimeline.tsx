@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import type { DerivedTaskMilestone, LocaleCode, TimelineHint } from "../../content";
 import TaskMilestoneCard from "./TaskMilestoneCard";
 
@@ -8,8 +8,13 @@ interface JourneyTimelineProps {
   currentHint: TimelineHint;
   hasStarted: boolean;
   idleLabel: string;
+  isAutoplay: boolean;
+  isComplete: boolean;
   isReducedMotion: boolean;
   locale: LocaleCode;
+  pauseLabel: string;
+  resumeLabel: string;
+  onToggleAutoplay: () => void;
   onTaskSelect: (taskIndex: number) => void;
   onTaskMount: (taskId: string, element: HTMLElement | null) => void;
 }
@@ -20,11 +25,17 @@ export function JourneyTimeline({
   currentHint,
   hasStarted,
   idleLabel,
+  isAutoplay,
+  isComplete,
   isReducedMotion,
   locale,
+  pauseLabel,
+  resumeLabel,
+  onToggleAutoplay,
   onTaskSelect,
   onTaskMount
 }: JourneyTimelineProps) {
+  const [expandedTaskIds, setExpandedTaskIds] = useState<Record<string, boolean>>({});
   const activeTask =
     tasks.find((task) => task.state === "active") ??
     (hasStarted && tasks.length > 0 ? tasks[tasks.length - 1] : undefined);
@@ -40,10 +51,26 @@ export function JourneyTimeline({
     background: "linear-gradient(90deg, var(--color-highlight), var(--coral-bright))",
     transition: "width var(--step-slow) var(--ease-emphatic)"
   };
+  const showFloatingAutoplayControl = hasStarted && !isReducedMotion && !isComplete;
 
   return (
     <div className="journey-flow-column">
-      <div className="journey-summary-card">
+      <div
+        className={`journey-summary-card${showFloatingAutoplayControl ? " journey-summary-card--with-control" : ""}`}
+      >
+        {showFloatingAutoplayControl ? (
+          <button
+            type="button"
+            className="journey-floating-toggle"
+            aria-pressed={isAutoplay}
+            onClick={onToggleAutoplay}
+          >
+            <span className="journey-floating-toggle__icon" aria-hidden="true">
+              {isAutoplay ? "||" : ">"}
+            </span>
+            <span>{isAutoplay ? pauseLabel : resumeLabel}</span>
+          </button>
+        ) : null}
         <div className="journey-summary-row">
           <div className="journey-summary-copy">
             <strong>
@@ -65,8 +92,8 @@ export function JourneyTimeline({
                 ? "已切换到低动态模式"
                 : "Reduced-motion mode is active"
               : locale === "zh"
-                ? "自动推进会把五个 Task 串成一段完整旅程"
-                : "Autoplay will connect all five tasks into one readable journey"}
+                ? "自动推进会把六个 Task 串成一段完整旅程"
+                : "Autoplay will connect all six tasks into one readable journey"}
           </span>
         </div>
 
@@ -93,7 +120,14 @@ export function JourneyTimeline({
             locale={locale}
             hasStarted={hasStarted}
             isReducedMotion={isReducedMotion}
+            isExpanded={Boolean(expandedTaskIds[task.taskId])}
             onSelect={() => onTaskSelect(taskIndex)}
+            onToggleExpanded={() =>
+              setExpandedTaskIds((previousState) => ({
+                ...previousState,
+                [task.taskId]: !previousState[task.taskId]
+              }))
+            }
             articleRef={(element) => onTaskMount(task.taskId, element)}
           />
         ))}

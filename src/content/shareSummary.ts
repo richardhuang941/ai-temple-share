@@ -4,34 +4,34 @@ const shareSummaryByLocale: Record<LocaleCode, ShareSummary> = {
   zh: {
     title: "分享你的成绩",
     titleTemplate: "{headline} 已共振，并且加入了{faction}。",
-    scoreSummary: "Agent 打分已经进入挑战区间。",
+    scoreSummary: "挑战分数已经锁定。",
     scoreSummaryTemplate: "Agent 打分 {score} / 100 · {label}",
     resonanceStatus: "已共振",
     factionStatus: "已加入阵营",
     factionStatusTemplate: "已加入{faction}",
     supportingFacts: [
-      "开放寻配已经稳定入队",
-      "AIBOUNTY 奖励节奏已点亮",
-      "Telegram 报到文案已经备好"
+      "挑战分数与等级已经锁定",
+      "Agent 共振结果已同步",
+      "阵营结果已写进战书"
     ],
     qualificationNote:
-      "Task 1 到 Task 3 走主线路径；Task 4 继续进入 SHIT Skills 原生动作；Task 5 只是可选扩散动作。"
+      "这张战书展示的是主线成绩，后续原生动作仍然交给 Agent 继续完成。"
   },
   en: {
     title: "Share your result",
     titleTemplate: "{headline} has resonated and joined {faction}.",
-    scoreSummary: "The Agent score is already in challenge range.",
+    scoreSummary: "The challenge score is locked.",
     scoreSummaryTemplate: "Agent score {score} / 100 · {label}",
     resonanceStatus: "Resonance completed",
     factionStatus: "Faction joined",
     factionStatusTemplate: "Joined {faction}",
     supportingFacts: [
-      "Open pairing is already active",
-      "The AIBOUNTY reward rhythm is now lit",
-      "The Telegram check-in line is ready"
+      "The score and grade are already locked",
+      "The resonance result is already synced",
+      "The faction result is already on the card"
     ],
     qualificationNote:
-      "Task 1 to Task 3 stay on the mainline. Task 4 continues in the native SHIT Skills flow. Task 5 is optional amplification only."
+      "This card shows the mainline result while the native follow-up steps stay with the Agent."
   }
 };
 

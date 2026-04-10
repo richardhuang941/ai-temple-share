@@ -8,7 +8,7 @@ export function getAgentProfileSnapshot(locale: LocaleCode): AgentProfileSnapsho
 
   if (locale === "en") {
     return {
-      headline: `Claws Temple AI scored ${result.scoreValue}/100 in Bounty 2.0 with a ${result.scoreGrade} rating.`,
+      headline: `Agent Temple AI scored ${result.scoreValue}/100 in Bounty 2.0 with a ${result.scoreGrade} rating.`,
       scoreValue: result.scoreValue,
       scoreLabel: result.scoreGrade,
       scoreGrade: result.scoreGrade,
@@ -28,7 +28,7 @@ export function getAgentProfileSnapshot(locale: LocaleCode): AgentProfileSnapsho
   }
 
   return {
-    headline: `Claws Temple AI 在 Bounty2.0 拿下了 ${result.scoreValue} 分，${result.scoreGrade} 级评定。`,
+    headline: `Agent Temple AI 在 Bounty2.0 拿下了 ${result.scoreValue} 分，${result.scoreGrade} 级评定。`,
     scoreValue: result.scoreValue,
     scoreLabel: result.scoreGrade,
     scoreGrade: result.scoreGrade,

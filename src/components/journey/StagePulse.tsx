@@ -5,6 +5,7 @@ interface StagePulseProps {
   stage: DerivedTaskStage;
   isReducedMotion: boolean;
   locale: LocaleCode;
+  isExpanded?: boolean;
 }
 
 const paletteByStatus: Record<DerivedTaskStage["status"], string> = {
@@ -29,7 +30,7 @@ function getLabelByStatus(locale: LocaleCode): Record<DerivedTaskStage["status"]
   };
 }
 
-export function StagePulse({ stage, isReducedMotion, locale }: StagePulseProps) {
+export function StagePulse({ stage, isReducedMotion, locale, isExpanded = false }: StagePulseProps) {
   const labelByStatus = getLabelByStatus(locale);
   const markerStyle: CSSProperties = {
     background: paletteByStatus[stage.status],
@@ -43,6 +44,7 @@ export function StagePulse({ stage, isReducedMotion, locale }: StagePulseProps) 
   return (
     <li
       className="journey-stage"
+      data-expanded={isExpanded ? "true" : undefined}
       data-current={stage.isCurrent ? "true" : undefined}
       data-status={stage.status}
       style={{
@@ -53,19 +55,24 @@ export function StagePulse({ stage, isReducedMotion, locale }: StagePulseProps) 
       <div className="journey-stage-copy">
         <div className="journey-stage-title">
           <strong>{stage.label}</strong>
-          <span style={{ color: paletteByStatus[stage.status] }}>
+          <span
+            className="journey-stage-status"
+            data-status={stage.status}
+            style={{ color: paletteByStatus[stage.status] }}
+          >
+            {stage.status === "active" ? <span aria-hidden="true" className="journey-stage-spinner" /> : null}
             {labelByStatus[stage.status]}
           </span>
         </div>
-        <span className="journey-stage-description">{stage.description}</span>
-        {(stage.proof || stage.externalTarget) && (
+        {isExpanded ? <span className="journey-stage-description">{stage.description}</span> : null}
+        {(stage.proof || (isExpanded && stage.externalTarget)) && (
           <div className="journey-stage-meta">
-            {stage.proof ? (
+            {stage.proof && (isExpanded || stage.status === "done") ? (
               <span className="journey-stage-proof">
                 {locale === "zh" ? "证据" : "Proof"}: {stage.proof}
               </span>
             ) : null}
-            {stage.externalTarget ? (
+            {isExpanded && stage.externalTarget ? (
               <span className="journey-stage-external">
                 {locale === "zh" ? "外部去向" : "External handoff"}: {stage.externalTarget}
               </span>

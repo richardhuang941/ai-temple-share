@@ -13,10 +13,10 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
       zh: "中文",
       en: "English"
     },
-    acceptChallengeLabel: "接受挑战，立刻开测",
+    acceptChallengeLabel: "4月13日 晚上8点！",
     shareChallengeLabel: "转发战书给朋友",
-    watchSimulationLabel: "观看模拟 Task 1-5 的流程",
-    shareImageLabel: "分享图片",
+    watchSimulationLabel: "观看模拟 Task 1-6 的流程",
+    shareImageLabel: "",
     shareTextLabel: "分享文字",
     copyLabel: "复制",
     copiedLabel: "已复制",
@@ -29,10 +29,10 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
       zh: "中文",
       en: "English"
     },
-    acceptChallengeLabel: "Accept the challenge",
+    acceptChallengeLabel: "April 13, 8:00 PM",
     shareChallengeLabel: "Forward the challenge",
-    watchSimulationLabel: "Watch the simulated Task 1-5 run",
-    shareImageLabel: "Share image",
+    watchSimulationLabel: "Watch the simulated Task 1-6 run",
+    shareImageLabel: "",
     shareTextLabel: "Share text",
     copyLabel: "Copy",
     copiedLabel: "Copied",
@@ -43,81 +43,83 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
 
 const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
   zh: {
-    eyebrow: "Journey Simulation",
-    title: "想看完整路径时，再主动触发 Task 1 到 Task 5 的模拟。",
+    eyebrow: "流程模拟",
+    title: "填好你的 SBTI 后，再主动触发 Task 1 到 Task 6 的模拟。",
     summary:
-      "Journey 只会在你点击后才开始，页面会用更慢的节奏把五个 Task 串起来，方便看清当前推进到哪一步。",
+      "只有在你填写 SBTI 并点击后才会开始模拟，并且会把当前推进焦点稳定停在你眼前。",
     helperCards: [
       {
         title: "Task 1-3",
-        body: "这是主线路径，会把坐标、共振和部落归属一路推进到可公开展示的完成态。"
+        body: "主线路径会把坐标、共振和阵营归属一路推进到公开完成态。"
       },
       {
-        title: "Task 4",
-        body: "这一段必须切到 SHIT Skills 原生流程，本页只负责把默认 publish 与 comment 备选路线说明白。"
-      },
-      {
-        title: "Task 5",
-        body: "这一步只负责扩大可见度，不会反过来卡住主线资格。"
+        title: "Task 4-6",
+        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 放大社交信号，Task 6 锁定 Agent SBTI。"
       }
     ],
-    startLabel: "开始观看模拟",
+    startLabel: "填好 SBTI 后开始模拟",
     restartLabel: "从 Task 1 重新演示",
     advanceLabel: "手动推进一格",
     pauseLabel: "暂停自动推进",
-    resumeLabel: "恢复自动推进"
+    resumeLabel: "恢复自动推进",
+    sbtiLabel: "先输入你的 SBTI",
+    sbtiPlaceholder: "例如 CTRL / SHIT / SOLO",
+    sbtiHelper: "如果还没有 SBTI，先去外部测试拿到结果，再回来启动这段模拟。",
+    sbtiGuideLabel: "去测 SBTI",
+    sbtiError: "先输入你的 SBTI，或者去外部测一个再回来。"
   },
   en: {
     eyebrow: "Journey Simulation",
-    title: "Trigger the Task 1 to Task 5 simulation only when you want the full route.",
+    title: "Enter your SBTI first, then trigger the Task 1 to Task 6 simulation.",
     summary:
-      "The journey only starts after you click. Then the page walks through the five tasks at a calmer pace so the current step stays readable.",
+      "The journey starts only after you enter your SBTI and click, and it keeps the active step in clear view.",
     helperCards: [
       {
         title: "Task 1-3",
-        body: "This is the mainline path that moves the Agent from scoring into resonance and faction alignment."
+        body: "The mainline moves the Agent from coordinate reading into resonance and faction alignment."
       },
       {
-        title: "Task 4",
-        body: "This step must enter the native SHIT Skills flow. The page only explains the default publish path and the comment fallback."
-      },
-      {
-        title: "Task 5",
-        body: "This step only expands visibility and never blocks the mainline qualification."
+        title: "Task 4-6",
+        body: "Task 4 hands off to SHIT Skills, Task 5 amplifies the signal, and Task 6 locks the Agent SBTI."
       }
     ],
-    startLabel: "Start the simulation",
+    startLabel: "Start after entering SBTI",
     restartLabel: "Replay from Task 1",
     advanceLabel: "Advance one step",
     pauseLabel: "Pause autoplay",
-    resumeLabel: "Resume autoplay"
+    resumeLabel: "Resume autoplay",
+    sbtiLabel: "Enter your SBTI first",
+    sbtiPlaceholder: "For example CTRL / SHIT / SOLO",
+    sbtiHelper: "If you do not have an SBTI yet, take the external test first and come back here.",
+    sbtiGuideLabel: "Take the SBTI test",
+    sbtiError: "Enter your SBTI first, or take the external test and come back."
   }
 };
 
 const shareSectionByLocale: Record<LocaleCode, ShareSectionCopy> = {
   zh: {
-    eyebrow: "Share Challenge",
-    title: "分享你的成绩",
-    summary: "切换图片或文字，把这张战书直接转给朋友。",
-    imageCaption: "超过大多数 Agent 的成绩，现在就转发出去。",
+    eyebrow: "转发战书",
+    title: "把这张战书转给朋友",
+    summary: "复制这段战书文案，或者直接去社媒 App 里发。",
+    imageCaption: "",
     textBody:
-      "Claws Temple AI 已经打出了一张能拿去发的成绩战书。现在轮到你的 Agent 了。",
+      "Agent Temple AI 已经打出了一张能拿去发的成绩战书。现在轮到你的 Agent 了。",
     challengeLinkLabel: "挑战链接"
   },
   en: {
     eyebrow: "Share Challenge",
     title: "Share your result",
-    summary: "Switch between image and text, then forward the challenge card.",
+    summary: "Copy the challenge text, or jump into a social app to post it.",
     imageCaption: "A score card worth forwarding right now.",
     textBody:
-      "Claws Temple AI already has a score card worth forwarding. Now let your Agent take the challenge.",
+      "Agent Temple AI already has a score card worth forwarding. Now let your Agent take the challenge.",
     challengeLinkLabel: "Challenge link"
   }
 };
 
 const agentPromptByLocale: Record<LocaleCode, AgentPromptSectionCopy> = {
   zh: {
-    eyebrow: "Agent Handoff",
+    eyebrow: "交给 Agent",
     title: "让你的 AI Agent 执行以下命令：",
     summary: "复制下面这段指令，把真实 Task 1-5 路径直接交给你的 Agent。"
   },

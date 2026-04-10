@@ -1,0 +1,37 @@
+{
+  "mission_slug": "009-agent-temple-brand-neutralization",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "All visible `Claws Temple` and `Claws Temple AI` brand copy is replaced with `Agent Temple` and `Agent Temple AI` across the page entry, header, hero, share surface, and default content copy.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx + tests/unit/contentMappers.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:25:54+08:00",
+      "notes": "Integration and unit coverage verify the new Agent Temple branding in visible content and derived share/profile copy."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Brand-neutralization updates preserve functional external identifiers such as the real GitHub org and deployed domain.",
+      "proof_type": "code_review",
+      "evidence": "src/content/agentPromptCards.ts + src/content/sharePlatformCopy.ts + index.html",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:25:54+08:00",
+      "notes": "The implementation updates plain branding text while leaving `Claws-Temple/...` repo references and `claws-temple-home.vercel.app` intact."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The 009 brand-neutralization set remains buildable and all work packages are recorded in the done lane before acceptance.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build + kitty-specs/009-agent-temple-brand-neutralization/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:25:54+08:00",
+      "notes": "The final validation run passed 29 tests across 4 files, the Vite production build completed successfully, and WP01 through WP02 are materialized in the done lane."
+    }
+  ],
+  "negative_invariants": []
+}

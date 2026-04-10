@@ -12,7 +12,7 @@ export function SectionHeading({
   id
 }: SectionHeadingProps) {
   return (
-    <header style={{ display: "grid", gap: "0.65rem", maxWidth: "40rem" }}>
+    <header style={{ display: "grid", gap: "0.65rem", maxWidth: "var(--max-panel-width)", width: "100%" }}>
       <span className="eyebrow">{eyebrow}</span>
       <h2
         id={id}

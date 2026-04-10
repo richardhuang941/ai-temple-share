@@ -1,0 +1,23 @@
+{
+  "accept_commit": "61155bb167299371c4c7747630676145f830e567",
+  "acceptance_history": [
+    {
+      "accept_commit": "61155bb167299371c4c7747630676145f830e567",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T09:10:11.084416+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "8057771534b174163f4dbb5da6083f7b91e1d9f4"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T09:10:11.084416+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "8057771534b174163f4dbb5da6083f7b91e1d9f4",
+  "created_at": "2026-04-10T09:00:48.886929+00:00",
+  "friendly_name": "agent sbti decouple",
+  "mission_number": "012",
+  "mission_slug": "012-agent-sbti-decouple",
+  "mission_type": "software-dev",
+  "slug": "012-agent-sbti-decouple",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}

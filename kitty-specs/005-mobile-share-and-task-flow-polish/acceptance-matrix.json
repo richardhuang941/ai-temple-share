@@ -1,0 +1,47 @@
+{
+  "mission_slug": "005-mobile-share-and-task-flow-polish",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The share surface stays text-only, removes fallback implementation copy from the user-facing card, and keeps desktop platform entry limited to X.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T12:08:13+08:00",
+      "notes": "Integration coverage verifies the text-only share surface, the absence of fallback helper copy on desktop, and the desktop X-only platform row."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Mobile share handoff copies a single challenge payload before the app-wakeup dialog, and completed Journey tasks can be inspected locally without replaying the run.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T12:08:13+08:00",
+      "notes": "The regression suite now covers single-link mobile copy payloads, the handoff dialog, and completed-task expansion that preserves the current Journey focus."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Unit and integration validation remain green, and the Vite production bundle builds successfully after the 005 polish set.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T12:08:13+08:00",
+      "notes": "The final regression run passed 28 tests across 4 files, and the production build completed successfully."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "All four work packages completed implement and review, and each reached approved status in the Spec Kitty workflow before acceptance.",
+      "proof_type": "code_review",
+      "evidence": "kitty-specs/005-mobile-share-and-task-flow-polish/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T12:08:13+08:00",
+      "notes": "WP01 through WP04 are all in the approved lane and the mission summary reports approved=4 with no planned, in-progress, or for-review work left."
+    }
+  ],
+  "negative_invariants": []
+}

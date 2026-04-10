@@ -1,0 +1,32 @@
+{
+  "event_count": 12,
+  "last_event_id": "01KNV8M3K498M7Q8EB8G6P4VK3",
+  "materialized_at": "2026-04-10T08:37:32.388593+00:00",
+  "mission_slug": "010-journey-sbti-scrollback-focus",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 2,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 0
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "user",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV8M3HDGEZM6ZS2S1A0GQ7B",
+      "last_transition_at": "2026-04-10T08:37:32.333943+00:00"
+    },
+    "WP02": {
+      "actor": "user",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNV8M3K498M7Q8EB8G6P4VK3",
+      "last_transition_at": "2026-04-10T08:37:32.388593+00:00"
+    }
+  }
+}

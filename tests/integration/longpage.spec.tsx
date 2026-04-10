@@ -18,23 +18,24 @@ function setNavigatorLanguages(languages: string[], language = languages[0] ?? "
   });
 }
 
+function setNavigatorUserAgent(userAgent: string): void {
+  Object.defineProperty(window.navigator, "userAgent", {
+    configurable: true,
+    value: userAgent
+  });
+}
+
 function primeSeed(seed = "seed-1"): void {
   window.sessionStorage.setItem(SESSION_STORAGE_KEY, seed);
 }
 
-async function triggerHashNavigation(hash: string): Promise<void> {
-  await act(async () => {
-    window.location.hash = hash;
-    window.dispatchEvent(new HashChangeEvent("hashchange"));
-  });
-}
-
-describe("Claws Temple Bounty longpage", () => {
+describe("Agent Temple Bounty longpage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
     window.location.hash = "";
     setNavigatorLanguages(["zh-CN"]);
+    setNavigatorUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)");
     primeSeed();
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
       configurable: true,
@@ -46,26 +47,23 @@ describe("Claws Temple Bounty longpage", () => {
     vi.restoreAllMocks();
   });
 
-  it("renders the four core sections in the intended longpage order", () => {
+  it("renders the visible core sections in the intended longpage order", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
     expect(screen.getByRole("heading", { name: bundle.hero.title })).toBeTruthy();
-    expect(screen.getByRole("heading", { level: 2, name: bundle.agentPromptSection.title })).toBeTruthy();
     expect(screen.getByRole("heading", { level: 2, name: bundle.shareSection.title })).toBeTruthy();
     expect(screen.getByRole("heading", { level: 2, name: bundle.journey.title })).toBeTruthy();
 
     const hero = document.getElementById("top");
-    const prompt = document.getElementById("agent-prompt");
     const share = document.getElementById("share");
     const journey = document.getElementById("journey");
 
     expect(hero).toBeTruthy();
-    expect(prompt).toBeTruthy();
+    expect(document.getElementById("agent-prompt")).toBeNull();
     expect(share).toBeTruthy();
     expect(journey).toBeTruthy();
-    expect(hero!.compareDocumentPosition(prompt!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
-    expect(prompt!.compareDocumentPosition(share!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
+    expect(hero!.compareDocumentPosition(share!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
     expect(share!.compareDocumentPosition(journey!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
   });
 
@@ -107,35 +105,98 @@ describe("Claws Temple Bounty longpage", () => {
     expect(container.textContent).toContain(`${bundle.agentProfile.scoreValue}`);
     expect(container.textContent).toContain(bundle.selectedFaction.displayName);
     expect(within(shareSection as HTMLElement).getAllByText(shareView.scoreSummary).length).toBeGreaterThan(0);
-    expect(within(shareSection as HTMLElement).getByText(shareView.title)).toBeTruthy();
+    expect(container.textContent).not.toContain("LBTI");
     expect(container.textContent).not.toContain("首页先只看");
     expect(container.textContent).not.toContain("演示页，不代替真实注册、共振、宣誓、Telegram 报到或 SHIT Skills 动作");
   });
 
-  it("wires the three hero CTAs to the correct sections", () => {
+  it("wires the hero actions to the updated launch, share, and journey targets", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
     expect(screen.queryByRole("link", { name: "查看完整成绩单" })).toBeNull();
-    expect(screen.getByRole("link", { name: bundle.chrome.acceptChallengeLabel }).getAttribute("href")).toBe("#agent-prompt");
+    expect(screen.getByRole("button", { name: bundle.chrome.acceptChallengeLabel })).toBeTruthy();
     expect(screen.getByRole("link", { name: bundle.chrome.shareChallengeLabel }).getAttribute("href")).toBe("#share");
-    expect(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }).getAttribute("href")).toBe("#journey");
+    expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
   });
 
-  it("switches the share surface between image and text modes", () => {
+  it("keeps Task 6 Agent SBTI independent from the human SBTI gate input", () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    const task6Badge = bundle.tasks[5].completionBadge;
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
+
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "CTRL" }
+    });
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "SOLO" }
+    });
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+  });
+
+  it("keeps share text-only and hides app-entry buttons on desktop", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
     const shareSection = document.getElementById("share");
     expect(shareSection).toBeTruthy();
 
-    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.shareTextLabel }));
-
-    expect(within(shareSection as HTMLElement).getByText(new RegExp(bundle.shareSection.challengeLinkLabel))).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getAllByText(new RegExp(bundle.shareSection.challengeLinkLabel)).length).toBeGreaterThan(0);
     expect(within(shareSection as HTMLElement).getAllByRole("button", { name: bundle.chrome.copyLabel }).length).toBeGreaterThan(0);
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getAllByText(/你的 Agent 敢来比一比吗/)).toHaveLength(1);
+    expect(within(shareSection as HTMLElement).queryByRole("button", { name: "微信" })).toBeNull();
+    expect(within(shareSection as HTMLElement).queryByText(/系统分享/)).toBeNull();
   });
 
-  it("only starts the journey from the watch-simulation CTA and emphasizes the prompt on accept", async () => {
+  it("shows app-entry buttons on mobile", () => {
+    setNavigatorUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)");
+    render(<App />);
+
+    const shareSection = document.getElementById("share");
+    expect(shareSection).toBeTruthy();
+
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "微信" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "小红书" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "抖音" })).toBeTruthy();
+  });
+
+  it("copies a single mobile share payload before the app handoff dialog appears", async () => {
+    setNavigatorUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)");
+    const writeText = vi.fn().mockResolvedValue(undefined);
+
+    Object.defineProperty(window.navigator, "clipboard", {
+      configurable: true,
+      value: { writeText }
+    });
+
+    render(<App />);
+
+    const shareSection = document.getElementById("share");
+    expect(shareSection).toBeTruthy();
+
+    await act(async () => {
+      fireEvent.click(within(shareSection as HTMLElement).getByRole("button", { name: "微信" }));
+    });
+
+    expect(writeText).toHaveBeenCalledTimes(1);
+
+    const copiedPayload = String(writeText.mock.calls[0]?.[0] ?? "");
+    const challengeLinkMatches = copiedPayload.match(/https:\/\/claws-temple-home\.vercel\.app/g) ?? [];
+
+    expect(challengeLinkMatches).toHaveLength(1);
+    expect(screen.getByRole("dialog")).toBeTruthy();
+    expect(screen.getByText("分享文案已复制")).toBeTruthy();
+  });
+
+  it("requires SBTI before the journey can start and shakes the input gate on empty watch clicks", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();
 
@@ -146,18 +207,88 @@ describe("Claws Temple Bounty longpage", () => {
 
     render(<App />);
 
-    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.acceptChallengeLabel }));
-    const promptCard = document.querySelector(".prompt-card");
-
-    expect(promptCard?.getAttribute("data-emphasized")).toBe("true");
-    expect(scrollIntoViewMock).not.toHaveBeenCalled();
-
     window.location.hash = "";
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
 
-    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }));
-    await triggerHashNavigation("#journey");
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
+    expect(document.activeElement).toBe(sbtiInput);
+    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
+    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "CTRL" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
     expect(scrollIntoViewMock).toHaveBeenCalled();
+  });
+
+  it("scrolls back to the Hero SBTI input when the Journey start button is clicked without SBTI", () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    const scrollIntoViewMock = vi.fn();
+
+    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+      configurable: true,
+      value: scrollIntoViewMock
+    });
+
+    render(<App />);
+
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
+    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
+    expect(document.activeElement).toBe(sbtiInput);
+    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
+    expect(scrollIntoViewMock).toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
+  });
+
+  it("expands completed tasks locally without replaying the active journey", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    const { container } = render(<App />);
+
+    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
+      target: { value: "CTRL" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
+
+    const advanceButton = await screen.findByRole("button", { name: bundle.journey.advanceLabel });
+
+    let expandButton = screen.queryByRole("button", { name: /展开这个 Task/ });
+
+    for (let index = 0; index < 8 && !expandButton; index += 1) {
+      fireEvent.click(advanceButton);
+      expandButton = screen.queryByRole("button", { name: /展开这个 Task/ });
+    }
+
+    const focusBeforeExpand = container.querySelector(".journey-summary-copy strong")?.textContent;
+    expect(expandButton).toBeTruthy();
+
+    fireEvent.click(expandButton as HTMLElement);
+
+    expect(screen.getByRole("button", { name: /收起这个 Task/ })).toBeTruthy();
+    expect(document.getElementById("task-1-stage-list")).toBeTruthy();
+    expect(container.querySelector(".journey-summary-copy strong")?.textContent).toBe(focusBeforeExpand);
+  });
+
+  it("shows a floating autoplay control that can pause and resume the active journey", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
+      target: { value: "CTRL" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
+
+    const pauseButton = await screen.findByRole("button", { name: bundle.journey.pauseLabel });
+    expect(pauseButton).toBeTruthy();
+
+    fireEvent.click(pauseButton);
+
+    expect(screen.getByRole("button", { name: bundle.journey.resumeLabel })).toBeTruthy();
   });
 });

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "mission_slug": "012-agent-sbti-decouple",
+  "mission_id": "012-agent-sbti-decouple",
+  "mission_branch": "kitty/mission-012-agent-sbti-decouple",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02"
+      ],
+      "write_scope": [
+        "kitty-specs/012-agent-sbti-decouple/**",
+        "src/App.tsx",
+        "src/content/agentSbtiProfiles.ts",
+        "src/content/index.ts",
+        "src/content/models.ts",
+        "src/content/taskMilestones.ts",
+        "tests/integration/longpage.spec.tsx",
+        "tests/unit/contentMappers.test.ts"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T09:02:51.246153+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      }
+    ],
+    "total_merges": 1,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 1
+    }
+  }
+}

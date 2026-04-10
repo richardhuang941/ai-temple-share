@@ -160,13 +160,7 @@ function isMeaningfulStageFocus(task: TaskMilestone | undefined, stageIndex: num
     return false;
   }
 
-  const stage = task.stages[stageIndex];
-
-  return (
-    stageIndex === 0 ||
-    stageIndex === task.stages.length - 1 ||
-    Boolean(stage.externalTarget)
-  );
+  return true;
 }
 
 export function shouldAutoFocusTask(

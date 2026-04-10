@@ -8,7 +8,9 @@ interface TaskMilestoneCardProps {
   locale: LocaleCode;
   hasStarted: boolean;
   isReducedMotion: boolean;
+  isExpanded: boolean;
   onSelect: () => void;
+  onToggleExpanded: () => void;
   articleRef?: (element: HTMLElement | null) => void;
 }
 
@@ -27,11 +29,15 @@ export function TaskMilestoneCard({
   locale,
   hasStarted,
   isReducedMotion,
+  isExpanded,
   onSelect,
+  onToggleExpanded,
   articleRef
 }: TaskMilestoneCardProps) {
   const featuredProof = getFeaturedProof(task);
   const isActive = hasStarted && task.state === "active";
+  const isCompleted = task.state === "completed";
+  const shouldShowDetails = isActive || isExpanded;
   const currentStage = task.stages.find((stage) => stage.isCurrent);
   const liveStageLabel =
     currentStage?.label ??
@@ -45,12 +51,28 @@ export function TaskMilestoneCard({
     featuredProof ??
     (locale === "zh" ? "当前还没有新的公开证据。" : "No new public proof is visible yet.");
   const cardStyle: CSSProperties = isActive && !isReducedMotion ? { transform: "translateY(-3px)" } : {};
+  const actionLabel =
+    locale === "zh"
+      ? isExpanded
+        ? "收起这个 Task"
+        : isCompleted
+          ? "展开这个 Task"
+          : "切到这个 Task"
+      : isExpanded
+        ? "Collapse this task"
+        : isCompleted
+          ? "Expand this task"
+          : "Focus this task";
+  const activeFooterLabel =
+    locale === "zh" ? "当前任务下一步" : "Current task next step";
+  const stageListId = `${task.taskId}-stage-list`;
 
   return (
     <article
       ref={articleRef}
       className="journey-card"
       data-state={task.state}
+      data-expanded={shouldShowDetails ? "true" : undefined}
       data-optional={task.isOptional ? "true" : undefined}
       data-external={task.isExternalFlow ? "true" : undefined}
       style={cardStyle}
@@ -64,7 +86,7 @@ export function TaskMilestoneCard({
         </div>
         <div className="journey-card-badges">
           {task.isExternalFlow ? (
-            <CompletionBadge tone="warning">{locale === "zh" ? "原生流" : "Native flow"}</CompletionBadge>
+            <CompletionBadge tone="warning">{locale === "zh" ? "原生流程" : "Native flow"}</CompletionBadge>
           ) : null}
           {task.isOptional ? (
             <CompletionBadge tone="default">{locale === "zh" ? "可选项" : "Optional"}</CompletionBadge>
@@ -73,14 +95,14 @@ export function TaskMilestoneCard({
             <CompletionBadge tone="success">{locale === "zh" ? "已走完" : "Completed"}</CompletionBadge>
           ) : null}
           {isActive ? (
-            <CompletionBadge tone="warning">{locale === "zh" ? "当前主舞台" : "Current stage"}</CompletionBadge>
+            <CompletionBadge tone="warning">{locale === "zh" ? "当前焦点" : "Current focus"}</CompletionBadge>
           ) : null}
         </div>
       </div>
 
       <div className="journey-card-body">
         <p className="journey-card-purpose">{task.purpose}</p>
-        <p className="journey-card-summary">{task.summary}</p>
+        {shouldShowDetails ? <p className="journey-card-summary">{task.summary}</p> : null}
       </div>
 
       <div className="journey-live-strip">
@@ -89,46 +111,53 @@ export function TaskMilestoneCard({
         <p>{liveProof}</p>
       </div>
 
-      <div className="journey-metrics">
-        <div className="journey-metric">
-          <span>{locale === "zh" ? "完成徽记" : "Completion badge"}</span>
-          <strong>{task.completionBadge}</strong>
-        </div>
-        <div className="journey-metric">
-          <span>{locale === "zh" ? "推进进度" : "Progress"}</span>
-          <strong>{Math.round(task.progressRatio * 100)}%</strong>
-        </div>
-        <div className="journey-metric">
-          <span>{locale === "zh" ? "高亮证据" : "Featured proof"}</span>
-          <strong>{featuredProof ?? (locale === "zh" ? "等待当前阶段点亮" : "Waiting for the next lit stage")}</strong>
-        </div>
+      <div className="journey-card-footnote">
+        <span>{locale === "zh" ? "完成结果" : "Completion result"}</span>
+        <strong>{task.completionBadge}</strong>
       </div>
 
-      <ul className="journey-stage-list">
-        {task.stages.map((stage) => (
-          <StagePulse
-            key={stage.stageId}
-            stage={stage}
-            isReducedMotion={isReducedMotion}
-            locale={locale}
-          />
-        ))}
-      </ul>
+      {shouldShowDetails ? (
+        <ul id={stageListId} className="journey-stage-list">
+          {task.stages.map((stage) => (
+            <StagePulse
+              key={stage.stageId}
+              stage={stage}
+              isReducedMotion={isReducedMotion}
+              locale={locale}
+              isExpanded={isActive ? stage.isCurrent : true}
+            />
+          ))}
+        </ul>
+      ) : null}
 
-      <button
-        type="button"
-        onClick={onSelect}
-        className="journey-card-action"
-      >
-        <strong>
-          {task.cta ?? (locale === "zh" ? "继续查看下一步" : "Continue to the next step")}
-        </strong>
-        <span>
-          {locale === "zh"
-            ? "点击可把聚焦切到这个任务，从头看它的阶段推进。"
-            : "Click to move focus to this task and replay its stage progression."}
-        </span>
-      </button>
+      {isActive ? (
+        <div className="journey-card-action journey-card-action--active" role="note" aria-label={activeFooterLabel}>
+          <strong>{task.cta ?? (locale === "zh" ? "继续查看下一步" : "Continue to the next step")}</strong>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={isCompleted ? onToggleExpanded : onSelect}
+          className="journey-card-action"
+          aria-expanded={isCompleted ? isExpanded : undefined}
+          aria-controls={isCompleted && shouldShowDetails ? stageListId : undefined}
+        >
+          <strong>{actionLabel}</strong>
+          <span>
+            {isCompleted
+              ? isExpanded
+                ? locale === "zh"
+                  ? "收起这个 Task 的阶段明细，不影响当前推进。"
+                  : "Collapse these stage details without changing the live run."
+                : locale === "zh"
+                  ? "直接下拉看完这个 Task 的阶段明细，不会重跑。"
+                  : "Open the completed stages directly without replaying the run."
+              : locale === "zh"
+                ? "把当前聚焦切到这里。"
+                : "Move the live focus here."}
+          </span>
+        </button>
+      )}
     </article>
   );
 }

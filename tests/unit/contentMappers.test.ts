@@ -6,6 +6,7 @@ import {
   getShareSummary,
   getTaskMilestones
 } from "../../src/content";
+import { deriveAgentSbtiCode, resolveAgentSbtiProfile } from "../../src/content/agentSbtiProfiles";
 import { clearSimulationSeedForTesting, setSimulationSeedForTesting } from "../../src/lib/simulationSeed";
 import { deriveJourneyMilestones, deriveShareSummaryView } from "../../src/lib/contentMappers";
 import { createInitialTimelineState } from "../../src/lib/timeline";
@@ -31,39 +32,69 @@ describe("content mappers", () => {
       selectedFaction
     );
 
-    expect(view.title).toContain("Claws Temple AI");
+    expect(view.title).toContain("Agent Temple AI");
     expect(view.scoreSummary).toContain(`${agentProfile.scoreValue} / 100`);
     expect(view.scoreSummary).toContain(agentProfile.scoreGrade);
     expect(view.factionStatus).toContain(selectedFaction.displayName);
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
-        "部落方向映射到变异体",
-        "用户ID 已锁定",
+        "方向：变异体",
+        "用户ID 已解析",
         "已满足 2 AIBOUNTY 门槛"
       ])
     );
   });
 
-  it("keeps the five tasks in the exact branded order and preserves Task 4/5 semantics", () => {
+  it("keeps the six tasks in the exact branded order and appends the Agent SBTI finale", () => {
     const tasks = getTaskMilestones("zh");
+    const repeatedTasks = getTaskMilestones("zh");
 
     expect(tasks.map((task) => task.taskId)).toEqual([
       "task-1",
       "task-2",
       "task-3",
       "task-4",
-      "task-5"
+      "task-5",
+      "task-6"
     ]);
     expect(tasks.map((task) => task.brandedName)).toEqual([
       "原力坐标测绘",
       "光锥交汇",
       "原野部落归属",
       "奇物志",
-      "社交寻配"
+      "社交寻配",
+      "Agent SBTI"
     ]);
     expect(tasks[2].stages.map((stage) => stage.stageId)).toContain("task-3-threshold");
     expect(tasks[3].isExternalFlow).toBe(true);
     expect(tasks[4].isOptional).toBe(true);
+    expect(tasks[5].completionBadge).toContain("·");
+    expect(tasks[5].completionBadge).toBe(repeatedTasks[5].completionBadge);
+    expect(tasks[5].stages[0].description).toContain("画像结果");
+  });
+
+  it("derives Agent SBTI from the agent run traits instead of the human gate input", () => {
+    expect(
+      deriveAgentSbtiCode({
+        factionBrandKey: "imprints",
+        scoreGrade: "S"
+      })
+    ).toBe("CTRL");
+    expect(
+      deriveAgentSbtiCode({
+        factionBrandKey: "sentinels",
+        scoreGrade: "A"
+      })
+    ).toBe("OH-NO");
+
+    const profile = resolveAgentSbtiProfile("zh", {
+      factionBrandKey: "metamorphs",
+      scoreGrade: "S"
+    });
+
+    expect(profile.code).toBe("SHIT");
+    expect(profile.displayName).toBe("愤世者");
+    expect(profile.summary).toContain("收拾好");
   });
 
   it("maps the initial journey state into one active task and pending future tasks", () => {
@@ -102,8 +133,8 @@ describe("content mappers", () => {
     expect(view.factionStatus).toContain("The Mutant");
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
-        "Faction direction mapped to The Mutant",
-        "Threshold ready: 2 AIBOUNTY"
+        "Direction: The Mutant",
+        "2 AIBOUNTY threshold ready"
       ])
     );
   });
