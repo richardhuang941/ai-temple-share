@@ -17,8 +17,8 @@ subtasks:
 - T003
 - T004
 - T005
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: .github/workflows/
 execution_mode: code_change
@@ -32,3 +32,9 @@ owned_files:
 ## Objective
 
 新增官方推荐的 `GitHub Pages` workflow，并补齐 013 的 mission 资产与验收记录。
+
+## Activity Log
+
+- 2026-04-10T10:01:26Z – codex – shell_pid=main-shell – Started GitHub Pages workflow implementation
+- 2026-04-10T10:01:27Z – codex – shell_pid=main-shell – Workflow and mission assets ready for review
+- 2026-04-10T10:01:27Z – codex – shell_pid=main-shell – Approved after local review and workflow verification

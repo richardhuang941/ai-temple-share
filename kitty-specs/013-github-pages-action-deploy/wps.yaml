@@ -1,0 +1,38 @@
+work_packages:
+  - id: WP01
+    title: "Pages Build Config"
+    dependencies: []
+    owned_files:
+      - "vite.config.ts"
+      - "package.json"
+    requirement_refs:
+      - FR-002
+      - FR-005
+      - NFR-001
+      - NFR-003
+      - C-001
+      - C-003
+    subtasks:
+      - T001
+      - T002
+    prompt_file: "tasks/WP01-pages-build-config.md"
+
+  - id: WP02
+    title: "GitHub Pages Workflow"
+    dependencies:
+      - WP01
+    owned_files:
+      - ".github/workflows/deploy-pages.yml"
+      - "kitty-specs/013-github-pages-action-deploy/**"
+    requirement_refs:
+      - FR-001
+      - FR-003
+      - FR-004
+      - NFR-002
+      - C-002
+      - C-003
+    subtasks:
+      - T003
+      - T004
+      - T005
+    prompt_file: "tasks/WP02-github-pages-workflow.md"

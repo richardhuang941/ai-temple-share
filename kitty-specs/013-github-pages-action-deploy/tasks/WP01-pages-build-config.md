@@ -15,8 +15,8 @@ branch_strategy: Planning artifacts for this feature were generated on feature/0
 subtasks:
 - T001
 - T002
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: vite.config.ts
 execution_mode: code_change
@@ -30,3 +30,9 @@ owned_files:
 ## Objective
 
 让 `Vite` 在 `GitHub Pages` 构建时自动使用 repo 子路径 `base`，但默认构建继续兼容 `Vercel` 的根路径。
+
+## Activity Log
+
+- 2026-04-10T10:01:24Z – codex – shell_pid=main-shell – Started Pages build config implementation
+- 2026-04-10T10:01:25Z – codex – shell_pid=main-shell – Pages build config ready for review after local verification
+- 2026-04-10T10:01:26Z – codex – shell_pid=main-shell – Approved after local review and dual build verification
