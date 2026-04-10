@@ -43,3 +43,5 @@ owned_files:
 
 - 2026-04-10T08:53:56Z – codex – shell_pid=92433 – Direct-repo Task 6 Agent SBTI implementation started
 - 2026-04-10T08:54:02Z – codex – shell_pid=92753 – Task 6 Agent SBTI model and content are implemented and locally verified
+- 2026-04-10T08:54:21Z – codex – shell_pid=92753 – Review passed: Task 6 now resolves the Agent SBTI instead of LBTI
+- 2026-04-10T08:54:28Z – codex – shell_pid=92753 – WP01 landed on the feature branch and is complete | Done override: Direct-repo implementation accepted locally without a separate lane branch

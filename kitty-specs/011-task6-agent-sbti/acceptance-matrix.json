@@ -1,0 +1,37 @@
+{
+  "mission_slug": "011-task6-agent-sbti",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "Task 6 no longer exposes any LBTI lobster persona copy and now closes the journey with an Agent SBTI result.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/unit/contentMappers.test.ts + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:54:35+08:00",
+      "notes": "The regression suite now asserts that Task 6 is branded as Agent SBTI, known inputs resolve to a stable SBTI badge, unknown inputs degrade gracefully, and the rendered page no longer leaks the LBTI term."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Task 6 consumes the current SBTI input instead of a random lobster seed, while preserving the rest of the Task 1-5 flow.",
+      "proof_type": "code_review",
+      "evidence": "src/content/agentSbtiProfiles.ts + src/content/taskMilestones.ts + src/content/index.ts + src/App.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:54:35+08:00",
+      "notes": "The new resolver maps the current SBTI input into Task 6 content, supports placeholder and unknown-code fallback states, and leaves the seeded coordinate / resonance / faction flow intact."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Mission 011 remains buildable and both work packages are recorded as done after the direct-repo review/accept flow.",
+      "proof_type": "automated_test",
+      "evidence": "npx tsc -b --clean && npm run build + kitty-specs/011-task6-agent-sbti/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:54:35+08:00",
+      "notes": "The production build passed after replacing the Task 6 data model, and WP01/WP02 are materialized in the done lane with a direct-repo done override."
+    }
+  ],
+  "negative_invariants": []
+}
