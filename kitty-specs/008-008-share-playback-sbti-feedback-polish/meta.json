@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:14:46.003192+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "a9385953fe0626d10a2b1c7221e01defd230ab96"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:14:46.003192+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "a9385953fe0626d10a2b1c7221e01defd230ab96",
   "created_at": "2026-04-10T08:06:20.478205+00:00",
   "friendly_name": "008 share playback sbti feedback polish",
   "mission_number": "008",
