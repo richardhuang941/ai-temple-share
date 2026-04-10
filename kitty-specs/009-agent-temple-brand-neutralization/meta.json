@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-10T08:21:48.866217+00:00",
+  "friendly_name": "agent temple brand neutralization",
+  "mission_number": "009",
+  "mission_slug": "009-agent-temple-brand-neutralization",
+  "mission_type": "software-dev",
+  "slug": "009-agent-temple-brand-neutralization",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}
