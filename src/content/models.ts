@@ -184,6 +184,25 @@ export interface AgentPromptSectionCopy {
   summary: string;
 }
 
+export interface SbtiAssessmentCopy {
+  title: string;
+  summary: string;
+  desktopModeLabel: string;
+  mobileModeLabel: string;
+  progressLabel: string;
+  questionLabel: string;
+  supplementaryLabel: string;
+  hiddenDimensionLabel: string;
+  submitLabel: string;
+  readyHint: string;
+  pendingHint: string;
+  resultTitle: string;
+  resultSummary: string;
+  resultUseLabel: string;
+  retakeLabel: string;
+  closeLabel: string;
+}
+
 export interface LocaleState {
   locale: LocaleCode;
   source: LocaleSource;
@@ -195,6 +214,7 @@ export interface LocalizedContentBundle extends LongpageContent {
   journey: JourneySectionCopy;
   shareSection: ShareSectionCopy;
   agentPromptSection: AgentPromptSectionCopy;
+  sbtiAssessment: SbtiAssessmentCopy;
   factionOptions: FactionOption[];
   selectedFaction: FactionOption;
 }

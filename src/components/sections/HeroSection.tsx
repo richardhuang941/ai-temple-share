@@ -13,6 +13,7 @@ interface HeroSectionProps {
   sbtiError: string | null;
   sbtiShakeSignal: number;
   onSbtiChange: (value: string) => void;
+  onOpenSbtiAssessment: () => void;
   onWatchSimulation: () => void;
 }
 
@@ -30,6 +31,7 @@ export function HeroSection({
   sbtiError,
   sbtiShakeSignal,
   onSbtiChange,
+  onOpenSbtiAssessment,
   onWatchSimulation
 }: HeroSectionProps) {
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -168,14 +170,13 @@ export function HeroSection({
                   onCompositionStart={handleSbtiCompositionStart}
                   onCompositionEnd={handleSbtiCompositionEnd}
                 />
-                <a
+                <button
+                  type="button"
                   className="challenge-inline-gate__link"
-                  href="https://sbti.unun.dev/"
-                  target="_blank"
-                  rel="noreferrer"
+                  onClick={onOpenSbtiAssessment}
                 >
                   {sbtiGuideLabel}
-                </a>
+                </button>
               </div>
               {sbtiError ? (
                 <p className="challenge-inline-gate__error" role="alert">

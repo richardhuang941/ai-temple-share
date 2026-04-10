@@ -9,6 +9,7 @@ import {
   getAgentPromptSectionCopy,
   getChromeCopy,
   getJourneySectionCopy,
+  getSbtiAssessmentCopy,
   getShareSectionCopy
 } from "./uiCopy";
 
@@ -26,6 +27,7 @@ export function getLocalizedLongpageContent(locale: LocaleCode): LocalizedConten
     journey: getJourneySectionCopy(locale),
     shareSection: getShareSectionCopy(locale),
     agentPromptSection: getAgentPromptSectionCopy(locale),
+    sbtiAssessment: getSbtiAssessmentCopy(locale),
     factionOptions: getFactionOptions(locale),
     selectedFaction
   };
@@ -54,6 +56,7 @@ export {
   getFactionOptions,
   getHeroContent,
   getJourneySectionCopy,
+  getSbtiAssessmentCopy,
   getSelectedFaction,
   getShareSectionCopy,
   getShareSummary,
@@ -81,6 +84,7 @@ export type {
   ShareMode,
   SharePlatformKey,
   ShareSectionCopy,
+  SbtiAssessmentCopy,
   ShareSummary,
   ShareSummaryView,
   SimulationTimelineState,

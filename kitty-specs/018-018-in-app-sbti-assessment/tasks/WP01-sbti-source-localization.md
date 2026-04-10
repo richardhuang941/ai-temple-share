@@ -15,8 +15,8 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/
 execution_mode: code_change
@@ -35,3 +35,8 @@ owned_files:
 ## Objective
 
 把 `sbti.unun.dev` 的题库、人格库、算分逻辑输入数据和人格海报本地化到我们项目中。
+
+## Activity Log
+
+- 2026-04-10T11:20:39Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-10T11:20:54Z – codex – shell_pid=main-shell – Ready for local review after source localization and engine port

@@ -2,10 +2,16 @@ import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import { vi } from "vitest";
 import App from "../../src/App";
 import { getLocalizedLongpageContent } from "../../src/content";
+import { sbtiDimensionOrder, sbtiNormalTypes, sbtiQuestions } from "../../src/content/sbti";
 import { deriveShareSummaryView } from "../../src/lib/contentMappers";
 import { LOCALE_STORAGE_KEY } from "../../src/lib/locale";
 
 const SESSION_STORAGE_KEY = "claws-temple-bounty-simulation-seed";
+const scorePairByLevel = {
+  L: [1, 2],
+  M: [2, 2],
+  H: [3, 2]
+} as const;
 
 function setNavigatorLanguages(languages: string[], language = languages[0] ?? "zh-CN"): void {
   Object.defineProperty(window.navigator, "languages", {
@@ -31,6 +37,31 @@ function primeSeed(seed = "seed-1"): void {
 
 function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function buildSbtiAnswersForType(code: string): Record<string, number> {
+  const pattern = sbtiNormalTypes.find((type) => type.code === code)?.pattern;
+
+  if (!pattern) {
+    throw new Error(`Missing SBTI pattern for ${code}`);
+  }
+
+  const levels = pattern.replace(/-/g, "").split("") as Array<keyof typeof scorePairByLevel>;
+  const answers: Record<string, number> = {
+    drink_gate_q1: 1
+  };
+
+  sbtiDimensionOrder.forEach((dimensionKey, index) => {
+    const questionIds = sbtiQuestions
+      .filter((question) => question.dim === dimensionKey)
+      .map((question) => question.id);
+    const [firstValue, secondValue] = scorePairByLevel[levels[index]];
+
+    answers[questionIds[0]] = firstValue;
+    answers[questionIds[1]] = secondValue;
+  });
+
+  return answers;
 }
 
 describe("Agent Temple Bounty longpage", () => {
@@ -346,5 +377,35 @@ describe("Agent Temple Bounty longpage", () => {
     fireEvent.click(pauseButton);
 
     expect(screen.getByRole("button", { name: bundle.journey.resumeLabel })).toBeTruthy();
+  });
+
+  it("runs the in-app SBTI assessment and autofills the Hero gate after completion", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: /先去测试/ }));
+
+    expect(screen.getByRole("dialog")).toBeTruthy();
+    expect(screen.getByRole("heading", { name: bundle.sbtiAssessment.title })).toBeTruthy();
+
+    const answers = buildSbtiAnswersForType("CTRL");
+
+    for (const [questionId, value] of Object.entries(answers)) {
+      const input = document.querySelector(
+        `input[name="${questionId}"][value="${value}"]`
+      ) as HTMLInputElement | null;
+
+      expect(input).toBeTruthy();
+      fireEvent.click(input as HTMLInputElement);
+    }
+
+    fireEvent.click(screen.getByRole("button", { name: bundle.sbtiAssessment.submitLabel }));
+
+    expect(await screen.findByText(/CTRL · 拿捏者/)).toBeTruthy();
+
+    fireEvent.click(screen.getByRole("button", { name: bundle.sbtiAssessment.resultUseLabel }));
+
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect((screen.getByLabelText("先输入你的 SBTI") as HTMLInputElement).value).toBe("CTRL");
   });
 });

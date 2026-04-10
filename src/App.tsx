@@ -4,6 +4,7 @@ import SiteHeader from "./components/common/SiteHeader";
 import HeroSection from "./components/sections/HeroSection";
 import JourneySection from "./components/sections/JourneySection";
 import ShareSection from "./components/sections/ShareSection";
+import SbtiAssessmentPanel from "./components/sbti/SbtiAssessmentPanel";
 import { useLocale } from "./hooks/useLocale";
 
 const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
@@ -25,6 +26,7 @@ export function App() {
   const [sbtiError, setSbtiError] = useState<string | null>(null);
   const [sbtiShakeSignal, setSbtiShakeSignal] = useState(0);
   const [journeyStartSignal, setJourneyStartSignal] = useState(0);
+  const [isSbtiAssessmentOpen, setIsSbtiAssessmentOpen] = useState(false);
   const bundle = getLocalizedLongpageContent(locale);
 
   useEffect(() => {
@@ -72,6 +74,27 @@ export function App() {
     }
   };
 
+  const focusHeroSbtiInput = (): void => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const inputElement = document.getElementById(HERO_SBTI_INPUT_ID) as HTMLInputElement | null;
+
+    if (!inputElement) {
+      return;
+    }
+
+    inputElement.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest"
+    });
+    window.requestAnimationFrame(() => {
+      inputElement.focus();
+    });
+  };
+
   const handleWatchSimulation = (): void => {
     const normalized = normalizeSbtiInput(sbtiValue);
 
@@ -102,6 +125,14 @@ export function App() {
     }
   };
 
+  const handleSbtiAssessmentComplete = (code: string): void => {
+    const normalized = normalizeSbtiInput(code);
+    setSbtiValue(normalized);
+    setSbtiError(null);
+    setIsSbtiAssessmentOpen(false);
+    focusHeroSbtiInput();
+  };
+
   return (
     <main aria-label="Agent Temple Bounty Journey Longpage" data-locale={locale}>
       <SiteHeader locale={locale} copy={bundle.chrome} onLocaleChange={setLocale} />
@@ -114,6 +145,7 @@ export function App() {
           setSbtiValue(value);
           setSbtiError(null);
         }}
+        onOpenSbtiAssessment={() => setIsSbtiAssessmentOpen(true)}
         onWatchSimulation={handleWatchSimulation}
       />
       <ShareSection bundle={bundle} />
@@ -122,6 +154,13 @@ export function App() {
         sbtiValue={sbtiValue}
         startSignal={journeyStartSignal}
         onRequestSbtiInput={requestSbtiInput}
+      />
+      <SbtiAssessmentPanel
+        isOpen={isSbtiAssessmentOpen}
+        locale={bundle.locale}
+        copy={bundle.sbtiAssessment}
+        onClose={() => setIsSbtiAssessmentOpen(false)}
+        onComplete={handleSbtiAssessmentComplete}
       />
     </main>
   );

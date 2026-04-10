@@ -246,6 +246,9 @@
 }
 
 .challenge-inline-gate__link {
+  border: none;
+  padding: 0;
+  background: transparent;
   color: var(--coral-dark);
   font-weight: 700;
   font-size: 0.82rem;

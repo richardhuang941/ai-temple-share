@@ -3,6 +3,7 @@ import type {
   ChromeCopy,
   JourneySectionCopy,
   LocaleCode,
+  SbtiAssessmentCopy,
   ShareSectionCopy
 } from "./models";
 
@@ -64,9 +65,9 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
     resumeLabel: "恢复自动推进",
     sbtiLabel: "先输入你的 SBTI",
     sbtiPlaceholder: "例如 CTRL / SHIT / SOLO",
-    sbtiHelper: "如果还没有 SBTI，先去外部测试拿到结果，再回来启动这段模拟。",
+    sbtiHelper: "如果还没有 SBTI，可以直接在这里做完测试，再回来启动这段模拟。",
     sbtiGuideLabel: "去测 SBTI",
-    sbtiError: "先输入你的 SBTI，或者去外部测一个再回来。"
+    sbtiError: "先输入你的 SBTI，或者先在这里做完测试。"
   },
   en: {
     eyebrow: "Journey Simulation",
@@ -90,9 +91,9 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
     resumeLabel: "Resume autoplay",
     sbtiLabel: "Enter your SBTI first",
     sbtiPlaceholder: "For example CTRL / SHIT / SOLO",
-    sbtiHelper: "If you do not have an SBTI yet, take the external test first and come back here.",
+    sbtiHelper: "If you do not have an SBTI yet, you can complete the test here and come back immediately.",
     sbtiGuideLabel: "Take the SBTI test",
-    sbtiError: "Enter your SBTI first, or take the external test and come back."
+    sbtiError: "Enter your SBTI first, or complete the in-app test."
   }
 };
 
@@ -134,6 +135,45 @@ const agentPromptByLocale: Record<LocaleCode, AgentPromptSectionCopy> = {
   }
 };
 
+const sbtiAssessmentByLocale: Record<LocaleCode, SbtiAssessmentCopy> = {
+  zh: {
+    title: "站内 SBTI 测试",
+    summary: "做完题就会直接把结果回填到首页，不用再手工复制。",
+    desktopModeLabel: "桌面测试层",
+    mobileModeLabel: "移动端全屏测试",
+    progressLabel: "进度",
+    questionLabel: "第 {index} 题",
+    supplementaryLabel: "补充题",
+    hiddenDimensionLabel: "维度已隐藏",
+    submitLabel: "查看结果",
+    readyHint: "都做完了。现在可以把你的电子魂魄交给结果页审判。",
+    pendingHint: "全选完才会放行。世界已经够乱了，起码把题做完整。",
+    resultTitle: "你的 SBTI 结果",
+    resultSummary: "确认结果后，会自动回填到首页的 SBTI 输入框。",
+    resultUseLabel: "用这个 SBTI 返回挑战页",
+    retakeLabel: "重新测试",
+    closeLabel: "关闭"
+  },
+  en: {
+    title: "In-app SBTI Test",
+    summary: "Finish the questions here and the result will autofill back into the Hero gate.",
+    desktopModeLabel: "Desktop assessment",
+    mobileModeLabel: "Mobile full-screen assessment",
+    progressLabel: "Progress",
+    questionLabel: "Question {index}",
+    supplementaryLabel: "Extra",
+    hiddenDimensionLabel: "Dimension hidden",
+    submitLabel: "See result",
+    readyHint: "Everything is answered. The result screen is ready to judge your digital soul.",
+    pendingHint: "Answer every question before the result screen unlocks.",
+    resultTitle: "Your SBTI Result",
+    resultSummary: "Confirm the result and we will autofill it back into the Hero gate.",
+    resultUseLabel: "Use this SBTI and return",
+    retakeLabel: "Retake",
+    closeLabel: "Close"
+  }
+};
+
 export function getChromeCopy(locale: LocaleCode): ChromeCopy {
   return chromeByLocale[locale];
 }
@@ -148,4 +188,8 @@ export function getShareSectionCopy(locale: LocaleCode): ShareSectionCopy {
 
 export function getAgentPromptSectionCopy(locale: LocaleCode): AgentPromptSectionCopy {
   return agentPromptByLocale[locale];
+}
+
+export function getSbtiAssessmentCopy(locale: LocaleCode): SbtiAssessmentCopy {
+  return sbtiAssessmentByLocale[locale];
 }
