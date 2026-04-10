@@ -1,16 +1,16 @@
 {
-  "event_count": 14,
-  "last_event_id": "01KNTRTG3W8300KC6W38PCNFZ5",
-  "materialized_at": "2026-04-10T04:01:24.604640+00:00",
+  "event_count": 16,
+  "last_event_id": "01KNTRVS0ATZ77MEVRYJG2HDJ1",
+  "materialized_at": "2026-04-10T04:02:06.474402+00:00",
   "mission_slug": "005-mobile-share-and-task-flow-polish",
   "summary": {
-    "approved": 1,
+    "approved": 2,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 0,
     "for_review": 0,
-    "in_progress": 1,
+    "in_progress": 0,
     "planned": 2
   },
   "work_packages": {
@@ -22,11 +22,11 @@
       "last_transition_at": "2026-04-10T03:59:58.454530+00:00"
     },
     "WP02": {
-      "actor": "codex:gpt-5.4:reviewer:reviewer",
+      "actor": "user",
       "force_count": 2,
-      "lane": "in_progress",
-      "last_event_id": "01KNTRTG3W8300KC6W38PCNFZ5",
-      "last_transition_at": "2026-04-10T04:01:24.604640+00:00"
+      "lane": "approved",
+      "last_event_id": "01KNTRVS0ATZ77MEVRYJG2HDJ1",
+      "last_transition_at": "2026-04-10T04:02:06.474402+00:00"
     },
     "WP03": {
       "actor": "finalize-tasks",
