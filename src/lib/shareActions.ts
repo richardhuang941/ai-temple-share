@@ -2,6 +2,12 @@ import type { SharePlatformKey } from "../content";
 
 export type ShareActionResult = "opened" | "shared" | "copied";
 
+const appSchemeByPlatform: Partial<Record<SharePlatformKey, string>> = {
+  wechat: "weixin://",
+  xiaohongshu: "xhsdiscover://",
+  douyin: "snssdk1128://"
+};
+
 function fallbackCopy(value: string): void {
   const textArea = document.createElement("textarea");
   textArea.value = value;
@@ -16,11 +22,38 @@ function fallbackCopy(value: string): void {
 
 async function copyText(value: string): Promise<void> {
   if (navigator.clipboard?.writeText) {
-    await navigator.clipboard.writeText(value);
-    return;
+    try {
+      await navigator.clipboard.writeText(value);
+      return;
+    } catch {
+      // Fall back to the legacy copy path when clipboard permissions are unavailable.
+    }
   }
 
   fallbackCopy(value);
+}
+
+export async function copySharePayload(text: string, url: string): Promise<void> {
+  await copyText(`${text}\n\n${url}`);
+}
+
+export function isMobileShareSurface(): boolean {
+  if (typeof navigator === "undefined") {
+    return false;
+  }
+
+  return /android|iphone|ipad|ipod|mobile|micromessenger|windows phone/i.test(navigator.userAgent);
+}
+
+export function launchShareApp(platform: SharePlatformKey): boolean {
+  const scheme = appSchemeByPlatform[platform];
+
+  if (!scheme) {
+    return false;
+  }
+
+  window.location.href = scheme;
+  return true;
 }
 
 export async function shareToPlatform(options: {
@@ -55,6 +88,6 @@ export async function shareToPlatform(options: {
     }
   }
 
-  await copyText(`${text}\n\n${url}`);
+  await copySharePayload(text, url);
   return "copied";
 }

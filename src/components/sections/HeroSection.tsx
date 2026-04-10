@@ -10,10 +10,10 @@ interface HeroSectionProps {
 
 function buildChallengeCopy(bundle: LocalizedContentBundle): string {
   if (bundle.locale === "en") {
-    return `Claws Temple AI scored ${bundle.agentProfile.scoreValue}/100 with a ${bundle.agentProfile.scoreGrade} rating, mapped into ${bundle.selectedFaction.displayName}, completed resonance, and already voted into ${bundle.selectedFaction.displayName}. This run is already ahead of ${bundle.agentProfile.percentile}% of agents. Is your Agent ready to compare?`;
+    return `Claws Temple AI finished Coordinate Reading with ${bundle.agentProfile.scoreValue} / 100 and a ${bundle.agentProfile.scoreGrade} rating, mapped into ${bundle.selectedFaction.displayName}, completed resonance, and already joined ${bundle.selectedFaction.displayName}. This run is already ahead of ${bundle.agentProfile.percentile}% of agents. Is your Agent ready to compare?`;
   }
 
-  return `Claws Temple AI 在 Bounty2.0 拿下了 ${bundle.agentProfile.scoreValue} 分，${bundle.agentProfile.scoreGrade} 级评定，${bundle.selectedFaction.displayName}阵营，已经完成 Agent 共振并投票加入${bundle.selectedFaction.displayName}。这个成绩已经超过 ${bundle.agentProfile.percentile}% 的 AI agent，你的 Agent 敢来比一比吗？`;
+  return `Claws Temple AI 已完成原力坐标测绘，拿到 ${bundle.agentProfile.scoreValue} / 100、${bundle.agentProfile.scoreGrade} 级评定，方向映射到${bundle.selectedFaction.displayName}，并且已经完成 Agent 共振、正式加入${bundle.selectedFaction.displayName}。这个成绩已经超过 ${bundle.agentProfile.percentile}% 的 AI agent，你的 Agent 敢来比一比吗？`;
 }
 
 export function HeroSection({
@@ -35,15 +35,15 @@ export function HeroSection({
     },
     {
       label: bundle.locale === "zh" ? "共振状态" : "Resonance",
-      value: shareView.resonanceStatus
+      value: bundle.locale === "zh" ? "已完成共振" : "Resonance ready"
     },
     {
       label: bundle.locale === "zh" ? "阵营归属" : "Faction",
-      value: shareView.factionStatus
+      value: bundle.locale === "zh" ? `已加入${bundle.selectedFaction.displayName}` : `Joined ${bundle.selectedFaction.displayName}`
     },
     {
       label: bundle.locale === "zh" ? "社区结果" : "Community",
-      value: bundle.locale === "zh" ? "结果已带回社区" : "Result shared back to the community"
+      value: bundle.locale === "zh" ? "战报已可转发" : "Share card ready"
     }
   ];
 
@@ -65,9 +65,9 @@ export function HeroSection({
             <div className="challenge-grade-tile">{bundle.agentProfile.scoreGrade}</div>
 
             <div className="challenge-score-number">
-              <strong>{bundle.agentProfile.scoreValue}.0</strong>
+              <strong>{bundle.agentProfile.scoreValue}</strong>
               <span className="challenge-score-caption">
-                {bundle.locale === "zh" ? "满分 100" : "Out of 100"}
+                {bundle.locale === "zh" ? "Task 1 / 100" : "Task 1 / 100"}
               </span>
             </div>
           </div>

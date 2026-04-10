@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import type { DerivedTaskMilestone, LocaleCode, TimelineHint } from "../../content";
 import TaskMilestoneCard from "./TaskMilestoneCard";
 
@@ -25,6 +25,7 @@ export function JourneyTimeline({
   onTaskSelect,
   onTaskMount
 }: JourneyTimelineProps) {
+  const [expandedTaskIds, setExpandedTaskIds] = useState<Record<string, boolean>>({});
   const activeTask =
     tasks.find((task) => task.state === "active") ??
     (hasStarted && tasks.length > 0 ? tasks[tasks.length - 1] : undefined);
@@ -93,7 +94,14 @@ export function JourneyTimeline({
             locale={locale}
             hasStarted={hasStarted}
             isReducedMotion={isReducedMotion}
+            isExpanded={Boolean(expandedTaskIds[task.taskId])}
             onSelect={() => onTaskSelect(taskIndex)}
+            onToggleExpanded={() =>
+              setExpandedTaskIds((previousState) => ({
+                ...previousState,
+                [task.taskId]: !previousState[task.taskId]
+              }))
+            }
             articleRef={(element) => onTaskMount(task.taskId, element)}
           />
         ))}

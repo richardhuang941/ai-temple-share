@@ -1,9 +1,7 @@
 import {
   getLocalizedLongpageContent,
-  type LocalizedContentBundle,
-  type ShareMode
+  type LocalizedContentBundle
 } from "../../content";
-import { useState } from "react";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
 import SectionHeading from "../common/SectionHeading";
 import SocialShareActions from "../share/SocialShareActions";
@@ -19,7 +17,6 @@ interface ShareSectionProps {
 export function ShareSection({
   bundle = getLocalizedLongpageContent("zh")
 }: ShareSectionProps) {
-  const [shareMode, setShareMode] = useState<ShareMode>("image");
   const shareView = deriveShareSummaryView(
     bundle.agentProfile,
     bundle.shareSummary,
@@ -37,31 +34,9 @@ export function ShareSection({
           id="share-heading"
         />
 
-        <div className="challenge-section-card" style={{ width: "min(100%, 38rem)" }}>
-          <div className="share-mode-switch">
-            {([
-              { mode: "image", label: bundle.chrome.shareImageLabel },
-              { mode: "text", label: bundle.chrome.shareTextLabel }
-            ] as const).map((item) => {
-              const isActive = shareMode === item.mode;
-
-              return (
-                <button
-                  key={item.mode}
-                  type="button"
-                  onClick={() => setShareMode(item.mode)}
-                  className="share-mode-button"
-                  data-active={isActive}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-
+        <div className="challenge-section-card" style={{ width: "min(100%, var(--max-panel-width))" }}>
           <ShareSummaryCard
             summary={shareView}
-            mode={shareMode}
             shareCopy={bundle.shareSection}
             chromeCopy={bundle.chrome}
             challengeLink={challengeLink}

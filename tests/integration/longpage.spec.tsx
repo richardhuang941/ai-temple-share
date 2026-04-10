@@ -18,6 +18,13 @@ function setNavigatorLanguages(languages: string[], language = languages[0] ?? "
   });
 }
 
+function setNavigatorUserAgent(userAgent: string): void {
+  Object.defineProperty(window.navigator, "userAgent", {
+    configurable: true,
+    value: userAgent
+  });
+}
+
 function primeSeed(seed = "seed-1"): void {
   window.sessionStorage.setItem(SESSION_STORAGE_KEY, seed);
 }
@@ -35,6 +42,7 @@ describe("Claws Temple Bounty longpage", () => {
     window.sessionStorage.clear();
     window.location.hash = "";
     setNavigatorLanguages(["zh-CN"]);
+    setNavigatorUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)");
     primeSeed();
     Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
       configurable: true,
@@ -107,7 +115,6 @@ describe("Claws Temple Bounty longpage", () => {
     expect(container.textContent).toContain(`${bundle.agentProfile.scoreValue}`);
     expect(container.textContent).toContain(bundle.selectedFaction.displayName);
     expect(within(shareSection as HTMLElement).getAllByText(shareView.scoreSummary).length).toBeGreaterThan(0);
-    expect(within(shareSection as HTMLElement).getByText(shareView.title)).toBeTruthy();
     expect(container.textContent).not.toContain("首页先只看");
     expect(container.textContent).not.toContain("演示页，不代替真实注册、共振、宣誓、Telegram 报到或 SHIT Skills 动作");
   });
@@ -122,17 +129,31 @@ describe("Claws Temple Bounty longpage", () => {
     expect(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }).getAttribute("href")).toBe("#journey");
   });
 
-  it("switches the share surface between image and text modes", () => {
+  it("keeps share text-only and hides app-entry buttons on desktop", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
     const shareSection = document.getElementById("share");
     expect(shareSection).toBeTruthy();
 
-    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.shareTextLabel }));
-
-    expect(within(shareSection as HTMLElement).getByText(new RegExp(bundle.shareSection.challengeLinkLabel))).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getAllByText(new RegExp(bundle.shareSection.challengeLinkLabel)).length).toBeGreaterThan(0);
     expect(within(shareSection as HTMLElement).getAllByRole("button", { name: bundle.chrome.copyLabel }).length).toBeGreaterThan(0);
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).queryByRole("button", { name: "微信" })).toBeNull();
+    expect(within(shareSection as HTMLElement).queryByText(/系统分享/)).toBeNull();
+  });
+
+  it("shows app-entry buttons on mobile", () => {
+    setNavigatorUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)");
+    render(<App />);
+
+    const shareSection = document.getElementById("share");
+    expect(shareSection).toBeTruthy();
+
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "微信" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "小红书" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getByRole("button", { name: "抖音" })).toBeTruthy();
   });
 
   it("only starts the journey from the watch-simulation CTA and emphasizes the prompt on accept", async () => {

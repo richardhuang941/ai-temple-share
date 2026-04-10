@@ -6,19 +6,27 @@ export interface SharePlatformMeta {
 }
 
 interface SharePlatformCopyBundle {
-  helper: string;
   feedbackByResult: Record<"opened" | "shared" | "copied", string>;
+  countdownTitle: string;
+  countdownBody: string;
+  countdownLabel: string;
+  openNowLabel: string;
+  cancelLabel: string;
   platforms: SharePlatformMeta[];
 }
 
 const platformCopyByLocale: Record<LocaleCode, SharePlatformCopyBundle> = {
   zh: {
-    helper: "分享到你常用的社媒，或者直接复制文案再发出去。",
     feedbackByResult: {
       opened: "已打开 {platform} 分享入口",
       shared: "已调用系统分享，可直接发到 {platform}",
       copied: "已复制 {platform} 文案，跳转后可直接粘贴"
     },
+    countdownTitle: "分享文案已复制",
+    countdownBody: "{platform} 即将被唤起，跳转后按 App 内流程完成分享。",
+    countdownLabel: "{seconds}s 后打开 {platform}",
+    openNowLabel: "立即打开",
+    cancelLabel: "稍后再说",
     platforms: [
       { key: "x", label: "X" },
       { key: "wechat", label: "微信" },
@@ -27,12 +35,16 @@ const platformCopyByLocale: Record<LocaleCode, SharePlatformCopyBundle> = {
     ]
   },
   en: {
-    helper: "Share to your usual social platforms, or copy the text and paste it there.",
     feedbackByResult: {
       opened: "{platform} share opened",
       shared: "System share is ready for {platform}",
       copied: "{platform} copy is ready to paste"
     },
+    countdownTitle: "Share copy is ready",
+    countdownBody: "{platform} will open next. Finish the share inside the app.",
+    countdownLabel: "Opening {platform} in {seconds}s",
+    openNowLabel: "Open now",
+    cancelLabel: "Not now",
     platforms: [
       { key: "x", label: "X" },
       { key: "wechat", label: "WeChat" },

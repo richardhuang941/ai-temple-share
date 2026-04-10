@@ -32,7 +32,7 @@ export function AgentPromptSection({
   const displayCommand = featuredCard.promptBody.split("\n")[0] ?? featuredCard.promptBody;
   const promptComment =
     bundle.locale === "zh"
-      ? "继续按真实 Bounty 2.0 路径完成 Task 1-5，并返回分数、共振、阵营和社区结果"
+      ? "继续按真实 Bounty 2.0 路径完成任务 1-5，并返回分数、共振、阵营和社区结果"
       : "Continue the real Bounty 2.0 route and bring back the score, resonance, faction, and community result";
   const listStyle: CSSProperties = {
     margin: 0,
@@ -49,16 +49,16 @@ export function AgentPromptSection({
       <div className="challenge-shell challenge-shell--compact">
         <article
           className="challenge-section-card prompt-card"
-          style={{ width: "min(100%, 38rem)" }}
+          style={{ width: "min(100%, var(--max-panel-width))" }}
           data-emphasized={isEmphasized ? "true" : undefined}
         >
           <div className="prompt-card-header">
             <div style={{ display: "grid", gap: "0.35rem" }}>
-              <p className="prompt-card-kicker">{bundle.agentPromptSection.title}</p>
+              <p className="prompt-card-kicker">{bundle.agentPromptSection.eyebrow}</p>
               <h2 id="agent-prompt-heading" className="prompt-card-title">
                 {bundle.agentPromptSection.title}
               </h2>
-              <p className="prompt-card-subtitle">{featuredCard.title}</p>
+              <p className="prompt-card-subtitle">{bundle.agentPromptSection.summary}</p>
             </div>
             <CopyButton
               value={featuredCard.promptBody}

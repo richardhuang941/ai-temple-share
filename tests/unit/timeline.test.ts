@@ -99,7 +99,7 @@ describe("timeline engine", () => {
     expect(restarted.cycleDurationMs).toBe(4600);
   });
 
-  it("only requests task refocus on important timeline transitions", () => {
+  it("requests task refocus whenever the live stage advances", () => {
     const initial = createInitialTimelineState(taskMilestones);
     const started = startTimeline(initial, taskMilestones);
     const minorStage = {
@@ -112,7 +112,7 @@ describe("timeline engine", () => {
     };
 
     expect(shouldAutoFocusTask(null, started, taskMilestones)).toBe(true);
-    expect(shouldAutoFocusTask(started, minorStage, taskMilestones)).toBe(false);
+    expect(shouldAutoFocusTask(started, minorStage, taskMilestones)).toBe(true);
     expect(shouldAutoFocusTask(started, lastStage, taskMilestones)).toBe(true);
   });
 

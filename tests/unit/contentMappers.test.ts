@@ -37,8 +37,8 @@ describe("content mappers", () => {
     expect(view.factionStatus).toContain(selectedFaction.displayName);
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
-        "部落方向映射到变异体",
-        "用户ID 已锁定",
+        "方向：变异体",
+        "用户ID 已解析",
         "已满足 2 AIBOUNTY 门槛"
       ])
     );
@@ -102,8 +102,8 @@ describe("content mappers", () => {
     expect(view.factionStatus).toContain("The Mutant");
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
-        "Faction direction mapped to The Mutant",
-        "Threshold ready: 2 AIBOUNTY"
+        "Direction: The Mutant",
+        "2 AIBOUNTY threshold ready"
       ])
     );
   });
