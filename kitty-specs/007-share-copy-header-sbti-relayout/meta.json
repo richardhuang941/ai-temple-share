@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T07:57:58.335075+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "e8c03d857461a9aa5d32e2a105cb8efb27cf9927"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T07:57:58.335075+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "e8c03d857461a9aa5d32e2a105cb8efb27cf9927",
   "created_at": "2026-04-10T07:46:46.888560+00:00",
   "friendly_name": "share copy header sbti relayout",
   "mission_number": "007",
