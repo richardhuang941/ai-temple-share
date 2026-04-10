@@ -1,15 +1,15 @@
 {
-  "event_count": 10,
-  "last_event_id": "01KNV7YG0VMH29KR5H41BB00ZY",
-  "materialized_at": "2026-04-10T08:25:44.219573+00:00",
+  "event_count": 11,
+  "last_event_id": "01KNV7YGQPESKFEK3HXJHH4TS0",
+  "materialized_at": "2026-04-10T08:25:44.950912+00:00",
   "mission_slug": "009-agent-temple-brand-neutralization",
   "summary": {
-    "approved": 0,
+    "approved": 1,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 1,
-    "for_review": 1,
+    "for_review": 0,
     "in_progress": 0,
     "planned": 0
   },
@@ -22,11 +22,11 @@
       "last_transition_at": "2026-04-10T08:25:42.864404+00:00"
     },
     "WP02": {
-      "actor": "codex",
+      "actor": "user",
       "force_count": 2,
-      "lane": "for_review",
-      "last_event_id": "01KNV7YG0VMH29KR5H41BB00ZY",
-      "last_transition_at": "2026-04-10T08:25:44.219573+00:00"
+      "lane": "approved",
+      "last_event_id": "01KNV7YGQPESKFEK3HXJHH4TS0",
+      "last_transition_at": "2026-04-10T08:25:44.950912+00:00"
     }
   }
 }
