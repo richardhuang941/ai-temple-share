@@ -16,7 +16,7 @@ subtasks:
 - T011
 - T012
 assignee: "codex"
-agent: "codex"
+agent: "codex:gpt-5.4:implementer:implementer"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -24,6 +24,7 @@ owned_files:
 - tests/unit/contentMappers.test.ts
 - tests/unit/timeline.test.ts
 - kitty-specs/005-mobile-share-and-task-flow-polish/**
+shell_pid: "4218"
 ---
 
 # WP04 - Regression and Mission Alignment
@@ -43,3 +44,4 @@ owned_files:
 - 这一步只做 mission alignment，不伪造未实际发生的历史 review/accept 事件。
 
 ## Activity Log
+- 2026-04-10T04:04:24Z – codex:gpt-5.4:implementer:implementer – shell_pid=4218 – Started implementation via action command
