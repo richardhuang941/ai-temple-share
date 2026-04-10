@@ -38,3 +38,4 @@ owned_files:
 - 2026-04-10T10:01:26Z – codex – shell_pid=main-shell – Started GitHub Pages workflow implementation
 - 2026-04-10T10:01:27Z – codex – shell_pid=main-shell – Workflow and mission assets ready for review
 - 2026-04-10T10:01:27Z – codex – shell_pid=main-shell – Approved after local review and workflow verification
+- 2026-04-10T10:02:32Z – codex – shell_pid=main-shell – Marked done after fast-forward merge to landing branch | Done override: Direct-repo fast-forward merge from kitty mission branch into feature/004-header-density-interaction-share-polish
