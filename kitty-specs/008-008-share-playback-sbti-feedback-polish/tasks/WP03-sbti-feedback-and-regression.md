@@ -16,9 +16,9 @@ subtasks:
 - T007
 - T008
 - T009
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "67274"
 authoritative_surface: src/components/sections/
 execution_mode: code_change
 owned_files:
@@ -34,3 +34,7 @@ owned_files:
 ## Objective
 
 让空 `SBTI` 点击变成 shake/focus 引导，并补齐这轮 mission 的回归验证与状态落点。
+
+## Activity Log
+
+- 2026-04-10T08:13:58Z – codex – shell_pid=67274 – Implementation completed on feature branch
