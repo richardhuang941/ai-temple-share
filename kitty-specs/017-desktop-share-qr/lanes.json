@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "mission_slug": "017-desktop-share-qr",
+  "mission_id": "017-desktop-share-qr",
+  "mission_branch": "kitty/mission-017-desktop-share-qr",
+  "target_branch": "codex/oss-sanitize-pages-rename",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01"
+      ],
+      "write_scope": [
+        "package-lock.json",
+        "package.json",
+        "src/components/sections/ShareSection.tsx",
+        "src/components/share/DesktopShareQr.tsx",
+        "src/components/share/ShareSummaryCard.tsx",
+        "src/content/models.ts",
+        "src/content/uiCopy.ts",
+        "src/lib/shareActions.ts",
+        "src/lib/shareLink.ts",
+        "src/styles/share-actions.css",
+        "tests/integration/longpage.spec.tsx"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T10:47:37.057945+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": []
+}
