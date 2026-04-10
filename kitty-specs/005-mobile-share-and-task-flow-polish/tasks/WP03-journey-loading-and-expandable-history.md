@@ -18,7 +18,7 @@ subtasks:
 - T008
 - T009
 assignee: "codex"
-agent: "codex"
+agent: "codex:gpt-5.4:implementer:implementer"
 authoritative_surface: src/components/journey/
 execution_mode: code_change
 owned_files:
@@ -27,6 +27,7 @@ owned_files:
 - src/lib/timeline.ts
 - src/content/uiCopy.ts
 - src/styles/journey.css
+shell_pid: "4218"
 ---
 
 # WP03 - Journey Loading and Expandable History
@@ -47,3 +48,4 @@ owned_files:
 - active/loading 需要兼容 reduced-motion。
 
 ## Activity Log
+- 2026-04-10T04:02:18Z – codex:gpt-5.4:implementer:implementer – shell_pid=4218 – Started implementation via action command
