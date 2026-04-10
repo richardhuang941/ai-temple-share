@@ -16,9 +16,9 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "92754"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -32,3 +32,8 @@ owned_files:
 ## Objective
 
 补齐 `Task 6 Agent SBTI` 的测试和 acceptance 资产，让 011 mission 可以完整收口。
+
+## Activity Log
+
+- 2026-04-10T08:53:56Z – codex – shell_pid=92434 – Direct-repo regression and mission alignment started
+- 2026-04-10T08:54:02Z – codex – shell_pid=92754 – Regression coverage and mission docs are ready for review

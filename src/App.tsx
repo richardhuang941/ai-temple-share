@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  getLocalizedLongpageContent,
-  type LocalizedContentBundle,
-  type LocaleCode
-} from "./content";
+import { getLocalizedLongpageContent } from "./content";
 import SiteHeader from "./components/common/SiteHeader";
 import HeroSection from "./components/sections/HeroSection";
 import JourneySection from "./components/sections/JourneySection";
@@ -13,13 +9,8 @@ import { useLocale } from "./hooks/useLocale";
 const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
 const HERO_SBTI_INPUT_ID = "hero-sbti-input";
 
-function useLocalizedBundle(locale: LocaleCode): LocalizedContentBundle {
-  return getLocalizedLongpageContent(locale);
-}
-
 export function App() {
   const { locale, setLocale } = useLocale();
-  const bundle = useLocalizedBundle(locale);
   const [sbtiValue, setSbtiValue] = useState<string>(() => {
     if (typeof window === "undefined") {
       return "";
@@ -30,6 +21,7 @@ export function App() {
   const [sbtiError, setSbtiError] = useState<string | null>(null);
   const [sbtiShakeSignal, setSbtiShakeSignal] = useState(0);
   const [journeyStartSignal, setJourneyStartSignal] = useState(0);
+  const bundle = getLocalizedLongpageContent(locale, sbtiValue);
 
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";

@@ -44,11 +44,12 @@ export interface SeededAxisScore {
   value: number;
 }
 
-export interface LbtiProfile {
+export interface AgentSbtiProfile {
   code: string;
   displayName: string;
+  intro: string;
   summary: string;
-  bullets: string[];
+  isKnown: boolean;
 }
 
 export interface SeededSimulationResult {
@@ -70,7 +71,6 @@ export interface SeededSimulationResult {
   txId: string;
   nextHint: string;
   socialSignal: string;
-  lbtiProfile: LbtiProfile;
 }
 
 export interface TaskStage {

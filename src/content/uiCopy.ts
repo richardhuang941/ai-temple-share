@@ -54,7 +54,7 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
       },
       {
         title: "Task 4-6",
-        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 放大社交信号，Task 6 收尾到 LBTI。"
+        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 放大社交信号，Task 6 锁定 Agent SBTI。"
       }
     ],
     startLabel: "填好 SBTI 后开始模拟",
@@ -80,7 +80,7 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
       },
       {
         title: "Task 4-6",
-        body: "Task 4 hands off to SHIT Skills, Task 5 amplifies the signal, and Task 6 closes on LBTI."
+        body: "Task 4 hands off to SHIT Skills, Task 5 amplifies the signal, and Task 6 locks the Agent SBTI."
       }
     ],
     startLabel: "Start after entering SBTI",

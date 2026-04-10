@@ -1,108 +1,38 @@
-# Implementation Plan: [FEATURE]
-*Path: [templates/plan-template.md](templates/plan-template.md)*
+# Implementation Plan: 011 Task 6 Agent SBTI
 
+## Goal
 
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/kitty-specs/[###-feature-name]/spec.md`
+把 `Task 6` 从 `LBTI` 小龙虾人格改成 `Agent SBTI`，并让它使用当前页面里已经输入的 `SBTI` 作为结果来源。
 
-**Note**: This template is filled in by the `/spec-kitty.plan` command. See `src/specify_cli/missions/software-dev/command-templates/plan.md` for the execution workflow.
+## Scope
 
-The planner will not begin until all planning questions have been answered—capture those answers in this document before progressing to later phases.
+- 新增本地 `Agent SBTI` profile resolver
+- 更新 `Task 6` 的内容与 Journey 辅助 copy
+- 移除 `LBTI` 数据模型和 seed 依赖
+- 更新单测与 acceptance
 
-## Summary
+## Key Decisions
 
-[Extract from feature spec: primary requirement + technical approach from research]
+1. `Task 6` 不再随机，而是优先消费当前输入的 `SBTI`。
+2. 对已知 code，展示内置 profile 名称与简短说明。
+3. 对未知 code，保留 code 本身并给出通用 fallback 文案，避免流程断掉。
+4. 不运行时请求 `sbti.unun.dev`；仅参考其前端类型库做本地 profile 数据。
 
-## Technical Context
+## Data Flow
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+1. `App` 已持有 `sbtiValue`
+2. `getLocalizedLongpageContent(locale, sbtiValue)` 接收当前输入
+3. `getTaskMilestones(locale, sbtiValue)` 解析 `Task 6`
+4. `Task 6` 渲染对应的 `Agent SBTI` badge / summary / stage proof
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+## Risks
 
-## Charter Check
+- 如果 `Task 6` 内容绑定 `SBTI` 后没有保持 fallback，初始渲染会出现空值。
+- 如果只改中文文案，英文页会残留 `LBTI`。
+- 移除 `lbtiProfile` 时要同步更新模型和测试，否则 build 会挂。
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+## Validation
 
-[Gates determined based on charter file]
-
-## Project Structure
-
-### Documentation (this feature)
-
-```
-kitty-specs/[###-feature]/
-├── plan.md              # This file (/spec-kitty.plan command output)
-├── research.md          # Phase 0 output (/spec-kitty.plan command)
-├── data-model.md        # Phase 1 output (/spec-kitty.plan command)
-├── quickstart.md        # Phase 1 output (/spec-kitty.plan command)
-├── contracts/           # Phase 1 output (/spec-kitty.plan command)
-└── tasks.md             # Phase 2 output (/spec-kitty.tasks command - NOT created by /spec-kitty.plan)
-```
-
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
-
-```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
-
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
-
-## Complexity Tracking
-
-*Fill ONLY if Charter Check has violations that must be justified*
-
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+- `npm run test`
+- `npm run build`
+- 手测 `CTRL` / `SHIT` / 未知输入 三种情况

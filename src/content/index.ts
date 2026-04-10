@@ -12,14 +12,17 @@ import {
   getShareSectionCopy
 } from "./uiCopy";
 
-export function getLocalizedLongpageContent(locale: LocaleCode): LocalizedContentBundle {
+export function getLocalizedLongpageContent(
+  locale: LocaleCode,
+  agentSbtiCode?: string
+): LocalizedContentBundle {
   const selectedFaction = getSelectedFaction(locale);
 
   return {
     locale,
     hero: getHeroContent(locale),
     agentProfile: getAgentProfileSnapshot(locale),
-    tasks: getTaskMilestones(locale),
+    tasks: getTaskMilestones(locale, agentSbtiCode),
     shareSummary: getShareSummary(locale),
     agentPromptCards: getAgentPromptCards(locale),
     chrome: getChromeCopy(locale),
@@ -72,7 +75,7 @@ export type {
   HeroContent,
   JourneyCardState,
   JourneySectionCopy,
-  LbtiProfile,
+  AgentSbtiProfile,
   LocaleCode,
   LocalizedContentBundle,
   LocaleSource,

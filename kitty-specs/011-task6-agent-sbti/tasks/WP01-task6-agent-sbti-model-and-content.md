@@ -18,9 +18,9 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "92753"
 authoritative_surface: src/content/
 execution_mode: code_change
 owned_files:
@@ -38,3 +38,8 @@ owned_files:
 ## Objective
 
 把 `Task 6` 的数据源从 `LBTI` 改成 `Agent SBTI`，并让内容层完全消除 `LBTI` 文案。
+
+## Activity Log
+
+- 2026-04-10T08:53:56Z – codex – shell_pid=92433 – Direct-repo Task 6 Agent SBTI implementation started
+- 2026-04-10T08:54:02Z – codex – shell_pid=92753 – Task 6 Agent SBTI model and content are implemented and locally verified

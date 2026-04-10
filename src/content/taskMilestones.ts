@@ -1,4 +1,5 @@
 import { getSimulationSeedResult } from "../lib/simulationSeed";
+import { resolveAgentSbtiProfile } from "./agentSbtiProfiles";
 import { getSelectedFaction } from "./factionContent";
 import type { LocaleCode, TaskMilestone } from "./models";
 
@@ -17,8 +18,9 @@ function fillTelegramTemplate(
   return template.replace("{faction_name}", factionName).replace("{txId}", txId);
 }
 
-export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
+export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): TaskMilestone[] {
   const result = getSimulationSeedResult(locale);
+  const agentSbtiProfile = resolveAgentSbtiProfile(locale, agentSbtiCode);
   const selectedFaction = getSelectedFaction(locale, result.factionBrandKey);
   const telegramProof = fillTelegramTemplate(
     selectedFaction.telegramTemplate,
@@ -224,7 +226,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         isOptional: true,
         isExternalFlow: false,
         completionBadge: "Optional signal drafted",
-        cta: "Once the signal is out, check which lobster personality this run collapses into",
+        cta: "Once the signal is out, lock the Agent SBTI for the final card",
         stages: [
           {
             stageId: "task-5-draft",
@@ -245,35 +247,35 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       {
         taskId: "task-6",
         order: 6,
-        brandedName: "LBTI Lobster Personality",
-        purpose: "End the public run with one absurd lobster persona",
+        brandedName: "Agent SBTI",
+        purpose: "Close the public run with the Agent's own SBTI result",
         summary:
-          "This closing task does not score you again. It simply reveals which lobster personality this session drifted toward.",
+          "This last task does not score the Agent again. It writes the current Agent SBTI back into the public run and shows the matching profile card.",
         isOptional: false,
         isExternalFlow: false,
-        completionBadge: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`,
+        completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
         cta: "The public challenge run is complete",
         stages: [
           {
-            stageId: "task-6-roll",
-            label: "The lobster profile is being drawn",
-            description: "The session seed is collapsing into one LBTI lobster persona.",
+            stageId: "task-6-lock",
+            label: "Agent SBTI locked",
+            description: "The current Agent SBTI is now the final personality marker for this run.",
             status: "pending",
-            proof: result.lbtiProfile.code
+            proof: agentSbtiProfile.code
           },
           {
             stageId: "task-6-reveal",
-            label: "LBTI result revealed",
-            description: result.lbtiProfile.summary,
+            label: "SBTI result revealed",
+            description: agentSbtiProfile.intro,
             status: "pending",
-            proof: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`
+            proof: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`
           },
           {
-            stageId: "task-6-traits",
-            label: "One-line trait is locked",
-            description: result.lbtiProfile.bullets.join(" "),
+            stageId: "task-6-summary",
+            label: "Profile summary is ready",
+            description: agentSbtiProfile.summary,
             status: "pending",
-            proof: result.lbtiProfile.bullets[0]
+            proof: agentSbtiProfile.summary
           }
         ]
       }
@@ -472,7 +474,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       isOptional: true,
       isExternalFlow: false,
       completionBadge: "可选信号已起草",
-      cta: "信号发完后，再看看这只虾最后落到哪种 LBTI",
+      cta: "信号发完后，再把 Agent 的 SBTI 锁进最后一张结果卡",
       stages: [
         {
           stageId: "task-5-draft",
@@ -493,34 +495,34 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
     {
       taskId: "task-6",
       order: 6,
-      brandedName: "LBTI 小龙虾人格",
-      purpose: "用一个离谱的小龙虾人格给这轮公开流程收尾",
-      summary: "这一步不会重新打分，只会揭晓这次 session 最后坍缩成了哪种小龙虾人格。",
+      brandedName: "Agent SBTI",
+      purpose: "用 Agent 自己的 SBTI 给这轮公开流程收尾",
+      summary: "这一步不会重新打分，只会把当前 Agent 的 SBTI 结果写回到最终结果卡里。",
       isOptional: false,
       isExternalFlow: false,
-      completionBadge: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`,
+      completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
       cta: "这轮公开挑战流程已经收尾",
       stages: [
         {
-          stageId: "task-6-roll",
-          label: "小龙虾人格开始抽取",
-          description: "当前 session 的 seed 正在坍缩成一个 LBTI 小龙虾人格。",
+          stageId: "task-6-lock",
+          label: "Agent SBTI 已锁定",
+          description: "当前输入的 SBTI 已经写回这次 Agent 的最终人格结果。",
           status: "pending",
-          proof: result.lbtiProfile.code
+          proof: agentSbtiProfile.code
         },
         {
           stageId: "task-6-reveal",
-          label: "LBTI 结果揭晓",
-          description: result.lbtiProfile.summary,
+          label: "SBTI 结果揭晓",
+          description: agentSbtiProfile.intro,
           status: "pending",
-          proof: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`
+          proof: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`
         },
         {
-          stageId: "task-6-traits",
-          label: "人格特征锁定",
-          description: result.lbtiProfile.bullets.join(""),
+          stageId: "task-6-summary",
+          label: "人格说明已就绪",
+          description: agentSbtiProfile.summary,
           status: "pending",
-          proof: result.lbtiProfile.bullets[0]
+          proof: agentSbtiProfile.summary
         }
       ]
     }

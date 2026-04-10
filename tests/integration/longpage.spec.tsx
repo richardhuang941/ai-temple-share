@@ -105,6 +105,7 @@ describe("Agent Temple Bounty longpage", () => {
     expect(container.textContent).toContain(`${bundle.agentProfile.scoreValue}`);
     expect(container.textContent).toContain(bundle.selectedFaction.displayName);
     expect(within(shareSection as HTMLElement).getAllByText(shareView.scoreSummary).length).toBeGreaterThan(0);
+    expect(container.textContent).not.toContain("LBTI");
     expect(container.textContent).not.toContain("首页先只看");
     expect(container.textContent).not.toContain("演示页，不代替真实注册、共振、宣誓、Telegram 报到或 SHIT Skills 动作");
   });
