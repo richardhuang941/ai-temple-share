@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "mission_slug": "015-repo-rename-pages-alignment",
+  "mission_id": "015-repo-rename-pages-alignment",
+  "mission_branch": "kitty/mission-015-repo-rename-pages-alignment",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03",
+        "WP04"
+      ],
+      "write_scope": [
+        "kitty-specs/007-share-copy-header-sbti-relayout/**",
+        "kitty-specs/009-agent-temple-brand-neutralization/**",
+        "kitty-specs/013-github-pages-action-deploy/acceptance-matrix.json",
+        "package-lock.json",
+        "package.json",
+        "src/components/sections/ShareSection.tsx",
+        "src/lib/locale.ts",
+        "tests/integration/longpage.spec.tsx"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T10:20:01.016566+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP02",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP02"
+      },
+      {
+        "wp_a": "WP04",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP04 depends on WP01"
+      }
+    ],
+    "total_merges": 3,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 3
+    }
+  }
+}
