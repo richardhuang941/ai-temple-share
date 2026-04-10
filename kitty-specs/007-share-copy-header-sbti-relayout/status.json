@@ -1,14 +1,14 @@
 {
-  "event_count": 12,
-  "last_event_id": "01KNV692SGHWYZ6SGPY30RZY9X",
-  "materialized_at": "2026-04-10T07:56:33.968488+00:00",
+  "event_count": 13,
+  "last_event_id": "01KNV693FJAVN4WKTCN8YVWK27",
+  "materialized_at": "2026-04-10T07:56:34.674561+00:00",
   "mission_slug": "007-share-copy-header-sbti-relayout",
   "summary": {
-    "approved": 1,
+    "approved": 0,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
-    "done": 1,
+    "done": 2,
     "for_review": 0,
     "in_progress": 0,
     "planned": 1
@@ -24,9 +24,9 @@
     "WP02": {
       "actor": "user",
       "force_count": 2,
-      "lane": "approved",
-      "last_event_id": "01KNV692SGHWYZ6SGPY30RZY9X",
-      "last_transition_at": "2026-04-10T07:56:33.968488+00:00"
+      "lane": "done",
+      "last_event_id": "01KNV693FJAVN4WKTCN8YVWK27",
+      "last_transition_at": "2026-04-10T07:56:34.674561+00:00"
     },
     "WP03": {
       "actor": "finalize-tasks",
