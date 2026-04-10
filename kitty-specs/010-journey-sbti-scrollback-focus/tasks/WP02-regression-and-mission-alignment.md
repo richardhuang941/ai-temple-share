@@ -38,3 +38,5 @@ owned_files:
 
 - 2026-04-10T08:36:26Z – codex – shell_pid=31112 – Direct-repo regression and mission alignment started
 - 2026-04-10T08:36:46Z – codex – shell_pid=31647 – Regression coverage and mission docs ready for review
+- 2026-04-10T08:37:17Z – codex – shell_pid=31647 – Review passed: regression coverage and mission alignment are complete
+- 2026-04-10T08:37:32Z – codex – shell_pid=31647 – WP02 landed on the feature branch and is complete | Done override: Direct-repo implementation accepted locally without a separate lane branch

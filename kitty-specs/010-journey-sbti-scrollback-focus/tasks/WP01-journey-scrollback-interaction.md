@@ -39,3 +39,5 @@ owned_files:
 
 - 2026-04-10T08:36:26Z – codex – shell_pid=31113 – Direct-repo implementation started for Journey SBTI scrollback
 - 2026-04-10T08:36:46Z – codex – shell_pid=31646 – Scrollback interaction implemented and verified locally
+- 2026-04-10T08:37:17Z – codex – shell_pid=31646 – Review passed: Journey CTA now scrolls and focuses Hero SBTI input when empty
+- 2026-04-10T08:37:32Z – codex – shell_pid=31646 – WP01 landed on the feature branch and is complete | Done override: Direct-repo implementation accepted locally without a separate lane branch
