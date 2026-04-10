@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "mission_slug": "008-008-share-playback-sbti-feedback-polish",
+  "mission_id": "008-008-share-playback-sbti-feedback-polish",
+  "mission_branch": "kitty/mission-008-008-share-playback-sbti-feedback-polish",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03"
+      ],
+      "write_scope": [
+        "kitty-specs/008-008-share-playback-sbti-feedback-polish/**",
+        "src/App.tsx",
+        "src/components/journey/JourneyTimeline.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/JourneySection.tsx",
+        "src/components/share/ShareSummaryCard.tsx",
+        "src/content/sharePlatformCopy.ts",
+        "src/content/uiCopy.ts",
+        "src/hooks/useJourneyTimeline.ts",
+        "src/styles/challenge-surfaces.css",
+        "src/styles/journey.css",
+        "src/styles/share-actions.css",
+        "tests/integration/longpage.spec.tsx"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T08:09:06.047843+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP02",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP02"
+      }
+    ],
+    "total_merges": 2,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 2
+    }
+  }
+}
