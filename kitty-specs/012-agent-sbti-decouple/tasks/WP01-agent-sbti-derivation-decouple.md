@@ -41,3 +41,4 @@ owned_files:
 - 2026-04-10T09:08:37Z – codex – shell_pid=main-shell – Implementation started for Agent SBTI decouple
 - 2026-04-10T09:09:05Z – codex – shell_pid=main-shell – Ready for review after local test/build; subtasks are tracked in WP prompt files
 - 2026-04-10T09:09:05Z – codex – shell_pid=main-shell – Approved after local review and verification
+- 2026-04-10T09:10:34Z – codex – shell_pid=main-shell – Marked done after fast-forward merge to landing branch | Done override: Direct-repo fast-forward merge from kitty mission branch into feature/004-header-density-interaction-share-polish

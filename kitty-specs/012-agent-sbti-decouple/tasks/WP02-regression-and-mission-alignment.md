@@ -38,3 +38,4 @@ owned_files:
 - 2026-04-10T09:09:06Z – codex – shell_pid=main-shell – Regression and mission alignment started
 - 2026-04-10T09:09:06Z – codex – shell_pid=main-shell – Ready for review after regression coverage and mission asset updates
 - 2026-04-10T09:09:07Z – codex – shell_pid=main-shell – Approved after local review and verification
+- 2026-04-10T09:10:35Z – codex – shell_pid=main-shell – Marked done after fast-forward merge to landing branch | Done override: Direct-repo fast-forward merge from kitty mission branch into feature/004-header-density-interaction-share-polish
