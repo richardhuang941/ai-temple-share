@@ -24,8 +24,8 @@
 
 这轮同时参考了用户提供的 Clawvard 下载源码：
 
-- [Share Score _ Clawvard.html](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard.html)
-- [Share Score _ Clawvard_files](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard_files)
+- `Share Score _ Clawvard.html`（本地下载参考页）
+- `Share Score _ Clawvard_files/`（本地下载资源目录）
 
 本地源码里可以确认它们对移动端社媒采用了 URI scheme 唤起思路，例如 `weixin://`、`xhsdiscover://`、`snssdk1128://`，并在跳转前先复制分享文案、显示倒计时提示。
 

@@ -1,7 +1,7 @@
 # Work Packages: Claws Temple Bounty 长单页
 
 **Mission**: `001-bounty-journey-longpage`  
-**Feature Dir**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage`  
+**Feature Dir**: `../../kitty-specs/001-bounty-journey-longpage`  
 **Planning Base Branch**: `main`  
 **Merge Target Branch**: `main`
 
@@ -13,11 +13,11 @@
 
 | WP | Title | Goal | Priority | Dependencies | Prompt | Est. Prompt Size |
 |---|---|---|---|---|---|---|
-| WP01 | Foundation and Tooling | 初始化前端脚手架、测试配置和全局样式地基 | P0 | None | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP01-foundation-and-tooling.md` | ~260 lines |
-| WP02 | Content and Timeline Engine | 建立内容模型、任务数据和前端时间轴引擎 | P0 | WP01 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP02-content-and-timeline-engine.md` | ~360 lines |
-| WP03 | Journey Simulation UI | 完成 Task 1-5 过程模拟区的核心 UI | P1 | WP01, WP02 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP03-journey-simulation-ui.md` | ~340 lines |
-| WP04 | Hero Share and Prompt UI | 完成 Hero、分享结果区和 Agent 指令区 | P1 | WP01, WP02 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP04-hero-share-and-prompt-ui.md` | ~330 lines |
-| WP05 | Page Integration and Validation | 串联整页、补齐测试并完成最终验收 | P0 | WP03, WP04 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP05-page-integration-and-validation.md` | ~300 lines |
+| WP01 | Foundation and Tooling | 初始化前端脚手架、测试配置和全局样式地基 | P0 | None | `../../kitty-specs/001-bounty-journey-longpage/tasks/WP01-foundation-and-tooling.md` | ~260 lines |
+| WP02 | Content and Timeline Engine | 建立内容模型、任务数据和前端时间轴引擎 | P0 | WP01 | `../../kitty-specs/001-bounty-journey-longpage/tasks/WP02-content-and-timeline-engine.md` | ~360 lines |
+| WP03 | Journey Simulation UI | 完成 Task 1-5 过程模拟区的核心 UI | P1 | WP01, WP02 | `../../kitty-specs/001-bounty-journey-longpage/tasks/WP03-journey-simulation-ui.md` | ~340 lines |
+| WP04 | Hero Share and Prompt UI | 完成 Hero、分享结果区和 Agent 指令区 | P1 | WP01, WP02 | `../../kitty-specs/001-bounty-journey-longpage/tasks/WP04-hero-share-and-prompt-ui.md` | ~330 lines |
+| WP05 | Page Integration and Validation | 串联整页、补齐测试并完成最终验收 | P0 | WP03, WP04 | `../../kitty-specs/001-bounty-journey-longpage/tasks/WP05-page-integration-and-validation.md` | ~300 lines |
 
 ## Subtask Index
 
@@ -55,7 +55,7 @@
 - Goal: 初始化 `React + Vite` 单页前端基础设施，为后续内容层和 UI 层提供稳定地基。
 - Priority: P0
 - Independent Test: `npm install` 成功，测试脚本可执行，样式 token 与基础 HTML shell 已就位。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP01-foundation-and-tooling.md`
+- Prompt: `../../kitty-specs/001-bounty-journey-longpage/tasks/WP01-foundation-and-tooling.md`
 - Estimated Prompt Size: ~260 lines
 - Dependencies: None
 
@@ -85,7 +85,7 @@ Risks:
 - Goal: 把真实业务语义转成可维护的本地内容配置，并建立前端时间轴状态机。
 - Priority: P0
 - Independent Test: 单元测试通过，能从本地内容数据中推导出 Journey 与 Share 所需显示态。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP02-content-and-timeline-engine.md`
+- Prompt: `../../kitty-specs/001-bounty-journey-longpage/tasks/WP02-content-and-timeline-engine.md`
 - Estimated Prompt Size: ~360 lines
 - Dependencies: Depends on WP01
 
@@ -118,7 +118,7 @@ Risks:
 - Goal: 把 `Task 1-5` 的完整旅程做成强节奏、可读、可降级的过程模拟区。
 - Priority: P1
 - Independent Test: 页面可渲染五个任务、各自阶段与状态文本，且能区分当前任务、已完成任务与外部流程任务。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP03-journey-simulation-ui.md`
+- Prompt: `../../kitty-specs/001-bounty-journey-longpage/tasks/WP03-journey-simulation-ui.md`
 - Estimated Prompt Size: ~340 lines
 - Dependencies: Depends on WP01, WP02
 
@@ -150,7 +150,7 @@ Risks:
 - Goal: 完成首页的第一印象、传播结果卡以及 AI Agent 指令区。
 - Priority: P1
 - Independent Test: 用户不看 Journey 区也能从这三个区块理解页面用途、传播结果和下一步如何交给 Agent。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP04-hero-share-and-prompt-ui.md`
+- Prompt: `../../kitty-specs/001-bounty-journey-longpage/tasks/WP04-hero-share-and-prompt-ui.md`
 - Estimated Prompt Size: ~330 lines
 - Dependencies: Depends on WP01, WP02
 
@@ -182,7 +182,7 @@ Risks:
 - Goal: 把各区块串成一个完整长单页，并以测试和构建验证收尾。
 - Priority: P0
 - Independent Test: `npm run test` 和 `npm run build` 通过，整页顺序、关键文案和外部流程说明正确。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/tasks/WP05-page-integration-and-validation.md`
+- Prompt: `../../kitty-specs/001-bounty-journey-longpage/tasks/WP05-page-integration-and-validation.md`
 - Estimated Prompt Size: ~300 lines
 - Dependencies: Depends on WP03, WP04
 

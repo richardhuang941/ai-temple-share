@@ -20,7 +20,7 @@
       "pass_fail": "pass",
       "verified_by": "codex",
       "verified_at": "2026-04-10T16:25:54+08:00",
-      "notes": "The implementation updates plain branding text while leaving `Claws-Temple/...` repo references and `claws-temple-home.vercel.app` intact."
+      "notes": "The implementation updates plain branding text while leaving `Claws-Temple/...` repo references and `https://richardhuang941.github.io/ai-temple-share` intact."
     },
     {
       "criterion_id": "ACC-003",

@@ -106,3 +106,41 @@ directories captured above]
 |-----------|------------|-------------------------------------|
 | [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
 | [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+# Implementation Plan: Repo Rename Pages Alignment
+
+## Goal
+
+- 把 repo rename 对外显式暴露的名称、链接和验收说明同步到当前仓库状态。
+
+## Non-goal
+
+- 不改 GitHub Pages workflow 结构。
+- 不调整页面功能或样式。
+
+## Approach
+
+### 1. Runtime-facing alignment
+
+- 更新 `package.json` / `package-lock.json` 名称
+- 更新 locale storage key
+
+### 2. User-facing alignment
+
+- 更新分享区 challenge link
+- 同步相关测试断言
+
+### 3. Documentation alignment
+
+- 更新 mission `013` 的 Pages 验收说明
+- 清理仓库内对旧 Pages repo/base 的残留引用
+
+## Risks
+
+- 分享链接切换后，测试断言和文案很容易漏改一处。
+- locale key 改名后，旧浏览器缓存不会自动迁移，但这属于可接受的轻量断点。
+
+## Verification
+
+- `npm run test`
+- `npm run build`
+- `GITHUB_PAGES=true GITHUB_REPOSITORY=richardhuang941/ai-temple-share npm run build`

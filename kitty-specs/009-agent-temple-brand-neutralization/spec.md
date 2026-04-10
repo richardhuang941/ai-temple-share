@@ -17,7 +17,7 @@
 ## Non-Goals
 
 - 不改真实仓库路径、GitHub org、域名、branch、mission slug。
-- 不改 `claws-temple-home.vercel.app` 这种真实可访问地址。
+- 不改 `https://richardhuang941.github.io/ai-temple-share` 这种真实可访问地址。
 - 不改 Task 语义与页面交互。
 
 ## Functional Requirements
@@ -46,5 +46,5 @@
 ## Acceptance Criteria
 
 - 页面与默认内容里不再出现 `Claws Temple` / `Claws Temple AI` 品牌词。
-- 真实仓库引用如 `https://github.com/Claws-Temple/...` 与 `claws-temple-home.vercel.app` 不被误改。
+- 真实仓库引用如 `https://github.com/Claws-Temple/...` 与 `https://richardhuang941.github.io/ai-temple-share` 不被误改。
 - `npm run test` 与 `npm run build` 通过。

@@ -7,7 +7,7 @@ import SocialShareActions from "../share/SocialShareActions";
 import ShareSummaryCard from "../share/ShareSummaryCard";
 import "../../styles/share-actions.css";
 
-const challengeLink = "https://claws-temple-home.vercel.app";
+const challengeLink = "https://richardhuang941.github.io/ai-temple-share";
 
 interface ShareSectionProps {
   bundle?: LocalizedContentBundle;

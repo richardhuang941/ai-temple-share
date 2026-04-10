@@ -1,8 +1,8 @@
 # Implementation Plan: Mobile Share and Task Flow Polish
-*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/005-mobile-share-and-task-flow-polish/plan.md`*
+*Path: `../../kitty-specs/005-mobile-share-and-task-flow-polish/plan.md`*
 
-**Branch**: `feature/004-header-density-interaction-share-polish` | **Date**: `2026-04-09` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/005-mobile-share-and-task-flow-polish/spec.md`
-**Input**: Feature specification from `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/005-mobile-share-and-task-flow-polish/spec.md`
+**Branch**: `feature/004-header-density-interaction-share-polish` | **Date**: `2026-04-09` | **Spec**: `../../kitty-specs/005-mobile-share-and-task-flow-polish/spec.md`
+**Input**: Feature specification from `../../kitty-specs/005-mobile-share-and-task-flow-polish/spec.md`
 
 ## Summary
 

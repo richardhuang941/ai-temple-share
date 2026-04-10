@@ -1,0 +1,21 @@
+work_packages:
+  - id: WP01
+    title: "Kitty Specs Path Cleanup"
+    dependencies: []
+    owned_files:
+      - "kitty-specs/**"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - FR-005
+      - NFR-002
+      - NFR-003
+      - C-001
+      - C-002
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: "tasks/WP01-kitty-specs-path-cleanup.md"

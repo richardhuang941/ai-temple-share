@@ -2,13 +2,13 @@
 
 ## Inputs Reviewed
 
-- [Share Score _ Clawvard.html](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard.html)
-- [Share Score _ Clawvard_files](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard_files)
+- `Share Score _ Clawvard.html`（本地下载参考页）
+- `Share Score _ Clawvard_files/`（本地下载资源目录）
 - 当前实现代码：
-  - [SocialShareActions.tsx](/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/share/SocialShareActions.tsx)
-  - [shareActions.ts](/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/lib/shareActions.ts)
-  - [TaskMilestoneCard.tsx](/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/journey/TaskMilestoneCard.tsx)
-  - [StagePulse.tsx](/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/journey/StagePulse.tsx)
+  - [SocialShareActions.tsx](../../src/components/share/SocialShareActions.tsx)
+  - [shareActions.ts](../../src/lib/shareActions.ts)
+  - [TaskMilestoneCard.tsx](../../src/components/journey/TaskMilestoneCard.tsx)
+  - [StagePulse.tsx](../../src/components/journey/StagePulse.tsx)
 
 ## Findings
 

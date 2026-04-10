@@ -1,0 +1,1 @@
+{"actor": "finalize-tasks", "at": "2026-04-10T10:13:20.996721+00:00", "event_id": "01KNVE3HF4WJ9DHYBPQ3PDNCTA", "evidence": null, "execution_mode": "worktree", "force": true, "from_lane": "planned", "mission_slug": "014-open-source-path-sanitization", "policy_metadata": null, "reason": "canonical bootstrap", "review_ref": null, "to_lane": "planned", "wp_id": "WP01"}

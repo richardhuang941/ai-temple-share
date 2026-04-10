@@ -1,6 +1,6 @@
 import type { LocaleCode, LocaleState } from "../content";
 
-export const LOCALE_STORAGE_KEY = "claws-temple-home.locale";
+export const LOCALE_STORAGE_KEY = "ai-temple-share.locale";
 
 function isSupportedLocale(locale: string): locale is LocaleCode {
   return locale === "zh" || locale === "en";

@@ -189,7 +189,8 @@ describe("Agent Temple Bounty longpage", () => {
     expect(writeText).toHaveBeenCalledTimes(1);
 
     const copiedPayload = String(writeText.mock.calls[0]?.[0] ?? "");
-    const challengeLinkMatches = copiedPayload.match(/https:\/\/claws-temple-home\.vercel\.app/g) ?? [];
+    const challengeLinkMatches =
+      copiedPayload.match(/https:\/\/richardhuang941\.github\.io\/ai-temple-share/g) ?? [];
 
     expect(challengeLinkMatches).toHaveLength(1);
     expect(screen.getByRole("dialog")).toBeTruthy();
