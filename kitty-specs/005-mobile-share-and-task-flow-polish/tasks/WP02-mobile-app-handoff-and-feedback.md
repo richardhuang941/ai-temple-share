@@ -48,3 +48,4 @@ owned_files:
 - loading/feedback 要对用户可见，但不要泄漏实现细节说明。
 
 ## Activity Log
+- 2026-04-10T04:12:32Z – codex – shell_pid=4218 – Merged into feature/004-header-density-interaction-share-polish | Done override: Manual squash merge landed on feature/004-header-density-interaction-share-polish after mission acceptance.
