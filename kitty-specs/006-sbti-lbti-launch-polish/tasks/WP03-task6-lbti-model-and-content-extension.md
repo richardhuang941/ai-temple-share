@@ -51,3 +51,4 @@ owned_files:
 ## Activity Log
 
 - 2026-04-10T15:10:00+08:00 – codex – shell_pid=main-shell – Planned on feature/004-header-density-interaction-share-polish
+- 2026-04-10T07:07:24Z – codex – shell_pid=main-shell – Done override: Direct repo implementation and local review landed on feature/004-header-density-interaction-share-polish after npm run test and npm run build.
