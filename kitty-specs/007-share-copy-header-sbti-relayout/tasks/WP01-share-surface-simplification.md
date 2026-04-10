@@ -16,9 +16,9 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "17936"
 authoritative_surface: src/components/share/
 execution_mode: code_change
 owned_files:
@@ -34,3 +34,7 @@ owned_files:
 ## Objective
 
 把战书区域压成更轻的单卡表达，并把链接与文案改成正式上线口径。
+
+## Activity Log
+
+- 2026-04-10T07:56:05Z – codex – shell_pid=17936 – Implementation completed on feature branch
