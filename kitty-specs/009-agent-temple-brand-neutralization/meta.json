@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:26:20.352707+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "781b4bfcc17100dcf0e1b6550c57d8188b1bc9bc"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:26:20.352707+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "781b4bfcc17100dcf0e1b6550c57d8188b1bc9bc",
   "created_at": "2026-04-10T08:21:48.866217+00:00",
   "friendly_name": "agent temple brand neutralization",
   "mission_number": "009",
