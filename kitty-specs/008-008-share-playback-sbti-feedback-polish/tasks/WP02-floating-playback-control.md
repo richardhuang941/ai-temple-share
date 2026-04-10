@@ -17,9 +17,9 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "67274"
 authoritative_surface: src/components/journey/
 execution_mode: code_change
 owned_files:
@@ -35,3 +35,7 @@ owned_files:
 ## Objective
 
 为自动演示补统一的 floating 播放/暂停控制，让桌面端和移动端都能随时暂停或恢复当前节奏。
+
+## Activity Log
+
+- 2026-04-10T08:13:56Z – codex – shell_pid=67274 – Implementation completed on feature branch
