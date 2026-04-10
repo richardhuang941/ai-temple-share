@@ -1,46 +1,46 @@
 {
-  "event_count": 7,
-  "last_event_id": "01KNVHZ7GJSTNGZT6VWX7AYX28",
-  "materialized_at": "2026-04-10T11:20:54.034673+00:00",
+  "event_count": 20,
+  "last_event_id": "01KNVJ0E2Q6QXS48MRNEV2EZ57",
+  "materialized_at": "2026-04-10T11:21:33.527497+00:00",
   "mission_slug": "018-018-in-app-sbti-assessment",
   "summary": {
-    "approved": 0,
+    "approved": 4,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
     "done": 0,
-    "for_review": 1,
+    "for_review": 0,
     "in_progress": 0,
-    "planned": 3
+    "planned": 0
   },
   "work_packages": {
     "WP01": {
-      "actor": "codex",
+      "actor": "user",
       "force_count": 2,
-      "lane": "for_review",
-      "last_event_id": "01KNVHZ7GJSTNGZT6VWX7AYX28",
-      "last_transition_at": "2026-04-10T11:20:54.034673+00:00"
+      "lane": "approved",
+      "last_event_id": "01KNVJ09EAVJWYZDKV1GXQNKPX",
+      "last_transition_at": "2026-04-10T11:21:28.778662+00:00"
     },
     "WP02": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNVH9Q5F6CASB0T7913ZFT54",
-      "last_transition_at": "2026-04-10T11:09:09.167479+00:00"
+      "actor": "user",
+      "force_count": 2,
+      "lane": "approved",
+      "last_event_id": "01KNVJ0B0T1181KX5WQ9RDH254",
+      "last_transition_at": "2026-04-10T11:21:30.394080+00:00"
     },
     "WP03": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNVH9Q5G3KB8AZDJZCW11PKV",
-      "last_transition_at": "2026-04-10T11:09:09.168891+00:00"
+      "actor": "user",
+      "force_count": 2,
+      "lane": "approved",
+      "last_event_id": "01KNVJ0CHPRWMZ64E1SZ2BQ613",
+      "last_transition_at": "2026-04-10T11:21:31.958586+00:00"
     },
     "WP04": {
-      "actor": "finalize-tasks",
-      "force_count": 1,
-      "lane": "planned",
-      "last_event_id": "01KNVH9Q5J48NAAM3EKSPHX6J4",
-      "last_transition_at": "2026-04-10T11:09:09.170040+00:00"
+      "actor": "user",
+      "force_count": 3,
+      "lane": "approved",
+      "last_event_id": "01KNVJ0E2Q6QXS48MRNEV2EZ57",
+      "last_transition_at": "2026-04-10T11:21:33.527497+00:00"
     }
   }
 }

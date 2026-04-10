@@ -13,8 +13,8 @@ branch_strategy: Planning artifacts for this feature were generated on codex/oss
 subtasks:
 - T010
 - T011
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: tests/
 execution_mode: code_change
@@ -31,3 +31,9 @@ owned_files:
 ## Objective
 
 补齐 `SBTI` 站内测试链路的 unit / integration 回归，并完成 Kitty 验收资产。
+
+## Activity Log
+
+- 2026-04-10T11:21:32Z – codex – shell_pid=main-shell – Regression and acceptance assets prepared in current branch
+- 2026-04-10T11:21:33Z – codex – shell_pid=main-shell – Ready for local review after regression coverage
+- 2026-04-10T11:21:33Z – codex – shell_pid=main-shell – Approved pending acceptance artifact commit

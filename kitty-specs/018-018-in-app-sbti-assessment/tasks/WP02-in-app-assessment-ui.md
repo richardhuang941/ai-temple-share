@@ -17,8 +17,8 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/
 execution_mode: code_change
@@ -33,3 +33,9 @@ owned_files:
 ## Objective
 
 实现站内 `SBTI` 测试体验：桌面端 modal，移动端全屏页面式测试层。
+
+## Activity Log
+
+- 2026-04-10T11:21:29Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-10T11:21:29Z – codex – shell_pid=main-shell – Ready for local review after in-app assessment UI implementation
+- 2026-04-10T11:21:30Z – codex – shell_pid=main-shell – Approved after local review

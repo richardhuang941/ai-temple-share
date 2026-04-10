@@ -16,8 +16,8 @@ subtasks:
 - T007
 - T008
 - T009
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/
 execution_mode: code_change
@@ -35,3 +35,9 @@ owned_files:
 ## Objective
 
 把站内 `SBTI` 测试接回 Hero 输入 gate，并在完成测试后自动回填、继续 Journey。
+
+## Activity Log
+
+- 2026-04-10T11:21:30Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-10T11:21:31Z – codex – shell_pid=main-shell – Ready for local review after hero integration and autofill
+- 2026-04-10T11:21:31Z – codex – shell_pid=main-shell – Approved after local review
