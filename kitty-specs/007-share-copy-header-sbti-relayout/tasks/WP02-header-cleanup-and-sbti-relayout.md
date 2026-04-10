@@ -19,9 +19,9 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "19622"
 authoritative_surface: src/components/sections/
 execution_mode: code_change
 owned_files:
@@ -37,3 +37,7 @@ owned_files:
 ## Objective
 
 移除 header 借用 logo，并把 `SBTI` 输入从 Journey 迁到 Hero 的观看模拟动作前。
+
+## Activity Log
+
+- 2026-04-10T07:56:32Z – codex – shell_pid=19622 – Implementation completed on feature branch
