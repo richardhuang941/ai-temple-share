@@ -35,6 +35,8 @@ export function ShareSummaryCard({
   locale
 }: ShareSummaryCardProps) {
   const textPayload = buildTextPayload(summary, shareCopy, challengeLink, locale);
+  const communityStatusLabel =
+    locale === "zh" ? "社区战报已准备好" : "Community result ready";
 
   return (
     <article className="share-summary-surface">
@@ -45,6 +47,15 @@ export function ShareSummaryCard({
         <strong className="share-summary-percentile">
           {summary.percentileNote}
         </strong>
+      </div>
+
+      <div
+        aria-label={shareCopy.title}
+        style={{ display: "flex", flexWrap: "wrap", gap: "0.55rem", justifyContent: "center" }}
+      >
+        <span className="share-fact-chip">{summary.resonanceStatus}</span>
+        <span className="share-fact-chip">{summary.factionStatus}</span>
+        <span className="share-fact-chip">{communityStatusLabel}</span>
       </div>
 
       <div className="share-summary-note-block">

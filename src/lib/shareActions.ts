@@ -33,8 +33,15 @@ async function copyText(value: string): Promise<void> {
   fallbackCopy(value);
 }
 
-export async function copySharePayload(text: string, url: string): Promise<void> {
-  await copyText(`${text}\n\n${url}`);
+export async function copySharePayload(text: string, url?: string): Promise<void> {
+  const normalizedText = text.trim();
+  const normalizedUrl = url?.trim();
+  const payload =
+    normalizedUrl && !normalizedText.includes(normalizedUrl)
+      ? `${normalizedText}\n\n${normalizedUrl}`
+      : normalizedText;
+
+  await copyText(payload);
 }
 
 export function isMobileShareSurface(): boolean {

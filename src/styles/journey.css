@@ -105,6 +105,14 @@
   box-shadow: var(--shadow-soft);
 }
 
+@media (min-width: 960px) {
+  .journey-summary-card {
+    position: sticky;
+    top: 1rem;
+    z-index: 2;
+  }
+}
+
 .journey-summary-row {
   display: flex;
   flex-wrap: wrap;
@@ -159,6 +167,7 @@
   gap: 0.75rem;
   min-height: 100%;
   padding: 1rem;
+  scroll-margin-top: 6rem;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(24, 34, 54, 0.08);
   background: rgba(255, 255, 255, 0.9);

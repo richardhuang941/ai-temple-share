@@ -65,6 +65,7 @@ export function TaskMilestoneCard({
           : "Focus this task";
   const activeFooterLabel =
     locale === "zh" ? "当前任务下一步" : "Current task next step";
+  const stageListId = `${task.taskId}-stage-list`;
 
   return (
     <article
@@ -116,7 +117,7 @@ export function TaskMilestoneCard({
       </div>
 
       {shouldShowDetails ? (
-        <ul className="journey-stage-list">
+        <ul id={stageListId} className="journey-stage-list">
           {task.stages.map((stage) => (
             <StagePulse
               key={stage.stageId}
@@ -138,6 +139,8 @@ export function TaskMilestoneCard({
           type="button"
           onClick={isCompleted ? onToggleExpanded : onSelect}
           className="journey-card-action"
+          aria-expanded={isCompleted ? isExpanded : undefined}
+          aria-controls={isCompleted && shouldShowDetails ? stageListId : undefined}
         >
           <strong>{actionLabel}</strong>
           <span>

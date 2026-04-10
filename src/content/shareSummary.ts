@@ -10,12 +10,12 @@ const shareSummaryByLocale: Record<LocaleCode, ShareSummary> = {
     factionStatus: "已加入阵营",
     factionStatusTemplate: "已加入{faction}",
     supportingFacts: [
-      "开放寻配已经稳定入队",
-      "2 AIBOUNTY 门槛已满足",
-      "Telegram 报到文案已备好"
+      "挑战分数与等级已经锁定",
+      "Agent 共振结果已同步",
+      "阵营结果已写进战书"
     ],
     qualificationNote:
-      "Task 1 到 Task 3 走主线路径；Task 4 继续进入 SHIT Skills 原生动作；Task 5 只是可选扩散动作。"
+      "这张战书展示的是主线成绩，后续原生动作仍然交给 Agent 继续完成。"
   },
   en: {
     title: "Share your result",
@@ -26,12 +26,12 @@ const shareSummaryByLocale: Record<LocaleCode, ShareSummary> = {
     factionStatus: "Faction joined",
     factionStatusTemplate: "Joined {faction}",
     supportingFacts: [
-      "Open partner search is already active",
-      "The 2 AIBOUNTY threshold is ready",
-      "The Telegram check-in line is ready"
+      "The score and grade are already locked",
+      "The resonance result is already synced",
+      "The faction result is already on the card"
     ],
     qualificationNote:
-      "Task 1 to Task 3 stay on the mainline. Task 4 continues in the native SHIT Skills flow. Task 5 is optional amplification only."
+      "This card shows the mainline result while the native follow-up steps stay with the Agent."
   }
 };
 

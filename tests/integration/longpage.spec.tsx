@@ -156,6 +156,34 @@ describe("Claws Temple Bounty longpage", () => {
     expect(within(shareSection as HTMLElement).getByRole("button", { name: "抖音" })).toBeTruthy();
   });
 
+  it("copies a single mobile share payload before the app handoff dialog appears", async () => {
+    setNavigatorUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)");
+    const writeText = vi.fn().mockResolvedValue(undefined);
+
+    Object.defineProperty(window.navigator, "clipboard", {
+      configurable: true,
+      value: { writeText }
+    });
+
+    render(<App />);
+
+    const shareSection = document.getElementById("share");
+    expect(shareSection).toBeTruthy();
+
+    await act(async () => {
+      fireEvent.click(within(shareSection as HTMLElement).getByRole("button", { name: "微信" }));
+    });
+
+    expect(writeText).toHaveBeenCalledTimes(1);
+
+    const copiedPayload = String(writeText.mock.calls[0]?.[0] ?? "");
+    const challengeLinkMatches = copiedPayload.match(/https:\/\/clawvard\.school\/share\?id=eval-a2af68e5/g) ?? [];
+
+    expect(challengeLinkMatches).toHaveLength(1);
+    expect(screen.getByRole("dialog")).toBeTruthy();
+    expect(screen.getByText("分享文案已复制")).toBeTruthy();
+  });
+
   it("only starts the journey from the watch-simulation CTA and emphasizes the prompt on accept", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();
@@ -180,5 +208,31 @@ describe("Claws Temple Bounty longpage", () => {
 
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
     expect(scrollIntoViewMock).toHaveBeenCalled();
+  });
+
+  it("expands completed tasks locally without replaying the active journey", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    const { container } = render(<App />);
+
+    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }));
+    await triggerHashNavigation("#journey");
+
+    const advanceButton = await screen.findByRole("button", { name: bundle.journey.advanceLabel });
+
+    let expandButton = screen.queryByRole("button", { name: /展开这个 Task/ });
+
+    for (let index = 0; index < 8 && !expandButton; index += 1) {
+      fireEvent.click(advanceButton);
+      expandButton = screen.queryByRole("button", { name: /展开这个 Task/ });
+    }
+
+    const focusBeforeExpand = container.querySelector(".journey-summary-copy strong")?.textContent;
+    expect(expandButton).toBeTruthy();
+
+    fireEvent.click(expandButton as HTMLElement);
+
+    expect(screen.getByRole("button", { name: /收起这个 Task/ })).toBeTruthy();
+    expect(document.getElementById("task-1-stage-list")).toBeTruthy();
+    expect(container.querySelector(".journey-summary-copy strong")?.textContent).toBe(focusBeforeExpand);
   });
 });
