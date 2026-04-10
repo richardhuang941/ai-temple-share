@@ -191,6 +191,11 @@
   font-size: 0.94rem;
 }
 
+.challenge-cta:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
 .challenge-cta--primary {
   background: linear-gradient(90deg, #ffb200, var(--coral-bright));
   color: #fff;
@@ -216,14 +221,14 @@
 
 .locale-switcher__button:hover,
 .copy-button:hover,
-.challenge-cta:hover,
+.challenge-cta:hover:not(:disabled),
 .challenge-social-action:hover {
   transform: scale(1.02);
 }
 
 .locale-switcher__button:active,
 .copy-button:active,
-.challenge-cta:active,
+.challenge-cta:active:not(:disabled),
 .challenge-social-action:active {
   transform: scale(0.98);
 }

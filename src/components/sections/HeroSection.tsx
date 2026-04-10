@@ -5,7 +5,6 @@ import { deriveShareSummaryView } from "../../lib/contentMappers";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
-  onAcceptChallenge: () => void;
 }
 
 function buildChallengeCopy(bundle: LocalizedContentBundle): string {
@@ -17,8 +16,7 @@ function buildChallengeCopy(bundle: LocalizedContentBundle): string {
 }
 
 export function HeroSection({
-  bundle,
-  onAcceptChallenge
+  bundle
 }: HeroSectionProps) {
   const shareView = deriveShareSummaryView(
     bundle.agentProfile,
@@ -84,13 +82,14 @@ export function HeroSection({
           </div>
 
           <div className="challenge-cta-stack">
-            <a
+            <button
+              type="button"
               className="challenge-cta challenge-cta--primary"
-              href="#agent-prompt"
-              onClick={onAcceptChallenge}
+              disabled
+              aria-disabled="true"
             >
               {bundle.chrome.acceptChallengeLabel}
-            </a>
+            </button>
             <a className="challenge-cta challenge-cta--secondary" href="#share">
               {bundle.chrome.shareChallengeLabel}
             </a>

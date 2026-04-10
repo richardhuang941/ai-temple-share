@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getLocalizedLongpageContent,
   type LocalizedContentBundle,
@@ -17,13 +17,23 @@ interface JourneySectionProps {
   bundle?: LocalizedContentBundle;
 }
 
+const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
+const SBTI_GUIDE_URL = "https://sbti.unun.dev/";
+
 export function JourneySection({
   bundle = getLocalizedLongpageContent("zh")
 }: JourneySectionProps) {
-  const journeyIntentRef = useRef<"start" | "view" | null>(null);
   const taskElementsRef = useRef<Record<string, HTMLElement | null>>({});
   const previousTimelineRef = useRef<SimulationTimelineState | null>(null);
   const lastFocusSignatureRef = useRef<string | null>(null);
+  const [sbtiValue, setSbtiValue] = useState<string>(() => {
+    if (typeof window === "undefined") {
+      return "";
+    }
+
+    return window.localStorage.getItem(SBTI_STORAGE_KEY) ?? "";
+  });
+  const [sbtiError, setSbtiError] = useState<string | null>(null);
   const { advance, currentHint, derivedTasks, goToTask, progress, restart, setAutoplay, start, timeline } =
     useJourneyTimeline(bundle.tasks, {
       cycleDurationMs: 4300,
@@ -31,45 +41,19 @@ export function JourneySection({
     });
 
   useEffect(() => {
-    const handleJourneyIntent = (event: MouseEvent): void => {
-      const target = event.target;
+    if (typeof window === "undefined") {
+      return;
+    }
 
-      if (!(target instanceof Element)) {
-        return;
-      }
+    const normalized = sbtiValue.trim().toUpperCase();
 
-      const journeyLink = target.closest('a[href="#journey"]');
+    if (normalized) {
+      window.localStorage.setItem(SBTI_STORAGE_KEY, normalized);
+      return;
+    }
 
-      if (!(journeyLink instanceof HTMLAnchorElement)) {
-        return;
-      }
-
-      const shouldStartSimulation = journeyLink.classList.contains("challenge-cta--ghost");
-      journeyIntentRef.current = shouldStartSimulation ? "start" : "view";
-
-      if (shouldStartSimulation && window.location.hash === "#journey" && !timeline.hasStarted) {
-        window.requestAnimationFrame(() => {
-          start();
-        });
-      }
-    };
-
-    const handleHashStart = (): void => {
-      if (window.location.hash === "#journey" && !timeline.hasStarted && journeyIntentRef.current === "start") {
-        start();
-      }
-
-      journeyIntentRef.current = null;
-    };
-
-    document.addEventListener("click", handleJourneyIntent, true);
-    window.addEventListener("hashchange", handleHashStart);
-
-    return () => {
-      document.removeEventListener("click", handleJourneyIntent, true);
-      window.removeEventListener("hashchange", handleHashStart);
-    };
-  }, [start, timeline.hasStarted]);
+    window.localStorage.removeItem(SBTI_STORAGE_KEY);
+  }, [sbtiValue]);
 
   useEffect(() => {
     const previousTimeline = previousTimelineRef.current;
@@ -112,6 +96,28 @@ export function JourneySection({
     timeline.isReducedMotion
   ]);
 
+  const startJourney = (): void => {
+    const normalized = sbtiValue.trim().toUpperCase();
+
+    if (!normalized) {
+      setSbtiError(bundle.journey.sbtiError);
+      return;
+    }
+
+    setSbtiValue(normalized);
+    setSbtiError(null);
+    start();
+  };
+
+  const handlePrimaryAction = (): void => {
+    if (timeline.hasStarted) {
+      advance();
+      return;
+    }
+
+    startJourney();
+  };
+
   return (
     <section id="journey" aria-labelledby="journey-heading" className="challenge-stage challenge-stage--journey">
       <div className="journey-shell">
@@ -137,10 +143,54 @@ export function JourneySection({
           ))}
         </div>
 
+        <div className="journey-gate-card">
+          <label className="journey-gate-label" htmlFor="journey-sbti-input">
+            {bundle.journey.sbtiLabel}
+          </label>
+          <input
+            id="journey-sbti-input"
+            className="journey-gate-input"
+            type="text"
+            inputMode="text"
+            autoCapitalize="characters"
+            autoCorrect="off"
+            spellCheck={false}
+            placeholder={bundle.journey.sbtiPlaceholder}
+            value={sbtiValue}
+            aria-invalid={sbtiError ? "true" : "false"}
+            onChange={(event) => {
+              setSbtiValue(event.target.value);
+              setSbtiError(null);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !timeline.hasStarted) {
+                event.preventDefault();
+                startJourney();
+              }
+            }}
+          />
+          <div className="journey-gate-helper-row">
+            <p className="journey-gate-helper">{bundle.journey.sbtiHelper}</p>
+            <a
+              className="journey-gate-link"
+              href={SBTI_GUIDE_URL}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {bundle.journey.sbtiGuideLabel}
+            </a>
+          </div>
+          {sbtiError ? (
+            <p className="journey-gate-error" role="alert">
+              {sbtiError}
+            </p>
+          ) : null}
+        </div>
+
         <div className="journey-action-row">
           <button
             type="button"
-            onClick={timeline.hasStarted ? advance : start}
+            onClick={handlePrimaryAction}
             className="journey-button journey-button--primary"
           >
             {timeline.hasStarted ? bundle.journey.advanceLabel : bundle.journey.startLabel}

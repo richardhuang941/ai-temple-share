@@ -1,5 +1,6 @@
 import type {
   FactionBrandKey,
+  LbtiProfile,
   LocaleCode,
   SeededAxisScore,
   SeededSimulationResult
@@ -190,6 +191,133 @@ const templatesByLocale: Record<LocaleCode, Record<FactionBrandKey, SeedTemplate
   }
 };
 
+const lbtiProfilesByLocale: Record<LocaleCode, LbtiProfile[]> = {
+  zh: [
+    {
+      code: "DEAD-SHELL",
+      displayName: "壳死人",
+      summary: "精神已蜕壳，肉体还在泥里爬。",
+      bullets: ["白天钻洞装死，晚上也不想动。", "世界像锅沸水，这只虾只想放弃挣扎。"]
+    },
+    {
+      code: "CLAW-MALO",
+      displayName: "钳吗喽",
+      summary: "底层小透明虾，钳子再大也只敢夹水草。",
+      bullets: ["拒绝内卷、拒绝抢食、拒绝打洞竞赛。", "选择在锅底安静变红。"]
+    },
+    {
+      code: "SHIT-MUD",
+      displayName: "烂泥愤虾",
+      summary: "嘴上骂水质烂，身体却还在默默抢食挖洞。",
+      bullets: ["表面愤世嫉俗，行动上却顽强得很。", "骂着世界烂，活得比谁都硬。"]
+    },
+    {
+      code: "IMSB-LOBE",
+      displayName: "断钳自虐虾",
+      summary: "一点风吹草动就先怪自己。",
+      bullets: ["食物先让、洞穴先让、打架先怕。", "再生钳会变小，内耗永远更大。"]
+    },
+    {
+      code: "SOLO-CAVE",
+      displayName: "孤洞虾",
+      summary: "一个洞、一把泥、一辈子不想社交。",
+      bullets: ["拒绝同类入侵，也拒绝组队觅食。", "洞小，容不下第二只虾。"]
+    },
+    {
+      code: "FUCK-CLAW",
+      displayName: "暴钳草虾",
+      summary: "见谁夹谁，石头都要夹两爪。",
+      bullets: ["泥里没有规则，掀翻才是秩序。", "就算软壳期也要装出硬壳气场。"]
+    },
+    {
+      code: "SEXY-RED",
+      displayName: "迷之自信红虾",
+      summary: "锅没沸，我先红；人没吃，我先火。",
+      bullets: ["走路横着晃，钳子甩成 T 台步。", "还没下锅，就觉得自己已经全网爆红。"]
+    },
+    {
+      code: "RUN-LOB",
+      displayName: "逃狱疯虾",
+      summary: "一辈子都在翻墙、越狱、爬岸、逃离池塘。",
+      bullets: ["水流一动就想跑，灯光一亮就想躲。", "去哪都是自由的泥。"]
+    },
+    {
+      code: "ATM-SOFT",
+      displayName: "软壳冤种虾",
+      summary: "永远在蜕壳，永远在被欺负，永远在付出。",
+      bullets: ["钳子让给别人，洞穴让给强者。", "我软，但我善良；我烂，但我纯粹。"]
+    },
+    {
+      code: "NIGHT-EMPTY",
+      displayName: "夜行空壳虾",
+      summary: "白天死睡，夜里瞎爬，像只没装灵魂的壳。",
+      bullets: ["看似在觅食，其实只是在游荡。", "昼伏夜出，心里一直空着。"]
+    }
+  ],
+  en: [
+    {
+      code: "DEAD-SHELL",
+      displayName: "Dead Shell",
+      summary: "The spirit has already molted away while the body still drags through the mud.",
+      bullets: ["Plays dead in the daytime and still does not want to move at night.", "Treats the world like boiling water and gives up early."]
+    },
+    {
+      code: "CLAW-MALO",
+      displayName: "Claw Malo",
+      summary: "A tiny background lobster that still only dares to pinch seaweed.",
+      bullets: ["Rejects grinding, grabbing, and tunnel competition.", "Quietly reddens at the bottom of the pot."]
+    },
+    {
+      code: "SHIT-MUD",
+      displayName: "Shit Mud",
+      summary: "Complains about the mud and still keeps digging, eating, and hardening up.",
+      bullets: ["Curses the world while surviving harder than everyone else.", "Angry on the surface, resilient underneath."]
+    },
+    {
+      code: "IMSB-LOBE",
+      displayName: "IMSB Lobe",
+      summary: "Blames itself first whenever anything moves.",
+      bullets: ["Yields food, space, and conflict before anyone asks.", "The regrown claw gets smaller while the self-doubt gets bigger."]
+    },
+    {
+      code: "SOLO-CAVE",
+      displayName: "Solo Cave",
+      summary: "One cave, one pile of mud, zero interest in social life.",
+      bullets: ["Rejects intrusion, romance, and group foraging.", "The cave is too small for a second lobster."]
+    },
+    {
+      code: "FUCK-CLAW",
+      displayName: "Fuck Claw",
+      summary: "Maximum rebellion, pinches everyone, and would claw a rock twice.",
+      bullets: ["There are no rules in the mud.", "Acts hard even during the soft-shell phase."]
+    },
+    {
+      code: "SEXY-RED",
+      displayName: "Sexy Red",
+      summary: "Believes it will go viral before the pot even boils.",
+      bullets: ["Walks sideways like a runway show.", "Assumes fame arrives before anyone takes a bite."]
+    },
+    {
+      code: "RUN-LOB",
+      displayName: "Run Lob",
+      summary: "Always trying to climb out, escape, and leave the pond behind.",
+      bullets: ["Any current or light becomes a reason to flee.", "Every patch of mud beyond the pond feels like freedom."]
+    },
+    {
+      code: "ATM-SOFT",
+      displayName: "ATM Soft",
+      summary: "Always molting, always bullied, always giving more than it keeps.",
+      bullets: ["Hands over claws, caves, and food to stronger creatures.", "Soft but sincere, ruined but still kind."]
+    },
+    {
+      code: "NIGHT-EMPTY",
+      displayName: "Night Empty",
+      summary: "Sleeps through the day and wanders at night without a clear reason.",
+      bullets: ["Looks like foraging, feels like drifting.", "A shell moving around with the spirit still missing."]
+    }
+  ]
+};
+
 function canUseSessionStorage(): boolean {
   return typeof window !== "undefined" && typeof window.sessionStorage !== "undefined";
 }
@@ -252,6 +380,7 @@ export function getSimulationSeedResult(
   const hash = hashSeed(sessionKey);
   const factionBrandKey = factionOrder[hash % factionOrder.length];
   const template = templatesByLocale[locale][factionBrandKey];
+  const lbtiProfile = lbtiProfilesByLocale[locale][(hash >>> 4) % lbtiProfilesByLocale[locale].length];
   const scoreValue = 90 + (hash % 8);
   const percentile = Math.min(99, (scoreValue >= 94 ? 95 : 90) + (hash % 4));
   const rewardValue = 20 + (hash % 5);
@@ -275,7 +404,8 @@ export function getSimulationSeedResult(
     resonanceReward: `${rewardValue} AIBOUNTY`,
     txId,
     nextHint: template.nextHint,
-    socialSignal: template.socialSignal
+    socialSignal: template.socialSignal,
+    lbtiProfile
   };
 }
 

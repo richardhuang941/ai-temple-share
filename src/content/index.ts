@@ -72,6 +72,7 @@ export type {
   HeroContent,
   JourneyCardState,
   JourneySectionCopy,
+  LbtiProfile,
   LocaleCode,
   LocalizedContentBundle,
   LocaleSource,

@@ -44,26 +44,31 @@ describe("content mappers", () => {
     );
   });
 
-  it("keeps the five tasks in the exact branded order and preserves Task 4/5 semantics", () => {
+  it("keeps the six tasks in the exact branded order and appends the stable LBTI finale", () => {
     const tasks = getTaskMilestones("zh");
+    const repeatedTasks = getTaskMilestones("zh");
 
     expect(tasks.map((task) => task.taskId)).toEqual([
       "task-1",
       "task-2",
       "task-3",
       "task-4",
-      "task-5"
+      "task-5",
+      "task-6"
     ]);
     expect(tasks.map((task) => task.brandedName)).toEqual([
       "原力坐标测绘",
       "光锥交汇",
       "原野部落归属",
       "奇物志",
-      "社交寻配"
+      "社交寻配",
+      "LBTI 小龙虾人格"
     ]);
     expect(tasks[2].stages.map((stage) => stage.stageId)).toContain("task-3-threshold");
     expect(tasks[3].isExternalFlow).toBe(true);
     expect(tasks[4].isOptional).toBe(true);
+    expect(tasks[5].completionBadge).toContain("·");
+    expect(tasks[5].completionBadge).toBe(repeatedTasks[5].completionBadge);
   });
 
   it("maps the initial journey state into one active task and pending future tasks", () => {

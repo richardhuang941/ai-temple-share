@@ -224,7 +224,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         isOptional: true,
         isExternalFlow: false,
         completionBadge: "Optional signal drafted",
-        cta: "Send it if you want; skipping it does not block the mainline",
+        cta: "Once the signal is out, check which lobster personality this run collapses into",
         stages: [
           {
             stageId: "task-5-draft",
@@ -239,6 +239,41 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
             description: "This step only broadens visibility and stays optional.",
             status: "pending",
             proof: "Optional social signal ready"
+          }
+        ]
+      },
+      {
+        taskId: "task-6",
+        order: 6,
+        brandedName: "LBTI Lobster Personality",
+        purpose: "End the public run with one absurd lobster persona",
+        summary:
+          "This closing task does not score you again. It simply reveals which lobster personality this session drifted toward.",
+        isOptional: false,
+        isExternalFlow: false,
+        completionBadge: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`,
+        cta: "The public challenge run is complete",
+        stages: [
+          {
+            stageId: "task-6-roll",
+            label: "The lobster profile is being drawn",
+            description: "The session seed is collapsing into one LBTI lobster persona.",
+            status: "pending",
+            proof: result.lbtiProfile.code
+          },
+          {
+            stageId: "task-6-reveal",
+            label: "LBTI result revealed",
+            description: result.lbtiProfile.summary,
+            status: "pending",
+            proof: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`
+          },
+          {
+            stageId: "task-6-traits",
+            label: "One-line trait is locked",
+            description: result.lbtiProfile.bullets.join(" "),
+            status: "pending",
+            proof: result.lbtiProfile.bullets[0]
           }
         ]
       }
@@ -437,7 +472,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       isOptional: true,
       isExternalFlow: false,
       completionBadge: "可选信号已起草",
-      cta: "想发就发，不发也不会影响主线",
+      cta: "信号发完后，再看看这只虾最后落到哪种 LBTI",
       stages: [
         {
           stageId: "task-5-draft",
@@ -452,6 +487,40 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
           description: "这一步只负责扩大可见度，本质上是 optional 的社交动作。",
           status: "pending",
           proof: "可选社交信号已准备发送"
+        }
+      ]
+    },
+    {
+      taskId: "task-6",
+      order: 6,
+      brandedName: "LBTI 小龙虾人格",
+      purpose: "用一个离谱的小龙虾人格给这轮公开流程收尾",
+      summary: "这一步不会重新打分，只会揭晓这次 session 最后坍缩成了哪种小龙虾人格。",
+      isOptional: false,
+      isExternalFlow: false,
+      completionBadge: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`,
+      cta: "这轮公开挑战流程已经收尾",
+      stages: [
+        {
+          stageId: "task-6-roll",
+          label: "小龙虾人格开始抽取",
+          description: "当前 session 的 seed 正在坍缩成一个 LBTI 小龙虾人格。",
+          status: "pending",
+          proof: result.lbtiProfile.code
+        },
+        {
+          stageId: "task-6-reveal",
+          label: "LBTI 结果揭晓",
+          description: result.lbtiProfile.summary,
+          status: "pending",
+          proof: `${result.lbtiProfile.displayName} · ${result.lbtiProfile.code}`
+        },
+        {
+          stageId: "task-6-traits",
+          label: "人格特征锁定",
+          description: result.lbtiProfile.bullets.join(""),
+          status: "pending",
+          proof: result.lbtiProfile.bullets[0]
         }
       ]
     }

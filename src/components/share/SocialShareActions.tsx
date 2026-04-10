@@ -129,6 +129,7 @@ export function SocialShareActions({
           className="share-social-row"
           role="list"
           aria-label="Share actions"
+          data-mobile={isMobile ? "true" : undefined}
           style={isMobile ? undefined : { gridTemplateColumns: "minmax(0, 5rem)", justifyContent: "center" }}
         >
           {visiblePlatforms.map((platform) => (

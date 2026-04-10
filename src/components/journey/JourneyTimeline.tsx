@@ -66,8 +66,8 @@ export function JourneyTimeline({
                 ? "已切换到低动态模式"
                 : "Reduced-motion mode is active"
               : locale === "zh"
-                ? "自动推进会把五个 Task 串成一段完整旅程"
-                : "Autoplay will connect all five tasks into one readable journey"}
+                ? "自动推进会把六个 Task 串成一段完整旅程"
+                : "Autoplay will connect all six tasks into one readable journey"}
           </span>
         </div>
 

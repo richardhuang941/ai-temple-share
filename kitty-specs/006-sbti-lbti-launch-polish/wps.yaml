@@ -1,0 +1,101 @@
+work_packages:
+  - id: WP01
+    title: "Launch Surface and Share Icon Polish"
+    dependencies: []
+    owned_files:
+      - "src/App.tsx"
+      - "src/components/sections/HeroSection.tsx"
+      - "src/components/share/SocialShareActions.tsx"
+      - "src/styles/challenge-surfaces.css"
+      - "src/styles/share-actions.css"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - NFR-001
+      - NFR-002
+      - NFR-004
+      - C-001
+      - C-003
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: "tasks/WP01-launch-surface-and-share-icon-polish.md"
+
+  - id: WP02
+    title: "SBTI Gate and Journey Start Control"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/components/sections/JourneySection.tsx"
+      - "src/content/uiCopy.ts"
+      - "src/hooks/useJourneyTimeline.ts"
+      - "src/lib/timeline.ts"
+      - "src/styles/journey.css"
+    requirement_refs:
+      - FR-004
+      - FR-005
+      - FR-006
+      - NFR-001
+      - NFR-003
+      - NFR-004
+      - C-001
+      - C-002
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: "tasks/WP02-sbti-gate-and-journey-start-control.md"
+
+  - id: WP03
+    title: "Task 6 LBTI Model and Content Extension"
+    dependencies:
+      - WP02
+    owned_files:
+      - "src/content/index.ts"
+      - "src/content/models.ts"
+      - "src/content/taskMilestones.ts"
+      - "src/lib/contentMappers.ts"
+      - "src/lib/simulationSeed.ts"
+    requirement_refs:
+      - FR-006
+      - FR-007
+      - FR-008
+      - FR-009
+      - NFR-003
+      - NFR-004
+      - C-001
+      - C-002
+    subtasks:
+      - T007
+      - T008
+      - T009
+    prompt_file: "tasks/WP03-task6-lbti-model-and-content-extension.md"
+
+  - id: WP04
+    title: "Regression and Mission Alignment"
+    dependencies:
+      - WP03
+    owned_files:
+      - "kitty-specs/006-sbti-lbti-launch-polish/**"
+      - "tests/integration/longpage.spec.tsx"
+      - "tests/unit/contentMappers.test.ts"
+      - "tests/unit/timeline.test.ts"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - FR-005
+      - FR-006
+      - FR-007
+      - FR-008
+      - FR-009
+      - NFR-004
+      - C-003
+    subtasks:
+      - T010
+      - T011
+      - T012
+    prompt_file: "tasks/WP04-regression-and-mission-alignment.md"
