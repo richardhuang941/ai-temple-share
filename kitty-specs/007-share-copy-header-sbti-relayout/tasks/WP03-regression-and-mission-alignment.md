@@ -20,9 +20,9 @@ subtasks:
 - T007
 - T008
 - T009
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "19622"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -35,3 +35,7 @@ owned_files:
 ## Objective
 
 补回归验证，并让 `007` mission 有完整的文档与状态落点。
+
+## Activity Log
+
+- 2026-04-10T07:56:35Z – codex – shell_pid=19622 – Implementation completed on feature branch
