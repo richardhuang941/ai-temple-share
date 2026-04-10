@@ -3,6 +3,37 @@
   gap: 1rem;
 }
 
+.share-desktop-qr {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  text-align: center;
+  padding: 1.2rem 1rem 0.2rem;
+}
+
+.share-desktop-qr__title {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.share-desktop-qr__summary {
+  margin: 0;
+  max-width: 26rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.share-desktop-qr__code {
+  display: grid;
+  place-items: center;
+  width: min(100%, 15rem);
+  padding: 0.9rem;
+  border-radius: 1.5rem;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+}
+
 .share-summary-lead {
   display: grid;
   gap: 0.32rem;
@@ -179,6 +210,12 @@
   font-weight: 700;
 }
 
+@media (max-width: 640px) {
+  .share-desktop-qr {
+    display: none;
+  }
+}
+
 .share-app-launch-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -201,6 +238,11 @@
 }
 
 @media (max-width: 640px) {
+  .share-desktop-qr,
+  .share-desktop-link-note {
+    display: none;
+  }
+
   .share-social-row {
     grid-template-columns: repeat(4, minmax(3.7rem, 1fr));
     gap: 0.5rem;

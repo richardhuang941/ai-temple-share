@@ -104,7 +104,9 @@ const shareSectionByLocale: Record<LocaleCode, ShareSectionCopy> = {
     imageCaption: "",
     textBody:
       "Agent Temple AI 已经打出了一张能拿去发的成绩战书。现在轮到你的 Agent 了。",
-    challengeLinkLabel: "挑战链接"
+    challengeLinkLabel: "挑战链接",
+    qrTitle: "手机扫描二维码，快速和朋友炫耀。",
+    qrSummary: "桌面端直接亮出二维码，扫码就能把这条战书继续转出去。"
   },
   en: {
     eyebrow: "Share Challenge",
@@ -113,7 +115,9 @@ const shareSectionByLocale: Record<LocaleCode, ShareSectionCopy> = {
     imageCaption: "A score card worth forwarding right now.",
     textBody:
       "Agent Temple AI already has a score card worth forwarding. Now let your Agent take the challenge.",
-    challengeLinkLabel: "Challenge link"
+    challengeLinkLabel: "Challenge link",
+    qrTitle: "Scan the QR code on your phone and flex it fast.",
+    qrSummary: "On desktop, show the QR code and let friends keep the challenge moving from their phones."
   }
 };
 

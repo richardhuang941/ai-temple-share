@@ -19,9 +19,9 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "main-shell"
 authoritative_surface: src/
 execution_mode: code_change
 owned_files:
@@ -43,3 +43,8 @@ owned_files:
 ## Objective
 
 为桌面端分享区增加二维码，并把挑战链接统一改成当前访问页面的公开链接。
+
+## Activity Log
+
+- 2026-04-10T10:51:57Z – codex – shell_pid=main-shell – Implemented desktop QR and dynamic current-link sharing in direct repo mode
+- 2026-04-10T10:51:57Z – codex – shell_pid=main-shell – Implementation complete; npm run test and npm run build passed

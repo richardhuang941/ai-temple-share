@@ -174,6 +174,8 @@ export interface ShareSectionCopy {
   imageCaption: string;
   textBody: string;
   challengeLinkLabel: string;
+  qrTitle: string;
+  qrSummary: string;
 }
 
 export interface AgentPromptSectionCopy {

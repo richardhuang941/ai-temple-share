@@ -5,6 +5,7 @@ import type {
   ShareSummaryView
 } from "../../content";
 import CopyButton from "../common/CopyButton";
+import DesktopShareQr from "./DesktopShareQr";
 
 interface ShareSummaryCardProps {
   summary: ShareSummaryView;
@@ -69,6 +70,8 @@ export function ShareSummaryCard({
       <div className="share-text-block">
         {displayPayload}
       </div>
+
+      <DesktopShareQr challengeLink={challengeLink} shareCopy={shareCopy} />
 
       <CopyButton
         value={textPayload}
