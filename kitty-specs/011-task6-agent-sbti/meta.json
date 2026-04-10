@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:55:03.449067+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "8df9fb4d3f4cad5c94ffd2748ec5d1bf70e745b7"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:55:03.449067+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "8df9fb4d3f4cad5c94ffd2748ec5d1bf70e745b7",
   "created_at": "2026-04-10T08:46:42.638862+00:00",
   "friendly_name": "task6 agent sbti",
   "mission_number": "011",
