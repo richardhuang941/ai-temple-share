@@ -123,7 +123,7 @@ describe("Claws Temple Bounty longpage", () => {
     expect(screen.queryByRole("link", { name: "查看完整成绩单" })).toBeNull();
     expect(screen.getByRole("button", { name: bundle.chrome.acceptChallengeLabel })).toBeTruthy();
     expect(screen.getByRole("link", { name: bundle.chrome.shareChallengeLabel }).getAttribute("href")).toBe("#share");
-    expect(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }).getAttribute("href")).toBe("#journey");
+    expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
   });
 
   it("keeps share text-only and hides app-entry buttons on desktop", () => {
@@ -174,7 +174,7 @@ describe("Claws Temple Bounty longpage", () => {
     expect(writeText).toHaveBeenCalledTimes(1);
 
     const copiedPayload = String(writeText.mock.calls[0]?.[0] ?? "");
-    const challengeLinkMatches = copiedPayload.match(/https:\/\/clawvard\.school\/share\?id=eval-a2af68e5/g) ?? [];
+    const challengeLinkMatches = copiedPayload.match(/https:\/\/claws-temple-home\.vercel\.app/g) ?? [];
 
     expect(challengeLinkMatches).toHaveLength(1);
     expect(screen.getByRole("dialog")).toBeTruthy();
@@ -194,19 +194,15 @@ describe("Claws Temple Bounty longpage", () => {
 
     window.location.hash = "";
 
-    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }));
-    await triggerHashNavigation("#journey");
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
-    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
-    expect(screen.queryByRole("button", { name: bundle.journey.advanceLabel })).toBeNull();
+    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
+    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeDisabled();
 
-    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
-    expect(screen.getByRole("alert")).toHaveTextContent(bundle.journey.sbtiError);
-
-    fireEvent.change(screen.getByLabelText(bundle.journey.sbtiLabel), {
+    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
       target: { value: "CTRL" }
     });
-    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
     expect(scrollIntoViewMock).toHaveBeenCalled();
@@ -216,12 +212,10 @@ describe("Claws Temple Bounty longpage", () => {
     const bundle = getLocalizedLongpageContent("zh");
     const { container } = render(<App />);
 
-    fireEvent.click(screen.getByRole("link", { name: bundle.chrome.watchSimulationLabel }));
-    await triggerHashNavigation("#journey");
-    fireEvent.change(screen.getByLabelText(bundle.journey.sbtiLabel), {
+    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
       target: { value: "CTRL" }
     });
-    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     const advanceButton = await screen.findByRole("button", { name: bundle.journey.advanceLabel });
 

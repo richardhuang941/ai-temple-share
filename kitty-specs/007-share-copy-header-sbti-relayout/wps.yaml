@@ -1,0 +1,70 @@
+work_packages:
+  - id: WP01
+    title: "Share Surface Simplification"
+    dependencies: []
+    owned_files:
+      - "src/components/sections/ShareSection.tsx"
+      - "src/components/share/ShareSummaryCard.tsx"
+      - "src/content/sharePlatformCopy.ts"
+      - "src/content/shareSummary.ts"
+      - "src/styles/share-actions.css"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - NFR-001
+      - NFR-003
+      - C-001
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: "tasks/WP01-share-surface-simplification.md"
+
+  - id: WP02
+    title: "Header Cleanup and SBTI Relayout"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/App.tsx"
+      - "src/components/common/SiteHeader.tsx"
+      - "src/components/sections/HeroSection.tsx"
+      - "src/components/sections/JourneySection.tsx"
+      - "src/styles/globals.css"
+    requirement_refs:
+      - FR-004
+      - FR-005
+      - FR-006
+      - FR-007
+      - NFR-002
+      - NFR-003
+      - C-001
+      - C-002
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: "tasks/WP02-header-cleanup-and-sbti-relayout.md"
+
+  - id: WP03
+    title: "Regression and Mission Alignment"
+    dependencies:
+      - WP02
+    owned_files:
+      - "kitty-specs/007-share-copy-header-sbti-relayout/**"
+      - "tests/integration/longpage.spec.tsx"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - FR-005
+      - FR-006
+      - FR-007
+      - NFR-003
+      - C-002
+    subtasks:
+      - T007
+      - T008
+      - T009
+    prompt_file: "tasks/WP03-regression-and-mission-alignment.md"

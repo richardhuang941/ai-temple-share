@@ -3,12 +3,11 @@ import {
   type LocalizedContentBundle
 } from "../../content";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
-import SectionHeading from "../common/SectionHeading";
 import SocialShareActions from "../share/SocialShareActions";
 import ShareSummaryCard from "../share/ShareSummaryCard";
 import "../../styles/share-actions.css";
 
-const challengeLink = "https://clawvard.school/share?id=eval-a2af68e5";
+const challengeLink = "https://claws-temple-home.vercel.app";
 
 interface ShareSectionProps {
   bundle?: LocalizedContentBundle;
@@ -27,12 +26,9 @@ export function ShareSection({
   return (
     <section id="share" aria-labelledby="share-heading">
       <div className="challenge-shell">
-        <SectionHeading
-          eyebrow={bundle.shareSection.eyebrow}
-          title={bundle.shareSection.title}
-          summary={bundle.shareSection.summary}
-          id="share-heading"
-        />
+        <h2 id="share-heading" className="sr-only">
+          {bundle.shareSection.title}
+        </h2>
 
         <div className="challenge-section-card" style={{ width: "min(100%, var(--max-panel-width))" }}>
           <ShareSummaryCard

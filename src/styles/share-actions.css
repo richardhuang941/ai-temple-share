@@ -21,6 +21,13 @@
   font-size: 1.18rem;
 }
 
+.share-summary-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  justify-content: center;
+}
+
 .share-summary-note-block,
 .share-text-block,
 .share-link-block {

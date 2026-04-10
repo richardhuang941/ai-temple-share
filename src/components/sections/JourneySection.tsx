@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   getLocalizedLongpageContent,
   type LocalizedContentBundle,
@@ -15,45 +15,24 @@ import "../../styles/journey.css";
 
 interface JourneySectionProps {
   bundle?: LocalizedContentBundle;
+  sbtiValue: string;
+  startSignal: number;
 }
 
-const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
-const SBTI_GUIDE_URL = "https://sbti.unun.dev/";
-
 export function JourneySection({
-  bundle = getLocalizedLongpageContent("zh")
+  bundle = getLocalizedLongpageContent("zh"),
+  sbtiValue,
+  startSignal
 }: JourneySectionProps) {
   const taskElementsRef = useRef<Record<string, HTMLElement | null>>({});
   const previousTimelineRef = useRef<SimulationTimelineState | null>(null);
   const lastFocusSignatureRef = useRef<string | null>(null);
-  const [sbtiValue, setSbtiValue] = useState<string>(() => {
-    if (typeof window === "undefined") {
-      return "";
-    }
-
-    return window.localStorage.getItem(SBTI_STORAGE_KEY) ?? "";
-  });
-  const [sbtiError, setSbtiError] = useState<string | null>(null);
+  const lastStartSignalRef = useRef<number>(startSignal);
   const { advance, currentHint, derivedTasks, goToTask, progress, restart, setAutoplay, start, timeline } =
     useJourneyTimeline(bundle.tasks, {
       cycleDurationMs: 4300,
       isAutoplay: false
     });
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const normalized = sbtiValue.trim().toUpperCase();
-
-    if (normalized) {
-      window.localStorage.setItem(SBTI_STORAGE_KEY, normalized);
-      return;
-    }
-
-    window.localStorage.removeItem(SBTI_STORAGE_KEY);
-  }, [sbtiValue]);
 
   useEffect(() => {
     const previousTimeline = previousTimelineRef.current;
@@ -96,18 +75,17 @@ export function JourneySection({
     timeline.isReducedMotion
   ]);
 
-  const startJourney = (): void => {
-    const normalized = sbtiValue.trim().toUpperCase();
-
-    if (!normalized) {
-      setSbtiError(bundle.journey.sbtiError);
+  useEffect(() => {
+    if (startSignal === lastStartSignalRef.current) {
       return;
     }
 
-    setSbtiValue(normalized);
-    setSbtiError(null);
-    start();
-  };
+    lastStartSignalRef.current = startSignal;
+
+    if (sbtiValue.trim()) {
+      start();
+    }
+  }, [sbtiValue, start, startSignal]);
 
   const handlePrimaryAction = (): void => {
     if (timeline.hasStarted) {
@@ -115,7 +93,9 @@ export function JourneySection({
       return;
     }
 
-    startJourney();
+    if (sbtiValue.trim()) {
+      start();
+    }
   };
 
   return (
@@ -143,55 +123,12 @@ export function JourneySection({
           ))}
         </div>
 
-        <div className="journey-gate-card">
-          <label className="journey-gate-label" htmlFor="journey-sbti-input">
-            {bundle.journey.sbtiLabel}
-          </label>
-          <input
-            id="journey-sbti-input"
-            className="journey-gate-input"
-            type="text"
-            inputMode="text"
-            autoCapitalize="characters"
-            autoCorrect="off"
-            spellCheck={false}
-            placeholder={bundle.journey.sbtiPlaceholder}
-            value={sbtiValue}
-            aria-invalid={sbtiError ? "true" : "false"}
-            onChange={(event) => {
-              setSbtiValue(event.target.value);
-              setSbtiError(null);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" && !timeline.hasStarted) {
-                event.preventDefault();
-                startJourney();
-              }
-            }}
-          />
-          <div className="journey-gate-helper-row">
-            <p className="journey-gate-helper">{bundle.journey.sbtiHelper}</p>
-            <a
-              className="journey-gate-link"
-              href={SBTI_GUIDE_URL}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {bundle.journey.sbtiGuideLabel}
-            </a>
-          </div>
-          {sbtiError ? (
-            <p className="journey-gate-error" role="alert">
-              {sbtiError}
-            </p>
-          ) : null}
-        </div>
-
         <div className="journey-action-row">
           <button
             type="button"
             onClick={handlePrimaryAction}
             className="journey-button journey-button--primary"
+            disabled={!timeline.hasStarted && !sbtiValue.trim()}
           >
             {timeline.hasStarted ? bundle.journey.advanceLabel : bundle.journey.startLabel}
           </button>

@@ -1,10 +1,11 @@
-import {
-  type LocalizedContentBundle
-} from "../../content";
-import { deriveShareSummaryView } from "../../lib/contentMappers";
+import { type LocalizedContentBundle } from "../../content";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
+  sbtiValue: string;
+  sbtiError: string | null;
+  onSbtiChange: (value: string) => void;
+  onWatchSimulation: () => void;
 }
 
 function buildChallengeCopy(bundle: LocalizedContentBundle): string {
@@ -16,16 +17,16 @@ function buildChallengeCopy(bundle: LocalizedContentBundle): string {
 }
 
 export function HeroSection({
-  bundle
+  bundle,
+  sbtiValue,
+  sbtiError,
+  onSbtiChange,
+  onWatchSimulation
 }: HeroSectionProps) {
-  const shareView = deriveShareSummaryView(
-    bundle.agentProfile,
-    bundle.shareSummary,
-    bundle.tasks,
-    bundle.selectedFaction
-  );
-
   const challengeCopy = buildChallengeCopy(bundle);
+  const sbtiLabel = bundle.locale === "zh" ? "先输入你的 SBTI" : "Enter your SBTI first";
+  const sbtiPlaceholder = bundle.locale === "zh" ? "例如 CTRL / SHIT / SOLO" : "For example CTRL / SHIT / SOLO";
+  const sbtiGuideLabel = bundle.locale === "zh" ? "没有 SBTI？先去测试" : "No SBTI yet? Take the test";
   const summaryPills = [
     {
       label: bundle.locale === "zh" ? "打分情况" : "Score",
@@ -93,9 +94,46 @@ export function HeroSection({
             <a className="challenge-cta challenge-cta--secondary" href="#share">
               {bundle.chrome.shareChallengeLabel}
             </a>
-            <a className="challenge-cta challenge-cta--ghost challenge-cta--compact" href="#journey">
+            <div className="challenge-inline-gate">
+              <label className="challenge-inline-gate__label" htmlFor="hero-sbti-input">
+                {sbtiLabel}
+              </label>
+              <div className="challenge-inline-gate__row">
+                <input
+                  id="hero-sbti-input"
+                  className="challenge-inline-gate__input"
+                  type="text"
+                  inputMode="text"
+                  autoCapitalize="characters"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  placeholder={sbtiPlaceholder}
+                  value={sbtiValue}
+                  aria-invalid={sbtiError ? "true" : "false"}
+                  onChange={(event) => onSbtiChange(event.target.value)}
+                />
+                <a
+                  className="challenge-inline-gate__link"
+                  href="https://sbti.unun.dev/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {sbtiGuideLabel}
+                </a>
+              </div>
+              {sbtiError ? (
+                <p className="challenge-inline-gate__error" role="alert">
+                  {sbtiError}
+                </p>
+              ) : null}
+            </div>
+            <button
+              type="button"
+              className="challenge-cta challenge-cta--ghost challenge-cta--compact"
+              onClick={onWatchSimulation}
+            >
               {bundle.chrome.watchSimulationLabel}
-            </a>
+            </button>
           </div>
         </article>
       </div>

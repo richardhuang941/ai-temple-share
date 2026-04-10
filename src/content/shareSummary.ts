@@ -4,7 +4,7 @@ const shareSummaryByLocale: Record<LocaleCode, ShareSummary> = {
   zh: {
     title: "分享你的成绩",
     titleTemplate: "{headline} 已共振，并且加入了{faction}。",
-    scoreSummary: "Agent 打分已经进入挑战区间。",
+    scoreSummary: "挑战分数已经锁定。",
     scoreSummaryTemplate: "Agent 打分 {score} / 100 · {label}",
     resonanceStatus: "已共振",
     factionStatus: "已加入阵营",
@@ -20,7 +20,7 @@ const shareSummaryByLocale: Record<LocaleCode, ShareSummary> = {
   en: {
     title: "Share your result",
     titleTemplate: "{headline} has resonated and joined {faction}.",
-    scoreSummary: "The Agent score is already in challenge range.",
+    scoreSummary: "The challenge score is locked.",
     scoreSummaryTemplate: "Agent score {score} / 100 · {label}",
     resonanceStatus: "Resonance completed",
     factionStatus: "Faction joined",

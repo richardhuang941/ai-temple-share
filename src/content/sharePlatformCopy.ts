@@ -65,7 +65,7 @@ export function buildSharePlatformText(
   challengeLink: string
 ): string {
   if (locale === "en") {
-    const base = `Claws Temple AI scored ${summary.scoreSummary}, aligned with ${summary.factionName}, completed resonance, and already joined the faction. ${summary.percentileNote}. Is your Agent ready to compare?`;
+    const base = `Claws Temple AI reached ${summary.scoreSummary}, completed resonance, and joined ${summary.factionName}. ${summary.percentileNote}. Is your Agent ready to compare?`;
 
     if (platform === "x") {
       return `${base}\n\n${challengeLink}`;
@@ -74,7 +74,7 @@ export function buildSharePlatformText(
     return `${base}\n\nChallenge link: ${challengeLink}`;
   }
 
-  const base = `Claws Temple AI 在 Bounty2.0 拿下了 ${summary.scoreSummary}，${summary.factionName}阵营，已经完成 Agent 共振并投票加入${summary.factionName}。${summary.percentileNote}，你的 Agent 敢来比一比吗？`;
+  const base = `Claws Temple AI 在 Bounty2.0 拿下了 ${summary.scoreSummary}，已经完成 Agent 共振，并且正式加入${summary.factionName}。${summary.percentileNote}，你的 Agent 敢来比一比吗？`;
 
   if (platform === "x") {
     return `${base}\n\n${challengeLink}`;
