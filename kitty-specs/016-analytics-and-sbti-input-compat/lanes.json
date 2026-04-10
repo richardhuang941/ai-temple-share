@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "mission_slug": "016-analytics-and-sbti-input-compat",
+  "mission_id": "016-analytics-and-sbti-input-compat",
+  "mission_branch": "kitty/mission-016-analytics-and-sbti-input-compat",
+  "target_branch": "codex/oss-sanitize-pages-rename",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01"
+      ],
+      "write_scope": [
+        "index.html",
+        "src/App.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "tests/integration/longpage.spec.tsx"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T10:27:36.760729+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": []
+}
