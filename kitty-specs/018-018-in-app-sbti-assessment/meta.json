@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-10T11:05:40.797263+00:00",
+  "friendly_name": "018 in app sbti assessment",
+  "mission_number": "018",
+  "mission_slug": "018-018-in-app-sbti-assessment",
+  "mission_type": "software-dev",
+  "slug": "018-018-in-app-sbti-assessment",
+  "target_branch": "codex/oss-sanitize-pages-rename"
+}
