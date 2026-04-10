@@ -44,3 +44,4 @@ owned_files:
 - 这一步只做 mission alignment，不伪造未实际发生的历史 review/accept 事件。
 
 ## Activity Log
+- 2026-04-10T04:12:33Z – codex – shell_pid=4218 – Merged into feature/004-header-density-interaction-share-polish | Done override: Manual squash merge landed on feature/004-header-density-interaction-share-polish after mission acceptance.
