@@ -5,5 +5,7 @@
   "mission_slug": "005-mobile-share-and-task-flow-polish",
   "mission_type": "software-dev",
   "slug": "005-mobile-share-and-task-flow-polish",
-  "target_branch": "feature/004-header-density-interaction-share-polish"
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "vcs": "git",
+  "vcs_locked_at": "2026-04-10T03:53:50.566775+00:00"
 }
