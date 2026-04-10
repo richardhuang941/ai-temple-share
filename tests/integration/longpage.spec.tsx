@@ -227,6 +227,45 @@ describe("Agent Temple Bounty longpage", () => {
     expect(scrollIntoViewMock).toHaveBeenCalled();
   });
 
+  it("accepts lowercase SBTI input and normalizes it only when the simulation starts", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI") as HTMLInputElement;
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "ctrl" }
+    });
+
+    expect(sbtiInput.value).toBe("ctrl");
+
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
+
+    expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
+    expect(sbtiInput.value).toBe("CTRL");
+  });
+
+  it("does not clobber the SBTI input during IME composition", () => {
+    render(<App />);
+
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI") as HTMLInputElement;
+
+    fireEvent.compositionStart(sbtiInput);
+    fireEvent.change(sbtiInput, {
+      target: { value: "shit" }
+    });
+
+    expect(sbtiInput.value).toBe("shit");
+    expect(sbtiInput.getAttribute("data-composing")).toBe("true");
+
+    fireEvent.compositionEnd(sbtiInput, {
+      data: "shit"
+    });
+
+    expect(sbtiInput.value).toBe("shit");
+    expect(sbtiInput.getAttribute("data-composing")).toBe("false");
+  });
+
   it("scrolls back to the Hero SBTI input when the Journey start button is clicked without SBTI", () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();

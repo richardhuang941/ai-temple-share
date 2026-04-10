@@ -1,0 +1,23 @@
+work_packages:
+  - id: WP01
+    title: Analytics and SBTI Input Compatibility
+    dependencies: []
+    owned_files:
+      - index.html
+      - src/App.tsx
+      - src/components/sections/HeroSection.tsx
+      - tests/integration/longpage.spec.tsx
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - NFR-001
+      - NFR-002
+      - C-001
+      - C-002
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: tasks/WP01-analytics-and-sbti-input-compat.md

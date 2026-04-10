@@ -9,6 +9,10 @@ import { useLocale } from "./hooks/useLocale";
 const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
 const HERO_SBTI_INPUT_ID = "hero-sbti-input";
 
+function normalizeSbtiInput(value: string): string {
+  return value.trim().toUpperCase();
+}
+
 export function App() {
   const { locale, setLocale } = useLocale();
   const [sbtiValue, setSbtiValue] = useState<string>(() => {
@@ -34,7 +38,7 @@ export function App() {
       return;
     }
 
-    const normalized = sbtiValue.trim().toUpperCase();
+    const normalized = normalizeSbtiInput(sbtiValue);
 
     if (normalized) {
       window.localStorage.setItem(SBTI_STORAGE_KEY, normalized);
@@ -69,7 +73,7 @@ export function App() {
   };
 
   const handleWatchSimulation = (): void => {
-    const normalized = sbtiValue.trim().toUpperCase();
+    const normalized = normalizeSbtiInput(sbtiValue);
 
     if (!normalized) {
       requestSbtiInput();
@@ -107,7 +111,7 @@ export function App() {
         sbtiError={sbtiError}
         sbtiShakeSignal={sbtiShakeSignal}
         onSbtiChange={(value) => {
-          setSbtiValue(value.toUpperCase());
+          setSbtiValue(value);
           setSbtiError(null);
         }}
         onWatchSimulation={handleWatchSimulation}
