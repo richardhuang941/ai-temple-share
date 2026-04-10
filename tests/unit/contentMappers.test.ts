@@ -6,6 +6,7 @@ import {
   getShareSummary,
   getTaskMilestones
 } from "../../src/content";
+import { deriveAgentSbtiCode, resolveAgentSbtiProfile } from "../../src/content/agentSbtiProfiles";
 import { clearSimulationSeedForTesting, setSimulationSeedForTesting } from "../../src/lib/simulationSeed";
 import { deriveJourneyMilestones, deriveShareSummaryView } from "../../src/lib/contentMappers";
 import { createInitialTimelineState } from "../../src/lib/timeline";
@@ -45,9 +46,8 @@ describe("content mappers", () => {
   });
 
   it("keeps the six tasks in the exact branded order and appends the Agent SBTI finale", () => {
-    const tasks = getTaskMilestones("zh", "CTRL");
-    const repeatedTasks = getTaskMilestones("zh", "CTRL");
-    const fallbackTasks = getTaskMilestones("zh", "ABCD");
+    const tasks = getTaskMilestones("zh");
+    const repeatedTasks = getTaskMilestones("zh");
 
     expect(tasks.map((task) => task.taskId)).toEqual([
       "task-1",
@@ -68,11 +68,33 @@ describe("content mappers", () => {
     expect(tasks[2].stages.map((stage) => stage.stageId)).toContain("task-3-threshold");
     expect(tasks[3].isExternalFlow).toBe(true);
     expect(tasks[4].isOptional).toBe(true);
-    expect(tasks[5].completionBadge).toContain("CTRL");
-    expect(tasks[5].completionBadge).toContain("拿捏者");
+    expect(tasks[5].completionBadge).toContain("·");
     expect(tasks[5].completionBadge).toBe(repeatedTasks[5].completionBadge);
-    expect(fallbackTasks[5].completionBadge).toContain("ABCD");
-    expect(fallbackTasks[5].stages[2].description).toContain("内置 SBTI 库");
+    expect(tasks[5].stages[0].description).toContain("画像结果");
+  });
+
+  it("derives Agent SBTI from the agent run traits instead of the human gate input", () => {
+    expect(
+      deriveAgentSbtiCode({
+        factionBrandKey: "imprints",
+        scoreGrade: "S"
+      })
+    ).toBe("CTRL");
+    expect(
+      deriveAgentSbtiCode({
+        factionBrandKey: "sentinels",
+        scoreGrade: "A"
+      })
+    ).toBe("OH-NO");
+
+    const profile = resolveAgentSbtiProfile("zh", {
+      factionBrandKey: "metamorphs",
+      scoreGrade: "S"
+    });
+
+    expect(profile.code).toBe("SHIT");
+    expect(profile.displayName).toBe("愤世者");
+    expect(profile.summary).toContain("收拾好");
   });
 
   it("maps the initial journey state into one active task and pending future tasks", () => {

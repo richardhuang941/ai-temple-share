@@ -1,4 +1,9 @@
-import type { AgentSbtiProfile, LocaleCode } from "./models";
+import type {
+  AgentSbtiProfile,
+  FactionBrandKey,
+  LocaleCode,
+  SeededSimulationResult
+} from "./models";
 
 interface RawAgentSbtiProfile {
   code: string;
@@ -172,6 +177,25 @@ const zhKnownProfiles: Record<string, RawAgentSbtiProfile> = {
   }
 };
 
+const derivedCodeByFactionAndGrade: Record<FactionBrandKey, Record<"S" | "A", string>> = {
+  imprints: {
+    S: "CTRL",
+    A: "THIN-K"
+  },
+  crucibles: {
+    S: "GOGO",
+    A: "FUCK"
+  },
+  metamorphs: {
+    S: "SHIT",
+    A: "WOC!"
+  },
+  sentinels: {
+    S: "CTRL",
+    A: "OH-NO"
+  }
+};
+
 function buildEnglishProfile(profile: RawAgentSbtiProfile): AgentSbtiProfile {
   return {
     code: profile.code,
@@ -188,7 +212,8 @@ function buildUnknownProfile(locale: LocaleCode, normalizedCode: string): AgentS
       code: normalizedCode,
       displayName: normalizedCode,
       intro: `The Agent SBTI has been recorded as ${normalizedCode}.`,
-      summary: "This code is not in the built-in SBTI library yet, but the simulation continues with your current Agent SBTI.",
+      summary:
+        "This code is not in the built-in SBTI library yet, but the simulation continues with the Agent SBTI derived from this run.",
       isKnown: false
     };
   }
@@ -197,41 +222,17 @@ function buildUnknownProfile(locale: LocaleCode, normalizedCode: string): AgentS
     code: normalizedCode,
     displayName: "未收录类型",
     intro: `Agent 的 SBTI 暂时记为 ${normalizedCode}。`,
-    summary: "这个代号当前还不在内置 SBTI 库里，但这轮模拟会继续按你输入的 Agent SBTI 往下展示。",
+    summary: "这个代号当前还不在内置 SBTI 库里，但这轮模拟会继续按这次 Agent 画像推导出的 SBTI 往下展示。",
     isKnown: false
   };
 }
 
-function buildPlaceholderProfile(locale: LocaleCode): AgentSbtiProfile {
-  if (locale === "en") {
-    return {
-      code: "--",
-      displayName: "Awaiting SBTI",
-      intro: "Task 6 will lock the Agent SBTI after you enter it.",
-      summary: "Enter an SBTI code first, then the final task will show the Agent personality result here.",
-      isKnown: false
-    };
-  }
-
-  return {
-    code: "--",
-    displayName: "等待输入",
-    intro: "先输入 Agent 的 SBTI，Task 6 才会锁定人格结果。",
-    summary: "填好 SBTI 后，最后一步会把这次 Agent 的人格结果显示在这里。",
-    isKnown: false
-  };
+function normalizeProfileCode(code: string): string {
+  return code.trim().toUpperCase();
 }
 
-export function resolveAgentSbtiProfile(
-  locale: LocaleCode,
-  rawSbtiCode?: string
-): AgentSbtiProfile {
-  const normalizedCode = rawSbtiCode?.trim().toUpperCase() ?? "";
-
-  if (!normalizedCode) {
-    return buildPlaceholderProfile(locale);
-  }
-
+function resolveAgentSbtiProfileByCode(locale: LocaleCode, rawSbtiCode: string): AgentSbtiProfile {
+  const normalizedCode = normalizeProfileCode(rawSbtiCode);
   const matchedProfile = zhKnownProfiles[normalizedCode];
 
   if (!matchedProfile) {
@@ -246,4 +247,17 @@ export function resolveAgentSbtiProfile(
     ...matchedProfile,
     isKnown: true
   };
+}
+
+export function deriveAgentSbtiCode(
+  agentInput: Pick<SeededSimulationResult, "factionBrandKey" | "scoreGrade">
+): string {
+  return derivedCodeByFactionAndGrade[agentInput.factionBrandKey][agentInput.scoreGrade];
+}
+
+export function resolveAgentSbtiProfile(
+  locale: LocaleCode,
+  agentInput: Pick<SeededSimulationResult, "factionBrandKey" | "scoreGrade">
+): AgentSbtiProfile {
+  return resolveAgentSbtiProfileByCode(locale, deriveAgentSbtiCode(agentInput));
 }

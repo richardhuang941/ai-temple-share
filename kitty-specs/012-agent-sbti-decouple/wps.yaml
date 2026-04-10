@@ -1,0 +1,43 @@
+work_packages:
+  - id: WP01
+    title: "Agent SBTI Derivation Decouple"
+    dependencies: []
+    owned_files:
+      - "src/App.tsx"
+      - "src/content/index.ts"
+      - "src/content/taskMilestones.ts"
+      - "src/content/agentSbtiProfiles.ts"
+      - "src/content/models.ts"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - NFR-001
+      - NFR-003
+      - C-001
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: "tasks/WP01-agent-sbti-derivation-decouple.md"
+
+  - id: WP02
+    title: "Regression and Mission Alignment"
+    dependencies:
+      - WP01
+    owned_files:
+      - "tests/unit/contentMappers.test.ts"
+      - "tests/integration/longpage.spec.tsx"
+      - "kitty-specs/012-agent-sbti-decouple/**"
+    requirement_refs:
+      - FR-005
+      - NFR-001
+      - NFR-002
+      - NFR-003
+      - C-002
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: "tasks/WP02-regression-and-mission-alignment.md"

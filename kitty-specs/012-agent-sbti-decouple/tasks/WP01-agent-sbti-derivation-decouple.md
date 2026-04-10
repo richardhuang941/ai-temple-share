@@ -17,8 +17,8 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/content/
 execution_mode: code_change
@@ -35,3 +35,9 @@ owned_files:
 ## Objective
 
 把 `Task 6` 从“读取人的 SBTI”改成“推导 Agent 自己的 SBTI”。
+
+## Activity Log
+
+- 2026-04-10T09:08:37Z – codex – shell_pid=main-shell – Implementation started for Agent SBTI decouple
+- 2026-04-10T09:09:05Z – codex – shell_pid=main-shell – Ready for review after local test/build; subtasks are tracked in WP prompt files
+- 2026-04-10T09:09:05Z – codex – shell_pid=main-shell – Approved after local review and verification

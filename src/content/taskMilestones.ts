@@ -18,9 +18,9 @@ function fillTelegramTemplate(
   return template.replace("{faction_name}", factionName).replace("{txId}", txId);
 }
 
-export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): TaskMilestone[] {
+export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
   const result = getSimulationSeedResult(locale);
-  const agentSbtiProfile = resolveAgentSbtiProfile(locale, agentSbtiCode);
+  const agentSbtiProfile = resolveAgentSbtiProfile(locale, result);
   const selectedFaction = getSelectedFaction(locale, result.factionBrandKey);
   const telegramProof = fillTelegramTemplate(
     selectedFaction.telegramTemplate,
@@ -250,7 +250,7 @@ export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): T
         brandedName: "Agent SBTI",
         purpose: "Close the public run with the Agent's own SBTI result",
         summary:
-          "This last task does not score the Agent again. It writes the current Agent SBTI back into the public run and shows the matching profile card.",
+          "This last task does not score the Agent again. It derives the Agent SBTI from the run itself and shows the matching profile card.",
         isOptional: false,
         isExternalFlow: false,
         completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
@@ -259,7 +259,7 @@ export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): T
           {
             stageId: "task-6-lock",
             label: "Agent SBTI locked",
-            description: "The current Agent SBTI is now the final personality marker for this run.",
+            description: "The Agent SBTI has now been derived from this run and locked as the final personality marker.",
             status: "pending",
             proof: agentSbtiProfile.code
           },
@@ -497,7 +497,7 @@ export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): T
       order: 6,
       brandedName: "Agent SBTI",
       purpose: "用 Agent 自己的 SBTI 给这轮公开流程收尾",
-      summary: "这一步不会重新打分，只会把当前 Agent 的 SBTI 结果写回到最终结果卡里。",
+      summary: "这一步不会重新打分，只会根据这轮 Agent 的画像结果推导出它自己的 SBTI，并写回最终结果卡。",
       isOptional: false,
       isExternalFlow: false,
       completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
@@ -506,7 +506,7 @@ export function getTaskMilestones(locale: LocaleCode, agentSbtiCode?: string): T
         {
           stageId: "task-6-lock",
           label: "Agent SBTI 已锁定",
-          description: "当前输入的 SBTI 已经写回这次 Agent 的最终人格结果。",
+          description: "这轮 Agent 的画像结果已经被用来推导并锁定最终 SBTI。",
           status: "pending",
           proof: agentSbtiProfile.code
         },

@@ -120,6 +120,26 @@ describe("Agent Temple Bounty longpage", () => {
     expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
   });
 
+  it("keeps Task 6 Agent SBTI independent from the human SBTI gate input", () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    const task6Badge = bundle.tasks[5].completionBadge;
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
+
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "CTRL" }
+    });
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+
+    fireEvent.change(sbtiInput, {
+      target: { value: "SOLO" }
+    });
+    expect(screen.getByText(task6Badge)).toBeTruthy();
+  });
+
   it("keeps share text-only and hides app-entry buttons on desktop", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);

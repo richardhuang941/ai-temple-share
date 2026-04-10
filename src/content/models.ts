@@ -7,6 +7,7 @@ export type LocaleSource = "system" | "stored" | "manual";
 export type ShareMode = "image" | "text";
 export type SharePlatformKey = "x" | "wechat" | "xiaohongshu" | "douyin";
 export type FactionBrandKey = "imprints" | "crucibles" | "metamorphs" | "sentinels";
+export type AgentScoreGrade = "S" | "A";
 
 export interface HeroContent {
   eyebrow: string;
@@ -23,7 +24,7 @@ export interface AgentProfileSnapshot {
   headline: string;
   scoreValue: number;
   scoreLabel: string;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentile: number;
   percentileNote: string;
   agentType: string;
@@ -56,7 +57,7 @@ export interface SeededSimulationResult {
   sessionKey: string;
   factionBrandKey: FactionBrandKey;
   scoreValue: number;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentile: number;
   typeLabel: string;
   tierLabel: string;
@@ -220,7 +221,7 @@ export interface DerivedTaskMilestone extends Omit<TaskMilestone, "stages"> {
 
 export interface ShareSummaryView extends ShareSummary {
   agentHeadline: string;
-  scoreGrade: string;
+  scoreGrade: AgentScoreGrade;
   percentileNote: string;
   agentType: string;
   dominantAxes: string[];

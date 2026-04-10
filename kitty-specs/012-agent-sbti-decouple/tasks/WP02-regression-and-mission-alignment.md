@@ -16,8 +16,8 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: tests/
 execution_mode: code_change
@@ -32,3 +32,9 @@ owned_files:
 ## Objective
 
 补齐“人与 Agent SBTI 解耦”的验证和 mission 资产，让 012 可以完整验收。
+
+## Activity Log
+
+- 2026-04-10T09:09:06Z – codex – shell_pid=main-shell – Regression and mission alignment started
+- 2026-04-10T09:09:06Z – codex – shell_pid=main-shell – Ready for review after regression coverage and mission asset updates
+- 2026-04-10T09:09:07Z – codex – shell_pid=main-shell – Approved after local review and verification

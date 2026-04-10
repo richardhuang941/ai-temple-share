@@ -21,7 +21,7 @@ export function App() {
   const [sbtiError, setSbtiError] = useState<string | null>(null);
   const [sbtiShakeSignal, setSbtiShakeSignal] = useState(0);
   const [journeyStartSignal, setJourneyStartSignal] = useState(0);
-  const bundle = getLocalizedLongpageContent(locale, sbtiValue);
+  const bundle = getLocalizedLongpageContent(locale);
 
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
