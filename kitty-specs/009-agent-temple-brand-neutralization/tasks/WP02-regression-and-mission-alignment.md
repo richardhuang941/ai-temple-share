@@ -18,9 +18,9 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "99143"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -34,3 +34,7 @@ owned_files:
 ## Objective
 
 补齐品牌替换后的回归断言，并让 `009` mission 的文档、状态和 acceptance 落点完整。
+
+## Activity Log
+
+- 2026-04-10T08:25:43Z – codex – shell_pid=99143 – Implementation completed on feature branch
