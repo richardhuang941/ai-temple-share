@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-10T07:46:46.888560+00:00",
+  "friendly_name": "share copy header sbti relayout",
+  "mission_number": "007",
+  "mission_slug": "007-share-copy-header-sbti-relayout",
+  "mission_type": "software-dev",
+  "slug": "007-share-copy-header-sbti-relayout",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}
