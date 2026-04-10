@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-10T06:51:13.457908+00:00",
+  "friendly_name": "sbti lbti launch polish",
+  "mission_number": "006",
+  "mission_slug": "006-sbti-lbti-launch-polish",
+  "mission_type": "software-dev",
+  "slug": "006-sbti-lbti-launch-polish",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}
