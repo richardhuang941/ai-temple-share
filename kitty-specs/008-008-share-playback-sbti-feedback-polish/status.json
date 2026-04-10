@@ -1,14 +1,14 @@
 {
-  "event_count": 7,
-  "last_event_id": "01KNV78V3BH3X8JCAFBWQR7Q7X",
-  "materialized_at": "2026-04-10T08:13:54.667239+00:00",
+  "event_count": 8,
+  "last_event_id": "01KNV78VT04N21JFX9RC9YKK3A",
+  "materialized_at": "2026-04-10T08:13:55.392303+00:00",
   "mission_slug": "008-008-share-playback-sbti-feedback-polish",
   "summary": {
-    "approved": 1,
+    "approved": 0,
     "blocked": 0,
     "canceled": 0,
     "claimed": 0,
-    "done": 0,
+    "done": 1,
     "for_review": 0,
     "in_progress": 0,
     "planned": 2
@@ -17,9 +17,9 @@
     "WP01": {
       "actor": "user",
       "force_count": 2,
-      "lane": "approved",
-      "last_event_id": "01KNV78V3BH3X8JCAFBWQR7Q7X",
-      "last_transition_at": "2026-04-10T08:13:54.667239+00:00"
+      "lane": "done",
+      "last_event_id": "01KNV78VT04N21JFX9RC9YKK3A",
+      "last_transition_at": "2026-04-10T08:13:55.392303+00:00"
     },
     "WP02": {
       "actor": "finalize-tasks",
