@@ -18,9 +18,9 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "31646"
 authoritative_surface: src/components/sections/
 execution_mode: code_change
 owned_files:
@@ -34,3 +34,8 @@ owned_files:
 ## Objective
 
 让 Journey 区的开始按钮在空 `SBTI` 时把用户带回 Hero 输入框，而不是只停留在 disabled 状态。
+
+## Activity Log
+
+- 2026-04-10T08:36:26Z – codex – shell_pid=31113 – Direct-repo implementation started for Journey SBTI scrollback
+- 2026-04-10T08:36:46Z – codex – shell_pid=31646 – Scrollback interaction implemented and verified locally

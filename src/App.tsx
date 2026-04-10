@@ -11,6 +11,7 @@ import ShareSection from "./components/sections/ShareSection";
 import { useLocale } from "./hooks/useLocale";
 
 const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
+const HERO_SBTI_INPUT_ID = "hero-sbti-input";
 
 function useLocalizedBundle(locale: LocaleCode): LocalizedContentBundle {
   return getLocalizedLongpageContent(locale);
@@ -51,16 +52,35 @@ export function App() {
     window.localStorage.removeItem(SBTI_STORAGE_KEY);
   }, [sbtiValue]);
 
-  const handleWatchSimulation = (): void => {
-    const normalized = sbtiValue.trim().toUpperCase();
+  const requestSbtiInput = (): void => {
     const nextError =
       locale === "zh"
         ? "先输入你的 SBTI，再观看模拟流程。"
         : "Enter your SBTI before starting the simulation.";
 
+    setSbtiError(nextError);
+    setSbtiShakeSignal((value) => value + 1);
+
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const inputElement = document.getElementById(HERO_SBTI_INPUT_ID);
+
+    if (inputElement) {
+      inputElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "nearest"
+      });
+    }
+  };
+
+  const handleWatchSimulation = (): void => {
+    const normalized = sbtiValue.trim().toUpperCase();
+
     if (!normalized) {
-      setSbtiError(nextError);
-      setSbtiShakeSignal((value) => value + 1);
+      requestSbtiInput();
       return;
     }
 
@@ -101,7 +121,12 @@ export function App() {
         onWatchSimulation={handleWatchSimulation}
       />
       <ShareSection bundle={bundle} />
-      <JourneySection bundle={bundle} sbtiValue={sbtiValue} startSignal={journeyStartSignal} />
+      <JourneySection
+        bundle={bundle}
+        sbtiValue={sbtiValue}
+        startSignal={journeyStartSignal}
+        onRequestSbtiInput={requestSbtiInput}
+      />
     </main>
   );
 }

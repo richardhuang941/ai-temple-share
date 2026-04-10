@@ -18,9 +18,9 @@ subtasks:
 - T004
 - T005
 - T006
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "31647"
 authoritative_surface: tests/
 execution_mode: code_change
 owned_files:
@@ -33,3 +33,8 @@ owned_files:
 ## Objective
 
 补回 Journey scrollback 路径的测试，并让 `010` mission 的文档、状态和 acceptance 一并落地。
+
+## Activity Log
+
+- 2026-04-10T08:36:26Z – codex – shell_pid=31112 – Direct-repo regression and mission alignment started
+- 2026-04-10T08:36:46Z – codex – shell_pid=31647 – Regression coverage and mission docs ready for review

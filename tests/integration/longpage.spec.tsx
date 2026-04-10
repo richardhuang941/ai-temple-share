@@ -194,7 +194,7 @@ describe("Agent Temple Bounty longpage", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
     expect(document.activeElement).toBe(sbtiInput);
     expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
-    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeDisabled();
+    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
 
     fireEvent.change(sbtiInput, {
       target: { value: "CTRL" }
@@ -203,6 +203,27 @@ describe("Agent Temple Bounty longpage", () => {
 
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
     expect(scrollIntoViewMock).toHaveBeenCalled();
+  });
+
+  it("scrolls back to the Hero SBTI input when the Journey start button is clicked without SBTI", () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    const scrollIntoViewMock = vi.fn();
+
+    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+      configurable: true,
+      value: scrollIntoViewMock
+    });
+
+    render(<App />);
+
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
+    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
+
+    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
+    expect(document.activeElement).toBe(sbtiInput);
+    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
+    expect(scrollIntoViewMock).toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
   });
 
   it("expands completed tasks locally without replaying the active journey", async () => {

@@ -1,108 +1,40 @@
-# Implementation Plan: [FEATURE]
-*Path: [templates/plan-template.md](templates/plan-template.md)*
+# Implementation Plan: 010 Journey SBTI Scrollback Focus
 
-
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/kitty-specs/[###-feature-name]/spec.md`
-
-**Note**: This template is filled in by the `/spec-kitty.plan` command. See `src/specify_cli/missions/software-dev/command-templates/plan.md` for the execution workflow.
-
-The planner will not begin until all planning questions have been answered—capture those answers in this document before progressing to later phases.
+**Branch**: `feature/004-header-density-interaction-share-polish`  
+**Date**: `2026-04-10`  
+**Spec**: [spec.md](./spec.md)
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+这轮把 Journey 的“开始模拟”按钮从被动 disabled 改成主动引导：
+
+1. 当 `SBTI` 为空时，Journey 按钮触发统一的 `requestSbtiInput` 路径。
+2. 由 `App` 层统一处理 Hero `SBTI` gate 的滚动、focus、error 和 shake。
+3. 更新集成测试，覆盖从 Journey 区回到 Hero 输入框的路径。
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
+- **Language/Version**: TypeScript + React 19
+- **Primary Dependencies**: React, Vite, Vitest
+- **Storage**: `localStorage`（现有 `SBTI` 持久化）
+- **Testing**: Vitest + Testing Library
+- **Target Platform**: Vercel-hosted static web app
+- **Project Type**: 单页 web application
+- **Constraints**: 不新增后端、不改任务状态机结构
 
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+## Key Decisions
 
-## Charter Check
+- `App` 作为 Hero / Journey 的共同上层，负责统一 `requestSbtiInput`。
+- Journey 按钮空值时不再 disabled，而是触发引导回 Hero。
+- Hero 继续保留现有 shake/focus 逻辑，避免复制一套新的输入提示状态。
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+## Risks
 
-[Gates determined based on charter file]
+- 需要避免和现有 Hero watch CTA 的 scroll-to-journey 行为互相覆盖。
+- 如果 Journey 和 Hero 都触发滚动，可能造成多次 `scrollIntoView`，测试里要明确断言路径。
 
-## Project Structure
+## Verification
 
-### Documentation (this feature)
-
-```
-kitty-specs/[###-feature]/
-├── plan.md              # This file (/spec-kitty.plan command output)
-├── research.md          # Phase 0 output (/spec-kitty.plan command)
-├── data-model.md        # Phase 1 output (/spec-kitty.plan command)
-├── quickstart.md        # Phase 1 output (/spec-kitty.plan command)
-├── contracts/           # Phase 1 output (/spec-kitty.plan command)
-└── tasks.md             # Phase 2 output (/spec-kitty.tasks command - NOT created by /spec-kitty.plan)
-```
-
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
-
-```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
-src/
-├── models/
-├── services/
-├── cli/
-└── lib/
-
-tests/
-├── contract/
-├── integration/
-└── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
-```
-
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
-
-## Complexity Tracking
-
-*Fill ONLY if Charter Check has violations that must be justified*
-
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+- `npm run test`
+- `npm run build`
+- 手测：从 Journey 点击开始按钮，未填 `SBTI` 时滚回 Hero 并 focus
