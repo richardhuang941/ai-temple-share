@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "mission_slug": "013-github-pages-action-deploy",
+  "mission_id": "013-github-pages-action-deploy",
+  "mission_branch": "kitty/mission-013-github-pages-action-deploy",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02"
+      ],
+      "write_scope": [
+        ".github/workflows/deploy-pages.yml",
+        "kitty-specs/013-github-pages-action-deploy/**",
+        "package.json",
+        "vite.config.ts"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T09:59:28.042014+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      }
+    ],
+    "total_merges": 1,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 1
+    }
+  }
+}
