@@ -1,0 +1,9 @@
+{
+  "created_at": "2026-04-10T08:06:20.478205+00:00",
+  "friendly_name": "008 share playback sbti feedback polish",
+  "mission_number": "008",
+  "mission_slug": "008-008-share-playback-sbti-feedback-polish",
+  "mission_type": "software-dev",
+  "slug": "008-008-share-playback-sbti-feedback-polish",
+  "target_branch": "feature/004-header-density-interaction-share-polish"
+}
