@@ -1,8 +1,8 @@
 # Implementation Plan: Claws Temple Bounty 长单页
-*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/plan.md`*
+*Path: `../../kitty-specs/001-bounty-journey-longpage/plan.md`*
 
-**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/spec.md`  
-**Input**: Feature specification from `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/spec.md`
+**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `../../kitty-specs/001-bounty-journey-longpage/spec.md`  
+**Input**: Feature specification from `../../kitty-specs/001-bounty-journey-longpage/spec.md`
 
 ## Summary
 
@@ -52,7 +52,7 @@
 ### Documentation (this feature)
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/
+../../kitty-specs/001-bounty-journey-longpage/
 ├── plan.md
 ├── research.md
 ├── data-model.md
@@ -67,7 +67,7 @@
 ### Source Code (repository root)
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/
+../../
 ├── index.html
 ├── package.json
 ├── vite.config.ts
@@ -118,7 +118,7 @@
 
 ## Phase 0: Research Decisions
 
-Phase 0 结论记录在 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/001-bounty-journey-longpage/research.md`，核心决策如下：
+Phase 0 结论记录在 `../../kitty-specs/001-bounty-journey-longpage/research.md`，核心决策如下：
 
 1. 使用 `React + Vite + TypeScript` 作为单页承载方式。
 2. 使用本地结构化内容模型来映射 `Task 1-5`、分享态和 Agent 提示，不直接把大段文案写死在 JSX 中。
@@ -213,7 +213,7 @@ Phase 0 结论记录在 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/c
 ### Agent Context Update
 
 - 当前安装的 `spec-kitty-cli 3.1.0` 未提供可用的 `agent context update` 命令。
-- 本仓库已有 repo-local prompts，位于 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/.codex/prompts/`。
+- 本仓库已有 repo-local prompts，位于 `../../.codex/prompts/`。
 - 因此本阶段不新增额外 agent context 文件，继续使用现有 `spec-kitty` prompts 作为代理上下文入口。
 
 ## Complexity Tracking

@@ -1,7 +1,7 @@
 # Work Packages: Claws Temple 首页双语与转化收口
 
 **Mission**: `002-bilingual-home-polish`  
-**Feature Dir**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish`  
+**Feature Dir**: `../../kitty-specs/002-bilingual-home-polish`  
 **Planning Base Branch**: `main`  
 **Merge Target Branch**: `main`
 
@@ -13,11 +13,11 @@
 
 | WP | Title | Goal | Priority | Dependencies | Prompt | Est. Prompt Size |
 |---|---|---|---|---|---|---|
-| WP01 | Localization and Design Foundation | 建立双语字典、locale 检测、coral token 与 typography 基线 | P0 | None | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP01-localization-and-design-foundation.md` | ~260 lines |
-| WP02 | Hero and Agent Prompt Reflow | 重构首屏 challenge card 和 Agent Prompt 的首要动线 | P0 | WP01 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP02-hero-and-agent-prompt-reflow.md` | ~280 lines |
-| WP03 | Share Challenge Modes | 实现战书分享区的图片/文字双模式和跳转动线 | P1 | WP01 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP03-share-challenge-modes.md` | ~280 lines |
-| WP04 | Journey Trigger and Playback | 将 Journey 改为用户触发启动，并优化节奏与控件 | P1 | WP01 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP04-journey-trigger-and-playback.md` | ~280 lines |
-| WP05 | Integration and Validation | 串联新信息架构，补齐测试并验证桌面/移动端效果 | P0 | WP02, WP03, WP04 | `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP05-integration-and-validation.md` | ~260 lines |
+| WP01 | Localization and Design Foundation | 建立双语字典、locale 检测、coral token 与 typography 基线 | P0 | None | `../../kitty-specs/002-bilingual-home-polish/tasks/WP01-localization-and-design-foundation.md` | ~260 lines |
+| WP02 | Hero and Agent Prompt Reflow | 重构首屏 challenge card 和 Agent Prompt 的首要动线 | P0 | WP01 | `../../kitty-specs/002-bilingual-home-polish/tasks/WP02-hero-and-agent-prompt-reflow.md` | ~280 lines |
+| WP03 | Share Challenge Modes | 实现战书分享区的图片/文字双模式和跳转动线 | P1 | WP01 | `../../kitty-specs/002-bilingual-home-polish/tasks/WP03-share-challenge-modes.md` | ~280 lines |
+| WP04 | Journey Trigger and Playback | 将 Journey 改为用户触发启动，并优化节奏与控件 | P1 | WP01 | `../../kitty-specs/002-bilingual-home-polish/tasks/WP04-journey-trigger-and-playback.md` | ~280 lines |
+| WP05 | Integration and Validation | 串联新信息架构，补齐测试并验证桌面/移动端效果 | P0 | WP02, WP03, WP04 | `../../kitty-specs/002-bilingual-home-polish/tasks/WP05-integration-and-validation.md` | ~260 lines |
 
 ## Subtask Index
 
@@ -49,7 +49,7 @@
 - Goal: 为后续所有 UI 改造建立本地双语基础、主题 token 和 typography 基线。
 - Priority: P0
 - Independent Test: 系统语言可被解析，locale 可记忆，内容映射和 token 文件已更新。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP01-localization-and-design-foundation.md`
+- Prompt: `../../kitty-specs/002-bilingual-home-polish/tasks/WP01-localization-and-design-foundation.md`
 - Estimated Prompt Size: ~260 lines
 - Dependencies: None
 
@@ -80,7 +80,7 @@ Risks:
 - Goal: 把首页改成更轻量的 challenge card，并让 Agent Prompt 成为首要行动目标。
 - Priority: P0
 - Independent Test: 用户进入页面后不滚动也能看懂四个状态，并可通过 `接受挑战` 跳到 Agent Prompt。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP02-hero-and-agent-prompt-reflow.md`
+- Prompt: `../../kitty-specs/002-bilingual-home-polish/tasks/WP02-hero-and-agent-prompt-reflow.md`
 - Estimated Prompt Size: ~280 lines
 - Dependencies: Depends on WP01
 
@@ -109,7 +109,7 @@ Risks:
 - Goal: 让分享区真正承担“战书转发”职责，而不是普通摘要卡。
 - Priority: P1
 - Independent Test: 用户可在分享区切换 `分享图片` 和 `分享文字`，并看到明显不同的输出形态。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP03-share-challenge-modes.md`
+- Prompt: `../../kitty-specs/002-bilingual-home-polish/tasks/WP03-share-challenge-modes.md`
 - Estimated Prompt Size: ~280 lines
 - Dependencies: Depends on WP01
 
@@ -137,7 +137,7 @@ Risks:
 - Goal: 保留 Task 1-5 模拟，但把启动权交给用户，并优化节奏与可读性。
 - Priority: P1
 - Independent Test: Journey 首次加载不自动播放；点击后才启动，且每一步停留时间明显变长。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP04-journey-trigger-and-playback.md`
+- Prompt: `../../kitty-specs/002-bilingual-home-polish/tasks/WP04-journey-trigger-and-playback.md`
 - Estimated Prompt Size: ~280 lines
 - Dependencies: Depends on WP01
 
@@ -165,7 +165,7 @@ Risks:
 - Goal: 收口所有区块，保证三条 CTA、双语、分享模式和 Journey 触发在整页中一起成立。
 - Priority: P0
 - Independent Test: `npm run test`、`npm run build` 通过，本地预览在桌面和移动端都可读。
-- Prompt: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/tasks/WP05-integration-and-validation.md`
+- Prompt: `../../kitty-specs/002-bilingual-home-polish/tasks/WP05-integration-and-validation.md`
 - Estimated Prompt Size: ~260 lines
 - Dependencies: Depends on WP02, Depends on WP03, Depends on WP04
 

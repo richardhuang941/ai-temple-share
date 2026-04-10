@@ -61,7 +61,7 @@ tests/
 ## Key Decisions
 
 - 功能性标识与展示性品牌词分开处理。
-- 保留真实 GitHub org `Claws-Temple`、真实 domain `claws-temple-home.vercel.app`。
+- 保留真实 GitHub org `Claws-Temple`、真实 domain `https://richardhuang941.github.io/ai-temple-share`。
 - 中文侧统一直接使用 `Agent Temple`，不再额外发明新的中文品牌译名。
 
 ## Risks

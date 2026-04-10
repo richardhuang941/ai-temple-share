@@ -1,7 +1,7 @@
 # Implementation Plan: Header / Density / Interaction / Share Polish
-*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/004-header-density-interaction-share-polish/plan.md`*
+*Path: `../../kitty-specs/004-header-density-interaction-share-polish/plan.md`*
 
-**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/004-header-density-interaction-share-polish/spec.md`
+**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `../../kitty-specs/004-header-density-interaction-share-polish/spec.md`
 
 ## Summary
 

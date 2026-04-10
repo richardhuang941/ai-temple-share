@@ -1,0 +1,65 @@
+work_packages:
+  - id: WP01
+    title: Package Identity Alignment
+    dependencies: []
+    owned_files:
+      - package.json
+      - package-lock.json
+    requirement_refs:
+      - FR-001
+      - NFR-001
+      - C-001
+      - C-002
+    subtasks:
+      - T001
+    prompt_file: tasks/WP01-package-identity-alignment.md
+
+  - id: WP02
+    title: Runtime Link and Storage Alignment
+    dependencies:
+      - WP01
+    owned_files:
+      - src/lib/locale.ts
+      - src/components/sections/ShareSection.tsx
+    requirement_refs:
+      - FR-002
+      - FR-003
+      - NFR-001
+      - C-001
+      - C-002
+    subtasks:
+      - T002
+    prompt_file: tasks/WP02-runtime-link-and-storage-alignment.md
+
+  - id: WP03
+    title: Regression Update
+    dependencies:
+      - WP02
+    owned_files:
+      - tests/integration/longpage.spec.tsx
+    requirement_refs:
+      - FR-003
+      - NFR-001
+      - C-001
+    subtasks:
+      - T003
+    prompt_file: tasks/WP03-regression-update.md
+
+  - id: WP04
+    title: Documentation Pages Alignment
+    dependencies:
+      - WP01
+      - WP02
+    owned_files:
+      - kitty-specs/013-github-pages-action-deploy/acceptance-matrix.json
+      - kitty-specs/007-share-copy-header-sbti-relayout/**
+      - kitty-specs/009-agent-temple-brand-neutralization/**
+    requirement_refs:
+      - FR-004
+      - FR-005
+      - NFR-002
+      - C-001
+      - C-002
+    subtasks:
+      - T004
+    prompt_file: tasks/WP04-documentation-pages-alignment.md

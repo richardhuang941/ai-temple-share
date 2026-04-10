@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "mission_slug": "014-open-source-path-sanitization",
+  "mission_id": "014-open-source-path-sanitization",
+  "mission_branch": "kitty/mission-014-open-source-path-sanitization",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01"
+      ],
+      "write_scope": [
+        "kitty-specs/**"
+      ],
+      "predicted_surfaces": [
+        "legacy-cleanup"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T10:13:21.043500+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": []
+}

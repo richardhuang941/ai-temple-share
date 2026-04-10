@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type ChangeEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEvent,
+  type CompositionEvent
+} from "react";
 import { type LocalizedContentBundle } from "../../content";
 
 interface HeroSectionProps {
@@ -29,6 +35,7 @@ export function HeroSection({
   const inputRef = useRef<HTMLInputElement | null>(null);
   const lastShakeSignalRef = useRef(sbtiShakeSignal);
   const [isSbtiGateShaking, setIsSbtiGateShaking] = useState(false);
+  const [isComposingSbti, setIsComposingSbti] = useState(false);
   const challengeCopy = buildChallengeCopy(bundle);
   const sbtiLabel = bundle.locale === "zh" ? "先输入你的 SBTI" : "Enter your SBTI first";
   const sbtiPlaceholder = bundle.locale === "zh" ? "例如 CTRL / SHIT / SOLO" : "For example CTRL / SHIT / SOLO";
@@ -75,6 +82,17 @@ export function HeroSection({
     }
 
     onSbtiChange(event.target.value);
+  };
+
+  const handleSbtiCompositionStart = (): void => {
+    setIsComposingSbti(true);
+  };
+
+  const handleSbtiCompositionEnd = (
+    event: CompositionEvent<HTMLInputElement>
+  ): void => {
+    setIsComposingSbti(false);
+    onSbtiChange(event.currentTarget.value);
   };
 
   return (
@@ -145,7 +163,10 @@ export function HeroSection({
                   placeholder={sbtiPlaceholder}
                   value={sbtiValue}
                   aria-invalid={sbtiError ? "true" : "false"}
+                  data-composing={isComposingSbti ? "true" : "false"}
                   onChange={handleSbtiChange}
+                  onCompositionStart={handleSbtiCompositionStart}
+                  onCompositionEnd={handleSbtiCompositionEnd}
                 />
                 <a
                   className="challenge-inline-gate__link"

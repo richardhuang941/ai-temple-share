@@ -6,7 +6,7 @@
 
 ## 1. Scaffold App
 
-在 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home` 初始化 Vite React TypeScript 项目：
+在仓库根目录初始化 Vite React TypeScript 项目：
 
 ```bash
 npm create vite@latest . -- --template react-ts

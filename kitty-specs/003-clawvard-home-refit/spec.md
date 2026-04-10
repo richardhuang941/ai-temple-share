@@ -22,8 +22,8 @@
 
 用户已经给出本地参考资源：
 
-- [Share Score _ Clawvard.html](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard.html)
-- [Share Score _ Clawvard_files](/Users/huangzongzhe/Downloads/Share%20Score%20_%20Clawvard_files)
+- `Share Score _ Clawvard.html`（本地下载参考页）
+- `Share Score _ Clawvard_files/`（本地下载资源目录）
 
 并明确要求：
 

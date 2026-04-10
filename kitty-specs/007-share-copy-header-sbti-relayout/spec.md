@@ -9,7 +9,7 @@
 这一轮是对 `006` 的上线前收口：
 
 1. 战书分享区继续简化，尽量贴近 Clawvard 参考页的“单卡 + 少量信息”节奏。
-2. 挑战链接改成正式部署地址 `https://claws-temple-home.vercel.app`。
+2. 挑战链接改成正式部署地址 `https://richardhuang941.github.io/ai-temple-share`。
 3. 战书文案去掉重复分数表达，不再在同一段里把分数和等级说两三遍。
 4. Header 左侧不再使用借用 logo，只保留文字品牌。
 5. `SBTI` 输入不再放在 Journey 区，而是成为“观看模拟 Task1-6 的流程”按钮的前置输入。
@@ -17,7 +17,7 @@
 ## Goals
 
 - 分享区去掉外层可见大小标题，视觉更接近参考页。
-- 分享区挑战链接统一为 `https://claws-temple-home.vercel.app`。
+- 分享区挑战链接统一为 `https://richardhuang941.github.io/ai-temple-share`。
 - 战书可见文案和复制文案都要去掉重复分数表达。
 - Header 只保留文字品牌，不再显示当前 shield logo。
 - `SBTI` 输入迁移到 Hero 区，并作为观看模拟按钮的前置条件。
@@ -34,7 +34,7 @@
 | ID | Requirement | Status | Acceptance Criteria |
 |---|---|---|---|
 | FR-001 | 分享区不再显示可见的外层小标题和大标题。 | confirmed | share section 内无可见 `SectionHeading`。 |
-| FR-002 | 挑战链接必须替换为 `https://claws-temple-home.vercel.app`。 | confirmed | share UI 与 copy payload 都使用新链接。 |
+| FR-002 | 挑战链接必须替换为 `https://richardhuang941.github.io/ai-temple-share`。 | confirmed | share UI 与 copy payload 都使用新链接。 |
 | FR-003 | 战书文案不能重复表达同一份分数/等级信息。 | confirmed | 复制文案与卡片主文案中不再同时出现多次分数描述。 |
 | FR-004 | Header 左侧不再显示当前 logo SVG。 | confirmed | 只保留文字品牌。 |
 | FR-005 | `SBTI` 输入必须从 Journey 区迁移到 Hero 区。 | confirmed | Journey 区不再出现 `SBTI` 输入框。 |
@@ -58,7 +58,7 @@
 
 ## Acceptance Criteria
 
-- Share card 简化完成，且 challenge link 改为 `https://claws-temple-home.vercel.app`。
+- Share card 简化完成，且 challenge link 改为 `https://richardhuang941.github.io/ai-temple-share`。
 - Header 去掉 logo，只保留文字品牌。
 - `SBTI` 输入迁移到 Hero，Journey 中不再有输入框。
 - Hero watch action 在 SBTI 已填写时滚动到 Journey 并启动流程。

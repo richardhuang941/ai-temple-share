@@ -3,13 +3,13 @@
 ## Inputs
 
 - 本地下载参考页：
-  - `/Users/huangzongzhe/Downloads/Share Score _ Clawvard.html`
-  - `/Users/huangzongzhe/Downloads/Share Score _ Clawvard_files`
+  - ``Share Score _ Clawvard.html`（本地下载参考页）`
+  - ``Share Score _ Clawvard_files/`（本地下载资源目录）`
 - 当前实现：
-  - `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/sections/HeroSection.tsx`
-  - `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/sections/AgentPromptSection.tsx`
-  - `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/sections/ShareSection.tsx`
-  - `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/src/components/sections/JourneySection.tsx`
+  - `../../src/components/sections/HeroSection.tsx`
+  - `../../src/components/sections/AgentPromptSection.tsx`
+  - `../../src/components/sections/ShareSection.tsx`
+  - `../../src/components/sections/JourneySection.tsx`
 
 ## Findings
 

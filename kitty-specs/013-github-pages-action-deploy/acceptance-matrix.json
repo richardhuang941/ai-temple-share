@@ -16,11 +16,11 @@
       "criterion_id": "ACC-002",
       "description": "Vite 在 GitHub Pages 构建时自动切换到 repo 子路径 base，而默认构建继续兼容 Vercel 的根路径。",
       "proof_type": "automated_test",
-      "evidence": "npm run build + GITHUB_PAGES=true GITHUB_REPOSITORY=richardhuang941/claws-temple-home npm run build",
+      "evidence": "npm run build + GITHUB_PAGES=true GITHUB_REPOSITORY=richardhuang941/ai-temple-share npm run build",
       "pass_fail": "pass",
       "verified_by": "codex",
       "verified_at": "2026-04-10T18:02:30+08:00",
-      "notes": "默认 build 保持 /，GitHub Pages 模拟 build 产出的 dist/index.html 资源路径正确切到 /claws-temple-home/。"
+      "notes": "默认 build 保持 /，GitHub Pages 模拟 build 产出的 dist/index.html 资源路径正确切到 /ai-temple-share/。"
     },
     {
       "criterion_id": "ACC-003",

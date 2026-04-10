@@ -17,8 +17,8 @@
 - 用户已经明确要求“首页、打分、分享那块完全参考它来先”。
 - 当前页面的问题不是单个 copy，而是整个结构不像公开挑战页。
 - 本地参考资源可直接用于对照：
-  - `/Users/huangzongzhe/Downloads/Share Score _ Clawvard.html`
-  - `/Users/huangzongzhe/Downloads/Share Score _ Clawvard_files/0kxvj-jdkelvt.css`
+  - ``Share Score _ Clawvard.html`（本地下载参考页）`
+  - ``Share Score _ Clawvard_files/0kxvj-jdkelvt.css`（本地下载样式资源）`
 
 ### Alternatives Considered
 

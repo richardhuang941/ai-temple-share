@@ -107,10 +107,10 @@ directories captured above]
 | [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
 | [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
 # Implementation Plan: Claws Temple 首页双语与转化收口
-*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/plan.md`*
+*Path: `../../kitty-specs/002-bilingual-home-polish/plan.md`*
 
-**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/spec.md`  
-**Input**: Feature specification from `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/spec.md`
+**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `../../kitty-specs/002-bilingual-home-polish/spec.md`  
+**Input**: Feature specification from `../../kitty-specs/002-bilingual-home-polish/spec.md`
 
 ## Summary
 
@@ -160,7 +160,7 @@ directories captured above]
 ### Documentation (this mission)
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/
+../../kitty-specs/002-bilingual-home-polish/
 ├── plan.md
 ├── research.md
 ├── data-model.md
@@ -175,7 +175,7 @@ directories captured above]
 ### Source Code
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/
+../../
 ├── src/
 │   ├── App.tsx
 │   ├── content/
@@ -212,7 +212,7 @@ directories captured above]
 
 ## Phase 0: Research Decisions
 
-Phase 0 结论记录在 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/002-bilingual-home-polish/research.md`：
+Phase 0 结论记录在 `../../kitty-specs/002-bilingual-home-polish/research.md`：
 
 1. 双语能力采用本地字典 + locale 检测 + 显式覆盖记忆。
 2. 首页改为 challenge card 式信息架构，减少摘要段落密度。

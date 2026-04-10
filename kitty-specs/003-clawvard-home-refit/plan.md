@@ -1,8 +1,8 @@
 # Implementation Plan: Clawvard 风格首页重构与任务语义校正
-*Path: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/003-clawvard-home-refit/plan.md`*
+*Path: `../../kitty-specs/003-clawvard-home-refit/plan.md`*
 
-**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/003-clawvard-home-refit/spec.md`  
-**Input**: Feature specification from `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/003-clawvard-home-refit/spec.md`
+**Branch**: `main` | **Date**: `2026-04-08` | **Spec**: `../../kitty-specs/003-clawvard-home-refit/spec.md`  
+**Input**: Feature specification from `../../kitty-specs/003-clawvard-home-refit/spec.md`
 
 ## Summary
 
@@ -52,7 +52,7 @@
 ### Documentation (this mission)
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/003-clawvard-home-refit/
+../../kitty-specs/003-clawvard-home-refit/
 ├── spec.md
 ├── plan.md
 ├── research.md
@@ -68,7 +68,7 @@
 ### Source Code
 
 ```text
-/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/
+../../
 ├── src/
 │   ├── App.tsx
 │   ├── content/
@@ -108,7 +108,7 @@
 
 ## Phase 0: Research Decisions
 
-详细结论见 `/Users/huangzongzhe/workspace/vibeCoding/claws-temple/claws-temple-home/kitty-specs/003-clawvard-home-refit/research.md`。
+详细结论见 `../../kitty-specs/003-clawvard-home-refit/research.md`。
 
 本轮先锁定这几个决策：
 
