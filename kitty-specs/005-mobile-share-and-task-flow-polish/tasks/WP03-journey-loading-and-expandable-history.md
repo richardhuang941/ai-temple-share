@@ -49,3 +49,4 @@ shell_pid: "4218"
 
 ## Activity Log
 - 2026-04-10T04:02:18Z – codex:gpt-5.4:implementer:implementer – shell_pid=4218 – Started implementation via action command
+- 2026-04-10T04:03:25Z – codex:gpt-5.4:implementer:implementer – shell_pid=4218 – Ready for review: journey summary stays visible and completed tasks expose accessible detail toggles.
