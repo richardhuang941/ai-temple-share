@@ -17,9 +17,9 @@ subtasks:
 - T001
 - T002
 - T003
-assignee: codex
-agent: codex
-shell_pid: main-shell
+assignee: "codex"
+agent: "codex"
+shell_pid: "99143"
 authoritative_surface: src/content/
 execution_mode: code_change
 owned_files:
@@ -41,3 +41,7 @@ owned_files:
 ## Objective
 
 把展示层与普通文本里的 `Claws Temple` 品牌文案统一替换为 `Agent Temple`，但保留真实 repo/path/domain。
+
+## Activity Log
+
+- 2026-04-10T08:25:40Z – codex – shell_pid=99143 – Implementation completed on feature branch
