@@ -1,4 +1,16 @@
 {
+  "acceptance_history": [
+    {
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T08:38:25.701835+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "40be00840662e280866f34b131f072bc7a254339"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T08:38:25.701835+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "40be00840662e280866f34b131f072bc7a254339",
   "created_at": "2026-04-10T08:30:23.532060+00:00",
   "friendly_name": "journey sbti scrollback focus",
   "mission_number": "010",
