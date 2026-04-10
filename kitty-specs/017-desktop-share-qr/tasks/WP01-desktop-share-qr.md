@@ -49,3 +49,4 @@ owned_files:
 - 2026-04-10T10:51:57Z – codex – shell_pid=main-shell – Implemented desktop QR and dynamic current-link sharing in direct repo mode
 - 2026-04-10T10:51:57Z – codex – shell_pid=main-shell – Implementation complete; npm run test and npm run build passed
 - 2026-04-10T10:52:32Z – codex – shell_pid=main-shell – Reviewed locally after QR/share-link regression checks
+- 2026-04-10T10:52:32Z – codex – shell_pid=main-shell – Accepted after local validation | Done override: Implemented directly on target branch and verified locally
