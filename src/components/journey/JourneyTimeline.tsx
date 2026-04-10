@@ -8,8 +8,13 @@ interface JourneyTimelineProps {
   currentHint: TimelineHint;
   hasStarted: boolean;
   idleLabel: string;
+  isAutoplay: boolean;
+  isComplete: boolean;
   isReducedMotion: boolean;
   locale: LocaleCode;
+  pauseLabel: string;
+  resumeLabel: string;
+  onToggleAutoplay: () => void;
   onTaskSelect: (taskIndex: number) => void;
   onTaskMount: (taskId: string, element: HTMLElement | null) => void;
 }
@@ -20,8 +25,13 @@ export function JourneyTimeline({
   currentHint,
   hasStarted,
   idleLabel,
+  isAutoplay,
+  isComplete,
   isReducedMotion,
   locale,
+  pauseLabel,
+  resumeLabel,
+  onToggleAutoplay,
   onTaskSelect,
   onTaskMount
 }: JourneyTimelineProps) {
@@ -41,10 +51,26 @@ export function JourneyTimeline({
     background: "linear-gradient(90deg, var(--color-highlight), var(--coral-bright))",
     transition: "width var(--step-slow) var(--ease-emphatic)"
   };
+  const showFloatingAutoplayControl = hasStarted && !isReducedMotion && !isComplete;
 
   return (
     <div className="journey-flow-column">
-      <div className="journey-summary-card">
+      <div
+        className={`journey-summary-card${showFloatingAutoplayControl ? " journey-summary-card--with-control" : ""}`}
+      >
+        {showFloatingAutoplayControl ? (
+          <button
+            type="button"
+            className="journey-floating-toggle"
+            aria-pressed={isAutoplay}
+            onClick={onToggleAutoplay}
+          >
+            <span className="journey-floating-toggle__icon" aria-hidden="true">
+              {isAutoplay ? "||" : ">"}
+            </span>
+            <span>{isAutoplay ? pauseLabel : resumeLabel}</span>
+          </button>
+        ) : null}
         <div className="journey-summary-row">
           <div className="journey-summary-copy">
             <strong>

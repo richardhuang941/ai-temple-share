@@ -1,0 +1,63 @@
+work_packages:
+  - id: WP01
+    title: "Share Copy Dedupe"
+    dependencies: []
+    owned_files:
+      - "src/components/share/ShareSummaryCard.tsx"
+      - "src/content/sharePlatformCopy.ts"
+      - "src/styles/share-actions.css"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - NFR-003
+      - C-001
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: "tasks/WP01-share-copy-dedupe.md"
+
+  - id: WP02
+    title: "Floating Playback Control"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/components/sections/JourneySection.tsx"
+      - "src/components/journey/JourneyTimeline.tsx"
+      - "src/hooks/useJourneyTimeline.ts"
+      - "src/styles/journey.css"
+      - "src/content/uiCopy.ts"
+    requirement_refs:
+      - FR-003
+      - FR-004
+      - NFR-001
+      - NFR-002
+      - NFR-003
+      - C-001
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: "tasks/WP02-floating-playback-control.md"
+
+  - id: WP03
+    title: "SBTI Feedback and Regression"
+    dependencies:
+      - WP02
+    owned_files:
+      - "src/App.tsx"
+      - "src/components/sections/HeroSection.tsx"
+      - "src/styles/challenge-surfaces.css"
+      - "tests/integration/longpage.spec.tsx"
+      - "kitty-specs/008-008-share-playback-sbti-feedback-polish/**"
+    requirement_refs:
+      - FR-005
+      - FR-006
+      - NFR-001
+      - NFR-003
+      - C-002
+    subtasks:
+      - T007
+      - T008
+      - T009
+    prompt_file: "tasks/WP03-sbti-feedback-and-regression.md"

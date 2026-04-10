@@ -192,6 +192,10 @@
   border: 1px solid rgba(24, 34, 54, 0.08);
 }
 
+.challenge-inline-gate[data-shaking="true"] {
+  animation: promptShake 560ms var(--ease-emphatic);
+}
+
 .challenge-inline-gate__label {
   font-size: 0.82rem;
   font-weight: 700;
@@ -214,6 +218,10 @@
   background: #fff;
   color: var(--color-ink);
   text-transform: uppercase;
+  transition:
+    border-color var(--step-base) var(--ease-emphatic),
+    box-shadow var(--step-base) var(--ease-emphatic),
+    transform var(--step-base) var(--ease-emphatic);
 }
 
 .challenge-inline-gate__input:focus {
@@ -437,6 +445,13 @@
 
   80% {
     transform: translateX(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .challenge-inline-gate[data-shaking="true"] {
+    animation: none;
+    box-shadow: 0 0 0 0.2rem rgba(255, 77, 77, 0.14);
   }
 }
 

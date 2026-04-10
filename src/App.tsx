@@ -27,6 +27,7 @@ export function App() {
     return window.localStorage.getItem(SBTI_STORAGE_KEY) ?? "";
   });
   const [sbtiError, setSbtiError] = useState<string | null>(null);
+  const [sbtiShakeSignal, setSbtiShakeSignal] = useState(0);
   const [journeyStartSignal, setJourneyStartSignal] = useState(0);
 
   useEffect(() => {
@@ -59,6 +60,7 @@ export function App() {
 
     if (!normalized) {
       setSbtiError(nextError);
+      setSbtiShakeSignal((value) => value + 1);
       return;
     }
 
@@ -91,6 +93,7 @@ export function App() {
         bundle={bundle}
         sbtiValue={sbtiValue}
         sbtiError={sbtiError}
+        sbtiShakeSignal={sbtiShakeSignal}
         onSbtiChange={(value) => {
           setSbtiValue(value.toUpperCase());
           setSbtiError(null);

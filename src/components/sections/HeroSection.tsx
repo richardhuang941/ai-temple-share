@@ -1,9 +1,11 @@
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 import { type LocalizedContentBundle } from "../../content";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
   sbtiValue: string;
   sbtiError: string | null;
+  sbtiShakeSignal: number;
   onSbtiChange: (value: string) => void;
   onWatchSimulation: () => void;
 }
@@ -20,9 +22,13 @@ export function HeroSection({
   bundle,
   sbtiValue,
   sbtiError,
+  sbtiShakeSignal,
   onSbtiChange,
   onWatchSimulation
 }: HeroSectionProps) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const lastShakeSignalRef = useRef(sbtiShakeSignal);
+  const [isSbtiGateShaking, setIsSbtiGateShaking] = useState(false);
   const challengeCopy = buildChallengeCopy(bundle);
   const sbtiLabel = bundle.locale === "zh" ? "先输入你的 SBTI" : "Enter your SBTI first";
   const sbtiPlaceholder = bundle.locale === "zh" ? "例如 CTRL / SHIT / SOLO" : "For example CTRL / SHIT / SOLO";
@@ -45,6 +51,31 @@ export function HeroSection({
       value: bundle.locale === "zh" ? "战报已可转发" : "Share card ready"
     }
   ];
+
+  useEffect(() => {
+    if (sbtiShakeSignal === lastShakeSignalRef.current) {
+      return;
+    }
+
+    lastShakeSignalRef.current = sbtiShakeSignal;
+    inputRef.current?.focus();
+    setIsSbtiGateShaking(true);
+    const timeoutId = window.setTimeout(() => {
+      setIsSbtiGateShaking(false);
+    }, 560);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [sbtiShakeSignal]);
+
+  const handleSbtiChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (isSbtiGateShaking) {
+      setIsSbtiGateShaking(false);
+    }
+
+    onSbtiChange(event.target.value);
+  };
 
   return (
     <section id="top" aria-labelledby="hero-heading" className="challenge-stage challenge-stage--hero">
@@ -94,7 +125,10 @@ export function HeroSection({
             <a className="challenge-cta challenge-cta--secondary" href="#share">
               {bundle.chrome.shareChallengeLabel}
             </a>
-            <div className="challenge-inline-gate">
+            <div
+              className="challenge-inline-gate"
+              data-shaking={isSbtiGateShaking ? "true" : "false"}
+            >
               <label className="challenge-inline-gate__label" htmlFor="hero-sbti-input">
                 {sbtiLabel}
               </label>
@@ -107,10 +141,11 @@ export function HeroSection({
                   autoCapitalize="characters"
                   autoCorrect="off"
                   spellCheck={false}
+                  ref={inputRef}
                   placeholder={sbtiPlaceholder}
                   value={sbtiValue}
                   aria-invalid={sbtiError ? "true" : "false"}
-                  onChange={(event) => onSbtiChange(event.target.value)}
+                  onChange={handleSbtiChange}
                 />
                 <a
                   className="challenge-inline-gate__link"

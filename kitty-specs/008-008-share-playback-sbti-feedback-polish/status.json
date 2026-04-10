@@ -1,0 +1,39 @@
+{
+  "event_count": 3,
+  "last_event_id": "01KNV7017XAK1CGZN2JNS4ZZME",
+  "materialized_at": "2026-04-10T08:09:06.045918+00:00",
+  "mission_slug": "008-008-share-playback-sbti-feedback-polish",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 0,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 3
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNV7016HT6MD72S7X5Q189KK",
+      "last_transition_at": "2026-04-10T08:09:06.001919+00:00"
+    },
+    "WP02": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNV7017WNKAFWJZ7GSP7HHVN",
+      "last_transition_at": "2026-04-10T08:09:06.044323+00:00"
+    },
+    "WP03": {
+      "actor": "finalize-tasks",
+      "force_count": 1,
+      "lane": "planned",
+      "last_event_id": "01KNV7017XAK1CGZN2JNS4ZZME",
+      "last_transition_at": "2026-04-10T08:09:06.045918+00:00"
+    }
+  }
+}

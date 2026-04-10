@@ -29,13 +29,6 @@ function primeSeed(seed = "seed-1"): void {
   window.sessionStorage.setItem(SESSION_STORAGE_KEY, seed);
 }
 
-async function triggerHashNavigation(hash: string): Promise<void> {
-  await act(async () => {
-    window.location.hash = hash;
-    window.dispatchEvent(new HashChangeEvent("hashchange"));
-  });
-}
-
 describe("Claws Temple Bounty longpage", () => {
   beforeEach(() => {
     window.localStorage.clear();
@@ -136,6 +129,7 @@ describe("Claws Temple Bounty longpage", () => {
     expect(within(shareSection as HTMLElement).getAllByText(new RegExp(bundle.shareSection.challengeLinkLabel)).length).toBeGreaterThan(0);
     expect(within(shareSection as HTMLElement).getAllByRole("button", { name: bundle.chrome.copyLabel }).length).toBeGreaterThan(0);
     expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
+    expect(within(shareSection as HTMLElement).getAllByText(/你的 Agent 敢来比一比吗/)).toHaveLength(1);
     expect(within(shareSection as HTMLElement).queryByRole("button", { name: "微信" })).toBeNull();
     expect(within(shareSection as HTMLElement).queryByText(/系统分享/)).toBeNull();
   });
@@ -181,7 +175,7 @@ describe("Claws Temple Bounty longpage", () => {
     expect(screen.getByText("分享文案已复制")).toBeTruthy();
   });
 
-  it("requires SBTI before the journey can start and does not auto-start from the watch CTA", async () => {
+  it("requires SBTI before the journey can start and shakes the input gate on empty watch clicks", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();
 
@@ -193,13 +187,16 @@ describe("Claws Temple Bounty longpage", () => {
     render(<App />);
 
     window.location.hash = "";
+    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
 
     fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
+    expect(document.activeElement).toBe(sbtiInput);
+    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
     expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeDisabled();
 
-    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
+    fireEvent.change(sbtiInput, {
       target: { value: "CTRL" }
     });
     fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
@@ -234,5 +231,22 @@ describe("Claws Temple Bounty longpage", () => {
     expect(screen.getByRole("button", { name: /收起这个 Task/ })).toBeTruthy();
     expect(document.getElementById("task-1-stage-list")).toBeTruthy();
     expect(container.querySelector(".journey-summary-copy strong")?.textContent).toBe(focusBeforeExpand);
+  });
+
+  it("shows a floating autoplay control that can pause and resume the active journey", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
+      target: { value: "CTRL" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
+
+    const pauseButton = await screen.findByRole("button", { name: bundle.journey.pauseLabel });
+    expect(pauseButton).toBeTruthy();
+
+    fireEvent.click(pauseButton);
+
+    expect(screen.getByRole("button", { name: bundle.journey.resumeLabel })).toBeTruthy();
   });
 });

@@ -141,14 +141,6 @@ export function JourneySection({
               >
                 {bundle.journey.restartLabel}
               </button>
-              <button
-                type="button"
-                onClick={() => setAutoplay(!timeline.isAutoplay)}
-                className="journey-button journey-button--ghost"
-                disabled={timeline.isReducedMotion}
-              >
-                {timeline.isAutoplay ? bundle.journey.pauseLabel : bundle.journey.resumeLabel}
-              </button>
             </>
           ) : null}
         </div>
@@ -159,8 +151,13 @@ export function JourneySection({
           currentHint={currentHint}
           hasStarted={Boolean(timeline.hasStarted)}
           idleLabel={bundle.chrome.simulationIdleLabel}
+          isAutoplay={timeline.isAutoplay}
+          isComplete={timeline.isComplete}
           isReducedMotion={timeline.isReducedMotion}
           locale={bundle.locale}
+          pauseLabel={bundle.journey.pauseLabel}
+          resumeLabel={bundle.journey.resumeLabel}
+          onToggleAutoplay={() => setAutoplay(!timeline.isAutoplay)}
           onTaskSelect={goToTask}
           onTaskMount={(taskId, element) => {
             taskElementsRef.current[taskId] = element;

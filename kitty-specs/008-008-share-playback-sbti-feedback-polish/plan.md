@@ -1,108 +1,83 @@
-# Implementation Plan: [FEATURE]
-*Path: [templates/plan-template.md](templates/plan-template.md)*
+# Implementation Plan: 008 Share Playback SBTI Feedback Polish
 
-
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/kitty-specs/[###-feature-name]/spec.md`
-
-**Note**: This template is filled in by the `/spec-kitty.plan` command. See `src/specify_cli/missions/software-dev/command-templates/plan.md` for the execution workflow.
-
-The planner will not begin until all planning questions have been answered—capture those answers in this document before progressing to later phases.
+**Branch**: `feature/004-header-density-interaction-share-polish`  
+**Date**: `2026-04-10`  
+**Spec**: [spec.md](./spec.md)
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+这轮实现拆成三块：
+
+1. 分享卡把重复的用户可见挑战句收成单点表达，保留复制能力但不在页面上重复展示。
+2. Journey 自动演示补一个真正可感知的 floating 播放/暂停控件：桌面端贴在当前聚焦区域，移动端固定在安全区边缘。
+3. Hero 的 `SBTI` gate 从“报错文本”升级成“报错 + focus + 一次性 shake”，让未输入时的反馈更直接。
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
-
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+- **Language/Version**: TypeScript + React 19
+- **Primary Dependencies**: React, Vite, Vitest
+- **Storage**: `localStorage`（仅保存 `SBTI` 输入）
+- **Testing**: Vitest + Testing Library
+- **Target Platform**: Vercel-hosted static web app
+- **Project Type**: 单页 web application
+- **Performance Goals**: 继续维持轻量静态首屏与平滑的 timeline 状态切换
+- **Constraints**: 不引入后端、不接新 SDK、保持当前功能分支工作流
+- **Scale/Scope**: 单页面局部 polish，影响 Hero / Share / Journey 三块
 
 ## Charter Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
-
-[Gates determined based on charter file]
+- 当前变更仍属于单页前端 polish，不触发额外架构层复杂度。
+- 保持现有内容模型与 timeline 状态机，不新增跨层依赖。
 
 ## Project Structure
 
-### Documentation (this feature)
+### Documentation
 
-```
-kitty-specs/[###-feature]/
-├── plan.md              # This file (/spec-kitty.plan command output)
-├── research.md          # Phase 0 output (/spec-kitty.plan command)
-├── data-model.md        # Phase 1 output (/spec-kitty.plan command)
-├── quickstart.md        # Phase 1 output (/spec-kitty.plan command)
-├── contracts/           # Phase 1 output (/spec-kitty.plan command)
-└── tasks.md             # Phase 2 output (/spec-kitty.tasks command - NOT created by /spec-kitty.plan)
+```text
+kitty-specs/008-008-share-playback-sbti-feedback-polish/
+├── spec.md
+├── plan.md
+├── research.md
+├── data-model.md
+├── quickstart.md
+├── contracts/
+└── tasks.md
 ```
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### Source Code
 
-```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+```text
 src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+├── components/
+│   ├── sections/
+│   └── share/
+├── content/
+├── hooks/
+└── styles/
 
 tests/
-├── contract/
 ├── integration/
 └── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: 保持现有 Vite 单页结构，只在 Hero / Share / Journey 相关组件、内容映射与样式层做局部调整。
 
-## Complexity Tracking
+## Key Decisions
 
-*Fill ONLY if Charter Check has violations that must be justified*
+- 分享去重优先删掉“第二份可见文案”，而不是再发明一层新容器。
+- 悬浮播放/暂停控件复用已有 `timeline.isAutoplay` 状态，不额外创建第二套播放状态。
+- Shake 交互采用一次性 signal 触发，而不是把按钮永久 `disabled`，这样仍然允许用户直接点按钮获得引导反馈。
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+## Risks
+
+- 浮动控件如果定位不稳，容易挡住移动端 Task 内容或分享浮层。
+- `SBTI` shake 如果每次 render 都触发，会造成输入体验抖动。
+- 分享可见文案删减后，要确保复制 payload 仍保留足够的挑战语义。
+
+## Verification
+
+- `npm run test`
+- `npm run build`
+- 手测桌面端：Journey 启动后，当前聚焦区域附近可暂停/恢复 autoplay
+- 手测移动端：左下或安全区附近可见 floating 控件，不遮挡任务主体
+- 手测 Hero：空 `SBTI` 点按钮只 shake/focus，不启动；填值后可正常启动
