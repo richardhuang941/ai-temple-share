@@ -1,0 +1,47 @@
+{
+  "mission_slug": "008-008-share-playback-sbti-feedback-polish",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The share surface keeps only one visible challenge sentence while preserving a complete copy payload with the production link.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:14:06+08:00",
+      "notes": "Integration coverage verifies the desktop share surface, the single visible challenge copy, and the preserved copy/share payload."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The Journey simulation exposes a floating autoplay toggle during active playback, and the control can pause and resume without resetting progress.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:14:06+08:00",
+      "notes": "The regression suite verifies that the floating autoplay control appears once the simulation starts and can flip from pause to resume state."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Empty SBTI watch clicks focus and shake the Hero gate instead of starting the Journey, while valid SBTI still starts the autoplay flow.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:14:06+08:00",
+      "notes": "Integration checks assert the shake marker, focus behavior, disabled Journey start state on empty input, and successful scroll/start after valid SBTI input."
+    },
+    {
+      "criterion_id": "ACC-004",
+      "description": "The 008 polish set remains buildable and all three work packages are recorded in the done lane before acceptance.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test && npm run build + kitty-specs/008-008-share-playback-sbti-feedback-polish/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T16:14:06+08:00",
+      "notes": "The final validation run passed 29 tests across 4 files, the Vite production build completed successfully, and WP01 through WP03 are all materialized in the done lane."
+    }
+  ],
+  "negative_invariants": []
+}
