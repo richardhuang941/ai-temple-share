@@ -1,0 +1,37 @@
+{
+  "mission_slug": "017-desktop-share-qr",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "Desktop share now renders a QR surface and keeps the visible challenge link aligned with the current page URL instead of a hard-coded domain.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T18:53:22+08:00",
+      "notes": "The integration suite now asserts the desktop share area exposes a QR image, shows the current path in the challenge link text, and avoids duplicate visible challenge copy."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Mobile share handoff continues to work without the desktop QR, and copied share payloads now also resolve from the current runtime URL.",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T18:53:22+08:00",
+      "notes": "The mobile regression checks still verify X/Wechat/Xiaohongshu/Douyin entry points, and the copied payload includes the current origin plus path instead of a fixed challenge URL."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The QR implementation stays local-only, the production bundle builds successfully, and WP01 is recorded as done in the mission status snapshot.",
+      "proof_type": "automated_test",
+      "evidence": "npm run build + src/components/share/DesktopShareQr.tsx + kitty-specs/017-desktop-share-qr/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T18:53:22+08:00",
+      "notes": "The QR is generated with qrcode.react in the client bundle, the Vite build passed, and mission 017 materializes WP01 in the done lane."
+    }
+  ],
+  "negative_invariants": []
+}
