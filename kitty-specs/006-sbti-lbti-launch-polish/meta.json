@@ -1,4 +1,18 @@
 {
+  "accept_commit": "c1f59c21d4f59d6079b7b0f3ffec5a0b39b21b53",
+  "acceptance_history": [
+    {
+      "accept_commit": "c1f59c21d4f59d6079b7b0f3ffec5a0b39b21b53",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T07:09:02.081531+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "49d0d543963855ac4d34603a9350e36a50ec7bfb"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T07:09:02.081531+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "49d0d543963855ac4d34603a9350e36a50ec7bfb",
   "created_at": "2026-04-10T06:51:13.457908+00:00",
   "friendly_name": "sbti lbti launch polish",
   "mission_number": "006",
