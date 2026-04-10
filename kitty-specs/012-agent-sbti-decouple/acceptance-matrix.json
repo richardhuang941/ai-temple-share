@@ -1,0 +1,37 @@
+{
+  "mission_slug": "012-agent-sbti-decouple",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "Hero 中的人类 SBTI 只保留为 Journey gate，Task 6 的 Agent SBTI 不再读取或复用这份输入。",
+      "proof_type": "code_review",
+      "evidence": "src/App.tsx + src/content/index.ts + src/content/taskMilestones.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T17:10:00+08:00",
+      "notes": "内容 bundle 不再接收 human SBTI 参数，Hero 输入仍然只服务于 Journey 启动 gate，Task 6 数据链路已经与用户输入断开。"
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Task 6 会根据 Agent 本轮运行画像稳定推导 Agent SBTI，并在中英文文案里明确保持 Agent 视角。",
+      "proof_type": "automated_test",
+      "evidence": "npm run test -> tests/unit/contentMappers.test.ts + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T17:10:00+08:00",
+      "notes": "单测覆盖 faction + grade 到 Agent SBTI 的稳定映射，集成测试覆盖人类 SBTI 改变时 Task 6 badge 保持不变。"
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Mission 012 保持可构建、可回归，并能通过 direct-repo 的 Kitty review/accept 收口。",
+      "proof_type": "automated_test",
+      "evidence": "npx tsc -b --clean && npm run build + kitty-specs/012-agent-sbti-decouple/status.json",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T17:10:00+08:00",
+      "notes": "本轮修改后 32 个测试全绿，build 通过，WP01/WP02 已 materialize 到 approved lane，后续会在 landing branch 上落到 done。"
+    }
+  ],
+  "negative_invariants": []
+}
