@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "mission_slug": "009-agent-temple-brand-neutralization",
+  "mission_id": "009-agent-temple-brand-neutralization",
+  "mission_branch": "kitty/mission-009-agent-temple-brand-neutralization",
+  "target_branch": "feature/004-header-density-interaction-share-polish",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02"
+      ],
+      "write_scope": [
+        "index.html",
+        "kitty-specs/009-agent-temple-brand-neutralization/**",
+        "src/App.tsx",
+        "src/components/common/SiteHeader.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/share/ShareSummaryCard.tsx",
+        "src/content/agentProfile.ts",
+        "src/content/agentPromptCards.ts",
+        "src/content/factionContent.ts",
+        "src/content/heroContent.ts",
+        "src/content/sharePlatformCopy.ts",
+        "src/content/uiCopy.ts",
+        "tests/integration/longpage.spec.tsx",
+        "tests/unit/contentMappers.test.ts"
+      ],
+      "predicted_surfaces": [],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-10T08:23:14.939890+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      }
+    ],
+    "total_merges": 1,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 1
+    }
+  }
+}
