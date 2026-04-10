@@ -3,11 +3,10 @@ import {
   type LocalizedContentBundle
 } from "../../content";
 import { deriveShareSummaryView } from "../../lib/contentMappers";
+import { resolveCurrentShareLink } from "../../lib/shareLink";
 import SocialShareActions from "../share/SocialShareActions";
 import ShareSummaryCard from "../share/ShareSummaryCard";
 import "../../styles/share-actions.css";
-
-const challengeLink = "https://richardhuang941.github.io/ai-temple-share";
 
 interface ShareSectionProps {
   bundle?: LocalizedContentBundle;
@@ -16,6 +15,7 @@ interface ShareSectionProps {
 export function ShareSection({
   bundle = getLocalizedLongpageContent("zh")
 }: ShareSectionProps) {
+  const challengeLink = resolveCurrentShareLink();
   const shareView = deriveShareSummaryView(
     bundle.agentProfile,
     bundle.shareSummary,

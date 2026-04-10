@@ -1,0 +1,25 @@
+{
+  "event_count": 6,
+  "last_event_id": "01KNVGBA8AW7WF6Q83GRQFSZV3",
+  "materialized_at": "2026-04-10T10:52:32.906784+00:00",
+  "mission_slug": "017-desktop-share-qr",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 1,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 0
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "codex",
+      "force_count": 2,
+      "lane": "done",
+      "last_event_id": "01KNVGBA8AW7WF6Q83GRQFSZV3",
+      "last_transition_at": "2026-04-10T10:52:32.906784+00:00"
+    }
+  }
+}

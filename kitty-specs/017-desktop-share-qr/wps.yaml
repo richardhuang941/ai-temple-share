@@ -1,0 +1,31 @@
+work_packages:
+  - id: WP01
+    title: Desktop Share QR
+    dependencies: []
+    owned_files:
+      - package.json
+      - package-lock.json
+      - src/content/models.ts
+      - src/content/uiCopy.ts
+      - src/lib/shareActions.ts
+      - src/lib/shareLink.ts
+      - src/components/sections/ShareSection.tsx
+      - src/components/share/ShareSummaryCard.tsx
+      - src/components/share/DesktopShareQr.tsx
+      - src/styles/share-actions.css
+      - tests/integration/longpage.spec.tsx
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-003
+      - FR-004
+      - NFR-001
+      - NFR-002
+      - NFR-003
+      - C-001
+      - C-002
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: tasks/WP01-desktop-share-qr.md

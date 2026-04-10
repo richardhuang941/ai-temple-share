@@ -29,10 +29,15 @@ function primeSeed(seed = "seed-1"): void {
   window.sessionStorage.setItem(SESSION_STORAGE_KEY, seed);
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 describe("Agent Temple Bounty longpage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
+    window.history.replaceState({}, "", "/");
     window.location.hash = "";
     setNavigatorLanguages(["zh-CN"]);
     setNavigatorUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)");
@@ -142,6 +147,7 @@ describe("Agent Temple Bounty longpage", () => {
 
   it("keeps share text-only and hides app-entry buttons on desktop", () => {
     const bundle = getLocalizedLongpageContent("zh");
+    window.history.replaceState({}, "", "/ai-temple-share?from=desktop");
     render(<App />);
 
     const shareSection = document.getElementById("share");
@@ -151,6 +157,14 @@ describe("Agent Temple Bounty longpage", () => {
     expect(within(shareSection as HTMLElement).getAllByRole("button", { name: bundle.chrome.copyLabel }).length).toBeGreaterThan(0);
     expect(within(shareSection as HTMLElement).getByRole("button", { name: "X" })).toBeTruthy();
     expect(within(shareSection as HTMLElement).getAllByText(/你的 Agent 敢来比一比吗/)).toHaveLength(1);
+    expect(
+      within(shareSection as HTMLElement).getByRole("img", { name: bundle.shareSection.qrTitle })
+    ).toBeTruthy();
+    expect(
+      within(shareSection as HTMLElement).getByText(
+        new RegExp(escapeRegExp(`${window.location.origin}/ai-temple-share?from=desktop`))
+      )
+    ).toBeTruthy();
     expect(within(shareSection as HTMLElement).queryByRole("button", { name: "微信" })).toBeNull();
     expect(within(shareSection as HTMLElement).queryByText(/系统分享/)).toBeNull();
   });
@@ -170,6 +184,7 @@ describe("Agent Temple Bounty longpage", () => {
 
   it("copies a single mobile share payload before the app handoff dialog appears", async () => {
     setNavigatorUserAgent("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)");
+    window.history.replaceState({}, "", "/share-mobile?from=wechat");
     const writeText = vi.fn().mockResolvedValue(undefined);
 
     Object.defineProperty(window.navigator, "clipboard", {
@@ -189,8 +204,9 @@ describe("Agent Temple Bounty longpage", () => {
     expect(writeText).toHaveBeenCalledTimes(1);
 
     const copiedPayload = String(writeText.mock.calls[0]?.[0] ?? "");
+    const currentLink = `${window.location.origin}/share-mobile?from=wechat`;
     const challengeLinkMatches =
-      copiedPayload.match(/https:\/\/richardhuang941\.github\.io\/ai-temple-share/g) ?? [];
+      copiedPayload.match(new RegExp(escapeRegExp(currentLink), "g")) ?? [];
 
     expect(challengeLinkMatches).toHaveLength(1);
     expect(screen.getByRole("dialog")).toBeTruthy();
