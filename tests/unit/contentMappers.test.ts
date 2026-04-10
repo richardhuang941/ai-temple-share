@@ -31,7 +31,7 @@ describe("content mappers", () => {
       selectedFaction
     );
 
-    expect(view.title).toContain("Claws Temple AI");
+    expect(view.title).toContain("Agent Temple AI");
     expect(view.scoreSummary).toContain(`${agentProfile.scoreValue} / 100`);
     expect(view.scoreSummary).toContain(agentProfile.scoreGrade);
     expect(view.factionStatus).toContain(selectedFaction.displayName);

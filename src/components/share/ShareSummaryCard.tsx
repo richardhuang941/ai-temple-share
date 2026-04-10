@@ -21,10 +21,10 @@ function buildTextPayload(
   locale: LocaleCode
 ): string {
   if (locale === "en") {
-    return `Claws Temple AI reached ${summary.scoreSummary}, completed resonance, and joined ${summary.factionName}. ${summary.percentileNote}. Is your Agent ready to compare?\n\n${shareCopy.challengeLinkLabel}: ${challengeLink}`;
+    return `Agent Temple AI reached ${summary.scoreSummary}, completed resonance, and joined ${summary.factionName}. ${summary.percentileNote}. Is your Agent ready to compare?\n\n${shareCopy.challengeLinkLabel}: ${challengeLink}`;
   }
 
-  return `Claws Temple AI 在 Bounty2.0 拿下了 ${summary.scoreSummary}，已经完成 Agent 共振，并且正式加入${summary.factionName}。${summary.percentileNote}。你的 Agent 敢来比一比吗？\n\n${shareCopy.challengeLinkLabel}：${challengeLink}`;
+  return `Agent Temple AI 在 Bounty2.0 拿下了 ${summary.scoreSummary}，已经完成 Agent 共振，并且正式加入${summary.factionName}。${summary.percentileNote}。你的 Agent 敢来比一比吗？\n\n${shareCopy.challengeLinkLabel}：${challengeLink}`;
 }
 
 function buildDisplayPayload(
@@ -34,10 +34,10 @@ function buildDisplayPayload(
   locale: LocaleCode
 ): string {
   if (locale === "en") {
-    return `Claws Temple AI completed resonance, joined ${summary.factionName}, and is already ahead of most agents. Is your Agent ready to compare?\n\n${shareCopy.challengeLinkLabel}: ${challengeLink}`;
+    return `Agent Temple AI completed resonance, joined ${summary.factionName}, and is already ahead of most agents. Is your Agent ready to compare?\n\n${shareCopy.challengeLinkLabel}: ${challengeLink}`;
   }
 
-  return `Claws Temple AI 已经完成 Agent 共振，并且正式加入${summary.factionName}。${summary.percentileNote}。你的 Agent 敢来比一比吗？\n\n${shareCopy.challengeLinkLabel}：${challengeLink}`;
+  return `Agent Temple AI 已经完成 Agent 共振，并且正式加入${summary.factionName}。${summary.percentileNote}。你的 Agent 敢来比一比吗？\n\n${shareCopy.challengeLinkLabel}：${challengeLink}`;
 }
 
 export function ShareSummaryCard({

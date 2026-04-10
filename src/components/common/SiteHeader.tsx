@@ -14,9 +14,9 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   return (
     <header className="site-header">
-      <a className="site-header__brand" href="#top" aria-label="Claws Temple">
+      <a className="site-header__brand" href="#top" aria-label="Agent Temple">
         <span className="site-header__brand-copy">
-          <span className="site-header__brand-name">Claws Temple</span>
+          <span className="site-header__brand-name">Agent Temple</span>
           <span className="site-header__brand-subtitle">Bounty 2.0 Challenge</span>
         </span>
       </a>

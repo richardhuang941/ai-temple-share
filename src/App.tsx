@@ -33,7 +33,7 @@ export function App() {
   useEffect(() => {
     document.documentElement.lang = locale === "zh" ? "zh-CN" : "en";
     document.title =
-      locale === "zh" ? "Claws Temple Bounty Challenge" : "Claws Temple Bounty Challenge";
+      locale === "zh" ? "Agent Temple Bounty Challenge" : "Agent Temple Bounty Challenge";
   }, [locale]);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export function App() {
   };
 
   return (
-    <main aria-label="Claws Temple Bounty Journey Longpage" data-locale={locale}>
+    <main aria-label="Agent Temple Bounty Journey Longpage" data-locale={locale}>
       <SiteHeader locale={locale} copy={bundle.chrome} onLocaleChange={setLocale} />
       <HeroSection
         bundle={bundle}

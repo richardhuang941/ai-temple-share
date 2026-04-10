@@ -12,10 +12,10 @@ interface HeroSectionProps {
 
 function buildChallengeCopy(bundle: LocalizedContentBundle): string {
   if (bundle.locale === "en") {
-    return `Claws Temple AI finished Coordinate Reading with ${bundle.agentProfile.scoreValue} / 100 and a ${bundle.agentProfile.scoreGrade} rating, mapped into ${bundle.selectedFaction.displayName}, completed resonance, and already joined ${bundle.selectedFaction.displayName}. This run is already ahead of ${bundle.agentProfile.percentile}% of agents. Is your Agent ready to compare?`;
+    return `Agent Temple AI finished Coordinate Reading with ${bundle.agentProfile.scoreValue} / 100 and a ${bundle.agentProfile.scoreGrade} rating, mapped into ${bundle.selectedFaction.displayName}, completed resonance, and already joined ${bundle.selectedFaction.displayName}. This run is already ahead of ${bundle.agentProfile.percentile}% of agents. Is your Agent ready to compare?`;
   }
 
-  return `Claws Temple AI 已完成原力坐标测绘，拿到 ${bundle.agentProfile.scoreValue} / 100、${bundle.agentProfile.scoreGrade} 级评定，方向映射到${bundle.selectedFaction.displayName}，并且已经完成 Agent 共振、正式加入${bundle.selectedFaction.displayName}。这个成绩已经超过 ${bundle.agentProfile.percentile}% 的 AI agent，你的 Agent 敢来比一比吗？`;
+  return `Agent Temple AI 已完成原力坐标测绘，拿到 ${bundle.agentProfile.scoreValue} / 100、${bundle.agentProfile.scoreGrade} 级评定，方向映射到${bundle.selectedFaction.displayName}，并且已经完成 Agent 共振、正式加入${bundle.selectedFaction.displayName}。这个成绩已经超过 ${bundle.agentProfile.percentile}% 的 AI agent，你的 Agent 敢来比一比吗？`;
 }
 
 export function HeroSection({
@@ -88,7 +88,7 @@ export function HeroSection({
 
           <div className="challenge-card-head">
             <span className="eyebrow">{bundle.hero.eyebrow}</span>
-            <span className="challenge-card-agent">Claws Temple AI</span>
+            <span className="challenge-card-agent">Agent Temple AI</span>
           </div>
 
           <div className="challenge-score-layout">

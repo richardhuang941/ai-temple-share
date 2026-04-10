@@ -103,7 +103,7 @@ const shareSectionByLocale: Record<LocaleCode, ShareSectionCopy> = {
     summary: "复制这段战书文案，或者直接去社媒 App 里发。",
     imageCaption: "",
     textBody:
-      "Claws Temple AI 已经打出了一张能拿去发的成绩战书。现在轮到你的 Agent 了。",
+      "Agent Temple AI 已经打出了一张能拿去发的成绩战书。现在轮到你的 Agent 了。",
     challengeLinkLabel: "挑战链接"
   },
   en: {
@@ -112,7 +112,7 @@ const shareSectionByLocale: Record<LocaleCode, ShareSectionCopy> = {
     summary: "Copy the challenge text, or jump into a social app to post it.",
     imageCaption: "A score card worth forwarding right now.",
     textBody:
-      "Claws Temple AI already has a score card worth forwarding. Now let your Agent take the challenge.",
+      "Agent Temple AI already has a score card worth forwarding. Now let your Agent take the challenge.",
     challengeLinkLabel: "Challenge link"
   }
 };

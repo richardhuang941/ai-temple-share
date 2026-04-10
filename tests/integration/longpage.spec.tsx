@@ -29,7 +29,7 @@ function primeSeed(seed = "seed-1"): void {
   window.sessionStorage.setItem(SESSION_STORAGE_KEY, seed);
 }
 
-describe("Claws Temple Bounty longpage", () => {
+describe("Agent Temple Bounty longpage", () => {
   beforeEach(() => {
     window.localStorage.clear();
     window.sessionStorage.clear();
