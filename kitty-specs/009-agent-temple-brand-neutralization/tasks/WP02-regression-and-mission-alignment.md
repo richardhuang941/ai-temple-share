@@ -40,3 +40,4 @@ owned_files:
 - 2026-04-10T08:25:43Z – codex – shell_pid=99143 – Implementation completed on feature branch
 - 2026-04-10T08:25:44Z – codex – shell_pid=99143 – Ready for review after test/build validation
 - 2026-04-10T08:25:44Z – codex – shell_pid=99143 – Review passed after local verification
+- 2026-04-10T08:25:45Z – codex – shell_pid=99143 – Recorded as done after direct-repo implementation and review. | Done override: Direct repo implementation was committed on feature/004-header-density-interaction-share-polish before lane worktrees were created.
