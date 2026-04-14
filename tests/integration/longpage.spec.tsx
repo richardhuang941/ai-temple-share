@@ -125,24 +125,13 @@ describe("Agent Temple Bounty longpage", () => {
     expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
   });
 
-  it("keeps Task 6 Agent SBTI independent from the human SBTI gate input", () => {
+  it("removes visible SBTI content and keeps the page focused on Task 1-5", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
-    const task6Badge = bundle.tasks[5].completionBadge;
-    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
-
-    expect(screen.getByText(task6Badge)).toBeTruthy();
-
-    fireEvent.change(sbtiInput, {
-      target: { value: "CTRL" }
-    });
-    expect(screen.getByText(task6Badge)).toBeTruthy();
-
-    fireEvent.change(sbtiInput, {
-      target: { value: "SOLO" }
-    });
-    expect(screen.getByText(task6Badge)).toBeTruthy();
+    expect(bundle.tasks).toHaveLength(5);
+    expect(screen.queryByText(/SBTI/)).toBeNull();
+    expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
   });
 
   it("keeps share text-only and hides app-entry buttons on desktop", () => {
@@ -213,7 +202,7 @@ describe("Agent Temple Bounty longpage", () => {
     expect(screen.getByText("分享文案已复制")).toBeTruthy();
   });
 
-  it("requires SBTI before the journey can start and shakes the input gate on empty watch clicks", async () => {
+  it("starts the journey directly from the hero watch CTA without any SBTI gate", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const scrollIntoViewMock = vi.fn();
 
@@ -225,91 +214,17 @@ describe("Agent Temple Bounty longpage", () => {
     render(<App />);
 
     window.location.hash = "";
-    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
-
-    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
-
-    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
-    expect(document.activeElement).toBe(sbtiInput);
-    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
-    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
-
-    fireEvent.change(sbtiInput, {
-      target: { value: "CTRL" }
-    });
     fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
+    expect(screen.queryByRole("alert")).toBeNull();
     expect(scrollIntoViewMock).toHaveBeenCalled();
-  });
-
-  it("accepts lowercase SBTI input and normalizes it only when the simulation starts", async () => {
-    const bundle = getLocalizedLongpageContent("zh");
-    render(<App />);
-
-    const sbtiInput = screen.getByLabelText("先输入你的 SBTI") as HTMLInputElement;
-
-    fireEvent.change(sbtiInput, {
-      target: { value: "ctrl" }
-    });
-
-    expect(sbtiInput.value).toBe("ctrl");
-
-    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
-
-    expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
-    expect(sbtiInput.value).toBe("CTRL");
-  });
-
-  it("does not clobber the SBTI input during IME composition", () => {
-    render(<App />);
-
-    const sbtiInput = screen.getByLabelText("先输入你的 SBTI") as HTMLInputElement;
-
-    fireEvent.compositionStart(sbtiInput);
-    fireEvent.change(sbtiInput, {
-      target: { value: "shit" }
-    });
-
-    expect(sbtiInput.value).toBe("shit");
-    expect(sbtiInput.getAttribute("data-composing")).toBe("true");
-
-    fireEvent.compositionEnd(sbtiInput, {
-      data: "shit"
-    });
-
-    expect(sbtiInput.value).toBe("shit");
-    expect(sbtiInput.getAttribute("data-composing")).toBe("false");
-  });
-
-  it("scrolls back to the Hero SBTI input when the Journey start button is clicked without SBTI", () => {
-    const bundle = getLocalizedLongpageContent("zh");
-    const scrollIntoViewMock = vi.fn();
-
-    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
-      configurable: true,
-      value: scrollIntoViewMock
-    });
-
-    render(<App />);
-
-    const sbtiInput = screen.getByLabelText("先输入你的 SBTI");
-    fireEvent.click(screen.getByRole("button", { name: bundle.journey.startLabel }));
-
-    expect(screen.getByRole("alert")).toHaveTextContent("SBTI");
-    expect(document.activeElement).toBe(sbtiInput);
-    expect(sbtiInput.closest(".challenge-inline-gate")?.getAttribute("data-shaking")).toBe("true");
-    expect(scrollIntoViewMock).toHaveBeenCalled();
-    expect(screen.getByRole("button", { name: bundle.journey.startLabel })).toBeTruthy();
   });
 
   it("expands completed tasks locally without replaying the active journey", async () => {
     const bundle = getLocalizedLongpageContent("zh");
     const { container } = render(<App />);
 
-    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
-      target: { value: "CTRL" }
-    });
     fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     const advanceButton = await screen.findByRole("button", { name: bundle.journey.advanceLabel });
@@ -335,9 +250,6 @@ describe("Agent Temple Bounty longpage", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
-    fireEvent.change(screen.getByLabelText("先输入你的 SBTI"), {
-      target: { value: "CTRL" }
-    });
     fireEvent.click(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel }));
 
     const pauseButton = await screen.findByRole("button", { name: bundle.journey.pauseLabel });

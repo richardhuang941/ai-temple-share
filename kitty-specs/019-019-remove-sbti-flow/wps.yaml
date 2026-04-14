@@ -1,0 +1,73 @@
+work_packages:
+  - id: WP01
+    title: Remove SBTI Entry And Gate
+    dependencies: []
+    requirement_refs:
+      - "FR-001"
+      - "FR-002"
+      - "C-003"
+    owned_files:
+      - src/App.tsx
+      - src/components/sections/HeroSection.tsx
+      - src/components/sections/JourneySection.tsx
+      - src/styles/challenge-surfaces.css
+    subtasks:
+      - T001
+      - T002
+    prompt_file: tasks/WP01-remove-sbti-entry-and-gate.md
+
+  - id: WP02
+    title: Collapse Timeline Back To Task 1-5
+    dependencies:
+      - WP01
+    requirement_refs:
+      - "FR-003"
+      - "FR-005"
+      - "NFR-002"
+    owned_files:
+      - src/content/models.ts
+      - src/content/index.ts
+      - src/content/uiCopy.ts
+      - src/content/taskMilestones.ts
+      - src/content/agentSbtiProfiles.ts
+    subtasks:
+      - T003
+      - T004
+    prompt_file: tasks/WP02-collapse-timeline-back-to-task1-5.md
+
+  - id: WP03
+    title: Delete SBTI Assets And Regression Update
+    dependencies:
+      - WP02
+    requirement_refs:
+      - "FR-004"
+      - "NFR-001"
+      - "NFR-002"
+    owned_files:
+      - src/components/sbti/**
+      - src/content/sbti/**
+      - src/lib/sbti/**
+      - src/styles/sbti-assessment.css
+      - public/sbti/images/**
+      - tests/unit/**
+      - tests/integration/**
+    subtasks:
+      - T005
+      - T006
+    prompt_file: tasks/WP03-delete-sbti-assets-and-regression-update.md
+
+  - id: WP04
+    title: Acceptance And Mission Closeout
+    dependencies:
+      - WP03
+    requirement_refs:
+      - "NFR-001"
+      - "NFR-003"
+    owned_files:
+      - kitty-specs/019-019-remove-sbti-flow/acceptance-matrix.json
+      - kitty-specs/019-019-remove-sbti-flow/status.json
+      - kitty-specs/019-019-remove-sbti-flow/status.events.jsonl
+    subtasks:
+      - T007
+      - T008
+    prompt_file: tasks/WP04-acceptance-and-mission-closeout.md

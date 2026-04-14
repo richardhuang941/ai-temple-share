@@ -1,0 +1,37 @@
+{
+  "mission_slug": "018-018-in-app-sbti-assessment",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The in-app SBTI flow now localizes the external question bank, type library, scoring logic, and persona artwork into the repo instead of depending on runtime third-party assets.",
+      "proof_type": "code_review",
+      "evidence": "src/content/sbti/source.ts + src/lib/sbti/engine.ts + public/sbti/images/**",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T19:23:00+08:00",
+      "notes": "The question set, dimension metadata, type mappings, and fallback rules were ported from sbti.unun.dev, while persona posters are served from local static assets under public/sbti/images."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Users can complete the SBTI assessment inside the landing page with a responsive overlay that behaves like a desktop modal and a mobile full-screen page, then see the matching persona artwork and summary.",
+      "proof_type": "automated_test",
+      "evidence": "src/components/sbti/SbtiAssessmentPanel.tsx + src/styles/sbti-assessment.css + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T19:23:00+08:00",
+      "notes": "The assessment panel owns question progression, result rendering, and responsive layout rules; the integration suite covers opening the panel, completing a real answer path, and closing it with a valid result."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "Finishing the assessment autofills the Hero SBTI gate and keeps the existing Journey guardrails intact, with regression tests and the production build both passing.",
+      "proof_type": "automated_test",
+      "evidence": "src/App.tsx + src/components/sections/HeroSection.tsx + npm run test + npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-10T19:23:00+08:00",
+      "notes": "The result callback normalizes and writes the returned SBTI code back into the Hero input, preserves focus/error behavior, and the final verification completed with 37 passing tests plus a successful Vite build."
+    }
+  ],
+  "negative_invariants": []
+}

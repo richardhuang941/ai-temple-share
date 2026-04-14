@@ -1,0 +1,23 @@
+{
+  "accept_commit": "fa8e89a61fb955f255c56016e73d56b0d370a917",
+  "acceptance_history": [
+    {
+      "accept_commit": "fa8e89a61fb955f255c56016e73d56b0d370a917",
+      "acceptance_mode": "local",
+      "accepted_at": "2026-04-10T11:22:55.473713+00:00",
+      "accepted_by": "codex",
+      "accepted_from_commit": "f3163dda23c0104f6d6b556f19104421a2d6dcf2"
+    }
+  ],
+  "acceptance_mode": "local",
+  "accepted_at": "2026-04-10T11:22:55.473713+00:00",
+  "accepted_by": "codex",
+  "accepted_from_commit": "f3163dda23c0104f6d6b556f19104421a2d6dcf2",
+  "created_at": "2026-04-10T11:05:40.797263+00:00",
+  "friendly_name": "018 in app sbti assessment",
+  "mission_number": "018",
+  "mission_slug": "018-018-in-app-sbti-assessment",
+  "mission_type": "software-dev",
+  "slug": "018-018-in-app-sbti-assessment",
+  "target_branch": "codex/oss-sanitize-pages-rename"
+}

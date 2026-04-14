@@ -15,16 +15,12 @@ import "../../styles/journey.css";
 
 interface JourneySectionProps {
   bundle?: LocalizedContentBundle;
-  sbtiValue: string;
   startSignal: number;
-  onRequestSbtiInput: () => void;
 }
 
 export function JourneySection({
   bundle = getLocalizedLongpageContent("zh"),
-  sbtiValue,
-  startSignal,
-  onRequestSbtiInput
+  startSignal
 }: JourneySectionProps) {
   const taskElementsRef = useRef<Record<string, HTMLElement | null>>({});
   const previousTimelineRef = useRef<SimulationTimelineState | null>(null);
@@ -83,20 +79,12 @@ export function JourneySection({
     }
 
     lastStartSignalRef.current = startSignal;
-
-    if (sbtiValue.trim()) {
-      start();
-    }
-  }, [sbtiValue, start, startSignal]);
+    start();
+  }, [start, startSignal]);
 
   const handlePrimaryAction = (): void => {
     if (timeline.hasStarted) {
       advance();
-      return;
-    }
-
-    if (!sbtiValue.trim()) {
-      onRequestSbtiInput();
       return;
     }
 

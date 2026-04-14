@@ -1,4 +1,4 @@
-export type TaskId = "task-1" | "task-2" | "task-3" | "task-4" | "task-5" | "task-6";
+export type TaskId = "task-1" | "task-2" | "task-3" | "task-4" | "task-5";
 export type TaskStageStatus = "pending" | "active" | "done";
 export type JourneyCardState = "upcoming" | "active" | "completed";
 export type FocusTarget = "journey" | "share";
@@ -43,14 +43,6 @@ export interface SeededAxisScore {
   key: "M" | "R" | "G" | "A" | "S" | "X";
   label: string;
   value: number;
-}
-
-export interface AgentSbtiProfile {
-  code: string;
-  displayName: string;
-  intro: string;
-  summary: string;
-  isKnown: boolean;
 }
 
 export interface SeededSimulationResult {
@@ -160,11 +152,6 @@ export interface JourneySectionCopy {
   advanceLabel: string;
   pauseLabel: string;
   resumeLabel: string;
-  sbtiLabel: string;
-  sbtiPlaceholder: string;
-  sbtiHelper: string;
-  sbtiGuideLabel: string;
-  sbtiError: string;
 }
 
 export interface ShareSectionCopy {
