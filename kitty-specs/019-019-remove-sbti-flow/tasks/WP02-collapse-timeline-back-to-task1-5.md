@@ -13,8 +13,8 @@ branch_strategy: Planning artifacts for this feature were generated on codex/oss
 subtasks:
 - T003
 - T004
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/content/
 execution_mode: code_change
@@ -31,3 +31,9 @@ owned_files:
 ## Objective
 
 把内容层从 `Task 1-6` 收回 `Task 1-5`，删除 `Task 6 / Agent SBTI` 相关模型、文案和推导逻辑。
+
+## Activity Log
+
+- 2026-04-14T02:43:39Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-14T02:43:40Z – codex – shell_pid=main-shell – Ready for local review after collapsing to Task 1-5
+- 2026-04-14T02:43:40Z – codex – shell_pid=main-shell – Approved after local review

@@ -12,8 +12,8 @@ branch_strategy: Planning artifacts for this feature were generated on codex/oss
 subtasks:
 - T001
 - T002
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/
 execution_mode: code_change
@@ -29,3 +29,9 @@ owned_files:
 ## Objective
 
 拆掉 Hero 和 Journey 启动路径中的 `SBTI` 输入、测试入口和 gate，让模拟可以直接从首页启动。
+
+## Activity Log
+
+- 2026-04-14T02:43:38Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-14T02:43:38Z – codex – shell_pid=main-shell – Ready for local review after removing SBTI entry and gate
+- 2026-04-14T02:43:39Z – codex – shell_pid=main-shell – Approved after local review

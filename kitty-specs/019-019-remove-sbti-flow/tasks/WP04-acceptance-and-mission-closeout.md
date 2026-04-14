@@ -12,8 +12,8 @@ branch_strategy: Planning artifacts for this feature were generated on codex/oss
 subtasks:
 - T007
 - T008
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: kitty-specs/
 execution_mode: code_change
@@ -28,3 +28,9 @@ owned_files:
 ## Objective
 
 记录删除 `SBTI` 之后的验证证据，完成 mission acceptance，并把 `WP01-WP04` 收口到 `done`。
+
+## Activity Log
+
+- 2026-04-14T02:44:30Z – codex – shell_pid=main-shell – Acceptance assets prepared in mission branch
+- 2026-04-14T02:44:31Z – codex – shell_pid=main-shell – Ready for local review after acceptance evidence prep
+- 2026-04-14T02:44:31Z – codex – shell_pid=main-shell – Approved pending acceptance run

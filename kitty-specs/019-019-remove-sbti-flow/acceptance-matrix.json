@@ -1,0 +1,37 @@
+{
+  "mission_slug": "019-019-remove-sbti-flow",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The Hero and Journey start path no longer expose an SBTI gate, and the Task 1-5 simulation can start directly from the landing page CTA.",
+      "proof_type": "automated_test",
+      "evidence": "src/App.tsx + src/components/sections/HeroSection.tsx + src/components/sections/JourneySection.tsx + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-14T10:47:00+08:00",
+      "notes": "The Hero no longer renders an SBTI input or assessment entry, Journey start no longer checks a prerequisite field, and the integration suite verifies the watch CTA launches the simulation directly."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The narrative and task model have been collapsed back to Task 1-5, with no visible Agent SBTI finale or Task 6 copy remaining in the product surface.",
+      "proof_type": "automated_test",
+      "evidence": "src/content/models.ts + src/content/taskMilestones.ts + src/content/uiCopy.ts + tests/unit/contentMappers.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-14T10:47:00+08:00",
+      "notes": "Task identifiers now stop at task-5, Journey copy references Task 1-5, and unit coverage verifies the branded task order no longer appends an SBTI finale."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The in-app SBTI assessment, local question bank, scoring engine, persona images, and dedicated SBTI tests have been removed cleanly without breaking the build.",
+      "proof_type": "automated_test",
+      "evidence": "git diff removes src/components/sbti/**, src/content/sbti/**, src/lib/sbti/**, public/sbti/images/**, tests/unit/sbtiEngine.test.ts + npm run test + npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-14T10:47:00+08:00",
+      "notes": "The repo no longer ships SBTI-only assets or logic, and final verification completed with 30 passing tests plus a successful Vite build."
+    }
+  ],
+  "negative_invariants": []
+}

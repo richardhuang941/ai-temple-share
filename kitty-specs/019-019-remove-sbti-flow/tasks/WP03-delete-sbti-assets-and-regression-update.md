@@ -13,8 +13,8 @@ branch_strategy: Planning artifacts for this feature were generated on codex/oss
 subtasks:
 - T005
 - T006
-assignee: codex
-agent: codex
+assignee: "codex"
+agent: "codex"
 shell_pid: main-shell
 authoritative_surface: src/
 execution_mode: code_change
@@ -33,3 +33,9 @@ owned_files:
 ## Objective
 
 物理删除 `SBTI` 题库、assessment 组件、静态图片和对应测试，并把回归覆盖改成 `Task 1-5` 的直启流程。
+
+## Activity Log
+
+- 2026-04-14T02:43:41Z – codex – shell_pid=main-shell – Implemented in current branch
+- 2026-04-14T02:43:41Z – codex – shell_pid=main-shell – Ready for local review after deleting SBTI assets and tests
+- 2026-04-14T02:43:42Z – codex – shell_pid=main-shell – Approved after local review
