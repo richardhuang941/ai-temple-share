@@ -1,19 +1,7 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-  type ChangeEvent,
-  type CompositionEvent
-} from "react";
 import { type LocalizedContentBundle } from "../../content";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
-  sbtiValue: string;
-  sbtiError: string | null;
-  sbtiShakeSignal: number;
-  onSbtiChange: (value: string) => void;
-  onOpenSbtiAssessment: () => void;
   onWatchSimulation: () => void;
 }
 
@@ -27,21 +15,9 @@ function buildChallengeCopy(bundle: LocalizedContentBundle): string {
 
 export function HeroSection({
   bundle,
-  sbtiValue,
-  sbtiError,
-  sbtiShakeSignal,
-  onSbtiChange,
-  onOpenSbtiAssessment,
   onWatchSimulation
 }: HeroSectionProps) {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const lastShakeSignalRef = useRef(sbtiShakeSignal);
-  const [isSbtiGateShaking, setIsSbtiGateShaking] = useState(false);
-  const [isComposingSbti, setIsComposingSbti] = useState(false);
   const challengeCopy = buildChallengeCopy(bundle);
-  const sbtiLabel = bundle.locale === "zh" ? "先输入你的 SBTI" : "Enter your SBTI first";
-  const sbtiPlaceholder = bundle.locale === "zh" ? "例如 CTRL / SHIT / SOLO" : "For example CTRL / SHIT / SOLO";
-  const sbtiGuideLabel = bundle.locale === "zh" ? "没有 SBTI？先去测试" : "No SBTI yet? Take the test";
   const summaryPills = [
     {
       label: bundle.locale === "zh" ? "打分情况" : "Score",
@@ -60,42 +36,6 @@ export function HeroSection({
       value: bundle.locale === "zh" ? "战报已可转发" : "Share card ready"
     }
   ];
-
-  useEffect(() => {
-    if (sbtiShakeSignal === lastShakeSignalRef.current) {
-      return;
-    }
-
-    lastShakeSignalRef.current = sbtiShakeSignal;
-    inputRef.current?.focus();
-    setIsSbtiGateShaking(true);
-    const timeoutId = window.setTimeout(() => {
-      setIsSbtiGateShaking(false);
-    }, 560);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [sbtiShakeSignal]);
-
-  const handleSbtiChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    if (isSbtiGateShaking) {
-      setIsSbtiGateShaking(false);
-    }
-
-    onSbtiChange(event.target.value);
-  };
-
-  const handleSbtiCompositionStart = (): void => {
-    setIsComposingSbti(true);
-  };
-
-  const handleSbtiCompositionEnd = (
-    event: CompositionEvent<HTMLInputElement>
-  ): void => {
-    setIsComposingSbti(false);
-    onSbtiChange(event.currentTarget.value);
-  };
 
   return (
     <section id="top" aria-labelledby="hero-heading" className="challenge-stage challenge-stage--hero">
@@ -145,45 +85,6 @@ export function HeroSection({
             <a className="challenge-cta challenge-cta--secondary" href="#share">
               {bundle.chrome.shareChallengeLabel}
             </a>
-            <div
-              className="challenge-inline-gate"
-              data-shaking={isSbtiGateShaking ? "true" : "false"}
-            >
-              <label className="challenge-inline-gate__label" htmlFor="hero-sbti-input">
-                {sbtiLabel}
-              </label>
-              <div className="challenge-inline-gate__row">
-                <input
-                  id="hero-sbti-input"
-                  className="challenge-inline-gate__input"
-                  type="text"
-                  inputMode="text"
-                  autoCapitalize="characters"
-                  autoCorrect="off"
-                  spellCheck={false}
-                  ref={inputRef}
-                  placeholder={sbtiPlaceholder}
-                  value={sbtiValue}
-                  aria-invalid={sbtiError ? "true" : "false"}
-                  data-composing={isComposingSbti ? "true" : "false"}
-                  onChange={handleSbtiChange}
-                  onCompositionStart={handleSbtiCompositionStart}
-                  onCompositionEnd={handleSbtiCompositionEnd}
-                />
-                <button
-                  type="button"
-                  className="challenge-inline-gate__link"
-                  onClick={onOpenSbtiAssessment}
-                >
-                  {sbtiGuideLabel}
-                </button>
-              </div>
-              {sbtiError ? (
-                <p className="challenge-inline-gate__error" role="alert">
-                  {sbtiError}
-                </p>
-              ) : null}
-            </div>
             <button
               type="button"
               className="challenge-cta challenge-cta--ghost challenge-cta--compact"

@@ -4,29 +4,11 @@ import SiteHeader from "./components/common/SiteHeader";
 import HeroSection from "./components/sections/HeroSection";
 import JourneySection from "./components/sections/JourneySection";
 import ShareSection from "./components/sections/ShareSection";
-import SbtiAssessmentPanel from "./components/sbti/SbtiAssessmentPanel";
 import { useLocale } from "./hooks/useLocale";
-
-const SBTI_STORAGE_KEY = "claws-temple-bounty-sbti";
-const HERO_SBTI_INPUT_ID = "hero-sbti-input";
-
-function normalizeSbtiInput(value: string): string {
-  return value.trim().toUpperCase();
-}
 
 export function App() {
   const { locale, setLocale } = useLocale();
-  const [sbtiValue, setSbtiValue] = useState<string>(() => {
-    if (typeof window === "undefined") {
-      return "";
-    }
-
-    return window.localStorage.getItem(SBTI_STORAGE_KEY) ?? "";
-  });
-  const [sbtiError, setSbtiError] = useState<string | null>(null);
-  const [sbtiShakeSignal, setSbtiShakeSignal] = useState(0);
   const [journeyStartSignal, setJourneyStartSignal] = useState(0);
-  const [isSbtiAssessmentOpen, setIsSbtiAssessmentOpen] = useState(false);
   const bundle = getLocalizedLongpageContent(locale);
 
   useEffect(() => {
@@ -35,76 +17,7 @@ export function App() {
       locale === "zh" ? "Agent Temple Bounty Challenge" : "Agent Temple Bounty Challenge";
   }, [locale]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const normalized = normalizeSbtiInput(sbtiValue);
-
-    if (normalized) {
-      window.localStorage.setItem(SBTI_STORAGE_KEY, normalized);
-      return;
-    }
-
-    window.localStorage.removeItem(SBTI_STORAGE_KEY);
-  }, [sbtiValue]);
-
-  const requestSbtiInput = (): void => {
-    const nextError =
-      locale === "zh"
-        ? "先输入你的 SBTI，再观看模拟流程。"
-        : "Enter your SBTI before starting the simulation.";
-
-    setSbtiError(nextError);
-    setSbtiShakeSignal((value) => value + 1);
-
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const inputElement = document.getElementById(HERO_SBTI_INPUT_ID);
-
-    if (inputElement) {
-      inputElement.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-        inline: "nearest"
-      });
-    }
-  };
-
-  const focusHeroSbtiInput = (): void => {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    const inputElement = document.getElementById(HERO_SBTI_INPUT_ID) as HTMLInputElement | null;
-
-    if (!inputElement) {
-      return;
-    }
-
-    inputElement.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-      inline: "nearest"
-    });
-    window.requestAnimationFrame(() => {
-      inputElement.focus();
-    });
-  };
-
   const handleWatchSimulation = (): void => {
-    const normalized = normalizeSbtiInput(sbtiValue);
-
-    if (!normalized) {
-      requestSbtiInput();
-      return;
-    }
-
-    setSbtiValue(normalized);
-    setSbtiError(null);
     setJourneyStartSignal((value) => value + 1);
 
     if (typeof window === "undefined") {
@@ -125,43 +38,12 @@ export function App() {
     }
   };
 
-  const handleSbtiAssessmentComplete = (code: string): void => {
-    const normalized = normalizeSbtiInput(code);
-    setSbtiValue(normalized);
-    setSbtiError(null);
-    setIsSbtiAssessmentOpen(false);
-    focusHeroSbtiInput();
-  };
-
   return (
     <main aria-label="Agent Temple Bounty Journey Longpage" data-locale={locale}>
       <SiteHeader locale={locale} copy={bundle.chrome} onLocaleChange={setLocale} />
-      <HeroSection
-        bundle={bundle}
-        sbtiValue={sbtiValue}
-        sbtiError={sbtiError}
-        sbtiShakeSignal={sbtiShakeSignal}
-        onSbtiChange={(value) => {
-          setSbtiValue(value);
-          setSbtiError(null);
-        }}
-        onOpenSbtiAssessment={() => setIsSbtiAssessmentOpen(true)}
-        onWatchSimulation={handleWatchSimulation}
-      />
+      <HeroSection bundle={bundle} onWatchSimulation={handleWatchSimulation} />
       <ShareSection bundle={bundle} />
-      <JourneySection
-        bundle={bundle}
-        sbtiValue={sbtiValue}
-        startSignal={journeyStartSignal}
-        onRequestSbtiInput={requestSbtiInput}
-      />
-      <SbtiAssessmentPanel
-        isOpen={isSbtiAssessmentOpen}
-        locale={bundle.locale}
-        copy={bundle.sbtiAssessment}
-        onClose={() => setIsSbtiAssessmentOpen(false)}
-        onComplete={handleSbtiAssessmentComplete}
-      />
+      <JourneySection bundle={bundle} startSignal={journeyStartSignal} />
     </main>
   );
 }

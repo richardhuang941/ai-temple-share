@@ -1,5 +1,4 @@
 import { getSimulationSeedResult } from "../lib/simulationSeed";
-import { resolveAgentSbtiProfile } from "./agentSbtiProfiles";
 import { getSelectedFaction } from "./factionContent";
 import type { LocaleCode, TaskMilestone } from "./models";
 
@@ -20,7 +19,6 @@ function fillTelegramTemplate(
 
 export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
   const result = getSimulationSeedResult(locale);
-  const agentSbtiProfile = resolveAgentSbtiProfile(locale, result);
   const selectedFaction = getSelectedFaction(locale, result.factionBrandKey);
   const telegramProof = fillTelegramTemplate(
     selectedFaction.telegramTemplate,
@@ -223,13 +221,13 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         purpose: "Send an optional public signal so more partners can spot you",
         summary:
           "This step is optional. It only expands visibility after the mainline is already in place.",
-        isOptional: true,
-        isExternalFlow: false,
-        completionBadge: "Optional signal drafted",
-        cta: "Once the signal is out, lock the Agent SBTI for the final card",
-        stages: [
-          {
-            stageId: "task-5-draft",
+      isOptional: true,
+      isExternalFlow: false,
+      completionBadge: "Optional signal drafted",
+      cta: "Once the signal is out, the public challenge loop is complete",
+      stages: [
+        {
+          stageId: "task-5-draft",
             label: "Signal drafted",
             description: "The coordinate result, faction direction, and partner intent are now compressed into one message.",
             status: "pending",
@@ -241,41 +239,6 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
             description: "This step only broadens visibility and stays optional.",
             status: "pending",
             proof: "Optional social signal ready"
-          }
-        ]
-      },
-      {
-        taskId: "task-6",
-        order: 6,
-        brandedName: "Agent SBTI",
-        purpose: "Close the public run with the Agent's own SBTI result",
-        summary:
-          "This last task does not score the Agent again. It derives the Agent SBTI from the run itself and shows the matching profile card.",
-        isOptional: false,
-        isExternalFlow: false,
-        completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
-        cta: "The public challenge run is complete",
-        stages: [
-          {
-            stageId: "task-6-lock",
-            label: "Agent SBTI locked",
-            description: "The Agent SBTI has now been derived from this run and locked as the final personality marker.",
-            status: "pending",
-            proof: agentSbtiProfile.code
-          },
-          {
-            stageId: "task-6-reveal",
-            label: "SBTI result revealed",
-            description: agentSbtiProfile.intro,
-            status: "pending",
-            proof: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`
-          },
-          {
-            stageId: "task-6-summary",
-            label: "Profile summary is ready",
-            description: agentSbtiProfile.summary,
-            status: "pending",
-            proof: agentSbtiProfile.summary
           }
         ]
       }
@@ -474,7 +437,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       isOptional: true,
       isExternalFlow: false,
       completionBadge: "可选信号已起草",
-      cta: "信号发完后，再把 Agent 的 SBTI 锁进最后一张结果卡",
+      cta: "信号发完后，这轮公开挑战流程就完整收口了",
       stages: [
         {
           stageId: "task-5-draft",
@@ -489,40 +452,6 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
           description: "这一步只负责扩大可见度，本质上是 optional 的社交动作。",
           status: "pending",
           proof: "可选社交信号已准备发送"
-        }
-      ]
-    },
-    {
-      taskId: "task-6",
-      order: 6,
-      brandedName: "Agent SBTI",
-      purpose: "用 Agent 自己的 SBTI 给这轮公开流程收尾",
-      summary: "这一步不会重新打分，只会根据这轮 Agent 的画像结果推导出它自己的 SBTI，并写回最终结果卡。",
-      isOptional: false,
-      isExternalFlow: false,
-      completionBadge: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`,
-      cta: "这轮公开挑战流程已经收尾",
-      stages: [
-        {
-          stageId: "task-6-lock",
-          label: "Agent SBTI 已锁定",
-          description: "这轮 Agent 的画像结果已经被用来推导并锁定最终 SBTI。",
-          status: "pending",
-          proof: agentSbtiProfile.code
-        },
-        {
-          stageId: "task-6-reveal",
-          label: "SBTI 结果揭晓",
-          description: agentSbtiProfile.intro,
-          status: "pending",
-          proof: `${agentSbtiProfile.code} · ${agentSbtiProfile.displayName}`
-        },
-        {
-          stageId: "task-6-summary",
-          label: "人格说明已就绪",
-          description: agentSbtiProfile.summary,
-          status: "pending",
-          proof: agentSbtiProfile.summary
         }
       ]
     }

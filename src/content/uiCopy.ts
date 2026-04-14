@@ -3,7 +3,6 @@ import type {
   ChromeCopy,
   JourneySectionCopy,
   LocaleCode,
-  SbtiAssessmentCopy,
   ShareSectionCopy
 } from "./models";
 
@@ -16,7 +15,7 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
     },
     acceptChallengeLabel: "4月13日 晚上8点！",
     shareChallengeLabel: "转发战书给朋友",
-    watchSimulationLabel: "观看模拟 Task 1-6 的流程",
+    watchSimulationLabel: "观看模拟 Task 1-5 的流程",
     shareImageLabel: "",
     shareTextLabel: "分享文字",
     copyLabel: "复制",
@@ -32,7 +31,7 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
     },
     acceptChallengeLabel: "April 13, 8:00 PM",
     shareChallengeLabel: "Forward the challenge",
-    watchSimulationLabel: "Watch the simulated Task 1-6 run",
+    watchSimulationLabel: "Watch the simulated Task 1-5 run",
     shareImageLabel: "",
     shareTextLabel: "Share text",
     copyLabel: "Copy",
@@ -45,55 +44,43 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
 const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
   zh: {
     eyebrow: "流程模拟",
-    title: "填好你的 SBTI 后，再主动触发 Task 1 到 Task 6 的模拟。",
-    summary:
-      "只有在你填写 SBTI 并点击后才会开始模拟，并且会把当前推进焦点稳定停在你眼前。",
+    title: "主动触发 Task 1 到 Task 5 的模拟。",
+    summary: "点击后才会开始模拟，并且会把当前推进焦点稳定停在你眼前。",
     helperCards: [
       {
         title: "Task 1-3",
         body: "主线路径会把坐标、共振和阵营归属一路推进到公开完成态。"
       },
       {
-        title: "Task 4-6",
-        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 放大社交信号，Task 6 锁定 Agent SBTI。"
+        title: "Task 4-5",
+        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 继续把公开信号扩散出去。"
       }
     ],
-    startLabel: "填好 SBTI 后开始模拟",
+    startLabel: "开始模拟 Task 1-5",
     restartLabel: "从 Task 1 重新演示",
     advanceLabel: "手动推进一格",
     pauseLabel: "暂停自动推进",
-    resumeLabel: "恢复自动推进",
-    sbtiLabel: "先输入你的 SBTI",
-    sbtiPlaceholder: "例如 CTRL / SHIT / SOLO",
-    sbtiHelper: "如果还没有 SBTI，可以直接在这里做完测试，再回来启动这段模拟。",
-    sbtiGuideLabel: "去测 SBTI",
-    sbtiError: "先输入你的 SBTI，或者先在这里做完测试。"
+    resumeLabel: "恢复自动推进"
   },
   en: {
     eyebrow: "Journey Simulation",
-    title: "Enter your SBTI first, then trigger the Task 1 to Task 6 simulation.",
-    summary:
-      "The journey starts only after you enter your SBTI and click, and it keeps the active step in clear view.",
+    title: "Trigger the Task 1 to Task 5 simulation when you are ready.",
+    summary: "The journey starts only after you click, and it keeps the active step in clear view.",
     helperCards: [
       {
         title: "Task 1-3",
         body: "The mainline moves the Agent from coordinate reading into resonance and faction alignment."
       },
       {
-        title: "Task 4-6",
-        body: "Task 4 hands off to SHIT Skills, Task 5 amplifies the signal, and Task 6 locks the Agent SBTI."
+        title: "Task 4-5",
+        body: "Task 4 hands off to SHIT Skills, and Task 5 amplifies the public signal."
       }
     ],
-    startLabel: "Start after entering SBTI",
+    startLabel: "Start the Task 1-5 simulation",
     restartLabel: "Replay from Task 1",
     advanceLabel: "Advance one step",
     pauseLabel: "Pause autoplay",
-    resumeLabel: "Resume autoplay",
-    sbtiLabel: "Enter your SBTI first",
-    sbtiPlaceholder: "For example CTRL / SHIT / SOLO",
-    sbtiHelper: "If you do not have an SBTI yet, you can complete the test here and come back immediately.",
-    sbtiGuideLabel: "Take the SBTI test",
-    sbtiError: "Enter your SBTI first, or complete the in-app test."
+    resumeLabel: "Resume autoplay"
   }
 };
 
@@ -135,45 +122,6 @@ const agentPromptByLocale: Record<LocaleCode, AgentPromptSectionCopy> = {
   }
 };
 
-const sbtiAssessmentByLocale: Record<LocaleCode, SbtiAssessmentCopy> = {
-  zh: {
-    title: "站内 SBTI 测试",
-    summary: "做完题就会直接把结果回填到首页，不用再手工复制。",
-    desktopModeLabel: "桌面测试层",
-    mobileModeLabel: "移动端全屏测试",
-    progressLabel: "进度",
-    questionLabel: "第 {index} 题",
-    supplementaryLabel: "补充题",
-    hiddenDimensionLabel: "维度已隐藏",
-    submitLabel: "查看结果",
-    readyHint: "都做完了。现在可以把你的电子魂魄交给结果页审判。",
-    pendingHint: "全选完才会放行。世界已经够乱了，起码把题做完整。",
-    resultTitle: "你的 SBTI 结果",
-    resultSummary: "确认结果后，会自动回填到首页的 SBTI 输入框。",
-    resultUseLabel: "用这个 SBTI 返回挑战页",
-    retakeLabel: "重新测试",
-    closeLabel: "关闭"
-  },
-  en: {
-    title: "In-app SBTI Test",
-    summary: "Finish the questions here and the result will autofill back into the Hero gate.",
-    desktopModeLabel: "Desktop assessment",
-    mobileModeLabel: "Mobile full-screen assessment",
-    progressLabel: "Progress",
-    questionLabel: "Question {index}",
-    supplementaryLabel: "Extra",
-    hiddenDimensionLabel: "Dimension hidden",
-    submitLabel: "See result",
-    readyHint: "Everything is answered. The result screen is ready to judge your digital soul.",
-    pendingHint: "Answer every question before the result screen unlocks.",
-    resultTitle: "Your SBTI Result",
-    resultSummary: "Confirm the result and we will autofill it back into the Hero gate.",
-    resultUseLabel: "Use this SBTI and return",
-    retakeLabel: "Retake",
-    closeLabel: "Close"
-  }
-};
-
 export function getChromeCopy(locale: LocaleCode): ChromeCopy {
   return chromeByLocale[locale];
 }
@@ -188,8 +136,4 @@ export function getShareSectionCopy(locale: LocaleCode): ShareSectionCopy {
 
 export function getAgentPromptSectionCopy(locale: LocaleCode): AgentPromptSectionCopy {
   return agentPromptByLocale[locale];
-}
-
-export function getSbtiAssessmentCopy(locale: LocaleCode): SbtiAssessmentCopy {
-  return sbtiAssessmentByLocale[locale];
 }
