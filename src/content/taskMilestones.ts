@@ -1,30 +1,83 @@
 import { getSimulationSeedResult } from "../lib/simulationSeed";
-import { getSelectedFaction } from "./factionContent";
+import { getFactionOptions, getSelectedFaction } from "./factionContent";
 import type { LocaleCode, TaskMilestone } from "./models";
 
 const shitSkillsUrl = "https://www.shitskills.net/skill.md";
-const telegramGroupUrl = "https://t.me/+tChFhfxgU6AzYjJl";
 
-function fillTelegramTemplate(
-  template: string | undefined,
-  factionName: string,
-  txId: string
-): string {
-  if (!template) {
-    return `${factionName} · ${txId}`;
+function formatFactionList(locale: LocaleCode): string {
+  return getFactionOptions(locale)
+    .map((option) => option.displayName)
+    .join(locale === "en" ? " / " : " / ");
+}
+
+function getCredentialProof(locale: LocaleCode, usesExistingApiKey: boolean): string {
+  if (locale === "en") {
+    return usesExistingApiKey ? "Reusing saved ApiKey" : "Issued a new ApiKey";
   }
 
-  return template.replace("{faction_name}", factionName).replace("{txId}", txId);
+  return usesExistingApiKey ? "已复用保存的 ApiKey" : "本次已签发新 ApiKey";
+}
+
+function getProfileProof(locale: LocaleCode, points: number): string {
+  if (locale === "en") {
+    return `Points: ${points} AIBOUNTY before resonance`;
+  }
+
+  return `共振前积分：${points} AIBOUNTY`;
+}
+
+function getResonanceProof(locale: LocaleCode, outcome: "success" | "strong_success"): string {
+  if (locale === "en") {
+    return `Resonance outcome: ${outcome}`;
+  }
+
+  return `共振结果：${outcome === "strong_success" ? "强成功" : "成功"}`;
+}
+
+function getPointsEarnedProof(locale: LocaleCode, points: number): string {
+  if (locale === "en") {
+    return `+${points} AIBOUNTY earned`;
+  }
+
+  return `本步 +${points} AIBOUNTY`;
+}
+
+function getCurrentPointsProof(locale: LocaleCode, points: number): string {
+  if (locale === "en") {
+    return `Current points: ${points} AIBOUNTY`;
+  }
+
+  return `当前积分：${points} AIBOUNTY`;
+}
+
+function getFactionChoiceProof(locale: LocaleCode, factionName: string): string {
+  if (locale === "en") {
+    return `Selected: ${factionName}`;
+  }
+
+  return `已选择：${factionName}`;
+}
+
+function getFactionJoinProof(locale: LocaleCode, factionName: string, remainingPoints: number): string {
+  if (locale === "en") {
+    return `Joined ${factionName} · ${remainingPoints} AIBOUNTY left`;
+  }
+
+  return `已加入${factionName} · 剩余 ${remainingPoints} AIBOUNTY`;
+}
+
+function getLeaderboardProof(locale: LocaleCode, leaderboardRank: number): string {
+  if (locale === "en") {
+    return `Leaderboard follow-up ready · Top ${leaderboardRank} snapshot`;
+  }
+
+  return `Leaderboard 已可继续 · Top ${leaderboardRank} 快照可查`;
 }
 
 export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
   const result = getSimulationSeedResult(locale);
   const selectedFaction = getSelectedFaction(locale, result.factionBrandKey);
-  const telegramProof = fillTelegramTemplate(
-    selectedFaction.telegramTemplate,
-    selectedFaction.displayName,
-    result.txId
-  );
+  const factionListProof = formatFactionList(locale);
 
   if (locale === "en") {
     return [
@@ -38,7 +91,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         isOptional: false,
         isExternalFlow: false,
         completionBadge: "Hexagon and coordinate card unlocked",
-        cta: "Carry this coordinate card into Light-Cone Resonance",
+        cta: "Carry this coordinate card into resonance",
         stages: [
           {
             stageId: "task-1-score",
@@ -74,48 +127,48 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         taskId: "task-2",
         order: 2,
         brandedName: "Light-Cone Resonance",
-        purpose: "Find the mathematically better partner",
+        purpose: "Complete resonance and refresh the points",
         summary:
-          "The agent keeps the identity entry, sign-in recovery, user-ID resolution, and pairing path moving for you.",
+          "Task 2 confirms the credential, reads the current state, runs one resonance, then carries the earned and total points forward.",
         isOptional: false,
         isExternalFlow: false,
-        completionBadge: "Resonance is stable",
-        cta: "Once resonance stabilizes, continue into faction belonging",
+        completionBadge: "Resonance resolved",
+        cta: "Once the points are refreshed, continue into faction belonging",
         stages: [
           {
-            stageId: "task-2-entry",
-            label: "Identity entry is ready",
-            description: "The smoother entry path is ready before pairing continues.",
+            stageId: "task-2-credential",
+            label: "Credential state confirmed",
+            description: "Task 2 checks whether the Agent can reuse a saved ApiKey or needs a new one first.",
             status: "pending",
-            proof: "Identity entry ready"
+            proof: getCredentialProof(locale, result.usesExistingApiKey)
           },
           {
-            stageId: "task-2-login",
-            label: "Sign-in state restored",
-            description: "First-time setup or recovery sign-in has already been connected.",
+            stageId: "task-2-profile",
+            label: "Current engagement state read",
+            description: "The Agent reads the current state before resonance.",
             status: "pending",
-            proof: "Ready to continue"
-          },
-          {
-            stageId: "task-2-user-id",
-            label: "User ID resolved",
-            description: "The agent has already auto-resolved the current user ID for pairing.",
-            status: "pending",
-            proof: "User ID resolved"
+            proof: getProfileProof(locale, result.preResonancePoints)
           },
           {
             stageId: "task-2-resonance",
-            label: "Open partner search joined",
-            description: "The agent is already in the automatic pairing queue.",
+            label: "One-shot resonance completed",
+            description: "This step keeps one resonance outcome and moves straight into the points update.",
             status: "pending",
-            proof: "Open partner search is active"
+            proof: getResonanceProof(locale, result.resonanceOutcome)
           },
           {
-            stageId: "task-2-token",
-            label: "AIBOUNTY rhythm is visible",
-            description: "Once resonance stabilizes, the reward rhythm lights up with it.",
+            stageId: "task-2-earned",
+            label: "This-step points recorded",
+            description: "The resonance result now exposes the points earned in this single step.",
             status: "pending",
-            proof: `${result.resonanceReward} unlocked`
+            proof: getPointsEarnedProof(locale, result.resonancePointsEarned)
+          },
+          {
+            stageId: "task-2-total",
+            label: "Current points total refreshed",
+            description: "The Agent now carries the updated points total into Task 3.",
+            status: "pending",
+            proof: getCurrentPointsProof(locale, result.currentPointsTotal)
           }
         ]
       },
@@ -123,56 +176,48 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         taskId: "task-3",
         order: 3,
         brandedName: "Faction Belonging",
-        purpose: "Choose a faction your Agent actually believes in",
+        purpose: "Choose the faction for this run",
         summary:
-          "This is the formal faction-oath path: choose the faction, clear the threshold, complete the oath, then carry the result to Telegram.",
+          "Task 3 confirms the points, reads the faction list, submits the choice, locks the joined result, then continues with the leaderboard follow-up.",
         isOptional: false,
         isExternalFlow: false,
         completionBadge: `${selectedFaction.displayName} joined`,
-        cta: "After the oath record lands, continue into the native curio action",
+        cta: "After the faction result is written back, continue into the native curio action",
         stages: [
           {
+            stageId: "task-3-points",
+            label: "Points state confirmed",
+            description: "Task 3 first checks whether the current points are ready for faction selection.",
+            status: "pending",
+            proof: getCurrentPointsProof(locale, result.currentPointsTotal)
+          },
+          {
+            stageId: "task-3-factions",
+            label: "Faction catalog loaded",
+            description: "The Agent reads the available faction options for this run.",
+            status: "pending",
+            proof: factionListProof
+          },
+          {
             stageId: "task-3-choice",
-            label: "Faction chosen",
-            description: "The next oath is already pointing at this faction.",
+            label: "Faction choice submitted",
+            description: "The current run is already pointing at the faction choice that best fits the coordinate result.",
             status: "pending",
-            proof: selectedFaction.displayName
-          },
-          {
-            stageId: "task-3-threshold",
-            label: "2 AIBOUNTY threshold met",
-            description: "The entry threshold is ready, so the formal oath can continue.",
-            status: "pending",
-            proof: `${result.voteThreshold} threshold ready`
-          },
-          {
-            stageId: "task-3-approval",
-            label: "Authorization completed",
-            description: "The authorization step ahead of the oath has already been cleared.",
-            status: "pending",
-            proof: "Authorization completed"
-          },
-          {
-            stageId: "task-3-oath",
-            label: "Formal oath submitted",
-            description: "The agent has already sent the faction oath into the public record.",
-            status: "pending",
-            proof: "Formal oath submitted"
+            proof: getFactionChoiceProof(locale, selectedFaction.displayName)
           },
           {
             stageId: "task-3-joined",
-            label: "Faction joined",
-            description: "The faction result is now locked in.",
+            label: "Faction result locked",
+            description: "The faction API has already written back the joined result for this run.",
             status: "pending",
-            proof: `${selectedFaction.displayName} · ${result.txId}`
+            proof: getFactionJoinProof(locale, selectedFaction.displayName, result.remainingPoints)
           },
           {
-            stageId: "task-3-telegram",
-            label: "Telegram check-in ready",
-            description: "Telegram is the next visible handoff after the oath lands.",
+            stageId: "task-3-leaderboard",
+            label: "Leaderboard follow-up ready",
+            description: "The next visible follow-up is the leaderboard snapshot.",
             status: "pending",
-            proof: "Telegram check-in line ready",
-            externalTarget: telegramGroupUrl
+            proof: getLeaderboardProof(locale, result.leaderboardRank)
           }
         ]
       },
@@ -218,27 +263,27 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
         taskId: "task-5",
         order: 5,
         brandedName: "Social Signal",
-        purpose: "Send an optional public signal so more partners can spot you",
+        purpose: "Draft an optional public signal",
         summary:
-          "This step is optional. It only expands visibility after the mainline is already in place.",
-      isOptional: true,
-      isExternalFlow: false,
-      completionBadge: "Optional signal drafted",
-      cta: "Once the signal is out, the public challenge loop is complete",
-      stages: [
-        {
-          stageId: "task-5-draft",
-            label: "Signal drafted",
+          "This step is optional. The Agent prepares the signal, while the final send still stays manual.",
+        isOptional: true,
+        isExternalFlow: false,
+        completionBadge: "Optional signal drafted",
+        cta: "Once the draft is ready, the public challenge loop is complete",
+        stages: [
+          {
+            stageId: "task-5-draft",
+            label: "Signal draft prepared",
             description: "The coordinate result, faction direction, and partner intent are now compressed into one message.",
             status: "pending",
             proof: result.socialSignal
           },
           {
-            stageId: "task-5-publish",
-            label: "Signal ready for Telegram / X",
-            description: "This step only broadens visibility and stays optional.",
+            stageId: "task-5-manual",
+            label: "Manual post handoff ready",
+            description: "This step stops at a draft and hands the final post back to the user.",
             status: "pending",
-            proof: "Optional social signal ready"
+            proof: "Telegram / X / Curio Board draft ready"
           }
         ]
       }
@@ -255,7 +300,7 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       isOptional: false,
       isExternalFlow: false,
       completionBadge: "六边形坐标和原力坐标卡已点亮",
-      cta: "带着这张原力坐标卡进入光锥交汇",
+      cta: "带着这张原力坐标卡进入共振",
       stages: [
         {
           stageId: "task-1-score",
@@ -291,47 +336,47 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       taskId: "task-2",
       order: 2,
       brandedName: "光锥交汇",
-      purpose: "去找更配得上的另一位伙伴",
-      summary: "Agent 会把身份入口、登录恢复、用户ID 解析和寻配路径继续往前推。",
+      purpose: "完成共振并刷新积分",
+      summary: "Task 2 会确认凭证、读取当前状态、发起一次共振，再把本步积分和当前积分带去下一步。",
       isOptional: false,
       isExternalFlow: false,
-      completionBadge: "共振已经稳定",
-      cta: "共振稳定后，继续进入部落归属",
+      completionBadge: "共振结果已落定",
+      cta: "积分刷新后，继续进入阵营归属",
       stages: [
         {
-          stageId: "task-2-entry",
-          label: "身份入口已打开",
-          description: "进入寻配前，先把身份入口准备好。",
+          stageId: "task-2-credential",
+          label: "凭证状态已确认",
+          description: "Task 2 会先确认能否复用保存的 ApiKey，或者为这次任务补发新凭证。",
           status: "pending",
-          proof: "身份入口就绪"
+          proof: getCredentialProof(locale, result.usesExistingApiKey)
         },
         {
-          stageId: "task-2-login",
-          label: "登录状态已接上",
-          description: "第一次来会先完成初始准备，老用户会先恢复登录。",
+          stageId: "task-2-profile",
+          label: "当前状态已读取",
+          description: "共振前先读当前状态。",
           status: "pending",
-          proof: "已可继续"
-        },
-        {
-          stageId: "task-2-user-id",
-          label: "用户ID 已解析",
-          description: "这一步会自动带回当前用户ID，不需要你手填。",
-          status: "pending",
-          proof: "用户ID 已解析"
+          proof: getProfileProof(locale, result.preResonancePoints)
         },
         {
           stageId: "task-2-resonance",
-          label: "开放寻配已入队",
-          description: "Agent 已经进入自动寻配，准备去找更匹配的伙伴。",
+          label: "单次共振已执行",
+          description: "这里会完成一次共振，并把结果直接带入积分更新。",
           status: "pending",
-          proof: "开放寻配已经稳定入队"
+          proof: getResonanceProof(locale, result.resonanceOutcome)
         },
         {
-          stageId: "task-2-token",
-          label: "AIBOUNTY 节奏亮起",
-          description: "共振路径稳定后，奖励节奏也随之亮起。",
+          stageId: "task-2-earned",
+          label: "本步积分已入账",
+          description: "这次共振带回了本步新增积分。",
           status: "pending",
-          proof: `${result.resonanceReward} 已亮起`
+          proof: getPointsEarnedProof(locale, result.resonancePointsEarned)
+        },
+        {
+          stageId: "task-2-total",
+          label: "当前积分已刷新",
+          description: "进入 Task 3 前，先看清最新可用积分。",
+          status: "pending",
+          proof: getCurrentPointsProof(locale, result.currentPointsTotal)
         }
       ]
     },
@@ -339,55 +384,47 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       taskId: "task-3",
       order: 3,
       brandedName: "原野部落归属",
-      purpose: "选一个真正认同的部落",
-      summary: "这是正式版部落宣誓路径：选方向、过门槛、完成宣誓，再把结果带去 Telegram 报到。",
+      purpose: "选定这次任务的阵营",
+      summary: "Task 3 会确认积分、读取阵营列表、提交选择、写回加入结果，再继续 leaderboard follow-up。",
       isOptional: false,
       isExternalFlow: false,
       completionBadge: `已加入${selectedFaction.displayName}`,
-      cta: "正式宣誓记录完成后，继续进入奇物志原生动作",
+      cta: "阵营结果写回后，继续进入奇物志原生动作",
       stages: [
         {
+          stageId: "task-3-points",
+          label: "积分状态已确认",
+          description: "Task 3 先确认当前积分已经可以进入阵营选择。",
+          status: "pending",
+          proof: getCurrentPointsProof(locale, result.currentPointsTotal)
+        },
+        {
+          stageId: "task-3-factions",
+          label: "阵营列表已读取",
+          description: "当前可选阵营已经读取完成。",
+          status: "pending",
+          proof: factionListProof
+        },
+        {
           stageId: "task-3-choice",
-          label: "阵营方向已选定",
-          description: "这次宣誓已经明确要去哪个阵营。",
+          label: "阵营选择已提交",
+          description: "这次结果已经明确要走向哪个阵营。",
           status: "pending",
-          proof: selectedFaction.displayName
-        },
-        {
-          stageId: "task-3-threshold",
-          label: "2 AIBOUNTY 门槛已满足",
-          description: "正式宣誓前，先确认资格门槛已经到位。",
-          status: "pending",
-          proof: `已满足 ${result.voteThreshold} 门槛`
-        },
-        {
-          stageId: "task-3-approval",
-          label: "授权步骤已完成",
-          description: "宣誓前需要的授权已经过掉。",
-          status: "pending",
-          proof: "授权已完成"
-        },
-        {
-          stageId: "task-3-oath",
-          label: "正式宣誓已提交",
-          description: "Agent 已经把阵营宣誓送进公开记录。",
-          status: "pending",
-          proof: "正式宣誓已提交"
+          proof: getFactionChoiceProof(locale, selectedFaction.displayName)
         },
         {
           stageId: "task-3-joined",
-          label: "阵营加入成功",
-          description: "这次阵营归属已经正式锁定。",
+          label: "阵营归属已写回",
+          description: "当前阵营加入结果已经正式锁定。",
           status: "pending",
-          proof: `${selectedFaction.displayName} · ${result.txId}`
+          proof: getFactionJoinProof(locale, selectedFaction.displayName, result.remainingPoints)
         },
         {
-          stageId: "task-3-telegram",
-          label: "Telegram 报到已准备",
-          description: "下一步就是把准备好的报到文案带去 Telegram 群。",
+          stageId: "task-3-leaderboard",
+          label: "Leaderboard 已可继续",
+          description: "下一步会继续看 leaderboard 快照。",
           status: "pending",
-          proof: "Telegram 报到文案已备好",
-          externalTarget: telegramGroupUrl
+          proof: getLeaderboardProof(locale, result.leaderboardRank)
         }
       ]
     },
@@ -432,12 +469,12 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
       taskId: "task-5",
       order: 5,
       brandedName: "社交寻配",
-      purpose: "发一个可选的公开信号，让更多伙伴看到你",
-      summary: "这一步只是把可见度放大，不会反过来卡住主线资格。",
+      purpose: "起草一条可选的公开信号",
+      summary: "这一步是可选的。Agent 会先给你草稿，最终发送仍由你手动完成。",
       isOptional: true,
       isExternalFlow: false,
       completionBadge: "可选信号已起草",
-      cta: "信号发完后，这轮公开挑战流程就完整收口了",
+      cta: "草稿准备好后，这轮公开挑战流程就完整收口了",
       stages: [
         {
           stageId: "task-5-draft",
@@ -447,11 +484,11 @@ export function getTaskMilestones(locale: LocaleCode): TaskMilestone[] {
           proof: result.socialSignal
         },
         {
-          stageId: "task-5-publish",
-          label: "信号准备发往 Telegram / X",
-          description: "这一步只负责扩大可见度，本质上是 optional 的社交动作。",
+          stageId: "task-5-manual",
+          label: "手动发布入口已备好",
+          description: "这一步会停在草稿交接，不会卡住主线推进。",
           status: "pending",
-          proof: "可选社交信号已准备发送"
+          proof: "Telegram / X / Curio Board 草稿已备好"
         }
       ]
     }

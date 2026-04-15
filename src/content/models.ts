@@ -59,8 +59,13 @@ export interface SeededSimulationResult {
   weakestAxes: string[];
   axisScores: SeededAxisScore[];
   factionMapping: string;
-  voteThreshold: string;
-  resonanceReward: string;
+  usesExistingApiKey: boolean;
+  preResonancePoints: number;
+  resonanceOutcome: "success" | "strong_success";
+  resonancePointsEarned: number;
+  currentPointsTotal: number;
+  remainingPoints: number;
+  leaderboardRank: number;
   txId: string;
   nextHint: string;
   socialSignal: string;
@@ -114,7 +119,6 @@ export interface FactionOption {
   displayName: string;
   coreStance: string;
   proposalPageLabel?: string;
-  telegramTemplate?: string;
 }
 
 export interface LongpageContent {

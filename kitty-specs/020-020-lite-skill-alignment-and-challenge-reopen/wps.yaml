@@ -1,0 +1,68 @@
+work_packages:
+  - id: WP01
+    title: Lite Task Content Alignment
+    dependencies: []
+    requirement_refs:
+      - "FR-001"
+      - "FR-002"
+      - "FR-003"
+      - "NFR-001"
+      - "C-002"
+      - "C-003"
+    owned_files:
+      - src/content/models.ts
+      - src/lib/simulationSeed.ts
+      - src/content/taskMilestones.ts
+      - src/content/factionContent.ts
+      - src/lib/contentMappers.ts
+      - tests/unit/contentMappers.test.ts
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: tasks/WP01-lite-task-content-alignment.md
+
+  - id: WP02
+    title: Challenge CTA And Agent Handoff Restore
+    dependencies:
+      - WP01
+    requirement_refs:
+      - "FR-004"
+      - "FR-005"
+      - "FR-006"
+      - "NFR-001"
+      - "C-001"
+    owned_files:
+      - src/App.tsx
+      - src/components/sections/HeroSection.tsx
+      - src/components/sections/AgentPromptSection.tsx
+      - src/content/agentPromptCards.ts
+      - src/content/uiCopy.ts
+      - src/content/heroContent.ts
+      - tests/integration/longpage.spec.tsx
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: tasks/WP02-challenge-cta-and-agent-handoff-restore.md
+
+  - id: WP03
+    title: Regression And Mission Closeout
+    dependencies:
+      - WP02
+    requirement_refs:
+      - "NFR-002"
+      - "NFR-003"
+      - "C-001"
+    owned_files:
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/acceptance-matrix.json
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/lanes.json
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/status.events.jsonl
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/status.json
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/tasks.md
+      - kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/tasks/WP03-regression-and-mission-closeout.md
+    subtasks:
+      - T007
+      - T008
+    prompt_file: tasks/WP03-regression-and-mission-closeout.md
+

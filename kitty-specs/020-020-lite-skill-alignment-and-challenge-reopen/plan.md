@@ -1,108 +1,80 @@
-# Implementation Plan: [FEATURE]
-*Path: [templates/plan-template.md](templates/plan-template.md)*
-
-
-**Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
-**Input**: Feature specification from `/kitty-specs/[###-feature-name]/spec.md`
-
-**Note**: This template is filled in by the `/spec-kitty.plan` command. See `src/specify_cli/missions/software-dev/command-templates/plan.md` for the execution workflow.
-
-The planner will not begin until all planning questions have been answered—capture those answers in this document before progressing to later phases.
+# Implementation Plan: Lite Skill Alignment And Challenge Reopen
 
 ## Summary
 
-[Extract from feature spec: primary requirement + technical approach from research]
+这轮把首页任务叙事从旧 full 版语义切到 `ai-temple-bounty2.0-lite-skills`，并把首屏主 CTA 从发布时间占位恢复为可参与入口。技术上分三层同步推进：
+
+1. seeded demo 数据与 `Task 2/3` stage 语义一起切到 lite。
+2. Hero 主 CTA 与 `AgentPromptSection` 一起恢复。
+3. unit / integration / mission 资产一起收口，避免文案与派生逻辑再次分叉。
 
 ## Technical Context
 
-<!--
-  ACTION REQUIRED: Replace the content in this section with the technical details
-  for the project. The structure here is presented in advisory capacity to guide
-  the iteration process.
--->
-
-**Language/Version**: [e.g., Python 3.11, Swift 5.9, Rust 1.75 or NEEDS CLARIFICATION]  
-**Primary Dependencies**: [e.g., FastAPI, UIKit, LLVM or NEEDS CLARIFICATION]  
-**Storage**: [if applicable, e.g., PostgreSQL, CoreData, files or N/A]  
-**Testing**: [e.g., pytest, XCTest, cargo test or NEEDS CLARIFICATION]  
-**Target Platform**: [e.g., Linux server, iOS 15+, WASM or NEEDS CLARIFICATION]
-**Project Type**: [single/web/mobile - determines source structure]  
-**Performance Goals**: [domain-specific, e.g., 1000 req/s, 10k lines/sec, 60 fps or NEEDS CLARIFICATION]  
-**Constraints**: [domain-specific, e.g., <200ms p95, <100MB memory, offline-capable or NEEDS CLARIFICATION]  
-**Scale/Scope**: [domain-specific, e.g., 10k users, 1M LOC, 50 screens or NEEDS CLARIFICATION]
+- **Language/Version**: TypeScript 5.9 + React 19 + Vite 7
+- **Primary Dependencies**: React, React DOM, Vitest, Testing Library
+- **Storage**: N/A（纯前端 seeded demo）
+- **Testing**: `vitest --run`
+- **Target Platform**: 浏览器静态单页
+- **Project Type**: 单页前端应用
+- **Performance Goals**: 保持现有静态页体验，无额外运行时 API 请求
+- **Constraints**: 继续使用 seeded result；Task 4/5 边界不变；target branch 固定为 `codex/oss-sanitize-pages-rename`
+- **Scale/Scope**: 单页挑战站 + 一套 integration/unit 回归
 
 ## Charter Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
-
-[Gates determined based on charter file]
+- 本轮仍然符合当前仓库的单页前端 + mission 文档收口方式。
+- 不新增后端、数据库或新的 runtime surface。
+- 复杂度提升仅限于内容契约与 CTA 承接恢复，没有引入新的架构层级。
 
 ## Project Structure
 
-### Documentation (this feature)
+### Documentation
 
 ```
-kitty-specs/[###-feature]/
-├── plan.md              # This file (/spec-kitty.plan command output)
-├── research.md          # Phase 0 output (/spec-kitty.plan command)
-├── data-model.md        # Phase 1 output (/spec-kitty.plan command)
-├── quickstart.md        # Phase 1 output (/spec-kitty.plan command)
-├── contracts/           # Phase 1 output (/spec-kitty.plan command)
-└── tasks.md             # Phase 2 output (/spec-kitty.tasks command - NOT created by /spec-kitty.plan)
+kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/
+├── spec.md
+├── research.md
+├── data-model.md
+├── plan.md
+├── quickstart.md
+├── acceptance-matrix.json
+├── tasks.md
+├── wps.yaml
+└── tasks/
 ```
 
-### Source Code (repository root)
-<!--
-  ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
--->
+### Source Code
 
 ```
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
 src/
-├── models/
-├── services/
-├── cli/
+├── App.tsx
+├── components/sections/
+├── content/
 └── lib/
 
 tests/
-├── contract/
 ├── integration/
 └── unit/
-
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
-**Structure Decision**: [Document the selected structure and reference the real
-directories captured above]
+**Structure Decision**: 继续沿用现有前端单页结构，不拆新目录；只在 `content / lib / sections / tests` 内收口。
 
-## Complexity Tracking
+## Approach
 
-*Fill ONLY if Charter Check has violations that must be justified*
+### 1. Lite 语义对齐
 
-| Violation | Why Needed | Simpler Alternative Rejected Because |
-|-----------|------------|-------------------------------------|
-| [e.g., 4th project] | [current need] | [why 3 projects insufficient] |
-| [e.g., Repository pattern] | [specific problem] | [why direct DB access insufficient] |
+- 更新 `SeededSimulationResult` 和 `simulationSeed`，补出 lite 需要的积分与 leaderboard proof。
+- 重写 `taskMilestones` 的 `Task 2/3` stage 设计。
+- 同步更新 `contentMappers` 的 supporting facts 选择。
+
+### 2. 挑战入口恢复
+
+- 在 `App.tsx` 重新挂回 `AgentPromptSection`。
+- Hero 主 CTA 改回 enabled，并滚动到 `#agent-prompt`。
+- `AgentPromptSection` 与 `agentPromptCards` 一起切到 lite repo 和 lite handoff 文案。
+
+### 3. Regression + Mission
+
+- 更新 `tests/unit/contentMappers.test.ts`
+- 更新 `tests/integration/longpage.spec.tsx`
+- 补齐 `020` mission 的 WPs、quickstart、acceptance，并记录本轮验证结果

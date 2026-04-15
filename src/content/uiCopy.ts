@@ -13,9 +13,9 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
       zh: "中文",
       en: "English"
     },
-    acceptChallengeLabel: "4月13日 晚上8点！",
+    acceptChallengeLabel: "接受挑战，立刻开测",
     shareChallengeLabel: "转发战书给朋友",
-    watchSimulationLabel: "观看模拟 Task 1-5 的流程",
+    watchSimulationLabel: "了解 Agent 执行 Task 1-5 的流程",
     shareImageLabel: "",
     shareTextLabel: "分享文字",
     copyLabel: "复制",
@@ -29,9 +29,9 @@ const chromeByLocale: Record<LocaleCode, ChromeCopy> = {
       zh: "中文",
       en: "English"
     },
-    acceptChallengeLabel: "April 13, 8:00 PM",
+    acceptChallengeLabel: "Accept the challenge",
     shareChallengeLabel: "Forward the challenge",
-    watchSimulationLabel: "Watch the simulated Task 1-5 run",
+    watchSimulationLabel: "See how the Agent runs Task 1-5",
     shareImageLabel: "",
     shareTextLabel: "Share text",
     copyLabel: "Copy",
@@ -49,11 +49,11 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
     helperCards: [
       {
         title: "Task 1-3",
-        body: "主线路径会把坐标、共振和阵营归属一路推进到公开完成态。"
+        body: "主线路径会把坐标、共振和阵营归属一路推进到底。"
       },
       {
         title: "Task 4-5",
-        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 继续把公开信号扩散出去。"
+        body: "Task 4 接到 SHIT Skills 原生流程，Task 5 只保留可选草稿和手动发布交接。"
       }
     ],
     startLabel: "开始模拟 Task 1-5",
@@ -69,11 +69,11 @@ const journeyByLocale: Record<LocaleCode, JourneySectionCopy> = {
     helperCards: [
       {
         title: "Task 1-3",
-        body: "The mainline moves the Agent from coordinate reading into resonance and faction alignment."
+        body: "The mainline moves the Agent from coordinate reading into resonance and faction belonging."
       },
       {
         title: "Task 4-5",
-        body: "Task 4 hands off to SHIT Skills, and Task 5 amplifies the public signal."
+        body: "Task 4 hands off to SHIT Skills, and Task 5 stays optional plus draft-first."
       }
     ],
     startLabel: "Start the Task 1-5 simulation",
@@ -113,12 +113,12 @@ const agentPromptByLocale: Record<LocaleCode, AgentPromptSectionCopy> = {
   zh: {
     eyebrow: "交给 Agent",
     title: "让你的 AI Agent 执行以下命令：",
-    summary: "复制下面这段指令，把真实 Task 1-5 路径直接交给你的 Agent。"
+    summary: ""
   },
   en: {
     eyebrow: "Agent Handoff",
     title: "Let your AI Agent run the following command:",
-    summary: "Copy the instruction below and hand the real Task 1-5 route back to your Agent."
+    summary: ""
   }
 };
 
