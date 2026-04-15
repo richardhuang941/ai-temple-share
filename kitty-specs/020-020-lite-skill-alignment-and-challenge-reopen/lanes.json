@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "mission_slug": "020-020-lite-skill-alignment-and-challenge-reopen",
+  "mission_id": "020-020-lite-skill-alignment-and-challenge-reopen",
+  "mission_branch": "kitty/mission-020-020-lite-skill-alignment-and-challenge-reopen",
+  "target_branch": "codex/oss-sanitize-pages-rename",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03"
+      ],
+      "write_scope": [
+        "src/App.tsx",
+        "src/components/sections/HeroSection.tsx",
+        "src/components/sections/AgentPromptSection.tsx",
+        "src/content/agentPromptCards.ts",
+        "src/content/factionContent.ts",
+        "src/content/heroContent.ts",
+        "src/content/models.ts",
+        "src/content/taskMilestones.ts",
+        "src/content/uiCopy.ts",
+        "src/lib/contentMappers.ts",
+        "src/lib/simulationSeed.ts",
+        "tests/integration/longpage.spec.tsx",
+        "tests/unit/contentMappers.test.ts",
+        "kitty-specs/020-020-lite-skill-alignment-and-challenge-reopen/**"
+      ],
+      "predicted_surfaces": [
+        "lite-alignment",
+        "hero-cta"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-15T10:10:00+00:00",
+  "computed_from": "manual-direct-repo-plan",
+  "planning_artifact_wps": []
+}
+

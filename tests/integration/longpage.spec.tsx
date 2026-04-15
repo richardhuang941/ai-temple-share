@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { vi } from "vitest";
 import App from "../../src/App";
 import { getLocalizedLongpageContent } from "../../src/content";
@@ -57,18 +57,21 @@ describe("Agent Temple Bounty longpage", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { name: bundle.hero.title })).toBeTruthy();
+    expect(screen.getByRole("heading", { level: 2, name: bundle.agentPromptSection.title })).toBeTruthy();
     expect(screen.getByRole("heading", { level: 2, name: bundle.shareSection.title })).toBeTruthy();
     expect(screen.getByRole("heading", { level: 2, name: bundle.journey.title })).toBeTruthy();
 
     const hero = document.getElementById("top");
+    const agentPrompt = document.getElementById("agent-prompt");
     const share = document.getElementById("share");
     const journey = document.getElementById("journey");
 
     expect(hero).toBeTruthy();
-    expect(document.getElementById("agent-prompt")).toBeNull();
+    expect(agentPrompt).toBeTruthy();
     expect(share).toBeTruthy();
     expect(journey).toBeTruthy();
-    expect(hero!.compareDocumentPosition(share!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
+    expect(hero!.compareDocumentPosition(agentPrompt!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
+    expect(agentPrompt!.compareDocumentPosition(share!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
     expect(share!.compareDocumentPosition(journey!) & Node.DOCUMENT_POSITION_FOLLOWING).not.toBe(0);
   });
 
@@ -115,23 +118,36 @@ describe("Agent Temple Bounty longpage", () => {
     expect(container.textContent).not.toContain("演示页，不代替真实注册、共振、宣誓、Telegram 报到或 SHIT Skills 动作");
   });
 
-  it("wires the hero actions to the updated launch, share, and journey targets", () => {
+  it("wires the hero actions to the updated accept, share, and journey targets", () => {
     const bundle = getLocalizedLongpageContent("zh");
     render(<App />);
 
     expect(screen.queryByRole("link", { name: "查看完整成绩单" })).toBeNull();
     expect(screen.getByRole("button", { name: bundle.chrome.acceptChallengeLabel })).toBeTruthy();
+    expect(screen.getByRole("button", { name: bundle.chrome.acceptChallengeLabel }).hasAttribute("disabled")).toBe(false);
     expect(screen.getByRole("link", { name: bundle.chrome.shareChallengeLabel }).getAttribute("href")).toBe("#share");
     expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
+    expect(
+      screen.getByRole("link", {
+        name: "https://github.com/Claws-Temple/ai-temple-bounty2.0-lite-skills"
+      }).getAttribute("href")
+    ).toBe("https://github.com/Claws-Temple/ai-temple-bounty2.0-lite-skills");
   });
 
   it("removes visible SBTI content and keeps the page focused on Task 1-5", () => {
     const bundle = getLocalizedLongpageContent("zh");
-    render(<App />);
+    const { container } = render(<App />);
 
     expect(bundle.tasks).toHaveLength(5);
     expect(screen.queryByText(/SBTI/)).toBeNull();
     expect(screen.getByRole("button", { name: bundle.chrome.watchSimulationLabel })).toBeTruthy();
+    expect(container.textContent).not.toContain("开放寻配");
+    expect(container.textContent).not.toContain("宣誓");
+    expect(container.textContent).not.toContain("授权");
+    expect(container.textContent).not.toContain("Telegram 报到");
+    expect(container.textContent).not.toContain("API-light");
+    expect(container.textContent).not.toContain("旧版 full");
+    expect(container.textContent).not.toContain("Lite Task");
   });
 
   it("keeps share text-only and hides app-entry buttons on desktop", () => {
@@ -219,6 +235,26 @@ describe("Agent Temple Bounty longpage", () => {
     expect(await screen.findByRole("button", { name: bundle.journey.advanceLabel })).toBeTruthy();
     expect(screen.queryByRole("alert")).toBeNull();
     expect(scrollIntoViewMock).toHaveBeenCalled();
+  });
+
+  it("scrolls to the Agent handoff when the primary challenge CTA is clicked", async () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    const scrollIntoViewMock = vi.fn();
+
+    Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
+      configurable: true,
+      value: scrollIntoViewMock
+    });
+
+    render(<App />);
+
+    fireEvent.click(screen.getByRole("button", { name: bundle.chrome.acceptChallengeLabel }));
+
+    expect(await screen.findByRole("heading", { level: 2, name: bundle.agentPromptSection.title })).toBeTruthy();
+    await waitFor(() => {
+      expect(scrollIntoViewMock).toHaveBeenCalled();
+    });
+    expect(window.location.hash).toBe("#agent-prompt");
   });
 
   it("expands completed tasks locally without replaying the active journey", async () => {

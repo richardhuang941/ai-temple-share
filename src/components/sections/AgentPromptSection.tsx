@@ -29,11 +29,11 @@ export function AgentPromptSection({
     };
   }, [attentionSignal]);
 
-  const displayCommand = featuredCard.promptBody.split("\n")[0] ?? featuredCard.promptBody;
+  const displayCommand = featuredCard.referenceRepo;
   const promptComment =
     bundle.locale === "zh"
-      ? "继续按真实 Bounty 2.0 路径完成任务 1-5，并返回分数、共振、阵营和社区结果"
-      : "Continue the real Bounty 2.0 route and bring back the score, resonance, faction, and community result";
+      ? "继续按 AI Temple Bounty 2.0 路径完成 Task 1-5，并返回坐标、共振、阵营与可选公开信号状态"
+      : "Continue the AI Temple Bounty 2.0 Task 1-5 route and bring back the coordinate, resonance, faction, and optional public-signal status";
   const listStyle: CSSProperties = {
     margin: 0,
     paddingLeft: "1.15rem",
@@ -58,7 +58,9 @@ export function AgentPromptSection({
               <h2 id="agent-prompt-heading" className="prompt-card-title">
                 {bundle.agentPromptSection.title}
               </h2>
-              <p className="prompt-card-subtitle">{bundle.agentPromptSection.summary}</p>
+              {bundle.agentPromptSection.summary ? (
+                <p className="prompt-card-subtitle">{bundle.agentPromptSection.summary}</p>
+              ) : null}
             </div>
             <CopyButton
               value={featuredCard.promptBody}
@@ -80,7 +82,14 @@ export function AgentPromptSection({
             <p className="prompt-terminal-command">
               <span className="prompt-terminal-prefix">$</span>
               <span className="prompt-terminal-read">Read</span>
-              <span className="prompt-terminal-link">{displayCommand.replace(/^Read\s+/i, "")}</span>
+              <a
+                className="prompt-terminal-link"
+                href={displayCommand}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {displayCommand}
+              </a>
             </p>
             <p className="prompt-terminal-comment">
               <span className="prompt-terminal-prefix">#</span>

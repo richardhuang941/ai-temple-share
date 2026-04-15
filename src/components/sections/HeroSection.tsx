@@ -2,6 +2,7 @@ import { type LocalizedContentBundle } from "../../content";
 
 interface HeroSectionProps {
   bundle: LocalizedContentBundle;
+  onAcceptChallenge: () => void;
   onWatchSimulation: () => void;
 }
 
@@ -15,6 +16,7 @@ function buildChallengeCopy(bundle: LocalizedContentBundle): string {
 
 export function HeroSection({
   bundle,
+  onAcceptChallenge,
   onWatchSimulation
 }: HeroSectionProps) {
   const challengeCopy = buildChallengeCopy(bundle);
@@ -77,8 +79,7 @@ export function HeroSection({
             <button
               type="button"
               className="challenge-cta challenge-cta--primary"
-              disabled
-              aria-disabled="true"
+              onClick={onAcceptChallenge}
             >
               {bundle.chrome.acceptChallengeLabel}
             </button>

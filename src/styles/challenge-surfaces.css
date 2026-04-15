@@ -422,6 +422,12 @@
 
 .prompt-terminal-link {
   color: #60a5fa;
+  text-decoration: none;
+}
+
+.prompt-terminal-link:hover,
+.prompt-terminal-link:focus-visible {
+  text-decoration: underline;
 }
 
 .copy-button {

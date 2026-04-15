@@ -1,0 +1,38 @@
+{
+  "mission_slug": "020-020-lite-skill-alignment-and-challenge-reopen",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "Task 2 and Task 3 now align with the lite skill semantics, and the share summary derives facts from the lite proof set instead of the old full-version stages.",
+      "proof_type": "automated_test",
+      "evidence": "src/content/models.ts + src/lib/simulationSeed.ts + src/content/taskMilestones.ts + src/lib/contentMappers.ts + tests/unit/contentMappers.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-15T18:10:00+08:00",
+      "notes": "Task 2 now renders credential/profile/resonance/points stages, Task 3 renders points/factions/joined/leaderboard stages, and unit coverage verifies the lite repo plus supporting facts."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "The Hero primary CTA is open again, the Agent handoff section is restored, and the CTA scrolls into the lite handoff target instead of staying disabled.",
+      "proof_type": "automated_test",
+      "evidence": "src/App.tsx + src/components/sections/HeroSection.tsx + src/components/sections/AgentPromptSection.tsx + src/content/agentPromptCards.ts + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-15T18:10:00+08:00",
+      "notes": "Integration coverage now checks section order, CTA enabled state, and the `#agent-prompt` scroll target."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The landing page no longer shows the old full-version wording, and the full test plus build verification passes on the target branch.",
+      "proof_type": "automated_test",
+      "evidence": "tests/integration/longpage.spec.tsx + npm run test + npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-15T18:10:00+08:00",
+      "notes": "Visible page assertions now reject `开放寻配 / 宣誓 / 授权 / Telegram 报到`, and the repo passes the final regression/build run."
+    }
+  ],
+  "negative_invariants": []
+}
+

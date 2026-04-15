@@ -106,10 +106,10 @@ export function deriveShareSummaryView(
 
   const supportingFacts = [
     pickProof(tasks[0], "task-1-faction"),
-    pickProof(task2 ?? tasks[1], "task-2-user-id"),
-    pickProof(task2 ?? tasks[1], "task-2-token"),
-    pickProof(task3 ?? tasks[2], "task-3-threshold"),
-    pickProof(task3 ?? tasks[2], "task-3-telegram"),
+    pickProof(task2 ?? tasks[1], "task-2-resonance"),
+    pickProof(task2 ?? tasks[1], "task-2-total"),
+    pickProof(task3 ?? tasks[2], "task-3-joined"),
+    pickProof(task3 ?? tasks[2], "task-3-leaderboard"),
     ...(baseShareSummary.supportingFacts ?? [])
   ].filter((fact): fact is string => Boolean(fact));
 

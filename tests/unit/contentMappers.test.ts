@@ -38,8 +38,8 @@ describe("content mappers", () => {
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
         "方向：变异体",
-        "用户ID 已解析",
-        "已满足 2 AIBOUNTY 门槛"
+        "共振结果：成功",
+        "已加入变异体 · 剩余 4 AIBOUNTY"
       ])
     );
   });
@@ -62,7 +62,7 @@ describe("content mappers", () => {
       "奇物志",
       "社交寻配"
     ]);
-    expect(tasks[2].stages.map((stage) => stage.stageId)).toContain("task-3-threshold");
+    expect(tasks[2].stages.map((stage) => stage.stageId)).toContain("task-3-leaderboard");
     expect(tasks[3].isExternalFlow).toBe(true);
     expect(tasks[4].isOptional).toBe(true);
     expect(tasks[4].completionBadge).toBe(repeatedTasks[4].completionBadge);
@@ -83,10 +83,15 @@ describe("content mappers", () => {
 
   it("ships copy-ready Agent prompt cards that point to the real skill repo", () => {
     const agentPromptCards = getAgentPromptCards("zh");
+    const tasks = getTaskMilestones("zh");
 
     expect(agentPromptCards).toHaveLength(2);
-    expect(agentPromptCards[0].referenceRepo).toContain("Claws-Temple/claws-temple-bounty2.0-skills");
-    expect(agentPromptCards[0].promptBody).toContain("Read GitHub - Claws-Temple/claws-temple-bounty2.0-skills");
+    expect(agentPromptCards[0].referenceRepo).toContain("Claws-Temple/ai-temple-bounty2.0-lite-skills");
+    expect(agentPromptCards[0].promptBody).toContain("Read GitHub - Claws-Temple/ai-temple-bounty2.0-lite-skills");
+    expect(agentPromptCards[0].expectedOutput).toContain("Agent 会按 Skill 路径继续推进");
+    expect(agentPromptCards[0].promptBody).not.toContain("API-light");
+    expect(tasks[1].summary).not.toContain("lite");
+    expect(tasks[2].summary).not.toContain("旧版");
   });
 
   it("can derive an English share summary from the localized content bundle", () => {
@@ -106,7 +111,8 @@ describe("content mappers", () => {
     expect(view.supportingFacts).toEqual(
       expect.arrayContaining([
         "Direction: The Mutant",
-        "2 AIBOUNTY threshold ready"
+        "Resonance outcome: success",
+        "Joined The Mutant · 4 AIBOUNTY left"
       ])
     );
   });
