@@ -116,4 +116,14 @@ describe("content mappers", () => {
       ])
     );
   });
+
+  it("exposes localized community help copy for both locales", () => {
+    const zhBundle = getLocalizedLongpageContent("zh");
+    const enBundle = getLocalizedLongpageContent("en");
+
+    expect(zhBundle.communityHelp.buttonLabel).toBe("遇到困难 / 结交更多伙伴？加入微信群");
+    expect(zhBundle.communityHelp.imageAlt).toContain("二维码");
+    expect(enBundle.communityHelp.buttonLabel).toBe("Need help or more partners? Join the WeChat group");
+    expect(enBundle.communityHelp.dialogTitle).toContain("more partners");
+  });
 });

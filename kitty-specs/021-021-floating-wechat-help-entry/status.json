@@ -1,0 +1,39 @@
+{
+  "event_count": 15,
+  "last_event_id": "evt-021-wp03-done",
+  "materialized_at": "2026-04-16T03:23:45+00:00",
+  "mission_slug": "021-021-floating-wechat-help-entry",
+  "summary": {
+    "approved": 0,
+    "blocked": 0,
+    "canceled": 0,
+    "claimed": 0,
+    "done": 3,
+    "for_review": 0,
+    "in_progress": 0,
+    "planned": 0
+  },
+  "work_packages": {
+    "WP01": {
+      "actor": "codex",
+      "force_count": 5,
+      "lane": "done",
+      "last_event_id": "evt-021-wp01-done",
+      "last_transition_at": "2026-04-16T03:21:30+00:00"
+    },
+    "WP02": {
+      "actor": "codex",
+      "force_count": 5,
+      "lane": "done",
+      "last_event_id": "evt-021-wp02-done",
+      "last_transition_at": "2026-04-16T03:22:50+00:00"
+    },
+    "WP03": {
+      "actor": "codex",
+      "force_count": 5,
+      "lane": "done",
+      "last_event_id": "evt-021-wp03-done",
+      "last_transition_at": "2026-04-16T03:23:45+00:00"
+    }
+  }
+}

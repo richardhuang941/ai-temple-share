@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getLocalizedLongpageContent } from "./content";
+import FloatingCommunityHelp from "./components/common/FloatingCommunityHelp";
 import SiteHeader from "./components/common/SiteHeader";
 import AgentPromptSection from "./components/sections/AgentPromptSection";
 import HeroSection from "./components/sections/HeroSection";
@@ -75,6 +76,7 @@ export function App() {
       />
       <ShareSection bundle={bundle} />
       <JourneySection bundle={bundle} startSignal={journeyStartSignal} />
+      <FloatingCommunityHelp bundle={bundle} />
     </main>
   );
 }

@@ -8,6 +8,7 @@ import { getTaskMilestones } from "./taskMilestones";
 import {
   getAgentPromptSectionCopy,
   getChromeCopy,
+  getCommunityHelpCopy,
   getJourneySectionCopy,
   getShareSectionCopy
 } from "./uiCopy";
@@ -26,6 +27,7 @@ export function getLocalizedLongpageContent(locale: LocaleCode): LocalizedConten
     journey: getJourneySectionCopy(locale),
     shareSection: getShareSectionCopy(locale),
     agentPromptSection: getAgentPromptSectionCopy(locale),
+    communityHelp: getCommunityHelpCopy(locale),
     factionOptions: getFactionOptions(locale),
     selectedFaction
   };
@@ -51,6 +53,7 @@ export {
   getAgentPromptCards,
   getAgentPromptSectionCopy,
   getChromeCopy,
+  getCommunityHelpCopy,
   getFactionOptions,
   getHeroContent,
   getJourneySectionCopy,
@@ -65,6 +68,7 @@ export type {
   AgentPromptCard,
   AgentPromptSectionCopy,
   ChromeCopy,
+  CommunityHelpCopy,
   DerivedTaskMilestone,
   DerivedTaskStage,
   FactionOption,

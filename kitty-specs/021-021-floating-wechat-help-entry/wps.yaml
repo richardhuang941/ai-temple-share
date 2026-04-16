@@ -1,0 +1,63 @@
+work_packages:
+  - id: WP01
+    title: Community Help Content Contract
+    dependencies: []
+    requirement_refs:
+      - "FR-001"
+      - "FR-006"
+      - "NFR-002"
+      - "C-003"
+    owned_files:
+      - src/content/models.ts
+      - src/content/uiCopy.ts
+      - src/content/index.ts
+      - tests/unit/contentMappers.test.ts
+    subtasks:
+      - T001
+      - T002
+      - T003
+    prompt_file: tasks/WP01-community-help-content-contract.md
+
+  - id: WP02
+    title: Floating Entry And Dialog Implementation
+    dependencies:
+      - WP01
+    requirement_refs:
+      - "FR-002"
+      - "FR-003"
+      - "FR-004"
+      - "FR-005"
+      - "NFR-001"
+    owned_files:
+      - src/App.tsx
+      - src/components/common/FloatingCommunityHelp.tsx
+      - src/styles/community-help.css
+      - tests/integration/longpage.spec.tsx
+    subtasks:
+      - T004
+      - T005
+      - T006
+    prompt_file: tasks/WP02-floating-entry-and-dialog-implementation.md
+
+  - id: WP03
+    title: Static Asset Wiring And Mission Closeout
+    dependencies:
+      - WP02
+    requirement_refs:
+      - "NFR-002"
+      - "NFR-003"
+      - "NFR-004"
+      - "C-001"
+      - "C-002"
+    owned_files:
+      - public/community/wechat-group.jpg
+      - kitty-specs/021-021-floating-wechat-help-entry/acceptance-matrix.json
+      - kitty-specs/021-021-floating-wechat-help-entry/lanes.json
+      - kitty-specs/021-021-floating-wechat-help-entry/status.events.jsonl
+      - kitty-specs/021-021-floating-wechat-help-entry/status.json
+      - kitty-specs/021-021-floating-wechat-help-entry/tasks.md
+      - kitty-specs/021-021-floating-wechat-help-entry/tasks/WP03-static-asset-wiring-and-mission-closeout.md
+    subtasks:
+      - T007
+      - T008
+    prompt_file: tasks/WP03-static-asset-wiring-and-mission-closeout.md

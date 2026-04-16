@@ -1,6 +1,7 @@
 import type {
   AgentPromptSectionCopy,
   ChromeCopy,
+  CommunityHelpCopy,
   JourneySectionCopy,
   LocaleCode,
   ShareSectionCopy
@@ -122,6 +123,23 @@ const agentPromptByLocale: Record<LocaleCode, AgentPromptSectionCopy> = {
   }
 };
 
+const communityHelpByLocale: Record<LocaleCode, CommunityHelpCopy> = {
+  zh: {
+    buttonLabel: "遇到困难 / 结交更多伙伴？加入微信群",
+    dialogTitle: "遇到困难，或想结交更多伙伴？",
+    dialogSummary: "如果在挑战过程中卡住了，或者想结交更多伙伴、一起合作，可以扫码加入微信群。",
+    closeLabel: "关闭",
+    imageAlt: "微信群二维码，扫码加入协作群"
+  },
+  en: {
+    buttonLabel: "Need help or more partners? Join the WeChat group",
+    dialogTitle: "Need help, or want more partners?",
+    dialogSummary: "If you get stuck or want to meet more partners and collaborate, scan the QR code to join the WeChat group.",
+    closeLabel: "Close",
+    imageAlt: "WeChat group QR code for challenge collaboration"
+  }
+};
+
 export function getChromeCopy(locale: LocaleCode): ChromeCopy {
   return chromeByLocale[locale];
 }
@@ -136,4 +154,8 @@ export function getShareSectionCopy(locale: LocaleCode): ShareSectionCopy {
 
 export function getAgentPromptSectionCopy(locale: LocaleCode): AgentPromptSectionCopy {
   return agentPromptByLocale[locale];
+}
+
+export function getCommunityHelpCopy(locale: LocaleCode): CommunityHelpCopy {
+  return communityHelpByLocale[locale];
 }
