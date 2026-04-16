@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { type LocalizedContentBundle } from "../../content";
 import "../../styles/community-help.css";
 
-const COMMUNITY_HELP_IMAGE_SRC = "/community/wechat-group.jpg";
+const COMMUNITY_HELP_IMAGE_SRC = `${import.meta.env.BASE_URL}community/wechat-group.jpg`;
 
 interface FloatingCommunityHelpProps {
   bundle: LocalizedContentBundle;
