@@ -33,6 +33,10 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function getCommunityHelpImagePath(): string {
+  return `${import.meta.env.BASE_URL}community/wechat-group.jpg`;
+}
+
 describe("Agent Temple Bounty longpage", () => {
   beforeEach(() => {
     window.localStorage.clear();
@@ -149,7 +153,7 @@ describe("Agent Temple Bounty longpage", () => {
     expect(screen.getByText(bundle.communityHelp.dialogSummary)).toBeTruthy();
     expect(
       screen.getByRole("img", { name: bundle.communityHelp.imageAlt }).getAttribute("src")
-    ).toBe("/community/wechat-group.jpg");
+    ).toBe(getCommunityHelpImagePath());
 
     fireEvent.click(screen.getByRole("button", { name: bundle.communityHelp.closeLabel }));
     expect(screen.queryByRole("dialog", { name: bundle.communityHelp.dialogTitle })).toBeNull();
