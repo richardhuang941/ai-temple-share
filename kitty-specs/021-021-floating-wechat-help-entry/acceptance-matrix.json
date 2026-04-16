@@ -1,0 +1,37 @@
+{
+  "mission_slug": "021-021-floating-wechat-help-entry",
+  "overall_verdict": "pass",
+  "criteria": [
+    {
+      "criterion_id": "ACC-001",
+      "description": "The landing page now exposes a floating help entry and localized help copy through the bundle contract.",
+      "proof_type": "automated_test",
+      "evidence": "src/content/models.ts + src/content/uiCopy.ts + src/content/index.ts + tests/unit/contentMappers.test.ts",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-16T11:23:45+08:00",
+      "notes": "Bundle coverage now returns `communityHelp` in zh/en and verifies the localized button/title copy."
+    },
+    {
+      "criterion_id": "ACC-002",
+      "description": "Users can open the floating help dialog, see the fixed WeChat QR image, and close the dialog through button, overlay, and Escape.",
+      "proof_type": "automated_test",
+      "evidence": "src/components/common/FloatingCommunityHelp.tsx + src/styles/community-help.css + tests/integration/longpage.spec.tsx",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-16T11:23:45+08:00",
+      "notes": "Integration coverage checks the right-bottom trigger, dialog content, `/community/wechat-group.jpg`, and all three close paths."
+    },
+    {
+      "criterion_id": "ACC-003",
+      "description": "The QR asset contract is fixed to `public/community/wechat-group.jpg`, the Journey autoplay control still coexists with the help entry, and the full regression/build pass.",
+      "proof_type": "automated_test",
+      "evidence": "public/community/wechat-group.jpg + tests/integration/longpage.spec.tsx + npm test + npm run build",
+      "pass_fail": "pass",
+      "verified_by": "codex",
+      "verified_at": "2026-04-16T11:23:45+08:00",
+      "notes": "The static image can be replaced in place for future deployments, and the repo passes 33 tests plus a successful Vite build."
+    }
+  ],
+  "negative_invariants": []
+}

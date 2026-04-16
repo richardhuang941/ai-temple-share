@@ -132,6 +132,36 @@ describe("Agent Temple Bounty longpage", () => {
         name: "https://github.com/Claws-Temple/ai-temple-bounty2.0-lite-skills"
       }).getAttribute("href")
     ).toBe("https://github.com/Claws-Temple/ai-temple-bounty2.0-lite-skills");
+    expect(screen.getByRole("button", { name: bundle.communityHelp.buttonLabel })).toBeTruthy();
+  });
+
+  it("opens the floating community help dialog and closes it from button, overlay, and Escape", () => {
+    const bundle = getLocalizedLongpageContent("zh");
+    render(<App />);
+
+    const trigger = screen.getByRole("button", { name: bundle.communityHelp.buttonLabel });
+    expect(trigger).toBeTruthy();
+
+    fireEvent.click(trigger);
+
+    const dialog = screen.getByRole("dialog", { name: bundle.communityHelp.dialogTitle });
+    expect(dialog).toBeTruthy();
+    expect(screen.getByText(bundle.communityHelp.dialogSummary)).toBeTruthy();
+    expect(
+      screen.getByRole("img", { name: bundle.communityHelp.imageAlt }).getAttribute("src")
+    ).toBe("/community/wechat-group.jpg");
+
+    fireEvent.click(screen.getByRole("button", { name: bundle.communityHelp.closeLabel }));
+    expect(screen.queryByRole("dialog", { name: bundle.communityHelp.dialogTitle })).toBeNull();
+
+    fireEvent.click(trigger);
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(screen.queryByRole("dialog", { name: bundle.communityHelp.dialogTitle })).toBeNull();
+
+    fireEvent.click(trigger);
+    const reopenedDialog = screen.getByRole("dialog", { name: bundle.communityHelp.dialogTitle });
+    fireEvent.click(reopenedDialog.parentElement as HTMLElement);
+    expect(screen.queryByRole("dialog", { name: bundle.communityHelp.dialogTitle })).toBeNull();
   });
 
   it("removes visible SBTI content and keeps the page focused on Task 1-5", () => {
@@ -294,5 +324,6 @@ describe("Agent Temple Bounty longpage", () => {
     fireEvent.click(pauseButton);
 
     expect(screen.getByRole("button", { name: bundle.journey.resumeLabel })).toBeTruthy();
+    expect(screen.getByRole("button", { name: bundle.communityHelp.buttonLabel })).toBeTruthy();
   });
 });

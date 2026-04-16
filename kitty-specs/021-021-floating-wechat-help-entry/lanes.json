@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "mission_slug": "021-021-floating-wechat-help-entry",
+  "mission_id": "021-021-floating-wechat-help-entry",
+  "mission_branch": "kitty/mission-021-021-floating-wechat-help-entry",
+  "target_branch": "codex/lite-skill-copy-cleanup",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03"
+      ],
+      "write_scope": [
+        "src/App.tsx",
+        "src/components/common/FloatingCommunityHelp.tsx",
+        "src/content/index.ts",
+        "src/content/models.ts",
+        "src/content/uiCopy.ts",
+        "src/styles/community-help.css",
+        "tests/integration/longpage.spec.tsx",
+        "tests/unit/contentMappers.test.ts",
+        "public/community/wechat-group.jpg",
+        "kitty-specs/021-021-floating-wechat-help-entry/**"
+      ],
+      "predicted_surfaces": [
+        "community-help",
+        "floating-dialog"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-04-16T03:23:45+00:00",
+  "computed_from": "manual-direct-repo-plan",
+  "planning_artifact_wps": []
+}

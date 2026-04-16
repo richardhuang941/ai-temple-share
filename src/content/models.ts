@@ -175,6 +175,14 @@ export interface AgentPromptSectionCopy {
   summary: string;
 }
 
+export interface CommunityHelpCopy {
+  buttonLabel: string;
+  dialogTitle: string;
+  dialogSummary: string;
+  closeLabel: string;
+  imageAlt: string;
+}
+
 export interface LocaleState {
   locale: LocaleCode;
   source: LocaleSource;
@@ -186,6 +194,7 @@ export interface LocalizedContentBundle extends LongpageContent {
   journey: JourneySectionCopy;
   shareSection: ShareSectionCopy;
   agentPromptSection: AgentPromptSectionCopy;
+  communityHelp: CommunityHelpCopy;
   factionOptions: FactionOption[];
   selectedFaction: FactionOption;
 }
